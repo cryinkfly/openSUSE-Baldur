@@ -171,7 +171,7 @@ In order for the Elgato Stream Deck to be used, a "udev rule" must be created.
 
     lsusb
     
- ![205458785-6e1c092c-cd12-48fb-8637-0e3dfe0f6f87](https://user-images.githubusercontent.com/79079633/222961310-697c0806-f76f-4bcc-bb11-9492fdf0b704.jpg)
+![205458785-6e1c092c-cd12-48fb-8637-0e3dfe0f6f87](https://user-images.githubusercontent.com/79079633/222963013-9a9e4526-dbee-44cb-89c3-158c8a165341.jpg)
 
 Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the following command:
 
