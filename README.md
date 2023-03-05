@@ -1,4 +1,4 @@
-# openSUSE-MicroOS with libvirt, Steam, ...
+# openSUSE-MicroOS with libvirt (KVM), Elgato Stream Deck, ...
 
 ![Bildschirmfoto vom 2023-03-05 12-11-37](https://user-images.githubusercontent.com/79079633/222956980-b941316a-90a7-417b-a0a3-616be6192928.png)
 
@@ -6,25 +6,25 @@
 
 ### 1.)  Installation of some Flatpak apps:
 
-	- Flatseal (com.github.tchx84.Flatseal) --> Is a graphical utility to review and modify permissions (Flatpak apps)!
-	- Firefox (org.mozilla.firefox)
-	- Thunderbird (org.mozilla.Thunderbird)
-	- LibreOffice (org.libreoffice.LibreOffice)
-	- KeePassXC (org.keepassxc.KeePassXC)
-	- Yubico Authenticator (com.yubico.yubioath)
-	- Raspberry Pi Imager (org.raspberrypi.rpi-imager)
-	- GIMP (org.gimp.GIMP)
-	- Inkscape (org.inkscape.Inkscape)
-	- Blender (org.blender.Blender)
-	- FreeCAD (org.freecadweb.FreeCAD)
-	- PrusaSlicer (com.prusa3d.PrusaSlicer) --> PrusaSlicer & Prusa GCode viewer
-	- OBS Studio (com.obsproject.Studio)
-	- WebSocket Server 4.x Compat Plugin (com.obsproject.Studio.Plugin.WebSocket)  --> Required for Boatswain!
-	- Kdenlive (org.kde.kdenlive)
-	- VLC (org.videolan.VLC)
-	- Steam (com.valvesoftware.Steam)
-	- Discord (com.discordapp.Discord)
-	- Boatswain (com.feaneron.Boatswain) --> Alternative Elgato Stream Deck Controller app
+- Flatseal (com.github.tchx84.Flatseal) --> Is a graphical utility to review and modify permissions (Flatpak apps)!
+- Firefox (org.mozilla.firefox)
+- Thunderbird (org.mozilla.Thunderbird)
+- LibreOffice (org.libreoffice.LibreOffice)
+- KeePassXC (org.keepassxc.KeePassXC)
+- Yubico Authenticator (com.yubico.yubioath)
+- Raspberry Pi Imager (org.raspberrypi.rpi-imager)
+- GIMP (org.gimp.GIMP)
+- Inkscape (org.inkscape.Inkscape)
+- Blender (org.blender.Blender)
+- FreeCAD (org.freecadweb.FreeCAD)
+- PrusaSlicer (com.prusa3d.PrusaSlicer) --> PrusaSlicer & Prusa GCode viewer
+- OBS Studio (com.obsproject.Studio)
+- WebSocket Server 4.x Compat Plugin (com.obsproject.Studio.Plugin.WebSocket)  --> Required for Boatswain!
+- Kdenlive (org.kde.kdenlive)
+- VLC (org.videolan.VLC)
+- Steam (com.valvesoftware.Steam)
+- Discord (com.discordapp.Discord)
+- Boatswain (com.feaneron.Boatswain) --> Alternative Elgato Stream Deck Controller app
   
 You can find more Flatpak apps here: https://flathub.org/home
 
