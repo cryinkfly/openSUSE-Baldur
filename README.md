@@ -4,6 +4,15 @@
 
 ---
 
+<div id="fusion360-project-screenshots" align="center">
+<h2>🖼 Screenshots from this project:</h2>
+<img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
+<img src="https://user-images.githubusercontent.com/79079633/222974795-834d0827-a9e4-4a38-9cb9-fa9cf2f01bfc.png" width="300px" height="150px">
+<img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
+</div>
+
+---
+
 ### 1.)  Installation of some Flatpak apps:
 
 - Flatseal (com.github.tchx84.Flatseal) --> Is a graphical utility to review and modify permissions (Flatpak apps)!
