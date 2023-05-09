@@ -17,11 +17,12 @@
 
 - Flatseal (com.github.tchx84.Flatseal) --> Is a graphical utility to review and modify permissions (Flatpak apps)!
 - Firefox (org.mozilla.firefox)
-- Thunderbird (org.mozilla.Thunderbird)
+- Evolution (org.gnome.Evolution)
+- Kontakte (org.gnome.Contacts)
+- Kalender (org.gnome.Calendar)
 - LibreOffice (org.libreoffice.LibreOffice)
 - KeePassXC (org.keepassxc.KeePassXC)
 - Yubico Authenticator (com.yubico.yubioath)
-- Raspberry Pi Imager (org.raspberrypi.rpi-imager)
 - GIMP (org.gimp.GIMP)
 - Inkscape (org.inkscape.Inkscape)
 - Blender (org.blender.Blender)
@@ -33,13 +34,13 @@
 - VLC (org.videolan.VLC)
 - Steam (com.valvesoftware.Steam)
 - Discord (com.discordapp.Discord)
-- Boatswain (com.feaneron.Boatswain) --> Alternative Elgato Stream Deck Controller app
+- Boatswain (com.feaneron.Boatswain) --> Alternative Elgato Stream Deck Controller app!
   
 You can find more Flatpak apps here: https://flathub.org/home
 
 Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install* them all at once via the terminal with the following command:
 
-    flatpak install flathub com.github.tchx84.Flatseal org.mozilla.firefox org.mozilla.Thunderbird org.libreoffice.LibreOffice org.keepassxc.KeePassXC com.yubico.yubioath org.raspberrypi.rpi-imager org.gimp.GIMP org.inkscape.Inkscape org.blender.Blender org.freecadweb.FreeCAD com.prusa3d.PrusaSlicer com.obsproject.Studio com.obsproject.Studio.Plugin.WebSocket org.kde.kdenlive org.videolan.VLC com.valvesoftware.Steam com.discordapp.Discord com.feaneron.Boatswain
+    flatpak install flathub com.github.tchx84.Flatseal org.mozilla.firefox org.gnome.Evolution org.gnome.Contacts org.gnome.Calendar org.libreoffice.LibreOffice org.keepassxc.KeePassXC com.yubico.yubioath  org.gimp.GIMP org.inkscape.Inkscape org.blender.Blender org.freecadweb.FreeCAD com.prusa3d.PrusaSlicer com.obsproject.Studio com.obsproject.Studio.Plugin.WebSocket org.kde.kdenlive org.videolan.VLC com.valvesoftware.Steam com.discordapp.Discord com.feaneron.Boatswain
 
 *Flatpak apps are automatically installed via the terminal in Flatpak USER mode!
 
@@ -52,16 +53,16 @@ Flatpak applications are installed either via the Gnome Software Center/Discover
 - usbutils --> Required to view device IDs for KVM Passthrough!
 - pcsc-ccid --> Required for the Yubico Authenticator!
 - pcsc-tools --> Required for the Yubico Authenticator!
-- gparted --> Works better because the "gnome-disk-utility" still has a few bugs under openSUSE MicroOS at the moment!
+- ~~gparted --> Works better because the "gnome-disk-utility" still has a few bugs under openSUSE MicroOS at the moment!~~ <-- FIXED!
 - v4l2loopback-kmp-default --> Required for OBS Studio (Virtual Camera)!
 - libvirt --> Required for KVM!
 - libvirt-daemon-qemu --> Required for KVM!
 - qemu-tools --> Required for KVM!
 - virt-install --> Required for KVM!
-- virt-manager --> Required for KVM (GUI)!
-- hplip --> Hewlett-Packard's Linux imaging and printing software.
-- menulibre --> The advanced menu editor for the Free and Open Source desktop.
-- gnome-shell-extension-pop-shell --> Pop Shell is a keyboard-driven layer for GNOME Shell which allows for quick and sensible navigation and management of windows.
+- virt-manager --> Optional for KVM (GUI)
+- ~~hplip --> Hewlett-Packard's Linux imaging and printing software.~~ <-- The printer & scanner can be configured via the web interface after installing openSUSE MicroOS!
+- menulibre --> Required for configuring your own icons if no icon theme is used!
+- gnome-shell-extension-pop-shell --> Pop Shell is a keyboard-driven layer for GNOME Shell which allows for quick and sensible navigation and management of windows. (Optional)
 
 In order for certain programs such as the "Yubico Authenticator" to function properly on the computer, these applications require other important system packages such as "pcsc-ccid" and "pcsc-tools". 
 
@@ -69,17 +70,15 @@ Furthermore, every time the system substructure of openSUSE MicroOS is changed, 
 
 #### 2a.) The following commands must be executed:
 
-    sudo transactional-update pkg install nano pciutils usbutils pcsc-ccid pcsc-tools gparted v4l2loopback-kmp-default libvirt libvirt-daemon-qemu qemu-tools virt-install virt-manager hplip menulibre gnome-shell-extension-pop-shell
+    sudo transactional-update pkg install nano pciutils usbutils pcsc-ccid pcsc-tools gparted v4l2loopback-kmp-default libvirt libvirt-daemon-qemu qemu-tools virt-install virt-manager menulibre
     
-    sudo usermod -aG audio,video,render,libvirt,lp $USER
-    
-    sudo systemctl enable libvirtd
-
     sudo reboot
     
-If the "sudo systemctl enable libvirtd" command does not work, then the system must first be restarted and then this command must be executed:
-
     sudo systemctl enable --now libvirtd
+    
+    sudo usermod -aG audio,video,render,libvirt,lp $USER
+
+    sudo reboot
     
 With the addition of the "libvirt" user group, for example, the "normal" user is no longer asked for the "root" password when starting the "Virt Manager" application!
 
@@ -89,9 +88,7 @@ With the addition of the "libvirt" user group, for example, the "normal" user is
 
 So that the "Virtual Camera" function can be used under OBS-Studio under openSUSE MicroOS, a file (/etc/modules-load.d/v4l2loopback.conf) must be created with the following command via the terminal:
 
-    sudo transactional-update shell
-    
-    echo 'v4l2loopback' > /etc/modules-load.d/v4l2loopback.conf	
+    sudo echo 'v4l2loopback' > /etc/modules-load.d/v4l2loopback.conf	
 
 ... and the "v4l2loopback-kmp-default" package must also be installed on the system!
 
@@ -108,13 +105,11 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
 
 #### 5a.) The following commands must be executed:
 
-    sudo transactional-update shell
-
-    nano /etc/default/grub
+    sudo nano /etc/default/grub
 	
 #### 5b.) Save changes with "Ctrl+X -> "Y" and run the following command:
 
-    grub2-mkconfig -o /boot/grub2/grub.cfg 
+    sudo transactional-update grub.cfg 
 
 #### 5c.) Show PCI identification number and [Vendor-ID:Device-ID] of the graphics card and USB controller:
 
@@ -132,21 +127,19 @@ The audio controller from the graphics card must also be passed through to the V
 
 #### 5d.) A file (/etc/modprobe.d/vfio.conf) must be created and your device-specific numbers must be entered there:
 
-    echo 'options vfio-pci ids=1002:7422,1002:ab28,1b21:2142' > /etc/modprobe.d/vfio.conf
+    sudo echo 'options vfio-pci ids=1002:7422,1002:ab28,1b21:2142' > /etc/modprobe.d/vfio.conf
     
-    echo 'vfio-pci' > /etc/modules-load.d/vfio-pci.conf
+    sudo echo 'vfio-pci' > /etc/modules-load.d/vfio-pci.conf
     
 In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):
 
 ![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
 
-    nano /etc/libvirt/qemu.conf
+    sudo nano /etc/libvirt/qemu.conf
     
 Note: The username "steve" should be replaced with your username!
 
 Save changes with "Ctrl+X -> "Y" and run the following command:
-
-    exit
     
     sudo reboot
     
@@ -183,40 +176,36 @@ In order for the Elgato Stream Deck to be used, a "udev rule" must be created.
 ![205458785-6e1c092c-cd12-48fb-8637-0e3dfe0f6f87](https://user-images.githubusercontent.com/79079633/222963013-9a9e4526-dbee-44cb-89c3-158c8a165341.jpg)
 
 Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the following command:
-
-    sudo transactional-update shell
     
 - Elgato Stream Deck Mini:
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Original:
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Original (v2):
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck XL:
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck XL (v2):
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="008f", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="008f", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck MK.2:
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Pedal:
 
-      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0086", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0086", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 After that, it is best to restart the system:
-
-    exit
     
     sudo reboot
     
