@@ -70,7 +70,7 @@ Furthermore, every time the system substructure of openSUSE MicroOS is changed, 
 
 #### 2a.) The following commands must be executed:
 
-    sudo transactional-update pkg install nano pciutils usbutils pcsc-ccid pcsc-tools gparted v4l2loopback-kmp-default libvirt libvirt-daemon-qemu qemu-tools virt-install virt-manager menulibre
+    sudo transactional-update pkg install nano pciutils usbutils pcsc-ccid pcsc-tools v4l2loopback-kmp-default libvirt libvirt-daemon-qemu qemu-tools virt-install virt-manager menulibre
     
     sudo reboot
     
@@ -88,7 +88,7 @@ With the addition of the "libvirt" user group, for example, the "normal" user is
 
 So that the "Virtual Camera" function can be used under OBS-Studio under openSUSE MicroOS, a file (/etc/modules-load.d/v4l2loopback.conf) must be created with the following command via the terminal:
 
-    sudo echo 'v4l2loopback' > /etc/modules-load.d/v4l2loopback.conf	
+    su -c 'echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf'
 
 ... and the "v4l2loopback-kmp-default" package must also be installed on the system!
 
@@ -105,11 +105,13 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
 
 #### 5a.) The following commands must be executed:
 
-    sudo nano /etc/default/grub
+    su -c 'nano /etc/default/grub'
 	
 #### 5b.) Save changes with "Ctrl+X -> "Y" and run the following command:
 
-    sudo transactional-update grub.cfg 
+    sudo transactional-update grub.cfg
+    
+    sudo reboot
 
 #### 5c.) Show PCI identification number and [Vendor-ID:Device-ID] of the graphics card and USB controller:
 
@@ -127,15 +129,13 @@ The audio controller from the graphics card must also be passed through to the V
 
 #### 5d.) A file (/etc/modprobe.d/vfio.conf) must be created and your device-specific numbers must be entered there:
 
-    sudo echo 'options vfio-pci ids=1002:7422,1002:ab28,1b21:2142' > /etc/modprobe.d/vfio.conf
-    
-    sudo echo 'vfio-pci' > /etc/modules-load.d/vfio-pci.conf
+    su -c 'echo "options vfio-pci ids=1002:7422,1002:ab28,1b21:2142" > /etc/modprobe.d/vfio.conf && echo "vfio-pci" > /etc/modules-load.d/vfio-pci.conf'
     
 In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):
 
 ![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
 
-    sudo nano /etc/libvirt/qemu.conf
+    su -c 'nano /etc/libvirt/qemu.conf
     
 Note: The username "steve" should be replaced with your username!
 
@@ -156,6 +156,8 @@ If you have GSConnect's Gnome extension installed and want to use it to connect 
 
     sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
     sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
+    #OR
+    su -c 'firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent && firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
 
 Further information can be found here: 
 
@@ -176,36 +178,40 @@ In order for the Elgato Stream Deck to be used, a "udev rule" must be created.
 ![205458785-6e1c092c-cd12-48fb-8637-0e3dfe0f6f87](https://user-images.githubusercontent.com/79079633/222963013-9a9e4526-dbee-44cb-89c3-158c8a165341.jpg)
 
 Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the following command:
-    
+
+    su
+
 - Elgato Stream Deck Mini:
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Original:
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Original (v2):
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck XL:
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck XL (v2):
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="008f", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="008f", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck MK.2:
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 - Elgato Stream Deck Pedal:
 
-      sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0086", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
+      echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0086", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
 After that, it is best to restart the system:
+
+    exit
     
     sudo reboot
     
