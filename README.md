@@ -101,10 +101,10 @@ So that the "Virtual Camera" function can be used under OBS-Studio under openSUS
 
 Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 6). 
 
-- for AMD CPU, set [amd_iommu=on]
-- for INTEL CPU, set [intel_iommu=on]
+- for AMD CPU, set [amd_iommu=on iommu=pt video=efifb:off]
+- for INTEL CPU, set [intel_iommu=on iommu=pt video=efifb:off]
 
-![Bildschirmfoto vom 2023-03-05 13-16-40](https://user-images.githubusercontent.com/79079633/222959959-0bc1d46a-eabb-4249-a524-7e6a15db711d.png)
+![Bildschirmfoto vom 2023-05-09 19-19-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/a91e4c93-92e3-4397-88df-6e68d10eee01)
 
 #### 5a.) The following commands must be executed:
 
