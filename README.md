@@ -135,7 +135,7 @@ In order to be able to change the default storage location of KVM Libvirt, you s
 
 ![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
 
-    su -c 'nano /etc/libvirt/qemu.conf
+    su -c 'nano /etc/libvirt/qemu.conf'
     
 Note: The username "steve" should be replaced with your username!
 
