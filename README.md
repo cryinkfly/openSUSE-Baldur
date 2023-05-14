@@ -1,13 +1,18 @@
 # openSUSE-MicroOS with libvirt (KVM), Elgato Stream Deck, ...
 
-![Bildschirmfoto vom 2023-03-05 12-11-37](https://user-images.githubusercontent.com/79079633/222956980-b941316a-90a7-417b-a0a3-616be6192928.png)
+![Bildschirmfoto vom 2023-05-13 08-15-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b6c455ac-5d51-4b6d-a1df-73fb303949a7)
 
 ---
 
-<div id="fusion360-project-screenshots" align="center">
+<div id="fusion360-project-screenshots-1" align="center">
 <h2>🖼 Screenshots from this project:</h2>
-<img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
+<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222974795-834d0827-a9e4-4a38-9cb9-fa9cf2f01bfc.png" width="300px" height="150px">
+<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
+</div>
+
+<div id="fusion360-project-screenshots-2" align="center">
+<img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
 </div>
 
@@ -245,7 +250,20 @@ Further information can be found here:
   
 ---
 
-### 7.) You can find further important information here:
+### 7.) Changing the Theme, Icons & Wallpaper:
+
+- https://www.gnome-look.org/p/1359276 <- Tela circle icon theme
+- https://www.gnome-look.org/p/1831077 <- Colloid cursors theme
+- https://www.gnome-look.org/p/1357889 <- Orchis gtk theme (Orchis-Teal version)
+- https://itsfoss.com/flatpak-app-apply-theme/ <- How to Apply GTK Themes on Flatpak Applications?
+
+![Bildschirmfoto vom 2023-05-14 16-46-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/f93e040f-52e6-4f4b-90dd-56853db4febf)
+
+![Bildschirmfoto vom 2023-05-14 16-45-21](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/18efc45d-7a78-47dd-a5c0-04a45b3e2d1c)
+
+---
+
+### 8.) You can find further important information here:
 
 - https://microos.opensuse.org/
 - https://www.facebook.com/cryinkfly/
