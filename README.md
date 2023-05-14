@@ -93,6 +93,8 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
 - for AMD CPU, set [amd_iommu=on iommu=pt video=efifb:off]
 - for INTEL CPU, set [intel_iommu=on iommu=pt video=efifb:off]
 
+Note: The "video=efifb:off" option should only be added if your system is configured to automatically load the graphical environment! If you want to switch to the graphical environment via the terminal after booting, you may no longer see the terminal.
+
 ![Bildschirmfoto vom 2023-05-09 19-19-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/a91e4c93-92e3-4397-88df-6e68d10eee01)
 
 #### 3a.) The following commands must be executed:
