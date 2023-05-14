@@ -4,14 +4,11 @@
 
 ---
 
-<div id="fusion360-project-screenshots-1" align="center">
+<div id="fusion360-project-screenshots" align="center">
 <h2>🖼 Screenshots from this project:</h2>
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222974795-834d0827-a9e4-4a38-9cb9-fa9cf2f01bfc.png" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
-</div>
-
-<div id="fusion360-project-screenshots-2" align="center">
 <img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
 </div>
