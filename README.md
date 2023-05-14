@@ -62,7 +62,7 @@ Flatpak applications are installed either via the Gnome Software Center/Discover
 - qemu-tools --> Required for KVM!
 - virt-install --> Required for KVM!
 - virt-manager --> Required for for KVM-GUI!
-- ~~hplip --> Hewlett-Packard's Linux imaging and printing software.~~ <-- The printer & scanner can be configured via the web interface after installing openSUSE MicroOS!
+- ~~hplip --> Hewlett-Packard's Linux imaging and printing software.~~ <-- The printer can be configured via the Gnome-Control-Center or web interface (CUPS) and the scanner must be configured via the web interface (IP address of the printer!) after installing openSUSE MicroOS!
 - menulibre --> Required for configuring your own icons if no icon theme is used! (Optional)
 - gnome-shell-extension-pop-shell --> Pop Shell is a keyboard-driven layer for GNOME Shell which allows for quick and sensible navigation and management of windows. (Optional)
 
