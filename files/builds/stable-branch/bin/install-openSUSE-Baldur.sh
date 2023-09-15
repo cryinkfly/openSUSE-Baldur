@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:25/15.09.2023                                                                   #
+# Time/Date:    11:55/15.09.2023                                                                   #
 # Version:      1.0.3                                                                              #
 ####################################################################################################
 
@@ -156,6 +156,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         policycoreutils \
         policycoreutils-python-utils \
         procps4 \
+        pciutils \
         rebootmgr \
         rpm \
         samba \
