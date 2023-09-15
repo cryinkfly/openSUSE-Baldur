@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:55/15.09.2023                                                                   #
-# Version:      1.0.3                                                                              #
+# Time/Date:    12:25/15.09.2023                                                                   #
+# Version:      1.0.4                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -330,7 +330,7 @@ function SP_SETUP_USER {
                 if [[ $answer = y ]] ; then
                     sudo transactional-update -c run bash -c '
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
-                    sudo useradd $USERNAME
+                    sudo useradd -m $USERNAME
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     sudo passwd $USERNAME
