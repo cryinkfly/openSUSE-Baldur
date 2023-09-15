@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    09:45/15.09.2023                                                                   #
-# Version:      1.0.1                                                                              #
+# Time/Date:    10:45/15.09.2023                                                                   #
+# Version:      1.0.2                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -140,6 +140,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         noto-sans-fonts \
         ntfs-3g \
         ntfsprogs \
+        usbutils \
         OpenPrintingPPDs \
         openssh \
         openssh-askpass-gnome \
@@ -148,6 +149,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         pam \
         pam-config \
         pavucontrol \
+        pcsc-ccid \
+        pcsc-tools \
         pipewire-alsa \
         pipewire-pulseaudio \
         policycoreutils \
@@ -191,6 +194,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         upower \
         util-linux \
         vim-small \
+        v4l2loopback-kmp-default \
         wallpaper-branding-openSUSE \
         wget \
         wtmpdb \
@@ -280,6 +284,43 @@ function SP_CHECK_GPU_DRIVER {
     fi
 }
 
+##############################################################################################################################################################################
+# SWITCH BOOT TARGET TO GUI (GRAPHICAL UI):                                                                                                                                  #
+##############################################################################################################################################################################
+
+function SP_ACTIVATE_GUI {
+    echo -e "${YELLOW}Boot target is switched to GUI (graphical user interface)!${NOCOLOR}"
+    sudo transactional-update -c run bash -c '
+        sudo systemctl set-default graphical.target
+    '
+    echo -e "${GREEN}The graphical user interface will be show after reboot!${NOCOLOR}"
+}
+
+##############################################################################################################################################################################
+# ENABLE THE "VIRTUAL CAMERA" FOR OBS STUDIO:                                                                                                                                #
+##############################################################################################################################################################################
+
+function SP_ACTIVATE_VC {
+    echo -e "${YELLOW}Enable the Virtual Camera function for OBS Studio!${NOCOLOR}"
+    sudo transactional-update -c run bash -c '
+        sudo echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
+    '
+    echo -e "${GREEN}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE FIREWALL SETTINGS FOR KDE-CONNECT:                                                                                                                         #
+##############################################################################################################################################################################
+
+function SP_ACTIVATE_KDE-CONNECT-PORTS {
+    echo -e "${YELLOW}Opens the ports so that KDE-Connect works properly!${NOCOLOR}"
+    sudo transactional-update -c run bash -c '
+        sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
+        sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
+    '
+    echo -e "${GREEN}The ports for KDE-Connect are open after a restart!${NOCOLOR}"
+}
+
 #####################################################################################################################################################################################################################
 # THE INSTALLATION PROGRAM IS STARTED HERE:                                                                                                                                                                         #
 #####################################################################################################################################################################################################################
@@ -287,3 +328,6 @@ function SP_CHECK_GPU_DRIVER {
 SP_LOAD_COLOR_SHEME
 SP_INSTALL_REQUIRED_PACKAGES
 SP_CHECK_GPU_DRIVER
+SP_ACTIVATE_GUI
+SP_ACTIVATE_VC
+SP_ACTIVATE_KDE-CONNECT-PORTS
