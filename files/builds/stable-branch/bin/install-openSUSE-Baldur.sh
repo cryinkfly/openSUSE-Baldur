@@ -280,7 +280,6 @@ function SP_CHECK_GPU_DRIVER {
     else
         echo -e "${YELLOW}The graphics card analysis failed because your graphics card was not detected!${NOCOLOR}"
         echo -e "${RED}The installer has been terminated!${NOCOLOR}"
-        exit;
     fi
 }
 
