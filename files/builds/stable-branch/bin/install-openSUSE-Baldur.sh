@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    10:45/15.09.2023                                                                   #
-# Version:      1.0.2                                                                              #
+# Time/Date:    11:25/15.09.2023                                                                   #
+# Version:      1.0.3                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -321,6 +321,40 @@ function SP_ACTIVATE_KDE-CONNECT-PORTS {
     echo -e "${GREEN}The ports for KDE-Connect are open after a restart!${NOCOLOR}"
 }
 
+##############################################################################################################################################################################
+# CREATING & CONFIGURING A NORMAL USER:                                                                                                                                      #
+##############################################################################################################################################################################
+
+function SP_SETUP_USER {
+    read -p "${YELLOW}Would you like to create a new user without root privileges? [yn]: ${NOCOLOR}" answer
+                if [[ $answer = y ]] ; then
+                    sudo transactional-update -c run bash -c '
+                    read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
+                    sudo useradd $USERNAME
+                    echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
+                    echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
+                    sudo passwd $USERNAME
+                    echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+                    '
+                    FLATPAK_CONFIG=1
+                else
+                    FLATPAK_CONFIG=0
+                fi
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE FLATPAK-RUNTIME:                                                                                                                                           #
+##############################################################################################################################################################################
+
+function SP_SETUP_FLATPAK {
+    echo -e "${YELLOW}Adding the Flathub Repository!${NOCOLOR}"
+    flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak install --user --noninteractive flathub org.mozilla.firefox
+    flatpak install --user --noninteractive flathub org.gnome.Calculator
+    flatpak install --user --noninteractive flathub org.xfce.mousepad
+    echo -e "${GREEN}The basic Flatpak applications have been installed successfully!${NOCOLOR}"
+}
+
 #####################################################################################################################################################################################################################
 # THE INSTALLATION PROGRAM IS STARTED HERE:                                                                                                                                                                         #
 #####################################################################################################################################################################################################################
@@ -331,3 +365,5 @@ SP_CHECK_GPU_DRIVER
 SP_ACTIVATE_GUI
 SP_ACTIVATE_VC
 SP_ACTIVATE_KDE-CONNECT-PORTS
+SP_SETUP_USER
+#SP_SETUP_FLATPAK
