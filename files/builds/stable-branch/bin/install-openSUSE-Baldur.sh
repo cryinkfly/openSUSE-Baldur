@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    12:25/15.09.2023                                                                   #
-# Version:      1.0.4                                                                              #
+# Time/Date:    20:25/15.09.2023                                                                   #
+# Version:      1.0.5                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -263,7 +263,7 @@ function SP_CHECK_GPU_DRIVER {
                 sudo transactional-update -c pkg install x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
             else
-                read -p "Do you want to install the NVIDIA drivers with full CUDA support? [yn]" answer
+                read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
                     sudo transactional-update -c run bash -c '
                     sudo zypper addrepo --refresh https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
