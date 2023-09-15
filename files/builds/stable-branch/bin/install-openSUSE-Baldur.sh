@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    09:30/15.09.2023                                                                   #
-# Version:      1.0.0                                                                              #
+# Time/Date:    09:45/15.09.2023                                                                   #
+# Version:      1.0.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -233,6 +233,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         yast2-logs \
         zypper \
         zypper-needs-restarting
+    echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
 }
 
 ##############################################################################################################################################################################
@@ -253,7 +254,7 @@ function SP_CHECK_GPU_DRIVER {
         if [[ $(zypper search --installed-only) == *"x11-video-nvidiaG05"*"libvulkan1"*"libvulkan1-32bit"* ]]; then
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
         else
-            if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"*]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"*]]; then
+            if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
                 sudo transactional-update -c pkg install x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
             else
