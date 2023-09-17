@@ -333,12 +333,10 @@ function SP_SETUP_USER {
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
                     sudo useradd -m $USERNAME
                     sudo mkdir -p /home/$USERNAME/.config/autostart
-                
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     sudo passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
-                    '
                     SP_SETUP_FIRSTBOOT
                 else
                     echo "Nothing to do ..."
