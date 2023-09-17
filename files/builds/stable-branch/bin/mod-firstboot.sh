@@ -55,4 +55,5 @@ else
           --title="MicroOS Desktop Firstboot" --text="Firstboot configuration was completed successfully!"
 fi
 rm -f /home/steve/.config/autostart/mod-firstboot.desktop
-rm -f /home/steve/.config/autostart/mod-firstboot.sh
+rm -- "$0"
+
