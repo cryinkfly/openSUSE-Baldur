@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    20:25/15.09.2023                                                                   #
-# Version:      1.0.5                                                                              #
+# Time/Date:    13:00/17.09.2023                                                                   #
+# Version:      1.0.6                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -236,6 +236,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xterm \
         xtermset \
         yast2-logs \
+        zenity \
         zypper \
         zypper-needs-restarting
     echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
@@ -328,31 +329,38 @@ function SP_ACTIVATE_KDE-CONNECT-PORTS {
 function SP_SETUP_USER {
     read -p "${YELLOW}Would you like to create a new user without root privileges? [yn]: ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
-                    sudo transactional-update -c run bash -c '
+                    sudo transactional-update apply
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
                     sudo useradd -m $USERNAME
+                    sudo mkdir -p /home/$USERNAME/.config/autostart
+                
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     sudo passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     '
-                    FLATPAK_CONFIG=1
+                    SP_SETUP_FIRSTBOOT
                 else
-                    FLATPAK_CONFIG=0
+                    echo "Nothing to do ..."
                 fi
 }
 
 ##############################################################################################################################################################################
-# CONFIGURING THE FLATPAK-RUNTIME:                                                                                                                                           #
+# CONFIGURING THE MICROOS DESKTOP FIRSTBOOT SETUP:                                                                                                                           #
 ##############################################################################################################################################################################
 
-function SP_SETUP_FLATPAK {
-    echo -e "${YELLOW}Adding the Flathub Repository!${NOCOLOR}"
-    flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user --noninteractive flathub org.mozilla.firefox
-    flatpak install --user --noninteractive flathub org.gnome.Calculator
-    flatpak install --user --noninteractive flathub org.xfce.mousepad
-    echo -e "${GREEN}The basic Flatpak applications have been installed successfully!${NOCOLOR}"
+function SP_SETUP_FIRSTBOOT {
+sudo cat > "/home/$USERNAME/.config/autostart/mod-firstboot.desktop" << EOF
+[Desktop Entry]
+Name=MicroOS Desktop FirstBoot Setup
+Comment=Sets up MicroOS Desktop Correctly On FirstBoot
+Exec=/home/$USERNAME/.config/autostart/mod-firstboot.desktop
+Icon=org.gnome.Terminal
+Type=Application
+Categories=Utility;System;
+Name[en_GB]=startup
+Name[en_US]=startup
+EOF
 }
 
 #####################################################################################################################################################################################################################
@@ -366,4 +374,3 @@ SP_ACTIVATE_GUI
 SP_ACTIVATE_VC
 SP_ACTIVATE_KDE-CONNECT-PORTS
 SP_SETUP_USER
-#SP_SETUP_FLATPAK
