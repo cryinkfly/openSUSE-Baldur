@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:00/17.09.2023                                                                   #
-# Version:      1.0.6                                                                              #
+# Time/Date:    13:20/17.09.2023                                                                   #
+# Version:      1.0.7                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -355,7 +355,7 @@ cat > mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
-Exec=/home/$USERNAME/.config/autostart/mod-firstboot.desktop
+Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
 Icon=org.gnome.Terminal
 Type=Application
 Categories=Utility;System;
