@@ -361,7 +361,8 @@ Type=Application
 Categories=Utility;System;
 Name[en_GB]=startup
 Name[en_US]=startup
-EOF 
+EOF
+
 chmod +rwx mod-firstboot.desktop
 sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
 }
