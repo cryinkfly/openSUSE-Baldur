@@ -350,8 +350,8 @@ function SP_SETUP_USER {
 function SP_SETUP_FIRSTBOOT {
 curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
 chmod +x mod-firstboot.sh
-mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
-sudo cat > "/home/$USERNAME/.config/autostart/mod-firstboot.desktop" << EOF
+sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
+cat > mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
@@ -362,6 +362,7 @@ Categories=Utility;System;
 Name[en_GB]=startup
 Name[en_US]=startup
 EOF
+sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
 }
 
 #####################################################################################################################################################################################################################
