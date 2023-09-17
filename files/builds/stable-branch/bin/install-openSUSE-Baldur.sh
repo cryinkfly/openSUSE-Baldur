@@ -349,6 +349,7 @@ function SP_SETUP_USER {
 
 function SP_SETUP_FIRSTBOOT {
 curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
+chmod +rwx mod-firstboot.sh
 sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
 cat > mod-firstboot.desktop << EOF
 [Desktop Entry]
@@ -362,8 +363,8 @@ Name[en_GB]=startup
 Name[en_US]=startup
 EOF
 
+chmod +rwx mod-firstboot.desktop
 sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
-sudo chown $USERNAME /home/$USERNAME/.config/autostart/mod-firstboot.*
 }
 
 #####################################################################################################################################################################################################################
