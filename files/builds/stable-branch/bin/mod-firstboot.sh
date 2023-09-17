@@ -1,4 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - MicroOS Desktop Firstboot                    #
+# Description:  This file will configure Flatpak and install some minimal applications.            #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    14:30/17.09.2023                                                                   #
+# Version:      1.0.8                                                                              #
+####################################################################################################
+
 sleep 10
 (
 echo "# Waiting for Internet connection"
