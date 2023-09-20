@@ -19,7 +19,7 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="string" value="xkill"/>
       <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
-      <property name="&lt;Primary&gt;Escape" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Primary&gt;" type="string" value="xfce4-popup-whiskermenu"/>
       <property name="&lt;Primary&gt;s" type="string" value="gnome-software"/> <!-- This shortcut opens the Software Center. -->
       <property name="Print" type="string" value="xfce4-screenshooter -f"/>
       <property name="&lt;Alt&gt;Print" type="string" value="xfce4-screenshooter -w"/>
@@ -50,7 +50,7 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="string" value="xkill"/>
       <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
-      <property name="&lt;Primary&gt;Escape" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Primary&gt;" type="string" value="xfce4-popup-whiskermenu"/>
       <property name="&lt;Primary&gt;s" type="string" value="gnome-software"/> <!-- This shortcut opens the Software Center. -->
       <property name="Print" type="string" value="xfce4-screenshooter -f"/>
       <property name="&lt;Alt&gt;Print" type="string" value="xfce4-screenshooter -w"/>
