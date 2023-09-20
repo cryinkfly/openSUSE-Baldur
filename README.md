@@ -3,6 +3,8 @@
 <h2>This page is currently being edited!!!</h2>
 
 ![Bildschirmfoto vom 2023-05-13 08-15-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b6c455ac-5d51-4b6d-a1df-73fb303949a7)
+![Bildschirmfoto_2023-08-29_12-45-13](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/bf23b91e-251a-485c-961b-360a20edb627)
+
 <img align="center" src="https://img.shields.io/github/license/cryinkfly/openSUSE-MicroOS?style=flat">
  <img align="center" src="https://img.shields.io/github/last-commit/cryinkfly/openSUSE-MicroOS?style=flat">
  <img align="center" src="https://img.shields.io/github/issues-raw/cryinkfly/openSUSE-MicroOS?style=flat"> 
