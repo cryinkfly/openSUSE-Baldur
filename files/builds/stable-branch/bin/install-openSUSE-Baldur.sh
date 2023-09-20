@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:20/17.09.2023                                                                   #
-# Version:      1.0.7                                                                              #
+# Time/Date:    07:50/20.09.2023                                                                   #
+# Version:      1.0.8                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -189,6 +189,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         transactional-update-notifier \
         transactional-update-zypp-config \
         tumbler \
+        tumbler-folder-thumbnailer \
+        tumbler-webp-thumbnailer \
+        ffmpegthumbnailer \
         udev-configure-printer \
         udisks2 \
         unzip \
