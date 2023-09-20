@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    07:50/20.09.2023                                                                   #
-# Version:      1.0.8                                                                              #
+# Time/Date:    11:50/20.09.2023                                                                   #
+# Version:      1.0.9                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -335,11 +335,11 @@ function SP_SETUP_USER {
                     sudo transactional-update apply
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
                     sudo useradd -m $USERNAME
-                    sudo mkdir -p /home/$USERNAME/.config/autostart
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     sudo passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+                    SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
                     SP_SETUP_FIRSTBOOT
                 else
                     echo "Nothing to do ..."
@@ -351,10 +351,11 @@ function SP_SETUP_USER {
 ##############################################################################################################################################################################
 
 function SP_SETUP_FIRSTBOOT {
-curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
-chmod +rwx mod-firstboot.sh
-sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
-cat > mod-firstboot.desktop << EOF
+    sudo mkdir -p /home/$USERNAME/.config/autostart
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
+    chmod +rwx mod-firstboot.sh
+    sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
+    cat > mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
@@ -366,8 +367,18 @@ Name[en_GB]=startup
 Name[en_US]=startup
 EOF
 
-chmod +rwx mod-firstboot.desktop
-sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
+    chmod +rwx mod-firstboot.desktop
+    sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE KEYBOARD SHORTCUTS FOR OPENSUSE BALDUR:                                                                                                                    #
+##############################################################################################################################################################################
+
+function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
+    sudo mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > xfce4-keyboard-shortcuts.xml
+    sudo mv xfce4-keyboard-shortcuts.xml /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
 }
 
 #####################################################################################################################################################################################################################
