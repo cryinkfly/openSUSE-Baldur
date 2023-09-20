@@ -1,7 +1,15 @@
-# openSUSE-MicroOS with libvirt (KVM), Elgato Stream Deck, ...
+<div id="openSUSE-MicroOS-about" align="center">
+<h1>openSUSE-MicroOS with libvirt (KVM), Elgato Stream Deck, ...</h1> 
+<h2>This page is currently being edited!!!</h2>
 
 ![Bildschirmfoto vom 2023-05-13 08-15-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b6c455ac-5d51-4b6d-a1df-73fb303949a7)
-
+<img align="center" src="https://img.shields.io/github/license/cryinkfly/openSUSE-MicroOS?style=flat">
+ <img align="center" src="https://img.shields.io/github/last-commit/cryinkfly/openSUSE-MicroOS?style=flat">
+ <img align="center" src="https://img.shields.io/github/issues-raw/cryinkfly/openSUSE-MicroOS?style=flat"> 
+ <img align="center" src="https://img.shields.io/github/stars/cryinkfly/openSUSE-MicroOS?style=flat"> 
+ <img align="center" src="https://img.shields.io/github/forks/cryinkfly/openSUSE-MicroOS?style=flat"> 
+</div>
+ 
 ---
 
 <div id="fusion360-project-screenshots" align="center">
