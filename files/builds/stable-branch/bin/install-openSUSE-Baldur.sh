@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:50/20.09.2023                                                                   #
-# Version:      1.0.9                                                                              #
+# Time/Date:    10:15/22.09.2023                                                                   #
+# Version:      1.1.0                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -264,7 +264,7 @@ function SP_CHECK_GPU_DRIVER {
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                sudo transactional-update -c pkg install x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
+                sudo transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
             else
                 read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
