@@ -201,6 +201,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         util-linux \
         vim-small \
         v4l2loopback-kmp-default \
+        v4l-utils \
         wallpaper-branding-openSUSE \
         wget \
         wtmpdb \
