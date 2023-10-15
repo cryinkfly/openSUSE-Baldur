@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    10:15/22.09.2023                                                                   #
-# Version:      1.1.0                                                                              #
+# Time/Date:    13:50/15.10.2023                                                                   #
+# Version:      1.1.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -66,6 +66,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         desktop-file-utils \
         dosfstools \
         ethtool \
+        e2fsprogs \
+        exfat-utils \
         fcoe-utils \
         file-roller \
         firewalld \
