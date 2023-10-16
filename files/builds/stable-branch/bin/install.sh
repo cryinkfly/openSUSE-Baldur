@@ -245,7 +245,40 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         zenity \
         zypper \
         zypper-needs-restarting
-    echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
+    
+    sudo transactional-update -c run bash -c '
+    sudo systemctl set-default graphical.target
+    sudo echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
+    sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
+    sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
+    read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
+    sudo useradd -m $USERNAME
+    echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
+    echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
+    sudo passwd $USERNAME
+    echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+    sudo mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > xfce4-keyboard-shortcuts.xml
+    sudo mv xfce4-keyboard-shortcuts.xml /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+    sudo mkdir -p /home/$USERNAME/.config/autostart
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
+    chmod +rwx mod-firstboot.sh
+    sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
+    cat > mod-firstboot.desktop << EOF
+[Desktop Entry]
+Name=MicroOS Desktop FirstBoot Setup
+Comment=Sets up MicroOS Desktop Correctly On FirstBoot
+Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
+Icon=org.gnome.Terminal
+Type=Application
+Categories=Utility;System;
+Name[en_GB]=startup
+Name[en_US]=startup
+EOF
+
+    chmod +rwx mod-firstboot.desktop
+    sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
+    '
 }
 
 ##############################################################################################################################################################################
@@ -414,8 +447,8 @@ function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
 
 SP_LOAD_COLOR_SHEME
 SP_INSTALL_REQUIRED_PACKAGES
-SP_CHECK_GPU_DRIVER
-SP_ACTIVATE_GUI
-SP_ACTIVATE_VC
-SP_ACTIVATE_KDE-CONNECT-PORTS
-SP_SETUP_USER
+#SP_CHECK_GPU_DRIVER
+#SP_ACTIVATE_GUI
+#SP_ACTIVATE_VC
+#SP_ACTIVATE_KDE-CONNECT-PORTS
+#SP_SETUP_USER
