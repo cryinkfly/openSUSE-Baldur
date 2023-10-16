@@ -342,9 +342,28 @@ function SP_SETUP_USER {
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     sudo passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+                    sudo mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+                    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > xfce4-keyboard-shortcuts.xml
+                    sudo mv xfce4-keyboard-shortcuts.xml /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+                    sudo mkdir -p /home/$USERNAME/.config/autostart
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
+    chmod +rwx mod-firstboot.sh
+    sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
+    cat > mod-firstboot.desktop << EOF
+[Desktop Entry]
+Name=MicroOS Desktop FirstBoot Setup
+Comment=Sets up MicroOS Desktop Correctly On FirstBoot
+Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
+Icon=org.gnome.Terminal
+Type=Application
+Categories=Utility;System;
+Name[en_GB]=startup
+Name[en_US]=startup
+EOF
+
+    chmod +rwx mod-firstboot.desktop
+    sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
                     '
-                    SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
-                    SP_SETUP_FIRSTBOOT
                 else
                     echo "Nothing to do ..."
                 fi
