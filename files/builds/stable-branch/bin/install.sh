@@ -373,10 +373,10 @@ EOF
     sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
     
     SP_INSTALL_REQUIRED_PACKAGES
-    SP_CHECK_GPU_DRIVER
-    SP_ACTIVATE_GUI
-    SP_ACTIVATE_VC
-    SP_ACTIVATE_KDE-CONNECT-PORTS
+    #SP_CHECK_GPU_DRIVER
+    #SP_ACTIVATE_GUI
+    #SP_ACTIVATE_VC
+    #SP_ACTIVATE_KDE-CONNECT-PORTS
 }
 
 ##############################################################################################################################################################################
