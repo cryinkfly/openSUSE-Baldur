@@ -343,11 +343,6 @@ function SP_SETUP_USER {
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
                     SP_SETUP_FIRSTBOOT
-                    #SP_INSTALL_REQUIRED_PACKAGES
-                    #SP_CHECK_GPU_DRIVER
-                    #SP_ACTIVATE_GUI
-                    #SP_ACTIVATE_VC
-                    #SP_ACTIVATE_KDE-CONNECT-PORTS
                 else
                     echo "Nothing to do ..."
                 fi
@@ -376,6 +371,12 @@ EOF
 
     chmod +rwx mod-firstboot.desktop
     sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
+    
+    SP_INSTALL_REQUIRED_PACKAGES
+    SP_CHECK_GPU_DRIVER
+    SP_ACTIVATE_GUI
+    SP_ACTIVATE_VC
+    SP_ACTIVATE_KDE-CONNECT-PORTS
 }
 
 ##############################################################################################################################################################################
