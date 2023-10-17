@@ -336,10 +336,10 @@ function SP_SETUP_USER {
     read -p "${YELLOW}Would you like to create a new user without root privileges? [yn]: ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
-                    sudo useradd -m $USERNAME
+                    useradd -m $USERNAME
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
                     echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
-                    sudo passwd $USERNAME
+                    passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
                     SP_SETUP_FIRSTBOOT
@@ -353,11 +353,11 @@ function SP_SETUP_USER {
 ##############################################################################################################################################################################
 
 function SP_SETUP_FIRSTBOOT {
-    sudo mkdir -p /home/$USERNAME/.config/autostart
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > mod-firstboot.sh
-    chmod +rwx mod-firstboot.sh
-    sudo mv mod-firstboot.sh /home/$USERNAME/.config/autostart/
-    cat > mod-firstboot.desktop << EOF
+    mkdir -p /home/$USERNAME/.config/autostart
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    chown $USERNAME /home/$USERNAME/.config/autostart/
+    chmod +x /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
@@ -369,8 +369,7 @@ Name[en_GB]=startup
 Name[en_US]=startup
 EOF
 
-    chmod +rwx mod-firstboot.desktop
-    sudo mv mod-firstboot.desktop /home/$USERNAME/.config/autostart/
+    chown $USERNAME /home/$USERNAME/.config/autostart/
     
     SP_INSTALL_REQUIRED_PACKAGES
     SP_CHECK_GPU_DRIVER
@@ -384,9 +383,9 @@ EOF
 ##############################################################################################################################################################################
 
 function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
-    sudo mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > xfce4-keyboard-shortcuts.xml
-    sudo mv xfce4-keyboard-shortcuts.xml /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
 }
 
 #####################################################################################################################################################################################################################
