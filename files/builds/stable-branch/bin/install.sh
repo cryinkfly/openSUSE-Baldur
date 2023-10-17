@@ -357,6 +357,7 @@ function SP_SETUP_FIRSTBOOT {
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > /home/$USERNAME/.config/autostart/mod-firstboot.sh
     chown $USERNAME /home/$USERNAME/.config/autostart/
     chmod +x /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.sh
     cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
@@ -370,6 +371,7 @@ Name[en_US]=startup
 EOF
 
     chown $USERNAME /home/$USERNAME/.config/autostart/
+    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.desktop
     
     SP_INSTALL_REQUIRED_PACKAGES
     SP_CHECK_GPU_DRIVER
@@ -386,6 +388,7 @@ function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
     chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+    chmod 777 /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 #####################################################################################################################################################################################################################
