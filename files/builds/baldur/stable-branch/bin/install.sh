@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    12:15/17.10.2023                                                                   #
-# Version:      1.1.2                                                                              #
+# Time/Date:    12:50/17.10.2023                                                                   #
+# Version:      1.1.3                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -23,12 +23,74 @@ function SP_LOAD_COLOR_SHEME {
 }
 
 ##############################################################################################################################################################################
+# CREATING & CONFIGURING A NORMAL USER:                                                                                                                                      #
+##############################################################################################################################################################################
+
+function SP_SETUP_USER {
+    read -p "${YELLOW}Would you like to create a new user without root privileges? [yn]: ${NOCOLOR}" answer
+                if [[ $answer = y ]] ; then
+                    read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
+                    useradd -m $USERNAME
+                    echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
+                    echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
+                    passwd $USERNAME
+                    echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+                    SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
+                    SP_SETUP_FIRSTBOOT
+                else
+                    echo "Nothing to do ..."
+                fi
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE KEYBOARD SHORTCUTS FOR OPENSUSE BALDUR:                                                                                                                    #
+##############################################################################################################################################################################
+
+function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
+    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/keyboard-config/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+    chmod 777 /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE MICROOS DESKTOP FIRSTBOOT SETUP:                                                                                                                           #
+##############################################################################################################################################################################
+
+function SP_SETUP_FIRSTBOOT {
+    mkdir -p /home/$USERNAME/.config/autostart
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot.sh > /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    chown $USERNAME /home/$USERNAME/.config/autostart/
+    chmod +x /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
+[Desktop Entry]
+Name=MicroOS Desktop FirstBoot Setup
+Comment=Sets up MicroOS Desktop Correctly On FirstBoot
+Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
+Icon=org.gnome.Terminal
+Type=Application
+Categories=Utility;System;
+Name[en_GB]=startup
+Name[en_US]=startup
+EOF
+
+    chown $USERNAME /home/$USERNAME/.config/autostart/
+    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.desktop
+    
+    SP_INSTALL_REQUIRED_PACKAGES
+    SP_CHECK_GPU_DRIVER
+    SP_ACTIVATE_GUI
+    SP_ACTIVATE_VC
+}
+
+##############################################################################################################################################################################
 # INSTALLATION OF THE REQUIRED PACKAGES FOR OPENSUSE MICROOS (XFCE):                                                                                                         #
 ##############################################################################################################################################################################
 
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
-    sudo transactional-update -c pkg install \
+    transactional-update -c pkg install \
         aaa_base \
         adobe-sourcecodepro-fonts \
         adobe-sourcesanspro-fonts \
@@ -111,7 +173,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         iputils \
         irqbalance \
         issue-generator \
-        kdeconnect-kde \
         kdump \
         kernel-firmware-all \
         lastlog2 \
@@ -255,11 +316,11 @@ function SP_INSTALL_REQUIRED_PACKAGES {
 function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
-        sudo transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
+        transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
-        sudo transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
+        transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
         GPU_DRIVER="nvidia"
@@ -267,19 +328,19 @@ function SP_CHECK_GPU_DRIVER {
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                sudo transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
+                transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
             else
                 read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
-                    sudo transactional-update -c run bash -c '
-                    sudo zypper addrepo --refresh https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
-                    sudo zypper install -y cuda libvulkan1 libvulkan1-32bit
+                    transactional-update -c run bash -c '
+                    zypper addrepo --refresh https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
+                    zypper install -y cuda libvulkan1 libvulkan1-32bit
                     '
                 else
-                    sudo transactional-update -c run bash -c '
-                    sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
-                    sudo zypper install -y x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
+                    transactional-update -c run bash -c '
+                    zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+                    zypper install -y x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
                     '
                 fi
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
@@ -287,7 +348,6 @@ function SP_CHECK_GPU_DRIVER {
         fi
     else
         echo -e "${YELLOW}The graphics card analysis failed because your graphics card was not detected!${NOCOLOR}"
-        echo -e "${RED}The installer has been terminated!${NOCOLOR}"
     fi
 }
 
@@ -297,8 +357,8 @@ function SP_CHECK_GPU_DRIVER {
 
 function SP_ACTIVATE_GUI {
     echo -e "${YELLOW}Boot target is switched to GUI (graphical user interface)!${NOCOLOR}"
-    sudo transactional-update -c run bash -c '
-        sudo systemctl set-default graphical.target
+    transactional-update -c run bash -c '
+        systemctl set-default graphical.target
     '
     echo -e "${GREEN}The graphical user interface will be show after reboot!${NOCOLOR}"
 }
@@ -309,86 +369,12 @@ function SP_ACTIVATE_GUI {
 
 function SP_ACTIVATE_VC {
     echo -e "${YELLOW}Enable the Virtual Camera function for OBS Studio!${NOCOLOR}"
-    sudo transactional-update -c run bash -c '
-        sudo echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
+    transactional-update -c run bash -c '
+        echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
     '
-    echo -e "${GREEN}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
-}
-
-##############################################################################################################################################################################
-# CONFIGURING THE FIREWALL SETTINGS FOR KDE-CONNECT:                                                                                                                         #
-##############################################################################################################################################################################
-
-function SP_ACTIVATE_KDE-CONNECT-PORTS {
-    echo -e "${YELLOW}Opens the ports so that KDE-Connect works properly!${NOCOLOR}"
-    sudo transactional-update -c run bash -c '
-        sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
-        sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
-    '
-    echo -e "${GREEN}The ports for KDE-Connect are open after a restart!${NOCOLOR}"
-}
-
-##############################################################################################################################################################################
-# CREATING & CONFIGURING A NORMAL USER:                                                                                                                                      #
-##############################################################################################################################################################################
-
-function SP_SETUP_USER {
-    read -p "${YELLOW}Would you like to create a new user without root privileges? [yn]: ${NOCOLOR}" answer
-                if [[ $answer = y ]] ; then
-                    read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
-                    useradd -m $USERNAME
-                    echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
-                    echo -c "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
-                    passwd $USERNAME
-                    echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
-                    SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
-                    SP_SETUP_FIRSTBOOT
-                else
-                    echo "Nothing to do ..."
-                fi
-}
-
-##############################################################################################################################################################################
-# CONFIGURING THE MICROOS DESKTOP FIRSTBOOT SETUP:                                                                                                                           #
-##############################################################################################################################################################################
-
-function SP_SETUP_FIRSTBOOT {
-    mkdir -p /home/$USERNAME/.config/autostart
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/mod-firstboot.sh > /home/$USERNAME/.config/autostart/mod-firstboot.sh
-    chown $USERNAME /home/$USERNAME/.config/autostart/
-    chmod +x /home/$USERNAME/.config/autostart/mod-firstboot.sh
-    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.sh
-    cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
-[Desktop Entry]
-Name=MicroOS Desktop FirstBoot Setup
-Comment=Sets up MicroOS Desktop Correctly On FirstBoot
-Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
-Icon=org.gnome.Terminal
-Type=Application
-Categories=Utility;System;
-Name[en_GB]=startup
-Name[en_US]=startup
-EOF
-
-    chown $USERNAME /home/$USERNAME/.config/autostart/
-    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.desktop
-    
-    SP_INSTALL_REQUIRED_PACKAGES
-    SP_CHECK_GPU_DRIVER
-    SP_ACTIVATE_GUI
-    SP_ACTIVATE_VC
-    SP_ACTIVATE_KDE-CONNECT-PORTS
-}
-
-##############################################################################################################################################################################
-# CONFIGURING THE KEYBOARD SHORTCUTS FOR OPENSUSE BALDUR:                                                                                                                    #
-##############################################################################################################################################################################
-
-function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
-    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/stable-branch/bin/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
-    chmod 777 /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    echo -e "${YELLOW}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
+    echo -e "${GREEN}The installation of openSUSE MicoOS with the XFCE desktop enviroment is finished!${NOCOLOR}"
+    echo -e "${YELLOW}Please restart the system for all changes to take effect!${NOCOLOR}"
 }
 
 #####################################################################################################################################################################################################################
