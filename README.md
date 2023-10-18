@@ -1,10 +1,10 @@
-<div id="openSUSE-MicroOS-about" align="center">
-<h1>openSUSE-MicroOS with libvirt (KVM), Elgato Stream Deck, ...</h1> 
-<h2>This page is currently being edited!!!</h2>
-
-![Bildschirmfoto vom 2023-05-13 08-15-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b6c455ac-5d51-4b6d-a1df-73fb303949a7)
-![Bildschirmfoto_2023-08-29_12-45-13](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/bf23b91e-251a-485c-961b-360a20edb627)
-
+<div id="openSUSE-MicroOS-header" align="center">
+<img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
+<h1>openSUSE MicroOS</h1>
+<a href="https://en.opensuse.org/Portal:Aeon"><img src="https://img.shields.io/badge/Aeon-089f8f?style=for-the-badge"></a>
+<a href="https://en.opensuse.org/Portal:Baldur"><img src="https://img.shields.io/badge/Baldur-37a779?style=for-the-badge"></a>
+<a href="https://en.opensuse.org/Portal:Kalpa"><img src="https://img.shields.io/badge/Kalpa-088fd7?style=for-the-badge"></a>
+<br>
 <img align="center" src="https://img.shields.io/github/license/cryinkfly/openSUSE-MicroOS?style=flat">
  <img align="center" src="https://img.shields.io/github/last-commit/cryinkfly/openSUSE-MicroOS?style=flat">
  <img align="center" src="https://img.shields.io/github/issues-raw/cryinkfly/openSUSE-MicroOS?style=flat"> 
@@ -14,10 +14,32 @@
  
 ---
 
-<div id="fusion360-project-screenshots" align="center">
-<h2>🖼 Screenshots from this project:</h2>
+<div id="openSUSE-MicroOS-about" align="center">
+<h2>📜 Description</h2>
+<p>In my project you will first find a brief overview of the Linux distribution openSUSE MicroOS and will also receive some practical tips in the areas of <b>virtualization, Flatpak apps and appearance settings</b>, to name just a few. There are also some <b>executable scripts</b> that make certain tasks quicker and easier to implement. Of course, this always depends on the location and intended use. And now have fun exploring, experimenting and operating with <a href="https://microos.opensuse.org/">openSUSE MicroOS</a>!</p>
+<a href="https://en.opensuse.org/Portal:MicroOS"><img src="https://img.shields.io/badge/Documentation-d3d9df?style=for-the-badge"></a>
+<a href="https://microos.opensuse.org/#hardware"><img src="https://img.shields.io/badge/System Requirements-143f7a?style=for-the-badge"></a>
+<a href="https://en.opensuse.org/Portal:MicroOS/Downloads"><img src="https://img.shields.io/badge/Downloads-5f9a1f?style=for-the-badge"></a>
+<a href="https://bugzilla.opensuse.org/enter_bug.cgi?product=openSUSE+Tumbleweed&component=MicroOS&format=guided"><img src="https://img.shields.io/badge/Report a Bug-bb9d43?style=for-the-badge"></a>
+</div>
+
+---
+
+<div id="openSUSE-MicroOS-screenshots">
+<h3>🔖 Table of contents</h3>
+ <ul>
+  <li>What is openSUSE MicroOS?</li>
+  <li>What features does openSUSE MicroOS offer?</li>
+  <li>...</li>
+</ul> 
+</div>
+
+---
+
+<div id="openSUSE-MicroOS-screenshots" align="center">
+<h3>🖼 Screenshots</h3>
+<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/bf23b91e-251a-485c-961b-360a20edb627" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
-<img src="https://user-images.githubusercontent.com/79079633/222974795-834d0827-a9e4-4a38-9cb9-fa9cf2f01bfc.png" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
@@ -282,3 +304,7 @@ Further information can be found here:
 - https://www.facebook.com/cryinkfly/
 - https://www.instagram.com/cryinkfly/
 - https://www.youtube.com/@cryinkfly
+
+
+
+[Button Hover]: https://img.shields.io/badge/Hover_Over_Me!-37a779?style=for-the-badge
