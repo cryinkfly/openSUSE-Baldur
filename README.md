@@ -47,7 +47,7 @@
       <li>1.1 What is openSUSE MicroOS?</li>
       <li>1.2 What features does openSUSE MicroOS offer?</li>
       <li>1.3 Which download variants are available?</li>
-    </ul> 
+    </ul><br> 
   <li>2. Tips & tricks for openSUSE MicroOS</li>
     <ul>
       <li>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</li>
