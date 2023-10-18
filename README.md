@@ -68,9 +68,17 @@
 	  <li>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</li>
 	  <li>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</li>
         </ul>
-      <li>2.4 ...</li>
-      <li>2.5 ...</li>
-    </ul> 
+      <li>...</li>
+    </ul><br> 
+  <li>3. openSUSE Baldur</li>
+    <ul>
+      <li>3.1 What is openSUSE Baldur?</li>
+      <li>3.2 Who is openSUSE Baldur for?</li>
+      <li>3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</li>
+      <li>3.4 How can I download and Install this?</li>
+      <li>3.5 What special features are there?</li>
+    </ul><br>
+  <li>...</li>
 </ul>
 </div>
 
