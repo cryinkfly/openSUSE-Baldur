@@ -1,3 +1,5 @@
+## This page is being revised and some content will change in the near future!
+
 <div id="openSUSE-MicroOS-header" align="center">
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
 <h1>openSUSE MicroOS</h1>
