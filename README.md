@@ -50,13 +50,26 @@
     </ul> 
   <li>2. Tips & tricks for openSUSE MicroOS</li>
     <ul>
-      <li>2.1 Flatpak-Runtime & -Apps</li>
+      <li>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</li>
 	<ul>
-	  <li>2.1.1 How do I install, update or remove Flatpak apps?</li>
-	  <li>2.1.2 How can I change the appearance of Flatpak apps?</li>
+	  <li>2.1.1 Which packages need to be installed?</li>
+	  <li>2.1.2 Which parameters need to be set in the grub file?</li>
+	  <li>2.1.3 Can I change the default directory/drive for the virtual machines (guests)?</li>
+	  <li>2.1.4 How can I turn off the password prompt when starting the “Virt Manager” application?</li>
+	  <li>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</li>
         </ul>
-      <li>2.2 ...</li>
-      <li>2.3 ...</li>
+      <li>2.2 Flatpak-Runtime & -Apps</li>
+        <ul>
+	  <li>2.2.1 How do I install, update or remove Flatpak apps?</li>
+	  <li>2.2.2 Can I change the appearance of Flatpak apps?</li>
+        </ul>
+      <li>2.3 OBS-Studio & Elgato Stream Deck's</li>
+        <ul>
+	  <li>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</li>
+	  <li>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</li>
+        </ul>
+      <li>2.4 ...</li>
+      <li>2.5 ...</li>
     </ul> 
 </ul>
 </div>
