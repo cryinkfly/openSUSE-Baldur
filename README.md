@@ -2,14 +2,14 @@
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
 <h1>openSUSE MicroOS</h1>
 <a href="https://en.opensuse.org/Portal:Aeon"><img src="https://img.shields.io/badge/Aeon-089f8f?style=for-the-badge"></a>
-<a href="https://en.opensuse.org/Portal:Baldur"><img src="https://img.shields.io/badge/Baldur-37a779?style=for-the-badge"></a>
+<a href="https://en.opensuse.org/Portal:Baldur"><img src="https://img.shields.io/badge/Baldur*-37a779?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:Kalpa"><img src="https://img.shields.io/badge/Kalpa-088fd7?style=for-the-badge"></a>
 <br>
 <img align="center" src="https://img.shields.io/github/license/cryinkfly/openSUSE-MicroOS?style=flat">
- <img align="center" src="https://img.shields.io/github/last-commit/cryinkfly/openSUSE-MicroOS?style=flat">
- <img align="center" src="https://img.shields.io/github/issues-raw/cryinkfly/openSUSE-MicroOS?style=flat"> 
- <img align="center" src="https://img.shields.io/github/stars/cryinkfly/openSUSE-MicroOS?style=flat"> 
- <img align="center" src="https://img.shields.io/github/forks/cryinkfly/openSUSE-MicroOS?style=flat"> 
+<img align="center" src="https://img.shields.io/github/last-commit/cryinkfly/openSUSE-MicroOS?style=flat">
+<img align="center" src="https://img.shields.io/github/issues-raw/cryinkfly/openSUSE-MicroOS?style=flat"> 
+<img align="center" src="https://img.shields.io/github/stars/cryinkfly/openSUSE-MicroOS?style=flat"> 
+<img align="center" src="https://img.shields.io/github/forks/cryinkfly/openSUSE-MicroOS?style=flat"> 
 </div>
  
 ---
@@ -21,29 +21,75 @@
 <a href="https://microos.opensuse.org/#hardware"><img src="https://img.shields.io/badge/System Requirements-143f7a?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:MicroOS/Downloads"><img src="https://img.shields.io/badge/Downloads-5f9a1f?style=for-the-badge"></a>
 <a href="https://bugzilla.opensuse.org/enter_bug.cgi?product=openSUSE+Tumbleweed&component=MicroOS&format=guided"><img src="https://img.shields.io/badge/Report a Bug-bb9d43?style=for-the-badge"></a>
-</div>
+<br></br>
 
----
-
-<div id="openSUSE-MicroOS-screenshots">
-<h3>🔖 Table of contents</h3>
- <ul>
-  <li>What is openSUSE MicroOS?</li>
-  <li>What features does openSUSE MicroOS offer?</li>
-  <li>...</li>
-</ul> 
+**openSUSE Baldur is still in the development phase and is not yet officially available as a system role in the openSUSE MicroOS installation image, please keep this in mind!*
 </div>
 
 ---
 
 <div id="openSUSE-MicroOS-screenshots" align="center">
-<h3>🖼 Screenshots</h3>
+<h3>📸 Screenshots</h3>
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/bf23b91e-251a-485c-961b-360a20edb627" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
 </div>
+
+---
+
+<div id="openSUSE-MicroOS-screenshots">
+<h3>🔖 Table of contents</h3>
+<ul>
+  <li>1. Brief overview of openSUSE MicroOS</li>
+    <ul>
+      <li>1.1 What is openSUSE MicroOS?</li>
+      <li>1.2 What features does openSUSE MicroOS offer?</li>
+      <li>1.3 Which download variants are available?</li>
+    </ul> 
+  <li>2. Tips & tricks for openSUSE MicroOS</li>
+    <ul>
+      <li>2.1 Flatpak-Runtime & -Apps</li>
+	<ul>
+	  <li>2.1.1 How do I install, update or remove Flatpak apps?</li>
+	  <li>2.1.2 How can I change the appearance of Flatpak apps?</li>
+        </ul>
+      <li>2.2 ...</li>
+      <li>2.3 ...</li>
+    </ul> 
+</ul>
+</div>
+
+---
+
+<h3>1. Brief overview of openSUSE MicroOS</h3>
+<h4>1.1 What is openSUSE MicroOS?</h4>
+<p>Designed to host container workloads with automated management and patching. Installing openSUSE MicroOS gives you a fast, small environment for deploying containers or other workloads that benefit from transactional updates. As a rolling release distribution, the software is always up to date.</p>
+
+<h4>1.2 What features does openSUSE MicroOS offer?</h4>
+<p>As a modern Linux operating system, openSUSE MicroOS is characterized as follows:</p>
+<ul><li><b>Small:</b> Lightweight images designed to be deployed for a specific use case</li>
+<li><b>Scalable:</b> Optimized for large deployments while capable as a single machine OS</li>
+<li><b>Always up-to-date:</b> Updates are automatically applied without impacting the running system</li>
+<li><b>Resilient:</b> In case of trouble the system automatically rolls back to last working state</li>
+<li><b>Fast:</b> Doesn't ship with baggage that slows it down</li></ul>
+<p>In other words, openSUSE MicroOS is an operating system you don't have to worry about. It is designed for, but not limited to, container hosts and edge devices. The focus on unattended operation makes it particularly suitable for large deployment environments. openSUSE MicroOS inherits the knowledge of openSUSE Tumbleweed and SUSE Linux Enterprise and redefines the operating system into a small, efficient and reliable distribution.</p>
+
+<h4>2.3 Which download variants are available?</h4>
+<p>In order to be able to install openSUSE MicroOS on the respective system, a variety of different images are available, such as:</p>
+<ul><li><b>Intel or AMD 64-bit desktops, laptops, and servers (x86_64) image</b></li>
+<li><b>UEFI Arm 64-bit servers, desktops, laptops and boards (aarch64) image</b></li>
+<li><b>KVM and XEN image</b></li>
+<li><b>VirtualBox image</b></li>
+<li><b>VMware image</b></li>
+<li><b>MS HyperV image</b></li>
+<li><b>...</b></li></ul>
+<p>And you can find all of these images using the <a href="https://en.opensuse.org/Portal:MicroOS/Downloads">Downloads</a> button shown above!</p>
+
+---
+
+
 
 ---
 
