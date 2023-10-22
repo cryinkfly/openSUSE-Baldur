@@ -50,15 +50,15 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#12-what-features-does-opensuse-microos-offer">1.2 What features does openSUSE MicroOS offer?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
     </ul><br> 
-  <li>2. Tips & tricks for openSUSE MicroOS</li>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#2-tips--tricks-for-opensuse-microos">2. Tips & tricks for openSUSE MicroOS</a></li>
     <ul>
-      <li>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#21-qemukvm-with-gpu-pci-usb--passthrough">2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</a></li>
 	<ul>
-	  <li>2.1.1 Which packages need to be installed?</li>
-          <li>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</li>
-	  <li>2.1.3 Which parameters need to be set in the grub file?</li>
-	  <li>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</li>
-	  <li>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#211-which-packages-need-to-be-installed">2.1.1 Which packages need to be installed?</a></li>
+          <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#212-how-can-i-turn-off-the-password-prompt-when-starting-the-virt-manager-application">2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#213-which-parameters-need-to-be-set-in-the-grub-file">2.1.3 Which parameters need to be set in the grub file?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#214-can-i-change-the-default-directorydrive-for-the-virtual-machines-guests">2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#215-what-settings-need-to-be-made-in-virt-manager-for-example-to-be-able-to-pass-on-the-graphics-card">2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</a></li>
         </ul>
       <li>2.2 Flatpak-Runtime & -Apps</li>
         <ul>
