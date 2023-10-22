@@ -127,7 +127,7 @@
 			<th>Desktop environment?</th>
 			<th>Packages installed?</th>
 			<th>Memory (RAM) usage?</th>
-			<th>Yubikeys are supported?</th>
+			<th>Yubikeys are supported?[^5]</th>
 			<th>Official supported?</th>
 		</tr>
 	</thead>
@@ -136,31 +136,31 @@
 			<td>openSUSE Base</td>
 			<td>Terminal</td>
 			<td>320 (rpm), 0 (flatpak)</td>
-			<td>~ 200 MB</td>
+			<td>> 200 MB</td>
 			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
 			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
 		</tr>
 		<tr>
 			<td><a href="https://en.opensuse.org/Portal:Aeon">openSUSE Aeon</a></td>
 			<td>GNOME</td>
-			<td></td>
-			<td></td>
+			<td>~ 1200 (rpm), 10 (flatpak)</td>
+			<td>> 850 MB</td>
 			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
 			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
 		</tr>
 		<tr>
 			<td><a href="https://en.opensuse.org/Portal:Baldur">openSUSE Baldur</a></td>
 			<td>Xfce</td>
-			<td>1191 (rpm), 10 (flatpak)</td>
-			<td>~ 620 MB</td>
+			<td>~ 1200 (rpm), 10 (flatpak)</td>
+			<td>> 620 MB</td>
 			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
 			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
 		</tr>
 		<tr>
 			<td><a href="https://en.opensuse.org/Portal:Kalpa">openSUSE Kalpa</a></td>
 			<td>KDE Plasma</td>
-			<td></td>
-			<td></td>
+			<td>~ 1300 (rpm), 10 (flatpak)</td>
+			<td>> 780 MB</td>
 			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
 			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
 		</tr>
@@ -498,3 +498,4 @@ You can find further important information here:
 [^2]: The audio controller from the graphics card must also be passed through to the VM!
 [^3]: Flatpak apps are automatically installed in USER mode!
 [^4]: Boatswain requires the WebSocket plugin to connect to OBS Studio!
+[^5]: Under openSUSE Baldur the Yubikeys are supported by default after installation!
