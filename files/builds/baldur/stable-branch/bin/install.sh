@@ -172,7 +172,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         gvfs-backend-samba \
         gvfs-backends \
         gvfs-fuse \
-        gzip \
         health-checker \
         health-checker-plugins-MicroOS \
         hicolor-icon-theme-branding-openSUSE \
