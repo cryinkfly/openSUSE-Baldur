@@ -221,11 +221,18 @@ Further information can be found here:
 - https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location/
 - https://ostechnix.com/solved-cannot-access-storage-file-permission-denied-error-in-kvm-libvirt/
 
-[^1]: “Nano” is used as the editor in this example!
-[^2]: The audio controller from the graphics card must also be passed through to the VM!
-
+<h4>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</h4>
+<p>I have already published a <a href="https://www.youtube.com/live/6u-ZKKVg9-A?feature=shared&t=10884">video</a> on my YouTube channel where I showed how, for example, you can pass a graphics card and a PCI USB card to the guest.</p>
 
 ---
+
+<h3>2.2 Flatpak-Runtime & -Apps</h3>
+<h4>2.2.1 How do I install, update or remove Flatpak apps?</h4>
+<p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install* them all at once via the terminal.</p>
+
+<h4>2.2.2 Can I change the appearance of Flatpak apps?</h4>
+
+sdfsfsf
 
 ---
 
@@ -397,3 +404,6 @@ Further information can be found here:
 
 
 [Button Hover]: https://img.shields.io/badge/Hover_Over_Me!-37a779?style=for-the-badge
+
+[^1]: “Nano” is used as the editor in this example!
+[^2]: The audio controller from the graphics card must also be passed through to the VM!
