@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    09:30/19.10.2023                                                                   #
-# Version:      1.1.4                                                                              #
+# Time/Date:    18:05/22.10.2023                                                                   #
+# Version:      1.1.5                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -91,6 +91,7 @@ EOF
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     transactional-update -c pkg install \
+        7zip \
         aaa_base \
         adobe-sourcecodepro-fonts \
         adobe-sourcesanspro-fonts \
@@ -118,7 +119,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         canberra-gtk-play \
         chrony \
         container-selinux \
+        container-systemd \
         coreutils \
+        coreutils-systemd \
         cups \
         cups-filters \
         cups-pk-helper \
@@ -126,14 +129,17 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         dejavu-fonts \
         dejavu-fonts \
         desktop-file-utils \
+        distrobox \
         dosfstools \
-        ethtool \
         e2fsprogs \
+        elfutils \
+        ethtool \
         exfat-utils \
         fcoe-utils \
+        ffmpegthumbnailer \
         file-roller \
-        firewalld \
         filesystem \
+        firewalld \
         flatpak \
         gcr-ssh-askpass \
         gcr3-ssh-askpass \
@@ -152,6 +158,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         google-droid-fonts \
         google-opensans-fonts \
         google-roboto-fonts \
+        gpg2 \
+        grep \
         grub2 \
         grub2-branding-openSUSE \
         grub2-snapper-plugin \
@@ -164,10 +172,12 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         gvfs-backend-samba \
         gvfs-backends \
         gvfs-fuse \
+        gzip \
         health-checker \
         health-checker-plugins-MicroOS \
         hicolor-icon-theme-branding-openSUSE \
         hplip-hpijs \
+        hwdata \
         hwinfo \
         iproute2 \
         iputils \
@@ -182,6 +192,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         lightdm \
         lightdm-gtk-greeter \
         lightdm-gtk-greeter-settings \
+        mdadm \
         microos-tools \
         mokutil \
         mugshot \
@@ -203,7 +214,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         noto-sans-fonts \
         ntfs-3g \
         ntfsprogs \
-        usbutils \
         OpenPrintingPPDs \
         openssh \
         openssh-askpass-gnome \
@@ -211,18 +221,25 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         openSUSE-build-key \
         pam \
         pam-config \
+        patterns-containers-container_runtime \
+        patterns-micoos-base \
+        patterns-micoos-base-zypper \
+        patterns-micoos-basesystem \
+        patterns-micoos-hardware \
         pavucontrol \
+        pciutils \
         pcsc-ccid \
         pcsc-tools \
         pipewire-alsa \
         pipewire-pulseaudio \
+        podman \
         policycoreutils \
         policycoreutils-python-utils \
         procps4 \
-        pciutils \
         rebootmgr \
         rpm \
         samba \
+        sed \
         selinux-policy-targeted \
         selinux-tools \
         shadow \
@@ -254,15 +271,15 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         tumbler \
         tumbler-folder-thumbnailer \
         tumbler-webp-thumbnailer \
-        ffmpegthumbnailer \
         udev-configure-printer \
         udisks2 \
         unzip \
         upower \
+        usbutils \
         util-linux \
-        vim-small \
-        v4l2loopback-kmp-default \
         v4l-utils \
+        v4l2loopback-kmp-default \
+        vim-small \
         wallpaper-branding-openSUSE \
         wget \
         wtmpdb \
@@ -292,6 +309,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xfconf \
         xfdesktop \
         xfdesktop-branding-openSUSE \
+        xfsprogs \
         xfwm4 \
         xfwm4-branding-openSUSE \
         xorg-x11-driver-video \
@@ -302,8 +320,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xorg-x11-server-extra \
         xterm \
         xtermset \
+        xz \
         yast2-logs \
-        7zip \
         zenity \
         zypper \
         zypper-needs-restarting
