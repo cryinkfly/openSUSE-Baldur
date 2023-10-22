@@ -423,7 +423,7 @@ And this would be the command after the basic installation of openSUSE MicroOS t
 
 <h4>3.5 What special features are there?</h4>
 <p>Since openSUSE Baldur is basically structured in the same way as openSUSE Aeon and Kalpa, it also offers the same functions!<br><br>However, openSUSE Baldur has a few special features:</p>
-<ul><li><b>Graphics card driver:</b>The installation script install the graphics card drivers (e.g.: NVIDIA CUDA, ...) automaticly!</li>
+<ul><li><b>Graphics card driver:</b> The installation script install the graphics card drivers (e.g.: NVIDIA CUDA, ...) automaticly!</li>
 <li><b>Keyboard shortcuts:</b> The keyboard shortcuts have been adapted directly for the XFCE and Flatpak environment!</li>
 <li><b>2FA authentication:</b> The 2FA authentication using external devices such as a Yubikey works out-of-the-box after installing openSUSE Baldur!</li>
 <li>...</li></ul>
