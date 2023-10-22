@@ -70,7 +70,16 @@
 	  <li>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</li>
 	  <li>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</li>
         </ul>
-      <li>...</li>
+      <li>2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</li>
+        <ul>
+	  <li>2.4.1 Which packages or Apps need to be installed?</li>
+	  <li>2.4.2 Which firewall settings need to be set?</li>
+        </ul>
+      <li>2.5 Linux Security with YubiKey</li>
+	<ul>
+	  <li>2.5.1 Which packages need to be installed?</li>
+	  <li>2.5.2 Installing the Yubico Authenticator</li>
+        </ul> 
     </ul><br> 
   <li>3. openSUSE Baldur</li>
     <ul>
@@ -231,6 +240,15 @@ Further information can be found here:
 <h5>2.2.1 How do I install, update or remove Flatpak apps?</h5>
 <p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install[^3] them all at once via the terminal.</p>
 
+Please look this videos here: 
+
+- https://youtu.be/SavmR9ZtHg0?feature=shared
+- https://youtu.be/5w-Rt3QCV84?feature=shared
+
+And install the Flatpak-App "Flatseal" on your system with this command:
+
+    flatpak install --user com.github.tchx84.Flatseal
+
 <h5>2.2.2 Can I change the appearance of Flatpak apps?</h5>
 
 - https://www.gnome-look.org/p/1359276 <- Tela circle icon theme
@@ -246,107 +264,41 @@ Please look this video here: https://youtu.be/V-0yngWXbU4?feature=shared&t=1625
 
 ---
 
----
+<h4>2.3 OBS-Studio & Elgato Stream Deck's</h4>
+<h5>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</h5>
 
-### 1.)  Installation of some Flatpak apps:
+First, the package ... must be installed with the following command:
 
-- Flatseal (com.github.tchx84.Flatseal) --> Is a graphical utility to review and modify permissions (Flatpak apps)!
-- Firefox (org.mozilla.firefox)
-- Evolution (org.gnome.Evolution)
-- Kontakte (org.gnome.Contacts)
-- Kalender (org.gnome.Calendar)
-- LibreOffice (org.libreoffice.LibreOffice)
-- KeePassXC (org.keepassxc.KeePassXC)
-- Yubico Authenticator (com.yubico.yubioath)
-- GIMP (org.gimp.GIMP)
-- Inkscape (org.inkscape.Inkscape)
-- Blender (org.blender.Blender)
-- FreeCAD (org.freecadweb.FreeCAD)
-- PrusaSlicer (com.prusa3d.PrusaSlicer) --> PrusaSlicer & Prusa GCode viewer
-- OBS Studio (com.obsproject.Studio)
-- WebSocket Server 4.x Compat Plugin (com.obsproject.Studio.Plugin.WebSocket)  --> Required for Boatswain!
-- Kdenlive (org.kde.kdenlive)
-- VLC (org.videolan.VLC)
-- Steam (com.valvesoftware.Steam)
-- Discord (com.discordapp.Discord)
-- Boatswain (com.feaneron.Boatswain) --> Alternative Elgato Stream Deck Controller app!
-  
-You can find more Flatpak apps here: https://flathub.org/home
+    sudo transactional-update -c pkg install v4l2loopback-kmp-default
 
-Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install* them all at once via the terminal with the following command:
-
-    flatpak install flathub com.github.tchx84.Flatseal org.mozilla.firefox org.gnome.Evolution org.gnome.Contacts org.gnome.Calendar org.libreoffice.LibreOffice org.keepassxc.KeePassXC com.yubico.yubioath  org.gimp.GIMP org.inkscape.Inkscape org.blender.Blender org.freecadweb.FreeCAD com.prusa3d.PrusaSlicer com.obsproject.Studio com.obsproject.Studio.Plugin.WebSocket org.kde.kdenlive org.videolan.VLC com.valvesoftware.Steam com.discordapp.Discord com.feaneron.Boatswain
-
-*Flatpak apps are automatically installed via the terminal in Flatpak USER mode!
-
----
-
-### 2.) Installation of other important system packages via the terminal:
-
-- nano --> Is a simple terminal-based text editor.
-- pciutils --> Required to view device IDs for KVM Passthrough!
-- usbutils --> Required to view device IDs for KVM Passthrough!
-- pcsc-ccid --> Required for the Yubico Authenticator!
-- pcsc-tools --> Required for the Yubico Authenticator!
-- ~~gparted --> Works better because the "gnome-disk-utility" still has a few bugs under openSUSE MicroOS at the moment!~~ <-- FIXED!
-- v4l2loopback-kmp-default --> Required for OBS Studio (Virtual Camera)!
-- libvirt --> Required for KVM!
-- libvirt-daemon-qemu --> Required for KVM!
-- qemu-tools --> Required for KVM!
-- virt-install --> Required for KVM!
-- virt-manager --> Required for for KVM-GUI!
-- ~~hplip --> Hewlett-Packard's Linux imaging and printing software.~~ <-- The printer can be configured via the Gnome-Control-Center or web interface (CUPS) and the scanner must be configured via the web interface (IP address of the printer!) after installing openSUSE MicroOS!
-- menulibre --> Required for configuring your own icons if no icon theme is used! (Optional)
-- gnome-shell-extension-pop-shell --> Pop Shell is a keyboard-driven layer for GNOME Shell which allows for quick and sensible navigation and management of windows. (Optional)
-
-In order for certain programs such as the "Yubico Authenticator" to function properly on the computer, these applications require other important system packages such as "pcsc-ccid" and "pcsc-tools". 
-
-Furthermore, every time the system substructure of openSUSE MicroOS is changed, a new snapshot is created that only becomes effective after a restart!
-
-
-
-### 4.) Enable the "Virtual Camera" for OBS Studio on openSUSE MicroOS:
-
-So that the "Virtual Camera" function can be used under OBS-Studio under openSUSE MicroOS, a file (/etc/modules-load.d/v4l2loopback.conf) must be created with the following command via the terminal:
+So that the “Virtual Camera” function can actually be used in OBS Studio under openSUSE MicroOS, a file (/etc/modules-load.d/v4l2loopback.conf) must be created using the following command via the terminal:
 
     su -c 'echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf'
     
     sudo reboot
 
-... and the "v4l2loopback-kmp-default" package must also be installed on the system!
+After a restart, the “Virtual Camera” function can now be used in OBS Studio!
 
----
-	
-### 5.) Using GSConnect's Gnome extension on openSUSE MicroOS:
+<h5>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</h5>
+<p>Yes, the Elgato Stream Deck can be used on Linux by implementing or installing a few things.</p>
 
-If you have GSConnect's Gnome extension installed and want to use it to connect to your mobile phone, you need to make the following changes to your firewall setting:
+The best way to do this is with the Flatpak app Boatswain, for example!
 
-    sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
-    sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
-    #OR
-    su -c 'firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent && firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
+Boatswain[^4] can then be installed via the app store (Gnome Software Center/Discover) or via the terminal with the following command:
 
-Further information can be found here: 
+    flatpak install --user com.feaneron.Boatswain com.obsproject.Studio.Plugin.WebSocket
 
-- https://extensions.gnome.org/extension/1319/gsconnect/
-- https://en.opensuse.org/SDB:KDE_Connect
-- https://www.cyberciti.biz/faq/set-up-a-firewall-using-firewalld-on-opensuse-linux/
+After that you have to do the following things:
 
----
+1. List all USB Devices Details using lsusb command:
 
-### 6.) Use Stream Deck using Boatswain:
-
-In order for the Elgato Stream Deck to be used, a "udev rule" must be created.
-
-#### 6a.) List all USB Devices Details using lsusb command:
-
-    lsusb
+       lsusb
     
 ![205458785-6e1c092c-cd12-48fb-8637-0e3dfe0f6f87](https://user-images.githubusercontent.com/79079633/222963013-9a9e4526-dbee-44cb-89c3-158c8a165341.jpg)
 
-Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the following command:
+2. Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the following command:
 
-    su
+       su
 
 - Elgato Stream Deck Mini:
 
@@ -376,22 +328,79 @@ Then you need to replace the ATTRS{idVendor} and ATTRS{idProduct} in the followi
 
       echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0086", TAG+="uaccess"' >> /etc/udev/rules.d/70-streamdeck.rules
 
-After that, it is best to restart the system:
+3. After that, it is best to restart the system:
 
-    exit
+       exit
     
-    sudo reboot
+       sudo reboot
     
-Then all you have to do is pair Boatswain with OBS Studio: https://www.youtube.com/watch?v=zrgQyrtQrCo 
+4. Then all you have to do is pair Boatswain with OBS Studio: https://www.youtube.com/watch?v=zrgQyrtQrCo 
 
 Further information can be found here:
 
   - https://flathub.org/apps/details/com.feaneron.Boatswain
   - https://gitlab.gnome.org/World/boatswain
-  
+
 ---
 
-### 8.) You can find further important information here:
+<h4>2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</h4>
+<h5>2.4.1 Which packages need to be installed?</h5>
+<p>So if you don't use a Gnome desktop environment, then you need to install the KDE-Connect app.<br><br>And you can do this with the following command:</p>
+
+    sudo transactional-update -c pkg install kdeconnect-kde
+
+Otherwise, simply install the GSConnect's Gnome extension via your web browser of your choice and activate it.
+
+<h5>2.4.2 Which firewall settings need to be set?</h5>
+<p>You need to make the following changes to your firewall settings:</p>
+
+    sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
+    sudo firewall-cmd --zone=public --add-port=1714-1764/udp --permanent
+    #OR
+    su -c 'firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent && firewall-cmd --zone=public --add-port=1714-1764/udp --permanent'
+
+    sudo reboot
+
+Further information can be found here: 
+
+- https://extensions.gnome.org/extension/1319/gsconnect/
+- https://en.opensuse.org/SDB:KDE_Connect
+- https://www.cyberciti.biz/faq/set-up-a-firewall-using-firewalld-on-opensuse-linux
+
+---
+
+
+<h4>2.5 Linux Security with YubiKey & KeePassXC</h4>
+<h5>2.5.1 Which packages need to be installed?</h5>
+<p>For example, so that the USB sticks from Yubico can be used under openSUSE MicroOS, a few packages must be installed on your system.<br><br>And that can be done with the following command:</p>
+
+    sudo transactional-update -c pkg install pcsc-ccid pcsc-tools
+
+<h5>2.5.2 Installing the Yubico Authenticator & KeePassXC</h5>
+<p>The Yubico Authenticator and KeePassXC can then be installed via the app store (Gnome Software Center/Discover) or via the terminal with the following command:</p>
+
+    flatpak install --user com.yubico.yubioath org.keepassxc.KeePassXC
+
+---
+
+<h3>3. openSUSE Baldur</h3>
+<h4>3.1 What is openSUSE Baldur?</h4>
+
+<h4>3.2 Who is openSUSE Baldur for?</h4>
+
+<h4>3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</h4>
+
+<h4>3.4 How can I download and Install this?</h4>
+
+<h4>3.5 What special features are there?</h4>
+
+---
+
+---
+
+---
+
+You can find further important information here:
 
 - https://microos.opensuse.org/
 - https://www.facebook.com/cryinkfly/
@@ -401,3 +410,4 @@ Further information can be found here:
 [^1]: Nano is used as the editor in this example!
 [^2]: The audio controller from the graphics card must also be passed through to the VM!
 [^3]: Flatpak apps are automatically installed in USER mode!
+[^4]: Boatswain requires the WebSocket plugin to connect to OBS Studio!
