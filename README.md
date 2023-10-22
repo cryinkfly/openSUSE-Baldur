@@ -128,7 +128,7 @@
 			<th>Packages installed?</th>
 			<th>Memory (RAM) usage?</th>
 			<th>Yubikeys are supported?</th>
-			<th>Official support?</th>
+			<th>Official supported?</th>
 		</tr>
 	</thead>
 	<tbody>
