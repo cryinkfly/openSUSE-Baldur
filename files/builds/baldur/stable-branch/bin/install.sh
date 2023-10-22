@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    18:05/22.10.2023                                                                   #
+# Time/Date:    18:25/22.10.2023                                                                   #
 # Version:      1.1.5                                                                              #
 ####################################################################################################
 
@@ -191,7 +191,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         lightdm \
         lightdm-gtk-greeter \
         lightdm-gtk-greeter-settings \
-        mdadm \
         microos-tools \
         mokutil \
         mugshot \
@@ -220,11 +219,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         openSUSE-build-key \
         pam \
         pam-config \
-        patterns-containers-container_runtime \
-        patterns-micoos-base \
-        patterns-micoos-base-zypper \
-        patterns-micoos-basesystem \
-        patterns-micoos-hardware \
         pavucontrol \
         pciutils \
         pcsc-ccid \
@@ -238,7 +232,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         rebootmgr \
         rpm \
         samba \
-        sed \
         selinux-policy-targeted \
         selinux-tools \
         shadow \
@@ -319,7 +312,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xorg-x11-server-extra \
         xterm \
         xtermset \
-        xz \
         yast2-logs \
         zenity \
         zypper \
