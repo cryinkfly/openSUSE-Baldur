@@ -89,7 +89,7 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">3.4 How can I download and Install this?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">3.5 What special features are there?</a></li>
     </ul><br>
-  <li><a href="">4. Additional information & links</a></li>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#4-additional-information--links">4. Additional information & links</a></li>
 </ul>
 </div>
 
