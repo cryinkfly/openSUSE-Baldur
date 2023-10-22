@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    18:25/22.10.2023                                                                   #
+# Time/Date:    19:00/22.10.2023                                                                   #
 # Version:      1.1.5                                                                              #
 ####################################################################################################
 
@@ -119,7 +119,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         canberra-gtk-play \
         chrony \
         container-selinux \
-        container-systemd \
         coreutils \
         coreutils-systemd \
         cups \
