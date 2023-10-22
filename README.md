@@ -55,9 +55,9 @@
       <li>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</li>
 	<ul>
 	  <li>2.1.1 Which packages need to be installed?</li>
-	  <li>2.1.2 Which parameters need to be set in the grub file?</li>
-	  <li>2.1.3 Can I change the default directory/drive for the virtual machines (guests)?</li>
-	  <li>2.1.4 How can I turn off the password prompt when starting the “Virt Manager” application?</li>
+          <li>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</li>
+	  <li>2.1.3 Which parameters need to be set in the grub file?</li>
+	  <li>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</li>
 	  <li>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</li>
         </ul>
       <li>2.2 Flatpak-Runtime & -Apps</li>
@@ -112,7 +112,122 @@
 
 ---
 
+<h3>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</h3>
+<h4>2.1.1 Which packages need to be installed?</h4>
+<p>Related software packages from openSUSE Leap and Tumbleweed software repositories are organized into installation patterns. openSUSE MicroOS uses openSUSE Tumbleweed repositories as a basis and therefore you can use these patterns to install specific virtualization components on an already running openSUSE MicroOS.<br><br>Use transactional-update to install them:</p>
 
+    sudo transactional-update pkg install -t pattern PATTERN_NAME
+
+To install the KVM environment, consider the following patterns:
+
+    sudo transactional-update pkg install -t pattern kvm_server kvm_tools
+
+- kvm_server = Installs basic VM Host Server with the KVM and QEMU environments.
+- kvm_tools = Installs libvirt tools for managing and monitoring VM Guests in KVM environment.
+
+And if you prefer to install the Xen environment, consider the following patterns:
+
+    sudo transactional-update pkg install -t pattern xen_server xen_tools
+
+- xen_server = Installs a basic Xen VM Host Server.
+- xen_tools = Installs libvirt tools for managing and monitoring VM Guests in Xen environment.
+
+The following packages are also required to find out the device IDs and for changing some config files:
+
+    sudo transactional-update -c pkg install pciutils usbutils nano
+
+And after successful installation of all packages and reboot, the libvirt service should be activated:
+
+    sudo systemctl enable --now libvirtd
+
+<h4>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</h4>
+<p>With the addition of the "libvirt" user group, for example, the "normal" user is no longer asked for the "root" password when starting the "Virt Manager" application!<br><br>And for that you have to execute the following command:</p>
+
+    sudo usermod -aG libvirt $USER
+
+<h4>2.1.3 Which parameters need to be set in the grub file?</h4>
+
+Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 6). 
+
+- for AMD CPU, set [amd_iommu=on iommu=pt video=efifb:off]
+- for INTEL CPU, set [intel_iommu=on iommu=pt video=efifb:off]
+
+*Note 1: The "video=efifb:off" option should only be added if your system is configured to automatically load the graphical environment! If you want to switch to the graphical environment via the terminal after booting, you may no longer see the terminal.*
+
+*Note 2: In addition, the option causes problems with some NVIDIA graphics cards!*
+
+*Note 3: Basically, the "amd_iommu=on" or "intel_iommu=on" option would also suffice, but you get better performance in the guest VM with the "iommu=pt" option and with the "video=efifb:off" option will prevent the driver from stealing the GPU.*
+
+![Bildschirmfoto vom 2023-05-09 19-19-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/a91e4c93-92e3-4397-88df-6e68d10eee01)
+
+1. The following commands must be executed[^1]:
+
+       su -c 'nano /etc/default/grub'
+    
+2. Save changes with "Ctrl+X -> "Y". 
+
+3. Show PCI identification number and [Vendor-ID:Device-ID] of the graphics card[^2] and USB controller:
+
+       lspci -nn | grep -i amd #All AMD graphics cards are displayed!
+    
+       lspci -nn | grep -i nvidia #All NVIDIA graphics cards are displayed!
+    
+       lspci -nn | grep -i usb #All USB devices (controllers) are displayed!
+	
+- 12:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon PRO W6400] [1002:7422]
+- 12:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 21/23 HDMI/DP Audio Controller [1002:ab28] 
+- 06:00.0 USB controller [0c03]: ASMedia Technology Inc. ASM2142/ASM3142 USB 3.1 Host Controller [1b21:2142]
+	
+4. Two files (/etc/modprobe.d/vfio.conf &/etc/modules-load.d/vfio-pci.conf) must be created and your device-specific numbers must be entered there:
+
+    su -c 'echo "options vfio-pci ids=1002:7422,1002:ab28,1b21:2142" > /etc/modprobe.d/vfio.conf && echo "vfio-pci" > /etc/modules-load.d/vfio-pci.conf'
+
+5. You need to rebuild the initial ram disk to include all the needed modules. Create a file named /etc/dracut.conf.d/gpu-passthrough.conf:
+
+       su -c 'nano /etc/dracut.conf.d/gpu-passthrough.conf'
+    
+       # Insert the respective line that matches your CPU!
+    
+       # INTEL CPU:
+       add_drivers+="pci_stub vfio vfio_iommu_type1 vfio_pci vfio_virqfd kvm kvm_intel"
+    
+       #OR FOR AMD CPU:
+       add_drivers+="pci_stub vfio vfio_iommu_type1 vfio_pci vfio_virqfd kvm kvm_amd"
+    
+6. Save changes with "Ctrl+X -> "Y" and now we regenerate grub and rebuild the initrd by executing:
+
+       sudo transactional-update grub.cfg
+
+       # With the -c option, the latest or given snapshot as base continues to be used after the regenerate grub.
+       sudo transactional-update -c initrd
+    
+       sudo reboot
+
+<h4>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</h4>
+<p>In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):</p>
+
+![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
+
+    su -c 'nano /etc/libvirt/qemu.conf'
+    
+*Note: The username "steve" should be replaced with your username!*
+
+Save changes with "Ctrl+X -> "Y" and reboot the system with:
+
+    sudo reboot
+
+Further information can be found here:
+
+- https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location/
+- https://ostechnix.com/solved-cannot-access-storage-file-permission-denied-error-in-kvm-libvirt/
+
+[^1]: “Nano” is used as the editor in this example!
+[^2]: The audio controller from the graphics card must also be passed through to the VM!
+
+
+---
+
+---
 
 ---
 
@@ -171,102 +286,7 @@ In order for certain programs such as the "Yubico Authenticator" to function pro
 
 Furthermore, every time the system substructure of openSUSE MicroOS is changed, a new snapshot is created that only becomes effective after a restart!
 
-#### 2a.) The following commands must be executed:
 
-    sudo transactional-update pkg install nano pciutils usbutils pcsc-ccid pcsc-tools v4l2loopback-kmp-default libvirt libvirt-client libvirt-daemon virt-manager virt-install virt-viewer qemu qemu-kvm qemu-ovmf-x86_64 qemu-tools
-    
-    sudo reboot
-    
-    sudo systemctl enable --now libvirtd
-    
-    sudo usermod -aG audio,video,render,libvirt,lp $USER
-
-    sudo reboot
-    
-With the addition of the "libvirt" user group, for example, the "normal" user is no longer asked for the "root" password when starting the "Virt Manager" application!
-
----
-
-### 3.)  Set up KVM - GPU, USB, ... passthrough via the terminal:
-
-Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 6). 
-
-- for AMD CPU, set [amd_iommu=on iommu=pt video=efifb:off]
-- for INTEL CPU, set [intel_iommu=on iommu=pt video=efifb:off]
-
-*Note 1: The "video=efifb:off" option should only be added if your system is configured to automatically load the graphical environment! If you want to switch to the graphical environment via the terminal after booting, you may no longer see the terminal.*
-
-*Note 2: In addition, the option causes problems with some NVIDIA graphics cards!*
-
-*Note 3: Basically, the "amd_iommu=on" or "intel_iommu=on" option would also suffice, but you get better performance in the guest VM with the "iommu=pt" option and with the "video=efifb:off" option will prevent the driver from stealing the GPU.*
-
-![Bildschirmfoto vom 2023-05-09 19-19-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/a91e4c93-92e3-4397-88df-6e68d10eee01)
-
-#### 3a.) The following commands must be executed:
-
-    su -c 'nano /etc/default/grub'
-    
-Save changes with "Ctrl+X -> "Y". 
-
-#### 3b.) Show PCI identification number and [Vendor-ID:Device-ID] of the graphics card and USB controller:
-
-    lspci -nn | grep -i amd #All AMD graphics cards are displayed!
-    
-    lspci -nn | grep -i nvidia #All NVIDIA graphics cards are displayed!
-    
-    lspci -nn | grep -i usb #All USB devices (controllers) are displayed!
-	
-- 12:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon PRO W6400] [1002:7422]
-- 12:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 21/23 HDMI/DP Audio Controller [1002:ab28] 
-- 06:00.0 USB controller [0c03]: ASMedia Technology Inc. ASM2142/ASM3142 USB 3.1 Host Controller [1b21:2142]
-	
-The audio controller from the graphics card must also be passed through to the VM!
-
-#### 3c.) Two files (/etc/modprobe.d/vfio.conf &/etc/modules-load.d/vfio-pci.conf) must be created and your device-specific numbers must be entered there:
-
-    su -c 'echo "options vfio-pci ids=1002:7422,1002:ab28,1b21:2142" > /etc/modprobe.d/vfio.conf && echo "vfio-pci" > /etc/modules-load.d/vfio-pci.conf'
-
-#### 3d.) You need to rebuild the initial ram disk to include all the needed modules. Create a file named /etc/dracut.conf.d/gpu-passthrough.conf:
-
-    su -c 'nano /etc/dracut.conf.d/gpu-passthrough.conf'
-    
-    # Insert the respective line that matches your CPU!
-    
-    # INTEL CPU:
-    add_drivers+="pci_stub vfio vfio_iommu_type1 vfio_pci vfio_virqfd kvm kvm_intel"
-    
-    #OR FOR AMD CPU:
-    add_drivers+="pci_stub vfio vfio_iommu_type1 vfio_pci vfio_virqfd kvm kvm_amd"
-    
-Save changes with "Ctrl+X -> "Y" and now we regenerate grub and rebuild the initrd by executing:
-
-    sudo transactional-update grub.cfg
-
-    # With the -c option, the latest or given snapshot as base continues to be used after the regenerate grub.
-    sudo transactional-update -c initrd
-    
-    sudo reboot
-
-#### 3e.) In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):
-
-![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
-
-    su -c 'nano /etc/libvirt/qemu.conf'
-    
-Note: The username "steve" should be replaced with your username!
-
-Save changes with "Ctrl+X -> "Y" and reboot the system with:
-
-    sudo reboot
-    
----
-
-Further information can be found here:
-
-- https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location/
-- https://ostechnix.com/solved-cannot-access-storage-file-permission-denied-error-in-kvm-libvirt/
-
----
 
 ### 4.) Enable the "Virtual Camera" for OBS Studio on openSUSE MicroOS:
 
