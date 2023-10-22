@@ -229,11 +229,20 @@ Further information can be found here:
 
 <h4>2.2 Flatpak-Runtime & -Apps</h4>
 <h5>2.2.1 How do I install, update or remove Flatpak apps?</h5>
-<p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install* them all at once via the terminal.</p>
+<p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install[^3] them all at once via the terminal.</p>
 
 <h5>2.2.2 Can I change the appearance of Flatpak apps?</h5>
 
-sdfsfsf
+- https://www.gnome-look.org/p/1359276 <- Tela circle icon theme
+- https://www.gnome-look.org/p/1831077 <- Colloid cursors theme
+- https://www.gnome-look.org/p/1357889 <- Orchis gtk theme (Orchis-Teal version)
+- https://itsfoss.com/flatpak-app-apply-theme/ <- How to Apply GTK Themes on Flatpak Applications?
+
+Please look this video here: https://youtu.be/V-0yngWXbU4?feature=shared&t=1625
+
+![Bildschirmfoto vom 2023-05-14 16-46-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/f93e040f-52e6-4f4b-90dd-56853db4febf)
+
+![Bildschirmfoto vom 2023-05-14 16-45-21](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/18efc45d-7a78-47dd-a5c0-04a45b3e2d1c)
 
 ---
 
@@ -382,19 +391,6 @@ Further information can be found here:
   
 ---
 
-### 7.) Changing the Theme, Icons & Wallpaper:
-
-- https://www.gnome-look.org/p/1359276 <- Tela circle icon theme
-- https://www.gnome-look.org/p/1831077 <- Colloid cursors theme
-- https://www.gnome-look.org/p/1357889 <- Orchis gtk theme (Orchis-Teal version)
-- https://itsfoss.com/flatpak-app-apply-theme/ <- How to Apply GTK Themes on Flatpak Applications?
-
-![Bildschirmfoto vom 2023-05-14 16-46-29](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/f93e040f-52e6-4f4b-90dd-56853db4febf)
-
-![Bildschirmfoto vom 2023-05-14 16-45-21](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/18efc45d-7a78-47dd-a5c0-04a45b3e2d1c)
-
----
-
 ### 8.) You can find further important information here:
 
 - https://microos.opensuse.org/
@@ -402,9 +398,6 @@ Further information can be found here:
 - https://www.instagram.com/cryinkfly/
 - https://www.youtube.com/@cryinkfly
 
-
-
-[Button Hover]: https://img.shields.io/badge/Hover_Over_Me!-37a779?style=for-the-badge
-
-[^1]: “Nano” is used as the editor in this example!
+[^1]: Nano is used as the editor in this example!
 [^2]: The audio controller from the graphics card must also be passed through to the VM!
+[^3]: Flatpak apps are automatically installed in USER mode!
