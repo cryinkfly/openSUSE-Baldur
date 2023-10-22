@@ -47,6 +47,7 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#11-what-is-opensuse-microos">1.1 What is openSUSE MicroOS?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#12-what-features-does-opensuse-microos-offer">1.2 What features does openSUSE MicroOS offer?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
+      <li><a href="">2.4 Which desktops can I choose with OpenSUSE MicroOS?</a></li> 
     </ul><br> 
   <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#2-tips--tricks-for-opensuse-microos">2. Tips & tricks for openSUSE MicroOS</a></li>
     <ul>
@@ -116,6 +117,55 @@
 <li><b>MS HyperV image</b></li>
 <li><b>...</b></li></ul>
 <p>And you can find all of these images using the <a href="https://en.opensuse.org/Portal:MicroOS/Downloads">Downloads</a> button shown above!</p>
+
+<h4>2.4 Which desktops can I choose with OpenSUSE MicroOS?</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Desktop environment?</th>
+			<th>Packages installed?</th>
+			<th>Memory (RAM) usage?</th>
+			<th>Yubikeys are supported?</th>
+			<th>Official support?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>openSUSE Base</td>
+			<td>Terminal</td>
+			<td></td>
+			<td></td>
+			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
+			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
+		</tr>
+		<tr>
+			<td><a href="https://en.opensuse.org/Portal:Aeon">openSUSE Aeon</a></td>
+			<td>GNOME</td>
+			<td></td>
+			<td></td>
+			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
+			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
+		</tr>
+		<tr>
+			<td><a href="https://en.opensuse.org/Portal:Baldur">openSUSE Baldur</a></td>
+			<td>Xfce</td>
+			<td>1191 (rpm), 10 (flatpak)</td>
+			<td>~ 620 MB</td>
+			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
+			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
+		</tr>
+		<tr>
+			<td><a href="https://en.opensuse.org/Portal:Kalpa">openSUSE Kalpa</a></td>
+			<td>KDE Plasma</td>
+			<td></td>
+			<td></td>
+			<td><g-emoji class="g-emoji" alias="heavy_multiplication_x" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png"><img class="emoji" alt="heavy_multiplication_x" src="https://github.githubassets.com/images/icons/emoji/unicode/2716.png" width="20" height="20"></g-emoji></td>
+			<td><g-emoji class="g-emoji" alias="heavy_check_mark" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png"><img class="emoji" alt="heavy_check_mark" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" width="20" height="20"></g-emoji></td>
+		</tr>
+	</tbody>
+</table>
 
 ---
 
