@@ -392,6 +392,20 @@ Further information can be found here:
 
 <h4>3.4 How can I download and Install this?</h4>
 
+Since openSUSE Baldur is still in development and is not in the official installation medium of openSUSE MicroOS, the installation is still a bit complicated!
+
+Because some Linux knowledge is required in terms of using the command line in order to be able to run the installation script after the basic installation of openSUSE MicroOS.
+
+For this reason, please watch the above two videos!
+
+You can find the installation script as well as other files and instructions here:
+
+- https://github.com/cryinkfly/openSUSE-MicroOS
+
+This would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
+
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/bin/install.sh > install-openSUSE-Baldur.sh && chmod +x install-openSUSE-Baldur.sh && ./install-openSUSE-Baldur.sh
+
 <h4>3.5 What special features are there?</h4>
 
 ---
