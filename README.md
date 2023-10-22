@@ -60,34 +60,34 @@
 	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#214-can-i-change-the-default-directorydrive-for-the-virtual-machines-guests">2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</a></li>
 	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#215-what-settings-need-to-be-made-in-virt-manager-for-example-to-be-able-to-pass-on-the-graphics-card">2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</a></li>
         </ul>
-      <li>2.2 Flatpak-Runtime & -Apps</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#22-flatpak-runtime---apps">2.2 Flatpak-Runtime & -Apps</a></li>
         <ul>
-	  <li>2.2.1 How do I install, update or remove Flatpak apps?</li>
-	  <li>2.2.2 Can I change the appearance of Flatpak apps?</li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#221-how-do-i-install-update-or-remove-flatpak-apps">2.2.1 How do I install, update or remove Flatpak apps?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#222-can-i-change-the-appearance-of-flatpak-apps">2.2.2 Can I change the appearance of Flatpak apps?</a></li>
         </ul>
-      <li>2.3 OBS-Studio & Elgato Stream Deck's</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-obs-studio--elgato-stream-decks">2.3 OBS-Studio & Elgato Stream Deck's</a></li>
         <ul>
-	  <li>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</li>
-	  <li>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#231-how-can-i-activate-the-virtual-camera-function-for-obs-studio-under-opensuse-microos">2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#232-can-i-use-the-elgato-stream-deck-on-opensuse-microos">2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</a></li>
         </ul>
-      <li>2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#24-connect-to-your-mobile-phone-with-kde-connect-or-the-gsconnects-gnome-extension">2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</a></li>
         <ul>
-	  <li>2.4.1 Which packages or Apps need to be installed?</li>
-	  <li>2.4.2 Which firewall settings need to be set?</li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#241-which-packages-need-to-be-installed">2.4.1 Which packages or Apps need to be installed?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#242-which-firewall-settings-need-to-be-set">2.4.2 Which firewall settings need to be set?</a></li>
         </ul>
-      <li>2.5 Linux Security with YubiKey</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#25-linux-security-with-yubikey--keepassxc">2.5 Linux Security with YubiKey</a></li>
 	<ul>
-	  <li>2.5.1 Which packages need to be installed?</li>
-	  <li>2.5.2 Installing the Yubico Authenticator</li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#251-which-packages-need-to-be-installed">2.5.1 Which packages need to be installed?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#252-installing-the-yubico-authenticator--keepassxc">2.5.2 Installing the Yubico Authenticator</a></li>
         </ul> 
     </ul><br> 
-  <li>3. openSUSE Baldur</li>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#3-opensuse-baldur">3. openSUSE Baldur</a></li>
     <ul>
-      <li>3.1 What is openSUSE Baldur?</li>
-      <li>3.2 Who is openSUSE Baldur for?</li>
-      <li>3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</li>
-      <li>3.4 How can I download and Install this?</li>
-      <li>3.5 What special features are there?</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#31-what-is-opensuse-baldur">3.1 What is openSUSE Baldur?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#32-who-is-opensuse-baldur-for">3.2 Who is openSUSE Baldur for?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#33-what-are-the-design-goals-of-this-version-of-opensuse-microos-desktop">3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">3.4 How can I download and Install this?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">3.5 What special features are there?</a></li>
     </ul><br>
   <li>...</li>
 </ul>
@@ -349,7 +349,7 @@ Further information can be found here:
 
     sudo transactional-update -c pkg install kdeconnect-kde
 
-Otherwise, simply install the GSConnect's Gnome extension via your web browser of your choice and activate it.
+Otherwise, simply install the <a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect's Gnome extension</a> via your web browser of your choice and activate it.
 
 <h5>2.4.2 Which firewall settings need to be set?</h5>
 <p>You need to make the following changes to your firewall settings:</p>
