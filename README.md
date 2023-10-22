@@ -89,7 +89,7 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">3.4 How can I download and Install this?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">3.5 What special features are there?</a></li>
     </ul><br>
-  <li>...</li>
+  <li><a href="">4. Additional information & links</a></li>
 </ul>
 </div>
 
@@ -190,7 +190,7 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
 	
 4. Two files (/etc/modprobe.d/vfio.conf &/etc/modules-load.d/vfio-pci.conf) must be created and your device-specific numbers must be entered there:
 
-    su -c 'echo "options vfio-pci ids=1002:7422,1002:ab28,1b21:2142" > /etc/modprobe.d/vfio.conf && echo "vfio-pci" > /etc/modules-load.d/vfio-pci.conf'
+       su -c 'echo "options vfio-pci ids=1002:7422,1002:ab28,1b21:2142" > /etc/modprobe.d/vfio.conf && echo "vfio-pci" > /etc/modules-load.d/vfio-pci.conf'
 
 5. You need to rebuild the initial ram disk to include all the needed modules. Create a file named /etc/dracut.conf.d/gpu-passthrough.conf:
 
@@ -386,9 +386,30 @@ Further information can be found here:
 <h3>3. openSUSE Baldur</h3>
 <h4>3.1 What is openSUSE Baldur?</h4>
 
+openSUSE Baldur provides only a minimal base system with a XFCE Desktop Environment and Basic Configuration Tools ONLY. All Applications, Browsers, Codecs, etc are provided by FlatPaks from FlatHub.
+
 <h4>3.2 Who is openSUSE Baldur for?</h4>
 
+It is NOT for everyone. Your highly customisable Tumbleweed & Leap Desktops are safe and will remain the best choice for those who want to tinker with their Desktop.
+
+It should be perfect for lazy developers, who no longer want to mess around with their desktop and just ”get stuff done”, especially if they develop around containers.
+
+It should also appeal to the same audience now more used to an iOS, Chromebook or Android-like experience where the OS is static, automated & reliable and the Apps are the main thing the user cares about.
+
+To deep dive on the origins and the case why some users should use openSUSE Baldur check out the following workshop:
+
+- https://youtu.be/V-0yngWXbU4?feature=shared
+- https://www.youtube.com/live/PPYOM3z_DIc?feature=shared 
+
 <h4>3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</h4>
+
+Baldur should be reliable, predictable & immutable, just like openSUSE MicroOS.
+
+Baldur should be less customisable than regular openSUSE Tumbleweed/Leap.
+
+Baldur should be small, but not at the expense of functionality. Printing, Gaming, Media Production and much more should all work.
+
+Baldur should just work “out of the box” without the need for additional configuration to get key functionality like software installation and web browsing working. All features offered by default should work - features that don't work shouldn't be offered/visible/available to users. 
 
 <h4>3.4 How can I download and Install this?</h4>
 
@@ -398,25 +419,29 @@ Because some Linux knowledge is required in terms of using the command line in o
 
 For this reason, please watch the above two videos!
 
-You can find the installation script as well as other files and instructions here:
-
-- https://github.com/cryinkfly/openSUSE-MicroOS
-
-This would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
+And this would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
 
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/bin/install.sh > install-openSUSE-Baldur.sh && chmod +x install-openSUSE-Baldur.sh && ./install-openSUSE-Baldur.sh
 
 <h4>3.5 What special features are there?</h4>
+<p>Since openSUSE Baldur is basically structured in the same way as openSUSE Aeon and Kalpa, it also offers the same functions!<br><br>However, openSUSE Baldur has a few special features:</p>
+<ul><li><b>Graphics card driver:</b>The installation script install the graphics card drivers (e.g.: NVIDIA CUDA, ...) automaticly!</li>
+<li><b>Keyboard shortcuts:</b> The keyboard shortcuts have been adapted directly for the XFCE and Flatpak environment!</li>
+<li><b>2FA authentication:</b> The 2FA authentication using external devices such as a Yubikey works out-of-the-box after installing openSUSE Baldur!</li>
+<li>...</li></ul>
+<p>In other words, openSUSE Baldur is a new flavor of openSUSE MicroOS Desktop that gives users a light, fast and stable working environment.</p>
 
 ---
 
----
-
----
+<h3>4. Additional information & links</h3>
 
 You can find further important information here:
 
 - https://microos.opensuse.org/
+- https://en.opensuse.org/Portal:Aeon
+- https://en.opensuse.org/Portal:Baldur
+- https://en.opensuse.org/Portal:Kalpa
+- https://www.cryinkfly.com
 - https://www.facebook.com/cryinkfly/
 - https://www.instagram.com/cryinkfly/
 - https://www.youtube.com/@cryinkfly
