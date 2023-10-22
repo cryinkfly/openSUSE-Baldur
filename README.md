@@ -44,11 +44,11 @@
 <div id="openSUSE-MicroOS-screenshots">
 <h3>🔖 Table of contents</h3>
 <ul>
-  <li>1. Brief overview of openSUSE MicroOS</li>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#1-brief-overview-of-opensuse-microos">1. Brief overview of openSUSE MicroOS</a></li>
     <ul>
-      <li>1.1 What is openSUSE MicroOS?</li>
-      <li>1.2 What features does openSUSE MicroOS offer?</li>
-      <li>1.3 Which download variants are available?</li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#11-what-is-opensuse-microos">1.1 What is openSUSE MicroOS?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#12-what-features-does-opensuse-microos-offer">1.2 What features does openSUSE MicroOS offer?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
     </ul><br> 
   <li>2. Tips & tricks for openSUSE MicroOS</li>
     <ul>
@@ -112,8 +112,9 @@
 
 ---
 
-<h3>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</h3>
-<h4>2.1.1 Which packages need to be installed?</h4>
+<h3>2. Tips & tricks for openSUSE MicroOS</h3>
+<h4>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</h4>
+<h5>2.1.1 Which packages need to be installed?</h5>
 <p>Related software packages from openSUSE Leap and Tumbleweed software repositories are organized into installation patterns. openSUSE MicroOS uses openSUSE Tumbleweed repositories as a basis and therefore you can use these patterns to install specific virtualization components on an already running openSUSE MicroOS.<br><br>Use transactional-update to install them:</p>
 
     sudo transactional-update pkg install -t pattern PATTERN_NAME
@@ -140,12 +141,12 @@ And after successful installation of all packages and reboot, the libvirt servic
 
     sudo systemctl enable --now libvirtd
 
-<h4>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</h4>
+<h5>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</h5>
 <p>With the addition of the "libvirt" user group, for example, the "normal" user is no longer asked for the "root" password when starting the "Virt Manager" application!<br><br>And for that you have to execute the following command:</p>
 
     sudo usermod -aG libvirt $USER
 
-<h4>2.1.3 Which parameters need to be set in the grub file?</h4>
+<h5>2.1.3 Which parameters need to be set in the grub file?</h5>
 
 Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 6). 
 
@@ -203,7 +204,7 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
     
        sudo reboot
 
-<h4>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</h4>
+<h5>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</h5>
 <p>In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):</p>
 
 ![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
@@ -226,11 +227,11 @@ Further information can be found here:
 
 ---
 
-<h3>2.2 Flatpak-Runtime & -Apps</h3>
-<h4>2.2.1 How do I install, update or remove Flatpak apps?</h4>
+<h4>2.2 Flatpak-Runtime & -Apps</h4>
+<h5>2.2.1 How do I install, update or remove Flatpak apps?</h5>
 <p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install* them all at once via the terminal.</p>
 
-<h4>2.2.2 Can I change the appearance of Flatpak apps?</h4>
+<h5>2.2.2 Can I change the appearance of Flatpak apps?</h5>
 
 sdfsfsf
 
