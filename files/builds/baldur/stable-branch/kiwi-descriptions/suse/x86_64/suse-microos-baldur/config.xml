@@ -254,4 +254,7 @@
         <package name="zypper"/>
         <package name="zypper-needs-restarting"/>
     </packages>
+    <packages type="iso">
+        <package name="dracut-kiwi-live"/>
+    </packages>
 </image>
