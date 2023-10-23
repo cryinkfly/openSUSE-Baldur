@@ -46,8 +46,8 @@
     <ul>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#11-what-is-opensuse-microos">1.1 What is openSUSE MicroOS?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#12-what-features-does-opensuse-microos-offer">1.2 What features does openSUSE MicroOS offer?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#24-which-desktops-can-i-choose-with-opensuse-microos">2.4 Which desktops can I choose with OpenSUSE MicroOS?</a></li> 
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#13-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#14-which-desktops-can-i-choose-with-opensuse-microos">1.4 Which desktops can I choose with OpenSUSE MicroOS?</a></li> 
     </ul><br> 
   <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#2-tips--tricks-for-opensuse-microos">2. Tips & tricks for openSUSE MicroOS</a></li>
     <ul>
