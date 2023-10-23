@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="opensuse-baldur">
+    <description type="system">
+        <author>Steve Zabka</author>
+        <contact>info@cryinkfly.de</contact>
+        <specification>
+            openSUSE Baldur is a small based image of openSUSE MicroOS with the Xfce desktop enviroment.
+        </specification>
+    </description>
+    <preferences>
+        <type image="iso" primary="true" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="uefi"/>
+        <version>1.0.0</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us-intl</keytable>
+        <timezone>Europe/Berlin</timezone>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <bootsplash-theme>bgrt</bootsplash-theme>
+        <bootloader-theme>openSUSE</bootloader-theme>
+    </preferences>
+    <users>
+        <user password="123456" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="rpm-md" alias="kiwi" priority="1">
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
+    </repository>
+    <repository type="yast2" alias="Tumbleweed" imageinclude="true">
+        <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
+    </repository>
+    <packages type="image">
+        <package name="7zip"/>
+        <package name="aaa_base"/>
+        <package name="adobe-sourcecodepro-fonts"/>
+        <package name="adobe-sourcesanspro-fonts"/>
+        <package name="adobe-sourceserifpro-fonts"/>
+        <package name="adwaita-icon-theme"/>
+        <package name="adwaita-xfce-icon-theme"/>
+        <package name="at-spi2-core"/>
+        <package name="audit"/>
+        <package name="avahi"/>
+        <package name="bash"/>
+        <package name="bash-completion"/>
+        <package name="biosdevname"/>
+        <package name="blueman"/>
+        <package name="bluez-cups"/>
+        <package name="bluez-firmware"/>
+        <package name="bolt"/>
+        <package name="branding-openSUSE"/>
+        <package name="btrfsmaintenance"/>
+        <package name="btrfsprogs"/>
+        <package name="busybox"/>
+        <package name="busybox-gzip"/>
+        <package name="busybox-hostname"/>
+        <package name="ca-certificates"/>
+        <package name="ca-certificates-mozilla"/>
+        <package name="canberra-gtk-play"/>
+        <package name="chrony"/>
+        <package name="container-selinux"/>
+        <package name="coreutils"/>
+        <package name="coreutils-systemd"/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+        <package name=""/>
+    </packages>
+</image>
