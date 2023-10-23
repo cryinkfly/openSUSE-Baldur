@@ -107,7 +107,7 @@
 <li><b>Fast:</b> Doesn't ship with baggage that slows it down</li></ul>
 <p>In other words, openSUSE MicroOS is an operating system you don't have to worry about. It is designed for, but not limited to, container hosts and edge devices. The focus on unattended operation makes it particularly suitable for large deployment environments. openSUSE MicroOS inherits the knowledge of openSUSE Tumbleweed and SUSE Linux Enterprise and redefines the operating system into a small, efficient and reliable distribution.</p>
 
-<h4>2.3 Which download variants are available?</h4>
+<h4>1.3 Which download variants are available?</h4>
 <p>In order to be able to install openSUSE MicroOS on the respective system, a variety of different images are available, such as:</p>
 <ul><li><b>Intel or AMD 64-bit desktops, laptops, and servers (x86_64) image</b></li>
 <li><b>UEFI Arm 64-bit servers, desktops, laptops and boards (aarch64) image</b></li>
@@ -118,7 +118,7 @@
 <li><b>...</b></li></ul>
 <p>If you are interested in installing it on your system yourself, then go to the <a href="https://en.opensuse.org/Portal:MicroOS/Downloads">download area of openSUSE images</a>!</p>
 
-<h4>2.4 Which desktops can I choose with OpenSUSE MicroOS?</h4>
+<h4>1.4 Which desktops can I choose with OpenSUSE MicroOS?</h4>
 
 <table>
 	<thead>
