@@ -1,6 +1,6 @@
 <div id="openSUSE-MicroOS-header" align="center">
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
-<h1>openSUSE MicroOS</h1>
+<h1>[GUIDE] Tips, Tricks & Tutorials for getting fully up and running openSUSE MicroOS Desktop</h1>
 <a href="https://en.opensuse.org/Portal:Aeon"><img src="https://img.shields.io/badge/Aeon-089f8f?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:Baldur"><img src="https://img.shields.io/badge/Baldur*-37a779?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:Kalpa"><img src="https://img.shields.io/badge/Kalpa-088fd7?style=for-the-badge"></a>
@@ -16,7 +16,7 @@
 
 <div id="openSUSE-MicroOS-about" align="center">
 <h2>📜 Description</h2>
-<p>In my project you will first find a brief overview of the Linux distribution openSUSE MicroOS and will also receive some practical tips in the areas of <b>virtualization, Flatpak apps and appearance settings</b>, to name just a few. There are also some <b>executable scripts</b> that make certain tasks quicker and easier to implement. Of course, this always depends on the location and intended use. And now have fun exploring, experimenting and operating with <a href="https://microos.opensuse.org/">openSUSE MicroOS</a>!</p>
+<p>In my project you will first receive a brief overview of the Linux distribution openSUSE MicroOS and will also receive some helpful tips in the areas of virtualization, Flatpak apps and display settings, to name just a few. Some executable scripts will also be published here that are intended to make the implementation of certain tasks quicker and easier. Of course, this always depends on the application and intended use. And now have fun exploring, experimenting and using openSUSE MicroOS!</p>
 <a href="https://en.opensuse.org/Portal:MicroOS"><img src="https://img.shields.io/badge/Documentation-d3d9df?style=for-the-badge"></a>
 <a href="https://microos.opensuse.org/#hardware"><img src="https://img.shields.io/badge/System Requirements-143f7a?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:MicroOS/Downloads"><img src="https://img.shields.io/badge/Downloads-5f9a1f?style=for-the-badge"></a>
@@ -116,7 +116,7 @@
 <li><b>VMware image</b></li>
 <li><b>MS HyperV image</b></li>
 <li><b>...</b></li></ul>
-<p>And you can find all of these images using the <a href="https://en.opensuse.org/Portal:MicroOS/Downloads">Downloads</a> button shown above!</p>
+<p>If you are interested in installing it on your system yourself, then go to the <a href="https://en.opensuse.org/Portal:MicroOS/Downloads">download area of openSUSE images</a>!</p>
 
 <h4>2.4 Which desktops can I choose with OpenSUSE MicroOS?</h4>
 
