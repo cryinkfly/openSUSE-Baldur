@@ -10,20 +10,48 @@
     </description>
     <preferences>
         <type image="iso" primary="true" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true" firmware="uefi"/>
-	<type image="oem" filesystem="xfs">
+	<type
+            image="oem"
+            filesystem="btrfs"
+            firmware="uefi"
+            installiso="true"
+            installboot="install"
+            kernelcmdline="quiet systemd.show_status=yes console=ttyS0,115200 console=tty0 net.ifnames=0 \$ignition_firstboot ignition.platform.id=qemu"
+            bootpartition="false"
+            devicepersistency="by-uuid"
+            btrfs_root_is_snapshot="true"
+            btrfs_root_is_readonly_snapshot="true"
+            btrfs_quota_groups="true"
+            format="qcow2"
+            spare_part="5G"
+            spare_part_mountpoint="/var"
+            spare_part_fs="btrfs"
+            spare_part_is_last="true"
+            spare_part_fs_attributes="no-copy-on-write"
+        >
             <oemconfig>
+                <oem-unattended>true</oem-unattended>
                 <oem-resize>false</oem-resize>
             </oemconfig>
+            <bootloader name="grub2" console="serial" timeout="10"/>
+            <systemdisk>
+                <volume name="home"/>
+                <volume name="root"/>
+                <volume name="opt"/>
+                <volume name="srv"/>
+                <volume name="boot/grub2/i386-pc"/>
+                <volume name="boot/grub2/x86_64-efi" mountpoint="boot/grub2/x86_64-efi"/>
+                <volume name="boot/writable"/>
+                <volume name="usr/local"/>
+            </systemdisk>
+            <size unit="G">20</size>
+            <installmedia>
+                <initrd action="omit">
+                    <dracut module="combustion"/>
+                    <dracut module="ignition"/>
+                </initrd>
+            </installmedia>
         </type>
-        <version>1.0.0</version>
-        <packagemanager>zypper</packagemanager>
-        <locale>en_US</locale>
-        <keytable>us-intl</keytable>
-        <timezone>Europe/Berlin</timezone>
-        <rpm-excludedocs>true</rpm-excludedocs>
-        <rpm-check-signatures>false</rpm-check-signatures>
-        <bootsplash-theme>bgrt</bootsplash-theme>
-        <bootloader-theme>openSUSE</bootloader-theme>
     </preferences>
     <users>
         <user password="123456" home="/root" name="root" groups="root"/>
