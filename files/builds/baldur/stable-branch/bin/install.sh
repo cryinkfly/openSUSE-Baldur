@@ -126,7 +126,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         cups-pk-helper \
         curl \
         dejavu-fonts \
-        dejavu-fonts \
         desktop-file-utils \
         distrobox \
         dosfstools \
