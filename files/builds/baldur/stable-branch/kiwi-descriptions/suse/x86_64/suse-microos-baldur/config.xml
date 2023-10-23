@@ -248,7 +248,7 @@
         <package name="xorg-x11-server"/>
         <package name="xorg-x11-server-extra"/>
         <package name="xterm"/>
-        <package name="xtermsetv"/>
+        <package name="xtermset"/>
         <package name="yast2-logs"/>
         <package name="zenity"/>
         <package name="zypper"/>
