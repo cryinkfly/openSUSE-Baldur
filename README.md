@@ -58,6 +58,7 @@
 	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#213-which-parameters-need-to-be-set-in-the-grub-file">2.1.3 Which parameters need to be set in the grub file?</a></li>
 	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#214-can-i-change-the-default-directorydrive-for-the-virtual-machines-guests">2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</a></li>
 	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#215-what-settings-need-to-be-made-in-virt-manager-for-example-to-be-able-to-pass-on-the-graphics-card">2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS/blob/main/README.md#216-the-latest-update-in-microos-version-20231101-means-that-kvm-cannot-start-the-default-network">2.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</a></li>
         </ul>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#22-flatpak-runtime---apps">2.2 Flatpak-Runtime & -Apps</a></li>
         <ul>
