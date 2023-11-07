@@ -279,8 +279,11 @@ Further information can be found here:
 - https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location/
 - https://ostechnix.com/solved-cannot-access-storage-file-permission-denied-error-in-kvm-libvirt/
 
-<h4>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</h4>
+<h5>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</h5>
 <p>I have already published a <a href="https://www.youtube.com/live/6u-ZKKVg9-A?feature=shared&t=10884">video</a> on my YouTube channel where I showed how, for example, you can pass a graphics card and a PCI USB card to the guest.</p>
+
+<h5>2.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</h5>
+<p>I have already written a workaround for this problem and you can read it here: https://github.com/cryinkfly/openSUSE-MicroOS/issues/2</p>
 
 ---
 
