@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    17:15/08.11.2023                                                                   #
+# Time/Date:    17:25/08.11.2023                                                                   #
 # Version:      1.1.8                                                                              #
 ####################################################################################################
 
@@ -58,9 +58,11 @@ function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
 ##############################################################################################################################################################################
 
 function SP_SETUP_FIRSTBOOT {
+    transactional-update -c run bash -c '
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
+        chmod +x /usr/bin/mod-firstboot
+    '
     mkdir -p /home/$USERNAME/.config/autostart
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
-    chmod +x /usr/bin/mod-firstboot
     cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
