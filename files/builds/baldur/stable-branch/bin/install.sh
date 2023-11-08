@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    17:00/08.11.2023                                                                   #
-# Version:      1.1.6                                                                              #
+# Time/Date:    17:15/08.11.2023                                                                   #
+# Version:      1.1.8                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -59,15 +59,13 @@ function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
 
 function SP_SETUP_FIRSTBOOT {
     mkdir -p /home/$USERNAME/.config/autostart
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot.sh > /home/$USERNAME/.config/autostart/mod-firstboot.sh
-    chown $USERNAME /home/$USERNAME/.config/autostart/
-    chmod +x /home/$USERNAME/.config/autostart/mod-firstboot.sh
-    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.sh
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
+    chmod +x /usr/bin/mod-firstboot
     cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
-Exec=/home/$USERNAME/.config/autostart/mod-firstboot.sh
+Exec=/usr/bin/mod-firstboot
 Icon=org.gnome.Terminal
 Type=Application
 Categories=Utility;System;
