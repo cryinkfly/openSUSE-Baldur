@@ -62,6 +62,7 @@ function SP_SETUP_FIRSTBOOT {
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
         chmod +x /usr/bin/mod-firstboot
     '
+    
     mkdir -p /home/$USERNAME/.config/autostart
     cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
