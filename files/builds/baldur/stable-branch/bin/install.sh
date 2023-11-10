@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    17:25/08.11.2023                                                                   #
-# Version:      1.1.8                                                                              #
+# Time/Date:    18:13/10.11.2023                                                                   #
+# Version:      1.1.9                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -35,10 +35,13 @@ function SP_SETUP_USER {
                     echo -e "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
                     passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
-                    SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS
-                    SP_SETUP_FIRSTBOOT
+                    SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
+                    SP_SETUP_FIRSTBOOT_ROOT
+                    SP_SETUP_FIRSTBOOT_USER
                 else
-                    echo "Nothing to do ..."
+                    echo -e "${YELLOW}Setting up a new user has been skipped, but you can still manually create a new user later.${NOCOLOR}"
+                    SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT
+                    SP_SETUP_FIRSTBOOT_ROOT
                 fi
 }
 
@@ -46,23 +49,36 @@ function SP_SETUP_USER {
 # CONFIGURING THE KEYBOARD SHORTCUTS FOR OPENSUSE BALDUR:                                                                                                                    #
 ##############################################################################################################################################################################
 
-function SP_SETUP_XFCE4-KEYBOARD-SHORTCUTS {
+function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
+    mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/keyboard-config/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+}
+
+function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/keyboard-config/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
     chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
     chmod 777 /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
+
 ##############################################################################################################################################################################
 # CONFIGURING THE MICROOS DESKTOP FIRSTBOOT SETUP:                                                                                                                           #
 ##############################################################################################################################################################################
 
-function SP_SETUP_FIRSTBOOT {
+function SP_SETUP_FIRSTBOOT_ROOT {
     transactional-update -c run bash -c '
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
         chmod +x /usr/bin/mod-firstboot
     '
-    
+
+    SP_INSTALL_REQUIRED_PACKAGES
+    SP_CHECK_GPU_DRIVER
+    SP_ACTIVATE_GUI
+    SP_ACTIVATE_VC
+}
+
+function SP_SETUP_FIRSTBOOT_USER {
     mkdir -p /home/$USERNAME/.config/autostart
     cat > /home/$USERNAME/.config/autostart/mod-firstboot.desktop << EOF
 [Desktop Entry]
@@ -343,12 +359,12 @@ function SP_CHECK_GPU_DRIVER {
                 read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
                     transactional-update -c run bash -c '
-                    zypper addrepo --refresh https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
+                    zypper ar -f https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
                     zypper install -y cuda libvulkan1 libvulkan1-32bit
                     '
                 else
                     transactional-update -c run bash -c '
-                    zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+                    zypper ar -f https://download.nvidia.com/opensuse/tumbleweed NVIDIA
                     zypper install -y x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
                     '
                 fi
