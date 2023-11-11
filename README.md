@@ -34,7 +34,6 @@
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
 <img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
-<img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png" width="300px" height="150px">
 </div>
 
 ---
@@ -336,6 +335,8 @@ After a restart, the “Virtual Camera” function can now be used in OBS Studio
 <p>Yes, the Elgato Stream Deck can be used on Linux by implementing or installing a few things.</p>
 
 The best way to do this is with the Flatpak app Boatswain, for example!
+
+<img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png">
 
 Boatswain[^4] can then be installed via the app store (Gnome Software Center/Discover) or via the terminal with the following command:
 
