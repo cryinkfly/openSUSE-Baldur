@@ -336,7 +336,7 @@ After a restart, the “Virtual Camera” function can now be used in OBS Studio
 
 The best way to do this is with the [Flatpak app Boatswain](https://flathub.org/apps/com.feaneron.Boatswain), for example!
 
-<img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png">
+<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/52de6cc3-ca48-41f3-90f0-2bf807368455">
 
 Boatswain[^4] can then be installed via the app store (Gnome Software Center/Discover) or via the terminal with the following command:
 
