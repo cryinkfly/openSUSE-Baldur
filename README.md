@@ -334,7 +334,7 @@ After a restart, the “Virtual Camera” function can now be used in OBS Studio
 <h5>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</h5>
 <p>Yes, the Elgato Stream Deck can be used on Linux by implementing or installing a few things.</p>
 
-The best way to do this is with the Flatpak app Boatswain, for example!
+The best way to do this is with the [Flatpak app Boatswain](https://flathub.org/apps/com.feaneron.Boatswain), for example!
 
 <img src="https://user-images.githubusercontent.com/79079633/222975021-91deec7b-fd5f-4635-87c4-f02715043fa0.png">
 
