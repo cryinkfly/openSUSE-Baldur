@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    18:13/10.11.2023                                                                   #
-# Version:      1.1.9                                                                              #
+# Time/Date:    16:10/12.11.2023                                                                   #
+# Version:      1.2.0                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -32,9 +32,12 @@ function SP_SETUP_USER {
                     read -p "${YELLOW}Please enter the name of the new user? ${NOCOLOR}" USERNAME
                     useradd -m $USERNAME
                     echo -e "${GREEN}The user $USERNAME was created successfully and is available after the restart!${NOCOLOR}"
-                    echo -e "${YELLOW}Please enter a secure password for your new user in the next step! ${NOCOLOR}" USERNAME
+                    echo -e "${YELLOW}Please enter a secure password for your new user in the next step!${NOCOLOR}"
                     passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
+                    echo -e "${YELLOW}The user $USERNAME will be added to the correct user groups!${NOCOLOR}"
+                    usermod -a -G user,video,audio,render,disk,lp $USERNAME
+                    echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
                     SP_SETUP_FIRSTBOOT_ROOT
                     SP_SETUP_FIRSTBOOT_USER
