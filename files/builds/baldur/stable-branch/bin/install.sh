@@ -36,7 +36,7 @@ function SP_SETUP_USER {
                     passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     echo -e "${YELLOW}The user $USERNAME will be added to the correct user groups!${NOCOLOR}"
-                    usermod -a -G user,video,audio,render,disk,lp $USERNAME
+                    usermod -a -G users,video,audio,render,disk,lp $USERNAME
                     echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
                     SP_SETUP_FIRSTBOOT_ROOT
