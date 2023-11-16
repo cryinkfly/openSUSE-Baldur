@@ -87,7 +87,7 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#33-what-are-the-design-goals-of-this-version-of-opensuse-microos-desktop">3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">3.4 How can I download and Install this?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">3.5 What special features are there?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#36-how-can-i-change-the-system-to-another-language">3.6 How can I change the system to another language?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#36-how-can-i-change-the-language-for-the-system-or-user-to-another-language">3.6 How can I change the language for the system or user to another language?</a></li>
     </ul><br>
   <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#4-additional-information--links">4. Additional information & links</a></li>
 </ul>
@@ -485,8 +485,19 @@ And this would be the command after the basic installation of openSUSE MicroOS t
 <li>...</li></ul>
 <p>In other words, openSUSE Baldur is a new flavor of openSUSE MicroOS Desktop that gives users a light, fast and stable working environment.</p>
 
-<h4>3.6 How can I change the system to another language?</h4>
-<p>I'm currently working on an automatic function for the installation script so that the switch to the correct language takes place automatically!<br><br>Because the default language under XFCE after the successful installation of openSUSE Baldur is "English".<br><br>But you can change the language yourself and you can find good documentation here: <a href="https://wiki.archlinux.org/title/locale">https://wiki.archlinux.org/title/locale</a></p>
+<h4>3.6 How can I change the language for the system or user to another language?</h4>
+
+Since there is no way to change the language settings via a GUI under openSUSE Baldur, you currently have to change the language manually via the terminal!
+
+Here is an example of the conversion to German:
+
+    echo "export LANGUAGE=de_DE.utf8
+    export LANG=de_DE.utf8
+    export LC_ALL=de_DE.utf8" > $HOME/.i18n
+
+The ".i18n" file plays an important role!!!
+
+The language settings take effect automatically when the user logs out and logs in again.
 
 ---
 
