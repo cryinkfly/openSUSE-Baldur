@@ -495,9 +495,13 @@ Here is an example of the conversion to German:
     export LANG=de_DE.utf8
     export LC_ALL=de_DE.utf8" > $HOME/.i18n
 
-The ".i18n" file plays an important role!!!
-
 The language settings take effect automatically when the user logs out and logs in again.
+
+And if you are looking for the right name for your language, you can run the following command:
+
+    locale -a
+
+This will give you a list of enabled locales!
 
 ---
 
