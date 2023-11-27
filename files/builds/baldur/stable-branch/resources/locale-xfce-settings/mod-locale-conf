@@ -1,0 +1,55 @@
+#!/bin/bash
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - Locale Configurator                          #
+# Description:  This file will configure the locale settings for the XFCE desktop enviroment.      #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    13:10/27.11.2023                                                                   #
+# Version:      1.0.0                                                                              #
+####################################################################################################
+
+function locale_menu {
+    locale_data=$(cat locale.txt | tr ',' '\n' | zenity --list \
+        --title="Welcome" \
+        --text="Please select your language:"\
+        --column="" --column="" --hide-column=2 --print-column=2)
+
+    clear
+    locale_config_start
+}
+
+function locale_config_start {
+# Check if the variable is empty
+    if [ -z "$locale_data" ]; then
+        locale_config_reset
+    else
+        locale_config
+    fi
+}
+
+function locale_config {
+echo "export LANGUAGE=$locale_data
+export LANG=$locale_data
+export LC_ALL=$locale_data" > $HOME/.i18n
+
+locale_info
+}
+
+function locale_config_reset {
+echo "export LANGUAGE=en_US.UTF8
+export LANG=en_US.UTF8
+export LC_ALL=en_US.UTF8" > $HOME/.i18n
+}
+
+function locale_info {
+    zenity --info \
+           --text="The language settings have been successfully applied. The changes take effect automatically the next time you log in!"
+    zenity --warning \
+           --text="However, the keyboard language settings must be changed manually via the XFCE settings!"
+    exit
+}
+
+locale_menu
