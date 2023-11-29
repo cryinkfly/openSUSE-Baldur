@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    14:00/29.11.2023                                                                   #
-# Version:      1.2.3                                                                              #
+# Time/Date:    16:50/29.11.2023                                                                   #
+# Version:      1.2.4                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -84,7 +84,7 @@ function SP_SETUP_FIRSTBOOT_USER {
 [Desktop Entry]
 Name=MicroOS Desktop FirstBoot Setup
 Comment=Sets up MicroOS Desktop Correctly On FirstBoot
-Exec=/usr/bin/mod-firstboot && /usr/bin/mod-locale-conf
+Exec=/usr/bin/mod-firstboot
 Icon=org.gnome.Terminal
 Type=Application
 Categories=Utility;System;
