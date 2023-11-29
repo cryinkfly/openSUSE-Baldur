@@ -68,7 +68,6 @@ else
           --title="MicroOS Desktop Firstboot" --text="Firstboot configuration was completed successfully!"
 fi
 rm -f /home/steve/.config/autostart/mod-firstboot.desktop
-rm -- "$0"
 }
 
 flatpak_setup
