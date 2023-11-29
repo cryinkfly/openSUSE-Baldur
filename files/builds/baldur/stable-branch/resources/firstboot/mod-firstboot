@@ -12,7 +12,7 @@
 ####################################################################################################
 
 function flatpak_setup {
-sleep 10
+sleep 5
 (
 echo "# Waiting for Internet connection"
 until /usr/bin/ping -q -c 1 8.8.8.8; do sleep 1; done
@@ -70,5 +70,5 @@ fi
 rm -f /home/steve/.config/autostart/mod-firstboot.desktop
 }
 
+source /usr/bin/mod-locale-conf
 flatpak_setup
-
