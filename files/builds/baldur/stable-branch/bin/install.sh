@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:00/29.11.2023                                                                   #
-# Version:      1.2.1                                                                              #
+# Time/Date:    13:15/29.11.2023                                                                   #
+# Version:      1.2.2                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -107,6 +107,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/preferences-desktop-locale.svg > /usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf > /usr/bin/mod-locale-conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/locale.txt > /usr/etc/locale.txt
         chmod +x /usr/bin/mod-locale-conf
     '
 
