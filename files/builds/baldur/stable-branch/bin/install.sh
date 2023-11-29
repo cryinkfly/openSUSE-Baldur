@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    16:10/12.11.2023                                                                   #
-# Version:      1.2.0                                                                              #
+# Time/Date:    13:00/29.11.2023                                                                   #
+# Version:      1.2.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -75,10 +75,7 @@ function SP_SETUP_FIRSTBOOT_ROOT {
         chmod +x /usr/bin/mod-firstboot
     '
 
-    SP_INSTALL_REQUIRED_PACKAGES
-    SP_CHECK_GPU_DRIVER
-    SP_ACTIVATE_GUI
-    SP_ACTIVATE_VC
+    SP_CONFIGURE_DESKTOP_LOCALE
 }
 
 function SP_SETUP_FIRSTBOOT_USER {
@@ -98,6 +95,21 @@ EOF
     chown $USERNAME /home/$USERNAME/.config/autostart/
     chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.desktop
     
+    SP_CONFIGURE_DESKTOP_LOCALE
+}
+
+##############################################################################################################################################################################
+# CHANGE SYSTEM LANGUAGE ON OPENSUSE MICROOS (XFCE):                                                                                                                         #
+##############################################################################################################################################################################
+
+function SP_CONFIGURE_DESKTOP_LOCALE {
+    transactional-update -c run bash -c '
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/preferences-desktop-locale.svg > /usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf > /usr/bin/mod-locale-conf
+        chmod +x /usr/bin/mod-locale-conf
+    '
+
     SP_INSTALL_REQUIRED_PACKAGES
     SP_CHECK_GPU_DRIVER
     SP_ACTIVATE_GUI
