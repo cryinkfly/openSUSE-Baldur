@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    16:50/29.11.2023                                                                   #
-# Version:      1.2.4                                                                              #
+# Time/Date:    20:50/29.11.2023                                                                   #
+# Version:      1.2.5                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -104,7 +104,7 @@ EOF
 
 function SP_CONFIGURE_DESKTOP_LOCALE {
     transactional-update -c run bash -c '
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/preferences-desktop-locale.svg > /usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/icons/hicolor/scalable/apps/preferences-desktop-locale.svg > /usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf > /usr/bin/mod-locale-conf
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/locale.txt > /usr/etc/locale.txt
