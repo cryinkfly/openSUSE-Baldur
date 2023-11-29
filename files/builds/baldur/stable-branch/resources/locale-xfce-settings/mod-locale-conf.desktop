@@ -1,9 +1,13 @@
 [Desktop Entry]
-Name=XFCE Locale Settings
-Comment=The system language can be changed in this window.
+Version=1.0
+Name=Language Support
+Name[de]=Spracheinstellungen
+Comment=Customize the language of your desktop.
+Comment[de]=Die Sprache des Schreibtischs anpassen.
 Exec=/usr/bin/mod-locale-conf
 Icon=/usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
+Terminal=false
 Type=Application
-Categories=X-XFCE;Settings;DesktopSettings;X-XFCE;
+Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;
 OnlyShowIn=XFCE;
-Name[de_DE]=XFCE Spracheinstellungen
+X-XfcePluggable=true
