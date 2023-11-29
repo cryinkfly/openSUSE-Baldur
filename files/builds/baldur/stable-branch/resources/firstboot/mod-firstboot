@@ -7,16 +7,9 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:45/29.11.2023                                                                   #
-# Version:      1.1.0                                                                              #
+# Time/Date:    14:00/29.11.2023                                                                   #
+# Version:      1.1.1                                                                              #
 ####################################################################################################
-
-function locale_settings {
-    sleep 10
-    source /usr/bin/mod-locale-conf
-    flatpak_setup
-}
-
 
 function flatpak_setup {
 sleep 10
@@ -78,5 +71,5 @@ rm -f /home/steve/.config/autostart/mod-firstboot.desktop
 rm -- "$0"
 }
 
-locale_settings
+flatpak_setup
 
