@@ -7,12 +7,12 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:10/27.11.2023                                                                   #
-# Version:      1.0.0                                                                              #
+# Time/Date:    13:10/29.11.2023                                                                   #
+# Version:      1.0.1                                                                              #
 ####################################################################################################
 
 function locale_menu {
-    locale_data=$(cat locale.txt | tr ',' '\n' | zenity --list \
+    locale_data=$(cat /usr/etc/locale.txt | tr ',' '\n' | zenity --list \
         --title="Welcome" \
         --text="Please select your language:"\
         --column="" --column="" --hide-column=2 --print-column=2)
