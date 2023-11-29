@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:10/29.11.2023                                                                   #
+# Time/Date:    16:45/29.11.2023                                                                   #
 # Version:      1.0.1                                                                              #
 ####################################################################################################
 
@@ -49,7 +49,6 @@ function locale_info {
            --text="The language settings have been successfully applied. The changes take effect automatically the next time you log in!"
     zenity --warning \
            --text="However, the keyboard language settings must be changed manually via the XFCE settings!"
-    exit
 }
 
 locale_menu
