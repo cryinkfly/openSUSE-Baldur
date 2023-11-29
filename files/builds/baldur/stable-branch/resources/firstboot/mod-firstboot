@@ -7,10 +7,18 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    14:30/17.09.2023                                                                   #
-# Version:      1.0.8                                                                              #
+# Time/Date:    13:00/29.11.2023                                                                   #
+# Version:      1.0.9                                                                              #
 ####################################################################################################
 
+function locale_settings {
+    sleep 10
+    ./usr/bin/mod-locale-conf
+    flatpak_setup
+}
+
+
+function flatpak_setup {
 sleep 10
 (
 echo "# Waiting for Internet connection"
@@ -68,4 +76,7 @@ else
 fi
 rm -f /home/steve/.config/autostart/mod-firstboot.desktop
 rm -- "$0"
+}
+
+locale_settings
 
