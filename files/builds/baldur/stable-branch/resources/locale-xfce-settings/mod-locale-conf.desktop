@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=XFCE Locale Settings
+Comment=The system language can be changed in this window.
+Exec=/usr/bin/mod-locale-conf
+Icon=/usr/share/icons/hicolor/scalable/apps/preferences-desktop-locale.svg
+Type=Application
+Categories=X-XFCE;Settings;DesktopSettings;X-XFCE;
+OnlyShowIn=XFCE;
+Name[en_GB]=startup
+Name[en_US]=startup
