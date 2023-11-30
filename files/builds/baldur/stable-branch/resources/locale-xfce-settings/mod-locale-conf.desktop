@@ -9,5 +9,6 @@ Icon=preferences-desktop-locale
 Terminal=false
 Type=Application
 Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;
+Keywords=Language;Input method;Region;Format;
 OnlyShowIn=XFCE;
 X-XfcePluggable=true
