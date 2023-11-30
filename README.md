@@ -487,7 +487,11 @@ And this would be the command after the basic installation of openSUSE MicroOS t
 
 <h4>3.6 How can I change the language for the system or user to another language?</h4>
 
-Since there is no way to change the language settings via a GUI under openSUSE Baldur, you currently have to change the language manually via the terminal!
+Now the language can be adjusted under openSUSE Baldur via the XFCE settings!
+
+![Bildschirmfoto_2023-11-30_18-17-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b0b82467-3d3b-4387-becc-b654893889f1)
+
+Or you can change the language manually via the terminal.
 
 Here is an example of the conversion to German:
 
