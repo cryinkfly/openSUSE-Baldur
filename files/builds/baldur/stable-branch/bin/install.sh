@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:35/06.12.2023                                                                   #
-# Version:      1.2.9                                                                              #
+# Time/Date:    11:45/06.12.2023                                                                   #
+# Version:      1.3.0                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -39,11 +39,13 @@ function SP_SETUP_USER {
                     usermod -a -G users,video,audio,render,disk,lp $USERNAME
                     echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
+                    SP_SETUP_XFCE4_POWER_MANAGER_USER
                     SP_SETUP_FIRSTBOOT_ROOT
                     SP_SETUP_FIRSTBOOT_USER
                 else
                     echo -e "${YELLOW}Setting up a new user has been skipped, but you can still manually create a new user later.${NOCOLOR}"
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT
+                    SP_SETUP_XFCE4_POWER_MANAGER_ROOT
                     SP_SETUP_FIRSTBOOT_ROOT
                 fi
 }
@@ -60,6 +62,21 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
+}
+
+##############################################################################################################################################################################
+# CONFIGURING THE XFCE4-POWER-MANAGER FOR OPENSUSE BALDUR:                                                                                                                    #
+##############################################################################################################################################################################
+
+function SP_SETUP_XFCE4_POWER_MANAGER_ROOT {
+    mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+}
+
+function SP_SETUP_XFCE4_POWER_MANAGER_USER {
+    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
 }
 
