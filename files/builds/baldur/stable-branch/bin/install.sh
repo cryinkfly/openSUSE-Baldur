@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    12:15/06.12.2023                                                                   #
-# Version:      1.3.1                                                                              #
+# Time/Date:    13:15/06.12.2023                                                                   #
+# Version:      1.3.2                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -38,12 +38,14 @@ function SP_SETUP_USER {
                     echo -e "${YELLOW}The user $USERNAME will be added to the correct user groups!${NOCOLOR}"
                     usermod -a -G users,video,audio,render,disk,lp $USERNAME
                     echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
+                    sleep 3
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
                     SP_SETUP_XFCE4_POWER_MANAGER_USER
                     SP_SETUP_FIRSTBOOT_ROOT
                     SP_SETUP_FIRSTBOOT_USER
                 else
                     echo -e "${YELLOW}Setting up a new user has been skipped, but you can still manually create a new user later.${NOCOLOR}"
+                    sleep 3
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT
                     SP_SETUP_XFCE4_POWER_MANAGER_ROOT
                     SP_SETUP_FIRSTBOOT_ROOT
@@ -62,9 +64,9 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
-    chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    sudo chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
+    sudo chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    sudo chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 ##############################################################################################################################################################################
@@ -79,9 +81,9 @@ function SP_SETUP_XFCE4_POWER_MANAGER_ROOT {
 function SP_SETUP_XFCE4_POWER_MANAGER_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
-    chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-    chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    sudo chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
+    sudo chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    sudo chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
 }
 
 
@@ -147,7 +149,10 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
-    transactional-update -c pkg install -y \
+    sleep 3
+    transactional-update pkg install pciutils usbutils
+    transactional-update apply
+    transactional-update -c pkg install \
         7zip \
         aaa_base \
         adobe-sourcecodepro-fonts \
@@ -338,7 +343,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xf86-input-wacom \
         xfce4-appfinder \
         xfce4-clipman-plugin \
-        xfce4-dict \
         xfce4-notes-plugin \
         xfce4-notifyd \
         xfce4-notifyd \
@@ -377,6 +381,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         zypper \
         zypper-needs-restarting
     echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
+    sleep 3
 }
 
 ##############################################################################################################################################################################
@@ -386,20 +391,24 @@ function SP_INSTALL_REQUIRED_PACKAGES {
 function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
-        transactional-update -c pkg install -y kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
+        transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
+        sleep 3
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
-        transactional-update -c pkg install -y kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
+        transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
+        sleep 3
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
         GPU_DRIVER="nvidia"
         if [[ $(zypper search --installed-only) == *"x11-video-nvidiaG05"*"libvulkan1"*"libvulkan1-32bit"* ]]; then
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
+            sleep 3
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                transactional-update -c pkg install -y nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
+                transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
+                sleep 3
             else
                 read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
                 if [[ $answer = y ]] ; then
@@ -414,10 +423,12 @@ function SP_CHECK_GPU_DRIVER {
                     '
                 fi
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
+                sleep 3
             fi
         fi
     else
         echo -e "${YELLOW}The graphics card analysis failed because your graphics card was not detected!${NOCOLOR}"
+        sleep 3
     fi
 }
 
@@ -427,10 +438,12 @@ function SP_CHECK_GPU_DRIVER {
 
 function SP_ACTIVATE_GUI {
     echo -e "${YELLOW}Boot target is switched to GUI (graphical user interface)!${NOCOLOR}"
+    sleep 3
     transactional-update -c run bash -c '
         systemctl set-default graphical.target
     '
     echo -e "${GREEN}The graphical user interface will be show after reboot!${NOCOLOR}"
+    sleep 3
 }
 
 ##############################################################################################################################################################################
@@ -439,12 +452,14 @@ function SP_ACTIVATE_GUI {
 
 function SP_ACTIVATE_VC {
     echo -e "${YELLOW}Enable the Virtual Camera function for OBS Studio!${NOCOLOR}"
+    sleep 3
     transactional-update -c run bash -c '
         echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
     '
     echo -e "${YELLOW}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
     echo -e "${GREEN}The installation of openSUSE MicoOS with the XFCE desktop enviroment is finished!${NOCOLOR}"
     echo -e "${YELLOW}Please restart the system for all changes to take effect!${NOCOLOR}"
+    sleep 3
 }
 
 #####################################################################################################################################################################################################################
