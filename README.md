@@ -180,6 +180,7 @@
 To install the KVM environment, consider the following patterns:
 
     sudo transactional-update pkg install -t pattern kvm_server kvm_tools
+    sudo transactional-update -c pkg install -y libvirt libvirt-client libvirt-daemon virt-manager virt-install virt-viewer qemu qemu-kvm qemu-ovmf-x86_64 qemu-tools
 
 - kvm_server = Installs basic VM Host Server with the KVM and QEMU environments.
 - kvm_tools = Installs libvirt tools for managing and monitoring VM Guests in KVM environment.
