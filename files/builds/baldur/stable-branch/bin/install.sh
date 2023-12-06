@@ -150,7 +150,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update pkg install pciutils usbutils
+    transactional-update -c pkg install pciutils usbutils
     transactional-update apply
     transactional-update -c pkg install \
         7zip \
