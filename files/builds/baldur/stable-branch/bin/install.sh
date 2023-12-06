@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:00/06.12.2023                                                                   #
-# Version:      1.2.7                                                                              #
+# Time/Date:    11:15/06.12.2023                                                                   #
+# Version:      1.2.8                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -60,7 +60,7 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/keyboard-config/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
+    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
 }
 
 
@@ -126,7 +126,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
-    transactional-update -c pkg install \
+    transactional-update -c pkg install -y \
         7zip \
         aaa_base \
         adobe-sourcecodepro-fonts \
@@ -316,6 +316,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xf86-input-vmmouse \
         xf86-input-wacom \
         xfce4-appfinder \
+        xfce4-clipman-plugin \
+        xfce4-dict \
+        xfce4-notes-plugin \
         xfce4-notifyd \
         xfce4-notifyd \
         xfce4-notifyd-branding-openSUSE \
@@ -326,11 +329,13 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xfce4-pulseaudio-plugin \
         xfce4-screensaver \
         xfce4-screenshooter \
+        xfce4-sensors-plugin \
         xfce4-session \
         xfce4-session-branding-openSUSE \
         xfce4-settings \
         xfce4-settings-branding-openSUSE \
         xfce4-terminal \
+        xfce4-weather-plugin \
         xfce4-xkb-plugin \
         xfconf \
         xfdesktop \
@@ -360,11 +365,11 @@ function SP_INSTALL_REQUIRED_PACKAGES {
 function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
-        transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
+        transactional-update -c pkg install -y kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
-        transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
+        transactional-update -c pkg install -y kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
         GPU_DRIVER="nvidia"
@@ -372,7 +377,7 @@ function SP_CHECK_GPU_DRIVER {
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
+                transactional-update -c pkg install -y nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
             else
                 read -p "${YELLOW}Do you want to install the NVIDIA drivers with full CUDA support? [yn] ${NOCOLOR}" answer
