@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- 
+    Name: Show Status Tray-Icon of the Xfce4-power-manager in the panel
+    Description:  With this file you get the status tray of the Xfce4-power-manager for openSUSE Baldur.
+    Author: Steve Zabka
+    Author URI: https://cryinkfly.com
+    License: MIT 
+    Copyright (c) 2023
+    Time/Date: 11:35/06.12.2023
+    Version: 1.0.0 
+-->
+
 <channel name="xfce4-power-manager" version="1.0">
   <property name="xfce4-power-manager" type="empty">
     <property name="lock-screen-suspend-hibernate" type="bool" value="true"/>
