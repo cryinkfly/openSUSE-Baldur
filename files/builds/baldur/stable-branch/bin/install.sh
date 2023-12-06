@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    21:50/29.11.2023                                                                   #
-# Version:      1.2.6                                                                              #
+# Time/Date:    11:00/06.12.2023                                                                   #
+# Version:      1.2.7                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -60,8 +60,7 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/keyboard-config/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    chown $USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
-    chmod 777 /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/
 }
 
 
@@ -92,8 +91,7 @@ Name[en_GB]=startup
 Name[en_US]=startup
 EOF
 
-    chown $USERNAME /home/$USERNAME/.config/autostart/
-    chmod 777 /home/$USERNAME/.config/autostart/mod-firstboot.desktop
+    chown $USERNAME:$USERNAME /home/$USERNAME/.config/autostart/
     
     SP_CONFIGURE_DESKTOP_LOCALE
 }
