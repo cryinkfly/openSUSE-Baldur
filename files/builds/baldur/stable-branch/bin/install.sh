@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:40/07.12.2023                                                                   #
-# Version:      1.3.3                                                                              #
+# Time/Date:    11:55/07.12.2023                                                                   #
+# Version:      1.3.4                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -77,8 +77,8 @@ function SP_SETUP_XFCE4_POWER_MANAGER_ROOT {
 function SP_SETUP_XFCE4_POWER_MANAGER_USER {
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
-    chmod -R g-xw /home/$USERNAME/.config/xfce4/
-    chmod -R o-xw /home/$USERNAME/.config/xfce4/
+    chmod -R g-rwx /home/$USERNAME/.config/xfce4/
+    chmod -R o-rwx /home/$USERNAME/.config/xfce4/
 }
 
 
@@ -145,9 +145,9 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update -c pkg install pciutils usbutils
+    transactional-update -c pkg install --non-interactive pciutils usbutils
     transactional-update apply
-    transactional-update -c pkg install \
+    transactional-update -c pkg install --non-interactive \
         7zip \
         aaa_base \
         adobe-sourcecodepro-fonts \
@@ -387,13 +387,13 @@ function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
         echo -e "${YELLOW}An AMD graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
-        transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
+        transactional-update -c pkg install --non-interactive kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
         echo -e "${YELLOW}An INTEL graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
-        transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
+        transactional-update -c pkg install --non-interactive kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
@@ -404,7 +404,7 @@ function SP_CHECK_GPU_DRIVER {
             sleep 3
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                transactional-update -c pkg install nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
+                transactional-update -c pkg install --non-interactive nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
                 sleep 3
             else
@@ -412,12 +412,12 @@ function SP_CHECK_GPU_DRIVER {
                 if [[ $answer = y ]] ; then
                     transactional-update -c run bash -c '
                     zypper ar -f https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo NVIDIA
-                    zypper install -y cuda libvulkan1 libvulkan1-32bit
+                    zypper install --non-interactive cuda libvulkan1 libvulkan1-32bit
                     '
                 else
                     transactional-update -c run bash -c '
                     zypper ar -f https://download.nvidia.com/opensuse/tumbleweed NVIDIA
-                    zypper install -y x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
+                    zypper install --non-interactive x11-video-nvidiaG05 libvulkan1 libvulkan1-32bit
                     '
                 fi
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
