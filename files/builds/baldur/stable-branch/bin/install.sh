@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    13:15/06.12.2023                                                                   #
-# Version:      1.3.2                                                                              #
+# Time/Date:    11:40/07.12.2023                                                                   #
+# Version:      1.3.3                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -64,9 +64,6 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    sudo chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
-    sudo chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-    sudo chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 ##############################################################################################################################################################################
@@ -74,16 +71,14 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
 ##############################################################################################################################################################################
 
 function SP_SETUP_XFCE4_POWER_MANAGER_ROOT {
-    mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
 }
 
 function SP_SETUP_XFCE4_POWER_MANAGER_USER {
-    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-    sudo chown $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
-    sudo chmod g-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-    sudo chmod o-xw /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    chown -R $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
+    chmod -R g-xw /home/$USERNAME/.config/xfce4/
+    chmod -R o-xw /home/$USERNAME/.config/xfce4/
 }
 
 
@@ -391,16 +386,19 @@ function SP_INSTALL_REQUIRED_PACKAGES {
 function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
+        echo -e "${YELLOW}An AMD graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
         transactional-update -c pkg install kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
+        echo -e "${YELLOW}An INTEL graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
         transactional-update -c pkg install kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
         GPU_DRIVER="nvidia"
+        echo -e "${YELLOW}An NVIDIA graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
         if [[ $(zypper search --installed-only) == *"x11-video-nvidiaG05"*"libvulkan1"*"libvulkan1-32bit"* ]]; then
             echo -e "${GREEN}The latest graphics card driver is already installed.${NOCOLOR}"
             sleep 3
