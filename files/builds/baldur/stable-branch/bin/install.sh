@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:55/07.12.2023                                                                   #
-# Version:      1.3.4                                                                              #
+# Time/Date:    13:05/08.12.2023                                                                   #
+# Version:      1.3.5                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -145,9 +145,9 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update -c pkg install --non-interactive pciutils usbutils
+    transactional-update -c run bash -c 'zypper install --non-interactive pciutils usbutils'
     transactional-update apply
-    transactional-update -c pkg install --non-interactive \
+    transactional-update -c run bash -c 'zypper install --non-interactive \
         7zip \
         aaa_base \
         adobe-sourcecodepro-fonts \
@@ -375,6 +375,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         zenity \
         zypper \
         zypper-needs-restarting
+        '
     echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
     sleep 3
 }
@@ -387,13 +388,13 @@ function SP_CHECK_GPU_DRIVER {
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         GPU_DRIVER="amd"
         echo -e "${YELLOW}An AMD graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
-        transactional-update -c pkg install --non-interactive kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
+        transactional-update -c run bash -c 'zypper install --non-interactive kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit'
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"Intel"* ]]; then
         GPU_DRIVER="intel"
         echo -e "${YELLOW}An INTEL graphics card has been analyzed on your system and the required packages will now be installed.${NOCOLOR}"
-        transactional-update -c pkg install --non-interactive kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit
+        transactional-update -c run bash -c 'zypper install --non-interactive kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit'
         echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
         sleep 3
     elif [[ $(lspci | grep VGA) == *"NVIDIA"* ]]; then
@@ -404,7 +405,7 @@ function SP_CHECK_GPU_DRIVER {
             sleep 3
         else
             if [[ $(zypper lr -u) == *"https://download.nvidia.com/opensuse/tumbleweed"* ]] || [[ $(zypper lr -u) == *"https://developer.download.nvidia.com/compute/cuda/repos/opensuse15/x86_64/cuda-opensuse15.repo"* ]]; then
-                transactional-update -c pkg install --non-interactive nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit
+                transactional-update -c run bash -c 'zypper install --non-interactive nvidia-video-G06 nvidia-gl-G06 libvulkan1 libvulkan1-32bit'
                 echo -e "${GREEN}After a restart, the latest graphics card driver is installed and activated!${NOCOLOR}"
                 sleep 3
             else
