@@ -33,9 +33,6 @@
 <div id="openSUSE-MicroOS-screenshots" align="center">
 <h3>📸 Screenshots</h3>
 <img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/bf23b91e-251a-485c-961b-360a20edb627" width="300px" height="150px">
-<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/dc1f31bc-3502-44fb-963b-b0d9c99fcd2c" width="300px" height="150px">
-<img src="https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/3137e6e0-94d7-4b56-894c-ba8e9c3289ac" width="300px" height="150px">
-<img src="https://user-images.githubusercontent.com/79079633/222974896-36ef1f0a-6deb-4620-b75c-954e821ddd9e.jpg" width="300px" height="150px">
 </div>
 
 ---
