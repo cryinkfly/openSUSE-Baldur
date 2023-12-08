@@ -1,3 +1,5 @@
+# The site is currently being revised and adapted to the openSUSE Baldur project!
+
 <div id="openSUSE-MicroOS-header" align="center">
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
 <h1>[GUIDE] Tips, Tricks & Tutorials for getting fully up and running openSUSE MicroOS Desktop</h1>
