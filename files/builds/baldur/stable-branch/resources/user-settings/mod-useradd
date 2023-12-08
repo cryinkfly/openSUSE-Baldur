@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    11:40/08.12.2023                                                                   #
-# Version:      1.0.0                                                                              #
+# Time/Date:    11:45/08.12.2023                                                                   #
+# Version:      1.0.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -85,7 +85,7 @@ function check_password {
 function create_new_user {
     useradd -m -p "$pass" "$username"
     zenity --info --title="Benutzerkonto anlegen" --text="Das Benutzerkonto wurde erfolgreich angelegt und Sie werden nun abgemeldet, um sich mit dem neuen Benutzerkonto anmelden zu können!"
-    # Logout command ...
+    xfce4-session-logout --logout
 }
 
 ##############################################################################################################################################################################
