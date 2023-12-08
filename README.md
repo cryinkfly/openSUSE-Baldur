@@ -478,7 +478,7 @@ For this reason, please watch the above two videos!
 
 And this would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
 
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/bin/install.sh > install-openSUSE-Baldur.sh && chmod +x install-openSUSE-Baldur.sh && ./install-openSUSE-Baldur.sh
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/bin/install.sh > install.sh && chmod +x install.sh && ./install.sh
 
 <h4>3.5 What special features are there?</h4>
 <p>Since openSUSE Baldur is basically structured in the same way as openSUSE Aeon and Kalpa, it also offers the same functions!<br><br>However, openSUSE Baldur has a few special features:</p>
