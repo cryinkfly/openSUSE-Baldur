@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    22:45/08.12.2023                                                                   #
-# Version:      1.3.6                                                                              #
+# Time/Date:    23:25/08.12.2023                                                                   #
+# Version:      1.3.7                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -58,12 +58,12 @@ function SP_SETUP_USER {
 
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_ROOT {
     mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 ##############################################################################################################################################################################
@@ -71,11 +71,11 @@ function SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER {
 ##############################################################################################################################################################################
 
 function SP_SETUP_XFCE4_POWER_MANAGER_ROOT {
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
 }
 
 function SP_SETUP_XFCE4_POWER_MANAGER_USER {
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.config/xfce4/
     chmod -R g-rwx /home/$USERNAME/.config/xfce4/
     chmod -R o-rwx /home/$USERNAME/.config/xfce4/
@@ -88,7 +88,7 @@ function SP_SETUP_XFCE4_POWER_MANAGER_USER {
 
 function SP_SETUP_FIRSTBOOT_ROOT {
     transactional-update -c run bash -c '
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/firstboot/mod-firstboot > /usr/bin/mod-firstboot
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-firstboot > /usr/bin/mod-firstboot
         chmod +x /usr/bin/mod-firstboot
     '
 
@@ -120,15 +120,15 @@ EOF
 
 function SP_CONFIGURE_DESKTOP_LOCALE {
     transactional-update -c run bash -c '
-        curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/icons/hicolor/hicolor.zip -O -J -L
-        unzip hicolor.zip
-        mv hicolor/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
-        mv hicolor/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
-        mv hicolor/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
-        rm -rf hicolor
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/mod-locale-conf > /usr/bin/mod-locale-conf
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-MicroOS/main/files/builds/baldur/stable-branch/resources/locale-xfce-settings/locale.txt > /usr/etc/locale.txt
+        curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/icons/icons-preferences-desktop-locale.zip -O -J -L
+        unzip icons-preferences-desktop-locale.zip
+        mv icons-preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
+        mv icons-preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
+        mv icons-preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
+        rm -rf icons-preferences-desktop-locale.zip
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-conf > /usr/bin/mod-locale-conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/locale-list.txt > /usr/etc/locale-list.txt
         chmod +x /usr/bin/mod-locale-conf
     '
 
