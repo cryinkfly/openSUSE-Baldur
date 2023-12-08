@@ -8,7 +8,7 @@
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
 # Time/Date:    11:45/08.12.2023                                                                   #
-# Version:      1.0.1                                                                              #
+# Version:      1.0.2                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -41,7 +41,7 @@ function get_userdata {
 
     accepted=$?
     if ((accepted != 0)); then
-        zenity --error --title="Ein schwerwiegender Fehler ist aufgetreten" --text="Die Anwendung wurde unerwartet beendet!"
+        zenity --info --title="Wichtige Information" --text="Die Einrichtung eines neuen Benutzerkontos wurde übersprungen!"
         exit 1
     fi
 
