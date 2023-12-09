@@ -387,10 +387,10 @@ esac
 
 function locale_info {
     zenity --info \
-           --title="$info_title"
+           --title="$info_title" \
            --text="$info_tex"
     zenity --warning \
-           --title="$warning_title"
+           --title="$warning_title" \
            --text="$warning_text"
 }
 
