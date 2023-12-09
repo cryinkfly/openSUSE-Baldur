@@ -7,195 +7,195 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
-# Version:      1.1.x                                                                              #
+# Time/Date:    21:00/09.12.2023                                                                   #
+# Version:      1.1.2                                                                              #
 ####################################################################################################
 
 function CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO {
 case "$locale_data" in
   "af_ZA.UTF-8")
     info_title="Inligting"
-    info_text=""
+    info_text="Firstboot-konfigurasie is suksesvol voltooi! Die veranderinge sal outomaties in werking tree nadat jy weer ingeteken het!"
     COMPLETED_SETUP_INFO
     ;;
   "sq_AL.UTF-8")
     info_title="Informacion"
-    info_text=""
+    info_text="Konfigurimi i Firstboot përfundoi me sukses! Ndryshimet do të hyjnë në fuqi automatikisht pasi të identifikoheni përsëri!"
     COMPLETED_SETUP_INFO
     ;;
   "ar_SA.UTF-8")
     info_title="معلومات"
-    info_text=""
+    info_text="تم إكمال تكوين Firstboot بنجاح! ستدخل التغييرات حيز التنفيذ تلقائيًا بعد تسجيل الدخول مرة أخرى!"
     COMPLETED_SETUP_INFO
     ;;
   "eu_ES.UTF-8")
     info_title="Informazioa"
-    info_text=""
+    info_text="Lehen abioaren konfigurazioa behar bezala osatu da! Aldaketak automatikoki izango dira indarrean berriro saioa hasi ondoren!"
     COMPLETED_SETUP_INFO
     ;;
   "be_BY.UTF-8")
     info_title="Інфармацыя"
-    info_text=""
+    info_text="Канфігурацыя першай загрузкі паспяхова завершана! Змены ўступяць у сілу аўтаматычна пасля паўторнага ўваходу ў сістэму!"
     COMPLETED_SETUP_INFO
     ;;
   "bs_BA.UTF-8")
     info_title="Informacije"
-    info_text=""
+    info_text="Konfiguracija prvog pokretanja je uspješno završena! Promjene će automatski stupiti na snagu nakon što se ponovo prijavite!"
     COMPLETED_SETUP_INFO
     ;;
   "bg_BG.UTF-8")
     info_title="Информация"
-    info_text=""
+    info_text="Конфигурирането на първото зареждане завърши успешно! Промените ще влязат в сила автоматично, след като влезете отново!"
     COMPLETED_SETUP_INFO
     ;;
   "ca_ES.UTF-8")
     info_title="Informació"
-    info_text=""
+    info_text="La configuració del primer arrencada s'ha completat correctament! Els canvis tindran efecte automàticament un cop torneu a iniciar sessió!"
     locale_info
     ;;
   "hr_HR.UTF-8")
     info_title="Informacije"
-    info_text=""
+    info_text="Konfiguracija prvog pokretanja je uspješno dovršena! Promjene će automatski stupiti na snagu nakon što se ponovno prijavite!"
     COMPLETED_SETUP_INFO
     ;;
   "zh_CN.UTF-8")
     info_title="信息"
-    info_text=""
+    info_text="首次启动配置成功完成！ 重新登录后更改将自动生效！"
     COMPLETED_SETUP_INFO
     ;;
   "zh_TW.UTF-8")
     info_title="資訊"
-    info_text=""
+    info_text="首次啟動配置成功完成！ 重新登入後更改將自動生效！"
     COMPLETED_SETUP_INFO
     ;;
   "cs_CZ.UTF-8")
     info_title="Informace"
-    info_text=""
+    info_text="Konfigurace Firstboot byla úspěšně dokončena! Změny se projeví automaticky po opětovném přihlášení!"
     COMPLETED_SETUP_INFO
     ;;
   "da_DK.UTF-8")
     info_title="Information"
-    info_text=""
+    info_text="Firstboot-konfigurationen blev gennemført med succes! Ændringerne træder automatisk i kraft, når du logger på igen!"
     COMPLETED_SETUP_INFO
     ;;
   "nl_NL.UTF-8")
     info_title="Informatie"
-    info_text=""
+    info_text="De Firstboot-configuratie is met succes voltooid! De wijzigingen worden automatisch van kracht nadat u opnieuw inlogt!"
     COMPLETED_SETUP_INFO
     ;;
   "et_EE.UTF-8")
     info_title="Teave"
-    info_text=""
+    info_text="Firstboot seadistamine on edukalt lõpule viidud! Muudatused jõustuvad automaatselt pärast uuesti sisselogimist!"
     COMPLETED_SETUP_INFO
     ;;
   "fi_FI.UTF-8")
     info_title="Tiedot"
-    info_text=""
+    info_text="Firstboot-määritys suoritettiin onnistuneesti! Muutokset astuvat voimaan automaattisesti, kun kirjaudut sisään uudelleen!"
     COMPLETED_SETUP_INFO
     ;;
   "fr*")
     info_title="Informations"
-    info_text=""
+    info_text="La configuration du premier démarrage s'est terminée avec succès ! Les modifications prendront effet automatiquement après votre nouvelle connexion !"
     COMPLETED_SETUP_INFO
     ;;
   "ga_IE.UTF-8")
     info_title="Fiosrachadh"
-    info_text=""
+    info_text="Chaidh rèiteachadh Firstboot a chrìochnachadh gu soirbheachail! Thig na h-atharrachaidhean gu buil gu fèin-ghluasadach às deidh dhut logadh a-steach a-rithist!"
     locale_info
     ;;
   "gl_ES.UTF-8")
     info_title="Información"
-    info_text=""
+    info_text="A configuração do Firstboot foi concluída com sucesso! As alterações entrarão em vigor automaticamente após você fazer login novamente!"
     COMPLETED_SETUP_INFO
     ;;
   "ka_GE.UTF-8")
     info_title="ინფორმაცია"
-    info_text=""
+    info_text="Firstboot-ის კონფიგურაცია წარმატებით დასრულდა! ცვლილებები ავტომატურად შევა ძალაში ხელახლა შესვლის შემდეგ!"
     COMPLETED_SETUP_INFO
     ;;
   "de_DE.UTF-8")
-    info_title="Informationen"
-    info_text=""
+    info_title="Information"
+    info_text="Die Firstboot-Konfiguration wurde erfolgreich abgeschlossen! Die Änderungen werden automatisch wirksam, nachdem Sie sich erneut angemeldet haben!"
     COMPLETED_SETUP_INFO
     ;;
   "el_GR.UTF-8")
     info_title="Πληροφορίες"
-    info_text=""
+    info_text="Η διαμόρφωση του Firstboot ολοκληρώθηκε με επιτυχία! Οι αλλαγές θα τεθούν σε ισχύ αυτόματα αφού συνδεθείτε ξανά!"
     COMPLETED_SETUP_INFO
     ;;
   "he_IL.utf8")
     info_title="מידע"
-    info_text=""
+    info_text="תצורת Firstboot הושלמה בהצלחה! השינויים ייכנסו לתוקף אוטומטית לאחר שתתחבר שוב!"
     COMPLETED_SETUP_INFO
     ;;
   "hu_HU.UTF-8")
     info_title="Információ"
-    info_text=""
+    info_text="A Firstboot konfiguráció sikeresen befejeződött! A változtatások az újbóli bejelentkezés után automatikusan életbe lépnek!"
     COMPLETED_SETUP_INFO
     ;;
   "is_IS.UTF-8")
     info_title="Upplýsingar"
-    info_text=""
+    info_text="Firstboot stillingu var lokið með góðum árangri! Breytingarnar taka sjálfkrafa gildi eftir að þú skráir þig inn aftur!"
     COMPLETED_SETUP_INFO
     ;;
   "id_ID.UTF-8")
     info_title="Informasi"
-    info_text=""
+    info_text="Konfigurasi boot pertama berhasil diselesaikan! Perubahan akan berlaku secara otomatis setelah Anda login kembali!"
     COMPLETED_SETUP_INFO
     ;;
   "it_IT.UTF-8")
     info_title="Informazioni"
-    info_text=""
+    info_text="La configurazione di Firstboot è stata completata con successo! Le modifiche avranno effetto automaticamente dopo aver effettuato nuovamente l'accesso!"
     COMPLETED_SETUP_INFO
     ;;
   "ja_JP.UTF-8")
     info_title="お知らせ"
-    info_text=""
+    info_text="Firstboot 構成が正常に完了しました。 再度ログインすると、変更は自動的に有効になります。"
     COMPLETED_SETUP_INFO
     ;;
   "ko_KR.UTF-8")
     info_title="정보"
-    info_text=""
+    info_text="Firstboot 구성이 성공적으로 완료되었습니다! 변경 사항은 다시 로그인하면 자동으로 적용됩니다!"
     COMPLETED_SETUP_INFO
     ;;
   "lt_LT.UTF-8")
     info_title="Informacija"
-    info_text=""
+    info_text="Pirmosios įkrovos konfigūracija sėkmingai baigta! Pakeitimai įsigalios automatiškai, kai vėl prisijungsite!"
     COMPLETED_SETUP_INFO
     ;;
   "ms_MY.UTF-8")
     info_title="Maklumat"
-    info_text=""
+    info_text="Konfigurasi Firstboot telah berjaya diselesaikan! Perubahan akan berkuat kuasa secara automatik selepas anda log masuk semula!"
     COMPLETED_SETUP_INFO
     ;;
   "mi_NZ.UTF-8")
     info_title="Mohiohio"
-    info_text=""
+    info_text="I tutuki pai te whirihoranga Firstboot! Ka whai mana aunoa nga huringa i muri i to takiuru ano!"
     COMPLETED_SETUP_INFO
     ;;
   "*NO.UTF-8")
     info_title="Informasjon"
-    info_text=""
+    info_text="Firstboot-konfigurasjonen ble fullført! Endringene trer i kraft automatisk etter at du logger på igjen!"
     COMPLETED_SETUP_INFO
     ;;
   "pl_PL.UTF-8")
     info_title="Informacja"
-    info_text=""
+    info_text="Konfiguracja pierwszego uruchomienia została pomyślnie ukończona! Zmiany zaczną obowiązywać automatycznie po ponownym zalogowaniu!"
     COMPLETED_SETUP_INFO
     ;;
   "pt_*UTF-8")
     info_title="Informações"
-    info_text=""
+    info_text="A configuração do Firstboot foi concluída com sucesso! As alterações entrarão em vigor automaticamente após você fazer login novamente!"
     COMPLETED_SETUP_INFO
     ;;
   "ro_RO.UTF-8")
     info_title="Informații"
-    info_text=""
+    info_text="Configurarea Firstboot a fost finalizată cu succes! Modificările vor intra în vigoare automat după ce vă conectați din nou!"
     COMPLETED_SETUP_INFO
     ;;
   "ru_RU.UTF-8")
     info_title="Информация"
-    info_text=""
+    info_text="Настройка первой загрузки успешно завершена! Изменения вступят в силу автоматически после повторного входа в систему!"
     COMPLETED_SETUP_INFO
     ;;
   "mi_NZ.UTF-8")
@@ -268,7 +268,6 @@ function COMPLETED_SETUP_INFO {
 
 source /usr/bin/mod-locale-setup
 source /usr/bin/mod-useradd-setup
-source /usr/bin/mod-flatpak-setup
 
 # Delete the desktop file for the Firstboot-Setup (/root/...)
 rm -f /root/.config/autostart/mod-firstboot.desktop
