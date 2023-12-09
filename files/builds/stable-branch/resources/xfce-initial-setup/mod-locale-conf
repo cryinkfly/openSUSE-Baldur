@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    23:25/08.12.2023                                                                   #
-# Version:      1.0.2                                                                              #
+# Time/Date:    12:00/09.12.2023                                                                   #
+# Version:      1.0.3                                                                              #
 ####################################################################################################
 
 function locale_menu {
