@@ -1,0 +1,18 @@
+#!/bin/bash
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - MicroOS Desktop Firstboot                    #
+# Description:  This file performs an xfce initial setup!                                          #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
+# Version:      1.1.x                                                                              #
+####################################################################################################
+
+source /usr/bin/mod-locale-setup
+source /usr/bin/mod-useradd-setup
+# ...
+source /usr/bin/mod-flatpak-setup
+# ...
