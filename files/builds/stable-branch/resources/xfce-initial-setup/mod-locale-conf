@@ -327,9 +327,9 @@ case "$locale_data" in
     locale_info
     ;;
   "so_SO.UTF-8")
-    info_title = "Macluumaad"
-    info_text="Dejinta luqadda si guul leh ayaa loo dabaqay
-    digniin_title = " Digniin "
+    info_title="Macluumaad"
+    info_text="Dejinta luqadda si guul leh ayaa loo dabaqay"
+    digniin_title="Digniin"
     warning_text="Si kastaba ha ahaatee, dejinta luqadda kiiboodhka waa in gacanta lagu beddelaa iyada oo la adeegsanayo dejinta XFCE!"
     locale_info
     ;;
@@ -362,9 +362,9 @@ case "$locale_data" in
     locale_info
     ;;
   "tr_TR.UTF-8")
-    info_title = "Bilgi"
+    info_title="Bilgi"
     info_text="Dil ayarları başarıyla uygulandı. Değişiklikler, tekrar oturum açtıktan sonra otomatik olarak geçerli olacaktır!"
-    warning_title = "Uyarı"
+    warning_title="Uyarı"
     warning_text="Ancak klavye dili ayarlarının XFCE ayarları aracılığıyla manuel olarak değiştirilmesi gerekir!"
     locale_info
     ;;
