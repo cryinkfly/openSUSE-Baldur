@@ -11,42 +11,42 @@
 # Version:      1.1.x                                                                              #
 ####################################################################################################
 
-function CHECK_LOCALE__FOR_COMPLETED_SETUP_INFO {
+function CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO {
 case "$locale_data" in
   "af_ZA.UTF-8")
     info_title="Inligting"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "sq_AL.UTF-8")
     info_title="Informacion"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ar_SA.UTF-8")
     info_title="معلومات"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "eu_ES.UTF-8")
     info_title="Informazioa"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "be_BY.UTF-8")
     info_title="Інфармацыя"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "bs_BA.UTF-8")
     info_title="Informacije"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "bg_BG.UTF-8")
     info_title="Информация"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ca_ES.UTF-8")
     info_title="Informació"
@@ -56,47 +56,47 @@ case "$locale_data" in
   "hr_HR.UTF-8")
     info_title="Informacije"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "zh_CN.UTF-8")
     info_title="信息"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "zh_TW.UTF-8")
     info_title="資訊"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "cs_CZ.UTF-8")
     info_title="Informace"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "da_DK.UTF-8")
     info_title="Information"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "nl_NL.UTF-8")
     info_title="Informatie"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "et_EE.UTF-8")
     info_title="Teave"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "fi_FI.UTF-8")
     info_title="Tiedot"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "fr*")
     info_title="Informations"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ga_IE.UTF-8")
     info_title="Fiosrachadh"
@@ -106,152 +106,152 @@ case "$locale_data" in
   "gl_ES.UTF-8")
     info_title="Información"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ka_GE.UTF-8")
     info_title="ინფორმაცია"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "de_DE.UTF-8")
     info_title="Informationen"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "el_GR.UTF-8")
     info_title="Πληροφορίες"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "he_IL.utf8")
     info_title="מידע"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "hu_HU.UTF-8")
     info_title="Információ"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "is_IS.UTF-8")
     info_title="Upplýsingar"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "id_ID.UTF-8")
     info_title="Informasi"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "it_IT.UTF-8")
     info_title="Informazioni"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ja_JP.UTF-8")
     info_title="お知らせ"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ko_KR.UTF-8")
     info_title="정보"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "lt_LT.UTF-8")
     info_title="Informacija"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ms_MY.UTF-8")
     info_title="Maklumat"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "mi_NZ.UTF-8")
     info_title="Mohiohio"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "*NO.UTF-8")
     info_title="Informasjon"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "pl_PL.UTF-8")
     info_title="Informacja"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "pt_*UTF-8")
     info_title="Informações"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ro_RO.UTF-8")
     info_title="Informații"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "ru_RU.UTF-8")
     info_title="Информация"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "mi_NZ.UTF-8")
     info_title="Fa'amatalaga"
-    info_text=""
-    locale_info
+    info_text="Ua mae'a manuia le fa'atulagaina o le Firstboot! O suiga e otometi lava ona aoga pe a uma ona e toe ulufale i totonu!"
+    COMPLETED_SETUP_INFO
     ;;
   "sk_SK.UTF-8")
     info_title="Informácie"
     info_text=""
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   "sl_SI.UTF-8")
    info_title="Informacije"
-    info_text=""
-    locale_info
+    info_text="Konfiguracija prvega zagona je bila uspešno zaključena! Spremembe bodo samodejno stopile v veljavo, ko se ponovno prijavite!"
+    COMPLETED_SETUP_INFO
     ;;
   "so_SO.UTF-8")
     info_title="Macluumaad"
-    info_text=""
-    locale_info
+    info_text="Qaabeynta Firstboot si guul leh ayaa loo dhameeyay! Isbeddelku si toos ah ayay u dhaqan geli doonaan ka dib markaad mar kale soo gasho!"
+    COMPLETED_SETUP_INFO
     ;;
   "es_ES.UTF-8")
     info_title="Información"
-    info_text=""
-    locale_info
+    info_text="¡La configuración del primer arranque se completó con éxito! ¡Los cambios entrarán en vigor automáticamente después de que inicies sesión nuevamente!"
+    COMPLETED_SETUP_INFO
     ;;
   "sv_SE.UTF-8")
     info_title="Information"
-    info_text=""
-    locale_info
+    info_text="Firstboot-konfigurationen slutfördes framgångsrikt! Ändringarna träder i kraft automatiskt när du loggar in igen!"
+    COMPLETED_SETUP_INFO
     ;;
   "tl_PH.UTF-8")
     info_title="Impormasyon"
-    info_text=""
-    locale_info
+    info_text="Matagumpay na nakumpleto ang pagsasaayos ng Firstboot! Awtomatikong magkakabisa ang mga pagbabago pagkatapos mong mag-log in muli!"
+    COMPLETED_SETUP_INFO
     ;;
   "th_TH.UTF-8")
     info_title="ข้อมูล"
-    info_text=""
-    locale_info
+    info_text="การกำหนดค่า Firstboot เสร็จสมบูรณ์แล้ว! การเปลี่ยนแปลงจะมีผลโดยอัตโนมัติหลังจากที่คุณเข้าสู่ระบบอีกครั้ง!"
+    COMPLETED_SETUP_INFO
     ;;
   "tr_TR.UTF-8")
     info_title="Bilgi"
-    info_text=""
-    locale_info
+    info_text="İlk önyükleme yapılandırması başarıyla tamamlandı! Tekrar giriş yaptığınızda değişiklikler otomatik olarak geçerli olacaktır!"
+    COMPLETED_SETUP_INFO
     ;;
   "uk_UA.UTF-8")
     info_title="Інформація"
     info_text="Налаштування першого завантаження успішно завершено! Зміни набудуть чинності автоматично після повторного входу!"
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
   *)
     info_title="Information"
     info_text="Firstboot configuration was completed successfully! The changes will take effect automatically after you log in again!"
-    locale_info
+    COMPLETED_SETUP_INFO
     ;;
 esac
 }
@@ -276,7 +276,7 @@ rm -f /root/.config/autostart/mod-firstboot.desktop
 # Deactivate the Automatic-Login function:
 sed -i 's/DISPLAYMANAGER_AUTOLOGIN="root"/DISPLAYMANAGER_AUTOLOGIN=""/' /etc/sysconfig/displaymanager
 
-CHECK_LOCALE__FOR_COMPLETED_SETUP_INFO
+CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO
 COMPLETED_SETUP_INFO
 
 # Logout the system-user ...
