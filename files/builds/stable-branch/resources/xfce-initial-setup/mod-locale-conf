@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    12:00/09.12.2023                                                                   #
-# Version:      1.0.3                                                                              #
+# Time/Date:    12:15/09.12.2023                                                                   #
+# Version:      1.0.4                                                                              #
 ####################################################################################################
 
 function locale_menu {
@@ -47,210 +47,186 @@ export LC_ALL=en_US.UTF8" > $HOME/.i18n
 function check_locale {
 case "$locale_data" in
   "af_ZA.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Inligting"
+    info_text="Die taalinstellings is suksesvol toegepas. Die veranderinge sal outomaties in werking tree nadat jy weer ingeteken het!"
+    warning_title="Waarskuwing"
+    warning_text="Die sleutelbordtaalinstellings moet egter met die hand verander word via die XFCE-instellings!"
     locale_info
     ;;
 
   "sq_AL.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informacion"
+    info_text="Cilësimet e gjuhës janë aplikuar me sukses. Ndryshimet do të hyjnë në fuqi automatikisht pasi të identifikoheni përsëri!"
+    warning_title="Paralajmërim"
+    warning_text="Megjithatë, cilësimet e gjuhës së tastierës duhet të ndryshohen manualisht nëpërmjet cilësimeve XFCE!"
     locale_info
     ;;
 
   "ar_SA.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="معلومات"
+    info_text="تم تطبيق إعدادات اللغة بنجاح. وستدخل التغييرات حيز التنفيذ تلقائيًا بعد تسجيل الدخول مرة أخرى!"
+    warning_title="تحذير_العنوان"
+    warning_text="ومع ذلك، يجب تغيير إعدادات لغة لوحة المفاتيح يدويًا عبر إعدادات"
     locale_info
     ;;
 
   "eu_ES.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informazioa"
+    info_text="Hizkuntza-ezarpenak behar bezala aplikatu dira. Aldaketak automatikoki izango dira indarrean berriro saioa hasi ondoren!"
+    warning_title="Abisua"
+    warning_text="Hala ere, teklatuaren hizkuntza ezarpenak eskuz aldatu behar dira XFCE ezarpenen bidez!"
     locale_info
     ;;
 
   "be_BY.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Інфармацыя"
+    info_text="Налады мовы былі паспяхова прыменены. Змены ўступяць у сілу аўтаматычна пасля таго, як вы паўторна ўвойдзеце ў сістэму!"
+    warning_title="Папярэджанне"
+    warning_text="Аднак налады мовы клавіятуры павінны быць зменены ўручную праз налады XFCE!"
     locale_info
     ;;
 
   "bs_BA.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informacije"
+    info_text="Postavke jezika su uspješno primijenjene. Promjene će automatski stupiti na snagu nakon što se ponovo prijavite!"
+    warning_title="Upozorenje"
+    warning_text="Međutim, postavke jezika tastature se moraju promijeniti ručno preko XFCE postavki!"
     locale_info
     ;;
 
   "bg_BG.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Информация"
+    info_text="Езиковите настройки са приложени успешно. Промените ще влязат в сила автоматично, след като влезете отново!"
+    warning_title="Предупреждение"
+    warning_text="Въпреки това, езиковите настройки на клавиатурата трябва да се променят ръчно чрез настройките на XFCE!"
     locale_info
     ;;
 
   "ca_ES.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informació"
+    info_text="La configuració d'idioma s'ha aplicat correctament. Els canvis tindran efecte automàticament quan torneu a iniciar sessió!"
+    warning_title="Avís"
+    warning_text="No obstant això, la configuració d'idioma del teclat s'ha de canviar manualment mitjançant la configuració de XFCE!"
     locale_info
     ;;
 
   "hr_HR.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informacije"
+    info_text="Jezične postavke su uspješno primijenjene. Promjene će automatski stupiti na snagu nakon što se ponovno prijavite!"
+    warning_title="Upozorenje"
+    warning_text="Međutim, postavke jezika tipkovnice moraju se promijeniti ručno putem XFCE postavki!"
     locale_info
     ;;
 
   "zh_CN.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="信息"
+    info_text="语言设置已成功应用，更改将在您重新登录后自动生效！"
+    warning_title="警告"
+    warning_text="但是，必须通过 XFCE 设置手动更改键盘语言设置！"
     locale_info
     ;;
 
   "zh_TW.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="資訊"
+    info_text="語言設定已成功套用，變更將在您重新登入後自動生效！"
+    warning_title="警告"
+    warning_text="但是，必須透過 XFCE 設定手動更改鍵盤語言設定！"
     locale_info
     ;;
 
   "cs_CZ.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informace"
+    info_text="Nastavení jazyka byla úspěšně použita. Změny se projeví automaticky po opětovném přihlášení!"
+    warning_title="Varování"
+    warning_text="Nicméně nastavení jazyka klávesnice je nutné změnit ručně prostřednictvím nastavení XFCE!"
     locale_info
     ;;
 
   "da_DK.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Information"
+    info_text="Sprogindstillingerne er blevet anvendt. Ændringerne træder automatisk i kraft, når du logger ind igen!"
+    warning_title="Advarsel"
+    warning_text="Tastaturets sprogindstillinger skal dog ændres manuelt via XFCE-indstillingerne!"
     locale_info
     ;;
 
   "nl_NL.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informatie"
+    info_text="De taalinstellingen zijn succesvol toegepast. De wijzigingen worden automatisch van kracht nadat u opnieuw inlogt!"
+    warning_title="Waarschuwing"
+    warning_text="De toetsenbordtaalinstellingen moeten echter handmatig worden gewijzigd via de XFCE-instellingen!"
     locale_info
     ;;
 
   "et_EE.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Teave"
+    info_text="Keeleseaded on edukalt rakendatud. Muudatused jõustuvad automaatselt pärast uuesti sisselogimist!"
+    warning_title="Hoiatus"
+    warning_text="Kuid klaviatuuri keeleseadeid tuleb XFCE seadete kaudu käsitsi muuta!"
     locale_info
     ;;
 
   "fi_FI.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Tiedot"
+    info_text="Kieliasetukset on otettu käyttöön onnistuneesti. Muutokset astuvat voimaan automaattisesti, kun kirjaudut sisään uudelleen!"
+    warning_title="Varoitus"
+    warning_text="Näppäimistön kieliasetukset on kuitenkin vaihdettava manuaalisesti XFCE-asetusten kautta!"
     locale_info
     ;;
 
-  "fr_FR.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
-    locale_info
-    ;;
-
-  "fr_CH.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
-    locale_info
-    ;;
-
-  "fr_BE.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
-    locale_info
-    ;;
-
-  "fr_CA.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+  "fr*")
+    info_title="Informations"
+    info_text="Les paramètres de langue ont été appliqués avec succès. Les modifications prendront effet automatiquement après votre nouvelle connexion !"
+    warning_title="Avertissement"
+    warning_text="Cependant, les paramètres de langue du clavier doivent être modifiés manuellement via les paramètres XFCE !"
     locale_info
     ;;
 
   "ga_IE.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Fiosrachadh"
+    info_text="Chaidh na roghainnean cànain a chur an sàs gu soirbheachail. Thig na h-atharraichean gu buil gu fèin-obrachail às dèidh dhut logadh a-steach a-rithist!"
+    warning_title="Rabhadh"
+    warning_text="Ach, feumar roghainnean cànain a’ mheur-chlàir atharrachadh le làimh tro na roghainnean XFCE!"
     locale_info
     ;;
 
   "gl_ES.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Información"
+    info_text="A configuración do idioma aplicouse correctamente. Os cambios terán efecto automaticamente despois de que inicie sesión de novo!"
+    warning_title="Aviso"
+    warning_text="Non obstante, a configuración do idioma do teclado debe cambiarse manualmente mediante a configuración de XFCE!"
     locale_info
     ;;
 
   "ka_GE.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="ინფორმაცია"
+    info_text="ენის პარამეტრები წარმატებით იქნა გამოყენებული. ცვლილებები ავტომატურად შევა ძალაში ხელახლა შესვლის შემდეგ!"
+    warning_title="გაფრთხილება"
+    warning_text="თუმცა, კლავიატურის ენის პარამეტრები ხელით უნდა შეიცვალოს XFCE პარამეტრების მეშვეობით!"
     locale_info
     ;;
 
   "de_DE.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Informationen"
+    info_text="Die Spracheinstellungen wurden erfolgreich übernommen. Die Änderungen werden automatisch wirksam, nachdem Sie sich erneut angemeldet haben!"
+    warning_title="Warnung"
+    warning_text="Die Tastaturspracheneinstellungen müssen manuell über die XFCE-Einstellungen geändert werden!"
     locale_info
     ;;
 
   "el_GR.UTF-8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="Πληροφορίες"
+    info_text="Οι ρυθμίσεις γλώσσας εφαρμόστηκαν με επιτυχία. Οι αλλαγές θα τεθούν σε ισχύ αυτόματα αφού συνδεθείτε ξανά!"
+    warning_title="Προειδοποίηση"
+    warning_text="Ωστόσο, οι ρυθμίσεις γλώσσας του πληκτρολογίου πρέπει να αλλάξουν χειροκίνητα μέσω των ρυθμίσεων XFCE!"
     locale_info
     ;;
 
   "he_IL.utf8")
-    info_title=""
-    info_text=""
-    warning_title=""
-    warning_text=""
+    info_title="מידע"
+    info_text="הגדרות השפה הוחלו בהצלחה. השינויים ייכנסו לתוקף אוטומטית לאחר שתיכנס שוב!"
+    warning_title="אזהרה"
+    warning_text="עם זאת, יש לשנות את הגדרות שפת המקלדת באופן ידני דרך הגדרות XFCE!"
     locale_info
     ;;
 
