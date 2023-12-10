@@ -7,264 +7,230 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    21:00/09.12.2023                                                                   #
-# Version:      1.1.2                                                                              #
+# Time/Date:    xx:xx/xx.xx.202x                                                                   #
+# Version:      1.1.x                                                                              #
 ####################################################################################################
 
-function CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO {
-case "$locale_data" in
+##############################################################################################################################################################################
+# CONFIGURATION OF THE COLOR SCHEME:                                                                                                                                         #
+##############################################################################################################################################################################
+
+function LOAD_COLOR_SHEME {
+    RED=$'\033[0;31m'
+    YELLOW=$'\033[0;33m'
+    GREEN=$'\033[0;32m'
+    DARK_GREEN_COPPER="#2C423F"
+    NOCOLOR=$'\033[0m'
+}
+
+############################################################################################################################################################################### 
+# THE TEXTS FOR THE DIALOGUES ARE RETRIEVED HERE:                                                                                                                               #
+###############################################################################################################################################################################
+
+function GET_LOCALE_DATA {
+    case "$locale_data" in
   "af_ZA.UTF-8")
-    info_title="Inligting"
-    info_text="Firstboot-konfigurasie is suksesvol voltooi! Die veranderinge sal outomaties in werking tree nadat jy weer ingeteken het!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/af-ZA/locale.txt`
     ;;
   "sq_AL.UTF-8")
-    info_title="Informacion"
-    info_text="Konfigurimi i Firstboot përfundoi me sukses! Ndryshimet do të hyjnë në fuqi automatikisht pasi të identifikoheni përsëri!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/sq-AL/locale.txt`
     ;;
   "ar_SA.UTF-8")
-    info_title="معلومات"
-    info_text="تم إكمال تكوين Firstboot بنجاح! ستدخل التغييرات حيز التنفيذ تلقائيًا بعد تسجيل الدخول مرة أخرى!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ar-SA/locale.txt`
     ;;
   "eu_ES.UTF-8")
-    info_title="Informazioa"
-    info_text="Lehen abioaren konfigurazioa behar bezala osatu da! Aldaketak automatikoki izango dira indarrean berriro saioa hasi ondoren!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/eu-ES/locale.txt`
     ;;
   "be_BY.UTF-8")
-    info_title="Інфармацыя"
-    info_text="Канфігурацыя першай загрузкі паспяхова завершана! Змены ўступяць у сілу аўтаматычна пасля паўторнага ўваходу ў сістэму!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/be-BY/locale.txt`
     ;;
   "bs_BA.UTF-8")
-    info_title="Informacije"
-    info_text="Konfiguracija prvog pokretanja je uspješno završena! Promjene će automatski stupiti na snagu nakon što se ponovo prijavite!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/bs-BA/locale.txt`
     ;;
   "bg_BG.UTF-8")
-    info_title="Информация"
-    info_text="Конфигурирането на първото зареждане завърши успешно! Промените ще влязат в сила автоматично, след като влезете отново!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/bg-BG/locale.txt`
     ;;
   "ca_ES.UTF-8")
-    info_title="Informació"
-    info_text="La configuració del primer arrencada s'ha completat correctament! Els canvis tindran efecte automàticament un cop torneu a iniciar sessió!"
-    locale_info
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ca-ES/locale.txt`
     ;;
   "hr_HR.UTF-8")
-    info_title="Informacije"
-    info_text="Konfiguracija prvog pokretanja je uspješno dovršena! Promjene će automatski stupiti na snagu nakon što se ponovno prijavite!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/hr-HR/locale.txt`
     ;;
   "zh_CN.UTF-8")
-    info_title="信息"
-    info_text="首次启动配置成功完成！ 重新登录后更改将自动生效！"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/zh-CN/locale.txt`
     ;;
   "zh_TW.UTF-8")
-    info_title="資訊"
-    info_text="首次啟動配置成功完成！ 重新登入後更改將自動生效！"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/zh-TW/locale.txt`
     ;;
   "cs_CZ.UTF-8")
-    info_title="Informace"
-    info_text="Konfigurace Firstboot byla úspěšně dokončena! Změny se projeví automaticky po opětovném přihlášení!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/cs-CZ/locale.txt`
     ;;
   "da_DK.UTF-8")
-    info_title="Information"
-    info_text="Firstboot-konfigurationen blev gennemført med succes! Ændringerne træder automatisk i kraft, når du logger på igen!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/da-DK/locale.txt`
     ;;
   "nl_NL.UTF-8")
-    info_title="Informatie"
-    info_text="De Firstboot-configuratie is met succes voltooid! De wijzigingen worden automatisch van kracht nadat u opnieuw inlogt!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/nl-NL/locale.txt`
     ;;
   "et_EE.UTF-8")
-    info_title="Teave"
-    info_text="Firstboot seadistamine on edukalt lõpule viidud! Muudatused jõustuvad automaatselt pärast uuesti sisselogimist!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/et-EE/locale.txt`
     ;;
   "fi_FI.UTF-8")
-    info_title="Tiedot"
-    info_text="Firstboot-määritys suoritettiin onnistuneesti! Muutokset astuvat voimaan automaattisesti, kun kirjaudut sisään uudelleen!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/fi-FI/locale.txt`
     ;;
   "fr*")
-    info_title="Informations"
-    info_text="La configuration du premier démarrage s'est terminée avec succès ! Les modifications prendront effet automatiquement après votre nouvelle connexion !"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/fr-FR/locale.txt`
     ;;
   "ga_IE.UTF-8")
-    info_title="Fiosrachadh"
-    info_text="Chaidh rèiteachadh Firstboot a chrìochnachadh gu soirbheachail! Thig na h-atharrachaidhean gu buil gu fèin-ghluasadach às deidh dhut logadh a-steach a-rithist!"
-    locale_info
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ga-IE/locale.txt`
     ;;
   "gl_ES.UTF-8")
-    info_title="Información"
-    info_text="A configuração do Firstboot foi concluída com sucesso! As alterações entrarão em vigor automaticamente após você fazer login novamente!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/gl-ES/locale.txt`
     ;;
   "ka_GE.UTF-8")
-    info_title="ინფორმაცია"
-    info_text="Firstboot-ის კონფიგურაცია წარმატებით დასრულდა! ცვლილებები ავტომატურად შევა ძალაში ხელახლა შესვლის შემდეგ!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ka-GE/locale.txt`
     ;;
   "de_DE.UTF-8")
-    info_title="Information"
-    info_text="Die Firstboot-Konfiguration wurde erfolgreich abgeschlossen! Die Änderungen werden automatisch wirksam, nachdem Sie sich erneut angemeldet haben!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/de-DE/ocale.txt`
     ;;
   "el_GR.UTF-8")
-    info_title="Πληροφορίες"
-    info_text="Η διαμόρφωση του Firstboot ολοκληρώθηκε με επιτυχία! Οι αλλαγές θα τεθούν σε ισχύ αυτόματα αφού συνδεθείτε ξανά!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/el-GR/locale.txt`
     ;;
   "he_IL.utf8")
-    info_title="מידע"
-    info_text="תצורת Firstboot הושלמה בהצלחה! השינויים ייכנסו לתוקף אוטומטית לאחר שתתחבר שוב!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/he-IL/locale.txt`
     ;;
   "hu_HU.UTF-8")
-    info_title="Információ"
-    info_text="A Firstboot konfiguráció sikeresen befejeződött! A változtatások az újbóli bejelentkezés után automatikusan életbe lépnek!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/hu-HU/locale.txt`
     ;;
   "is_IS.UTF-8")
-    info_title="Upplýsingar"
-    info_text="Firstboot stillingu var lokið með góðum árangri! Breytingarnar taka sjálfkrafa gildi eftir að þú skráir þig inn aftur!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/is-IS/locale.txt`
     ;;
   "id_ID.UTF-8")
-    info_title="Informasi"
-    info_text="Konfigurasi boot pertama berhasil diselesaikan! Perubahan akan berlaku secara otomatis setelah Anda login kembali!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/id-ID/locale.txt`
     ;;
   "it_IT.UTF-8")
-    info_title="Informazioni"
-    info_text="La configurazione di Firstboot è stata completata con successo! Le modifiche avranno effetto automaticamente dopo aver effettuato nuovamente l'accesso!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/it-IT/locale.txt`
     ;;
   "ja_JP.UTF-8")
-    info_title="お知らせ"
-    info_text="Firstboot 構成が正常に完了しました。 再度ログインすると、変更は自動的に有効になります。"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ja-JP/locale.txt`
     ;;
   "ko_KR.UTF-8")
-    info_title="정보"
-    info_text="Firstboot 구성이 성공적으로 완료되었습니다! 변경 사항은 다시 로그인하면 자동으로 적용됩니다!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ko-KR/locale.txt`
     ;;
   "lt_LT.UTF-8")
-    info_title="Informacija"
-    info_text="Pirmosios įkrovos konfigūracija sėkmingai baigta! Pakeitimai įsigalios automatiškai, kai vėl prisijungsite!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/lt-LT/locale.txt`
     ;;
   "ms_MY.UTF-8")
-    info_title="Maklumat"
-    info_text="Konfigurasi Firstboot telah berjaya diselesaikan! Perubahan akan berkuat kuasa secara automatik selepas anda log masuk semula!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ms-MY/locale.txt`
     ;;
   "mi_NZ.UTF-8")
-    info_title="Mohiohio"
-    info_text="I tutuki pai te whirihoranga Firstboot! Ka whai mana aunoa nga huringa i muri i to takiuru ano!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/mi-NZ/locale.txt`
     ;;
   "*NO.UTF-8")
-    info_title="Informasjon"
-    info_text="Firstboot-konfigurasjonen ble fullført! Endringene trer i kraft automatisk etter at du logger på igjen!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/no-NO/locale.txt`
     ;;
   "pl_PL.UTF-8")
-    info_title="Informacja"
-    info_text="Konfiguracja pierwszego uruchomienia została pomyślnie ukończona! Zmiany zaczną obowiązywać automatycznie po ponownym zalogowaniu!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/pl-PL/locale.txt`
     ;;
   "pt_*UTF-8")
-    info_title="Informações"
-    info_text="A configuração do Firstboot foi concluída com sucesso! As alterações entrarão em vigor automaticamente após você fazer login novamente!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/pt-PT/locale.txt`
     ;;
   "ro_RO.UTF-8")
-    info_title="Informații"
-    info_text="Configurarea Firstboot a fost finalizată cu succes! Modificările vor intra în vigoare automat după ce vă conectați din nou!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ro-RO/locale.txt`
     ;;
   "ru_RU.UTF-8")
-    info_title="Информация"
-    info_text="Настройка первой загрузки успешно завершена! Изменения вступят в силу автоматически после повторного входа в систему!"
-    COMPLETED_SETUP_INFO
-    ;;
-  "mi_NZ.UTF-8")
-    info_title="Fa'amatalaga"
-    info_text="Ua mae'a manuia le fa'atulagaina o le Firstboot! O suiga e otometi lava ona aoga pe a uma ona e toe ulufale i totonu!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/ru-RU/locale.txt`
     ;;
   "sk_SK.UTF-8")
-    info_title="Informácie"
-    info_text=""
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/sk-SK/locale.txt`
     ;;
   "sl_SI.UTF-8")
-   info_title="Informacije"
-    info_text="Konfiguracija prvega zagona je bila uspešno zaključena! Spremembe bodo samodejno stopile v veljavo, ko se ponovno prijavite!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/sl-SI/locale.txt`
     ;;
   "so_SO.UTF-8")
-    info_title="Macluumaad"
-    info_text="Qaabeynta Firstboot si guul leh ayaa loo dhameeyay! Isbeddelku si toos ah ayay u dhaqan geli doonaan ka dib markaad mar kale soo gasho!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/so-SO/locale.txt`
     ;;
   "es_ES.UTF-8")
-    info_title="Información"
-    info_text="¡La configuración del primer arranque se completó con éxito! ¡Los cambios entrarán en vigor automáticamente después de que inicies sesión nuevamente!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/es-ES/locale.txt`
     ;;
   "sv_SE.UTF-8")
-    info_title="Information"
-    info_text="Firstboot-konfigurationen slutfördes framgångsrikt! Ändringarna träder i kraft automatiskt när du loggar in igen!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/sv-SE/locale.txt`
     ;;
   "tl_PH.UTF-8")
-    info_title="Impormasyon"
-    info_text="Matagumpay na nakumpleto ang pagsasaayos ng Firstboot! Awtomatikong magkakabisa ang mga pagbabago pagkatapos mong mag-log in muli!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/tl-PH/locale.txt`
     ;;
   "th_TH.UTF-8")
-    info_title="ข้อมูล"
-    info_text="การกำหนดค่า Firstboot เสร็จสมบูรณ์แล้ว! การเปลี่ยนแปลงจะมีผลโดยอัตโนมัติหลังจากที่คุณเข้าสู่ระบบอีกครั้ง!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/th-TH/locale.txt`
     ;;
   "tr_TR.UTF-8")
-    info_title="Bilgi"
-    info_text="İlk önyükleme yapılandırması başarıyla tamamlandı! Tekrar giriş yaptığınızda değişiklikler otomatik olarak geçerli olacaktır!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/tr-TR/locale.txt`
     ;;
   "uk_UA.UTF-8")
-    info_title="Інформація"
-    info_text="Налаштування першого завантаження успішно завершено! Зміни набудуть чинності автоматично після повторного входу!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/uk-UA/locale.txt`
     ;;
   *)
-    info_title="Information"
-    info_text="Firstboot configuration was completed successfully! The changes will take effect automatically after you log in again!"
-    COMPLETED_SETUP_INFO
+    read_locale_file=`cat /usr/bin/xfce-initial-setup/resources/locale/en-US/locale.txt`
     ;;
 esac
 }
 
-function COMPLETED_SETUP_INFO {
-    zenity --info \
-           --title="$info_title" \
-           --text="$info_text"
+###############################################################################################################################################################################
+# THIS CHECKS WHETHER THE SCRIPT IS EXECUTED IN THE ROOT SHELL:                                                                                                               #
+###############################################################################################################################################################################
+
+# Checks if I am a root user and if I run the Xfce-Initial-Setup in the first time?
+function CHECK_ROOT_SHELL {
+    if [ $(id -u) -eq 0 ]; then
+        firstboot_autostart_file="/root/.config/autostart/mod-firstboot.desktop"
+        if [ -f $firstboot_autostart_file ]; then
+            # Firstboot-Autostart-File exists.
+            CHECK_WHICH_TOOL_TO_USE
+        else
+            # Firstboot-Autostart-File does not exist.
+            XFCE-INITIAL-SETUP-START
+        fi
+    else
+        CHECK_WHICH_TOOL_TO_USE
+    fi
 }
 
-#####################################################################################################################################################################################################################
-# THE FIRSTBOOT PROGRAM IS STARTED HERE:                                                                                                                                                                            #
-#####################################################################################################################################################################################################################
+###############################################################################################################################################################################
+# THIS CHECKS WHICH SPECIAL FUNCTION SHOULD BE CALLED:                                                                                                                        #
+###############################################################################################################################################################################
+
+function CHECK_WHICH_TOOL_TO_USE {
+    case "$tool_data" in
+  "locale_setup_tool")
+    # ...
+    ;;
+  "user_setup_tool")
+    # ...
+    ;;
+  *)
+    # Nothing to do ...
+    ;;
+esac
+}
+
+###############################################################################################################################################################################
+# THE FIRSTBOOT PROGRAM IS STARTED HERE:                                                                                                                                      #
+###############################################################################################################################################################################
+
+LOAD_COLOR_SHEME
+GET_LOCALE_DATA
+CHECK_ROOT_SHELL
+# ...
+
+
+
+
+
+
+
+
+
+
+###############################################################################################################################################################################
+# Sorting ...
 
 source /usr/bin/mod-locale-setup
 source /usr/bin/mod-useradd-setup
