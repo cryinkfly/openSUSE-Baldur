@@ -183,10 +183,10 @@ function CHECK_ROOT_SHELL {
         firstboot_autostart_file="/root/.config/autostart/mod-firstboot.desktop"
         if [ -f $firstboot_autostart_file ]; then
             # Firstboot-Autostart-File exists.
-            CHECK_WHICH_TOOL_TO_USE
+            XFCE-INITIAL-SETUP-START
         else
             # Firstboot-Autostart-File does not exist.
-            XFCE-INITIAL-SETUP-START
+            CHECK_WHICH_TOOL_TO_USE
         fi
     else
         CHECK_WHICH_TOOL_TO_USE
