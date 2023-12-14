@@ -199,11 +199,11 @@ function CHECK_ROOT_SHELL {
 
 function CHECK_WHICH_TOOL_TO_USE {
 case "$tool_data" in
-  "locale_setup_tool")
-    # ...
+  "locale_settings_tool")
+    source /usr/bin/mod-locale-setup
     ;;
-  "user_setup_tool")
-    # ...
+  "user_settings_tool")
+    source /usr/bin/mod-user-settings
     ;;
   *)
     # Nothing to do ...
@@ -230,10 +230,7 @@ CHECK_ROOT_SHELL
 
 
 ###############################################################################################################################################################################
-# Sorting ...
 
-source /usr/bin/mod-locale-setup
-source /usr/bin/mod-useradd-setup
 
 # Delete the desktop file for the Firstboot-Setup (/root/...)
 rm -f /root/.config/autostart/mod-firstboot.desktop
