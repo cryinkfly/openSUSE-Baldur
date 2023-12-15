@@ -62,9 +62,9 @@ function GET_LOCALE_SETUP_FILE {
     mv icons-preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
     mv icons-preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
     rm -rf icons-preferences-desktop-locale.zip
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-setup.desktop > /usr/share/applications/mod-locale-setup.desktop
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-setup.desktop > /usr/share/applications/mod-locale-settings.desktop
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/locale-setup-list.txt > /usr/etc/locale-conf/locale-setup-list.txt
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-setup > /usr/bin/mod-locale-setup
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-setup > /usr/bin/mod-locale-settings
     chmod +x /usr/bin/mod-locale-setup.desktop
 }
 
