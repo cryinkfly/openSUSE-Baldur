@@ -11,3 +11,42 @@
 # Version:      1.0.x                                                                              #
 ####################################################################################################
 
+function GET_USERPASSWORD {
+    userdata=`zenity --forms \
+        --title="Password ändern" \
+        --text="Sie müssen ihren Benutzer auswählen" \
+        --add-entry="Benutzername:" \
+        --add-password="Altes Passwort:" \
+        --add-password="Neues Passwort:" \
+        --add-password="Neues Passwort bestätigen:" \
+        --separator="," \
+        --ok-label="Password ändern" \
+        --cancel-label="Abbrechen"`
+
+    accepted=$?
+    if ((accepted != 0)); then
+        zenity --info --title="Wichtige Information" --text="Das Passwort wurde nicht geändert!"
+        exit 1
+    fi
+
+    username=$(awk -F, '{print $1}' <<<$userdata)
+    password0=$(awk -F, '{print $2}' <<<$userdata)
+    password1=$(awk -F, '{print $3}' <<<$userdata)
+    password2=$(awk -F, '{print $4}' <<<$userdata)
+
+    if [ $password1 == $password2 ]; then
+        if [ $password0 == $password1 ]; then
+            zenity --info --title="Wichtige Information" --text="Es sollte nicht das alte Passwort wieder verwendet werden! Bitte wähle ein neues Passwort."
+             GET_USERPASSWORD
+        else
+            pass=$(perl -e 'print crypt($ARGV[0], "password")' $password1)
+            pkexec su -c "usermod -p '$pass' $username"
+            zenity --info --title="Wichtige Information" --text="Das Passwort wurde erfolgreich geändert!"
+        fi
+    else
+        zenity --warning --title="Ein Fehler ist aufgetreten" --text="Die eingegebenen neuen Passwörter stimmen nicht überein!"
+        GET_USERPASSWORD
+    fi
+}
+
+GET_USERPASSWORD
