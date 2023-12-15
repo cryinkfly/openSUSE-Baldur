@@ -1,0 +1,13 @@
+#!/bin/bash
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - User Configurator                            #
+# Description:  This file will configure the user settings on openSUSE Baldur.                     #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
+# Version:      1.0.x                                                                              #
+####################################################################################################
+
