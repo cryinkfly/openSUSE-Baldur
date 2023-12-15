@@ -91,7 +91,7 @@ function SET_NEW_USER {
 # CONFIGURATION OF THE NEW USER PASSWORD:                                                                                                                                    #
 ##############################################################################################################################################################################
 
-function SET_NEW_USERPASSWORD {
+function SET_NEW_USER_PASSWORD {
     userdata=`zenity --forms \
         --title="Password ändern" \
         --text="Sie müssen ihren Benutzer auswählen" \
@@ -117,7 +117,7 @@ function SET_NEW_USERPASSWORD {
     if [ $password1 == $password2 ]; then
         if [ $password0 == $password1 ]; then
             zenity --info --title="Wichtige Information" --text="Es sollte nicht das alte Passwort wieder verwendet werden! Bitte wähle ein neues Passwort."
-             SET_NEW_USERPASSWORD
+             SET_NEW_USER_PASSWORD
         else
             pass=$(perl -e 'print crypt($ARGV[0], "password")' $password1)
             pkexec su -c "usermod -p '$pass' $username"
@@ -125,7 +125,7 @@ function SET_NEW_USERPASSWORD {
         fi
     else
         zenity --warning --title="Ein Fehler ist aufgetreten" --text="Die eingegebenen neuen Passwörter stimmen nicht überein!"
-        SET_NEW_USERPASSWORD
+        SET_NEW_USER_PASSWORD
     fi
 }
 
