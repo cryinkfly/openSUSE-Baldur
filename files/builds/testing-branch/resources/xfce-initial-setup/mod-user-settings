@@ -71,16 +71,19 @@ LOAD_COLOR_SHEME() {
 SHOW_HELP() {
     clear
     # Display Help
-    echo -e "${BROWN_ORANGE}USER SETTINGS [Help page]${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}Help page - User Settings Center${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}--------------------------------${NOCOLOR}"
     echo
-    echo -e "${BROWN_ORANGE}These functions can be accessed directly via the terminal.${NOCOLOR}"
+    echo -e "${NOCOLOR}These functions can be accessed directly via the terminal.${NOCOLOR}"
     echo
-    echo -e "${BROWN_ORANGE}Options 1 [-a|-d|-h|-p]:${NOCOLOR}"
-    echo -e "${BROWN_ORANGE}Options 2 [--add-user|--del-user|--help|--set-pass]:${NOCOLOR}"
-    echo -e "${YELLOW}-a --add-user        Create a new user.${NOCOLOR}"
-    echo -e "${YELLOW}-d --del-user        Delete an existing user.${NOCOLOR}"
-    echo -e "${YELLOW}-h --help            Show help page.${NOCOLOR}"
-    echo -e "${YELLOW}-p --set-pass        Set a new password for an existing user.${NOCOLOR}"
+    echo -e "${NOCOLOR}Syntax: mod-user-settings [${BROWN_ORANGE}option${NOCOLOR}]${NOCOLOR}"
+    echo
+    echo -e "${NOCOLOR}Options:${NOCOLOR}"
+    echo
+    echo -e "${BROWN_ORANGE}    -a --add-user        Create a new user.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}    -d --del-user        Delete an existing user.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}    -h --help            Show help page.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}    -p --set-pass        Set a new password for an existing user.${NOCOLOR}"
     echo
 }
 
