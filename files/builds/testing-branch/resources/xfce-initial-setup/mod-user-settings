@@ -73,12 +73,11 @@ SHOW_HELP() {
     # Display Help
     echo -e "${BROWN_ORANGE}Add description of the script functions here.${NOCOLOR}"
     echo
-    echo -e "${BROWN_ORANGE}Syntax: scriptTemplate [-a|d|h|p]${NOCOLOR}"
-    echo -e "${BROWN_ORANGE}options:${NOCOLOR}"
-    echo -e "${YELLOW}a     Print the GPL license notification.${NOCOLOR}"
-    echo -e "${YELLOW}d     Print this Help.${NOCOLOR}"
-    echo -e "${YELLOW}h     Verbose mode.${NOCOLOR}"
-    echo -e "${YELLOW}p     Print software version and exit.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}Options [-a|-d|-h|-p]:${NOCOLOR}"
+    echo -e "${YELLOW}-a     Print the GPL license notification.${NOCOLOR}"
+    echo -e "${YELLOW}-d     Print this Help.${NOCOLOR}"
+    echo -e "${YELLOW}-h     Verbose mode.${NOCOLOR}"
+    echo -e "${YELLOW}-p     Print software version and exit.${NOCOLOR}"
     echo
 }
 
