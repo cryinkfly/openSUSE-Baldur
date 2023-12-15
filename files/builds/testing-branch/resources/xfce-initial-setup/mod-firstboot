@@ -200,7 +200,7 @@ function CHECK_ROOT_SHELL {
 function CHECK_WHICH_TOOL_TO_USE {
 case "$tool_data" in
   "locale_settings_tool")
-    source /usr/bin/mod-locale-setup
+    source /usr/bin/mod-locale-settings
     ;;
   "user_settings_tool")
     source /usr/bin/mod-user-settings
