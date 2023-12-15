@@ -40,7 +40,7 @@ SCRIPT_SET_ARG_PAR() {
            # Delete an existing user.
             DEL_USER
             ;;
-            "-p"|"--set-password")
+            "-p"|"--set-pass")
             # Set a new password for an existing user.
             SET_NEW_PASS
             ;;
@@ -71,13 +71,16 @@ LOAD_COLOR_SHEME() {
 SHOW_HELP() {
     clear
     # Display Help
-    echo -e "${BROWN_ORANGE}Add description of the script functions here.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}USER SETTINGS [Help page]${NOCOLOR}"
     echo
-    echo -e "${BROWN_ORANGE}Options [-a|-d|-h|-p]:${NOCOLOR}"
-    echo -e "${YELLOW}-a     Print the GPL license notification.${NOCOLOR}"
-    echo -e "${YELLOW}-d     Print this Help.${NOCOLOR}"
-    echo -e "${YELLOW}-h     Verbose mode.${NOCOLOR}"
-    echo -e "${YELLOW}-p     Print software version and exit.${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}These functions can be accessed directly via the terminal.${NOCOLOR}"
+    echo
+    echo -e "${BROWN_ORANGE}Options 1 [-a|-d|-h|-p]:${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}Options 2 [--add-user|--del-user|--help|--set-pass]:${NOCOLOR}"
+    echo -e "${YELLOW}-a --add-user        Create a new user.${NOCOLOR}"
+    echo -e "${YELLOW}-d --del-user        Delete an existing user.${NOCOLOR}"
+    echo -e "${YELLOW}-h --help            Show help page.${NOCOLOR}"
+    echo -e "${YELLOW}-p --set-pass        Set a new password for an existing user.${NOCOLOR}"
     echo
 }
 
