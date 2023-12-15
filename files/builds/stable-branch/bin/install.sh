@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    10:30/15.12.2023                                                                   #
-# Version:      1.3.8                                                                              #
+# Time/Date:    17:15/15.12.2023                                                                   #
+# Version:      1.3.9                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -205,6 +205,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         glibc \
         glibc-locale \
         glibc-locale-base \
+        gnome-system-monitor \
         gnome-disk-utility \
         gnome-keyring \
         gnome-keyring-pam \
