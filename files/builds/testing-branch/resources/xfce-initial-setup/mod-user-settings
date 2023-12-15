@@ -128,7 +128,8 @@ ADD_NEW_USER() {
     accepted=$?
     if ((accepted != 0)); then
         zenity --info --title="Wichtige Information" --text="Die Einrichtung eines neuen Benutzerkontos wurde übersprungen! Sie können jederzeit über die XFCE-Settings einen neuen Benutzer anlegen."
-        USER-SETTINGS
+        #USER-SETTINGS
+        exit
     fi
 
     name=$(awk -F, '{print $1}' <<<$userdata)
@@ -171,7 +172,8 @@ SET_NEW_PASS() {
     accepted=$?
     if ((accepted != 0)); then
         zenity --info --title="Wichtige Information" --text="Das Passwort wurde nicht geändert!"
-        USER-SETTINGS
+        #USER-SETTINGS
+        exit
     fi
 
     username=$(awk -F, '{print $1}' <<<$userdata)
