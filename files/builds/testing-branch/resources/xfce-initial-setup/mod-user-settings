@@ -12,21 +12,81 @@
 ####################################################################################################
 
 ##############################################################################################################################################################################
+# GET THE BASH SCRIPT ARGUMENTS AND PARAMETERS:                                                                                                                              #
+##############################################################################################################################################################################
+
+arg_par="$1"
+
+##############################################################################################################################################################################
+# CONFIGURATION OF THE BASH SCRIPT ARGUMENTS AND PARAMETERS:                                                                                                                 #
+##############################################################################################################################################################################
+
+SCRIPT_SET_ARG_PAR() {
+    if [[ -z $arg_par ]]; then 
+        echo "No parameter passed."]
+        #USER-SETTINGS   
+    else
+        echo "Parameter passed = $arg_par"
+        case "$arg_par" in
+            "-h"|"--help")
+            # Help
+            SHOW_HELP
+            ;;
+            "-a"|"--add-user")
+            # Create a new user.
+            ADD_NEW_USER
+            ;;
+            "-d"|"--del-user")
+           # Delete an existing user.
+            DEL_USER
+            ;;
+            "-p"|"--set-password")
+            # Set a new password for an existing user.
+            SET_NEW_PASS
+            ;;
+            *)
+            echo "Error: Invalid option!"
+            SHOW_HELP
+            exit;;
+        esac
+    fi
+}
+
+##############################################################################################################################################################################
 # CONFIGURATION OF THE COLOR SCHEME:                                                                                                                                         #
 ##############################################################################################################################################################################
 
-function LOAD_COLOR_SHEME {
+LOAD_COLOR_SHEME() {
     RED=$'\033[0;31m'
-    YELLOW=$'\033[0;33m'
+    YELLOW=$'\033[1;33m'
     GREEN=$'\033[0;32m'
+    BROWN_ORANGE=$'\033[0;33m'
     NOCOLOR=$'\033[0m'
+}
+
+##############################################################################################################################################################################
+# THIS IS WHERE THE HELP PAGE IS DEFINED:                                                                                                                                    #
+##############################################################################################################################################################################
+
+SHOW_HELP() {
+    clear
+    # Display Help
+    echo -e "${BROWN_ORANGE}Add description of the script functions here.${NOCOLOR}"
+    echo
+    echo -e "${BROWN_ORANGE}Syntax: scriptTemplate [-a|d|h|p]${NOCOLOR}"
+    echo -e "${BROWN_ORANGE}options:${NOCOLOR}"
+    echo -e "${YELLOW}a     Print the GPL license notification.${NOCOLOR}"
+    echo -e "${YELLOW}d     Print this Help.${NOCOLOR}"
+    echo -e "${YELLOW}h     Verbose mode.${NOCOLOR}"
+    echo -e "${YELLOW}p     Print software version and exit.${NOCOLOR}"
+    echo
 }
 
 ##############################################################################################################################################################################
 # LIST OF ALL HUMAN USERS ON THIS SYSTEM:                                                                                                                                    #
 ##############################################################################################################################################################################
 
-function LIST_ALL_HUMAN_USERS {
+LIST_ALL_HUMAN_USERS() {
     list_user_groups=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
 }
 
@@ -34,7 +94,7 @@ function LIST_ALL_HUMAN_USERS {
 # LIST OF ALL GROUPS ON THIS SYSTEM (/etc/group):                                                                                                                            #
 ##############################################################################################################################################################################
 
-function LIST_ALL_GROUPS {
+LIST_ALL_GROUPS() {
     list_user_groups=$(cut -d: -f1 /etc/group | sort)
 }
 
@@ -48,7 +108,7 @@ function LIST_ALL_GROUPS {
 # CREATE A NEW USER PASSWORD:                                                                                                                                                #
 ##############################################################################################################################################################################
 
-function SET_NEW_USER {
+ADD_NEW_USER() {
     userdata=`zenity --forms \
         --title="Benutzerkonto anlegen" \
         --text="<span font='9'>Sie müssen einen <span color='#2C423F'>Benutzername</span> für die reguläre\n(nicht-administrative) Nutzung Ihres Systems anlegen.\nUm einen <span color='#2C423F'>System-Benutzernamen</span> anzulegen, geben\nSie unten die erforderlichen Informationen ein.</span>" \
@@ -74,7 +134,7 @@ function SET_NEW_USER {
     egrep "^$username" /etc/passwd >/dev/null
     if [ $? -eq 0 ]; then
 		zenity --warning --title="Ein Fehler ist aufgetreten" --text="Der eingegebene Benutzername ist auf diesem System bereits vorhanden!\nBitte wähle einen anderen Benutzername."
-		SET_NEW_USER
+		ADD_NEW_USER
 	else
 		if [ $password0 == $password1 ]; then
             pass=$(perl -e 'print crypt($ARGV[0], "password")' $password0)
@@ -82,7 +142,7 @@ function SET_NEW_USER {
             zenity --info --title="Benutzerkonto anlegen" --text="Das Benutzerkonto wurde erfolgreich angelegt und Sie werden nun abgemeldet, um sich mit dem neuen Benutzerkonto anmelden zu können!"
         else
             zenity --warning --title="Ein Fehler ist aufgetreten" --text="Die eingegebenen Passwörter stimmen nicht überein!"
-            SET_NEW_USER
+            ADD_NEW_USER
         fi
 	fi
 }
@@ -91,7 +151,7 @@ function SET_NEW_USER {
 # CONFIGURATION OF THE NEW USER PASSWORD:                                                                                                                                    #
 ##############################################################################################################################################################################
 
-function SET_NEW_USER_PASSWORD {
+SET_NEW_PASS() {
     userdata=`zenity --forms \
         --title="Password ändern" \
         --text="Sie müssen ihren Benutzer auswählen" \
@@ -133,16 +193,18 @@ function SET_NEW_USER_PASSWORD {
 # Delete user (Not the currently logged in user!):                                                                                                                           #
 ##############################################################################################################################################################################
 
-function DELETE_HUMAN_USER {
+DEL_USER() {
+    echo "..."
     # ...
 }
 
 # Check that the user you are deleting is not currently logged in!
-function CHECK_USER_SHELL {
+CHECK_USER_SHELL() {
     current_user=$(whoami)
     if [ $current_user == $username ]; then
         zenity --warning --title="Der ausgewähle Benutzer ist aktuell angemeldet und kann nicht gelöscht werden!"
     else
+        echo "..."
         # Continue ...
     fi
 }
@@ -151,4 +213,5 @@ function CHECK_USER_SHELL {
 # THE PROGRAM IS STARTED HERE:                                                                                                                                                                                      #
 #####################################################################################################################################################################################################################
 
-USER-SETTINGS
+LOAD_COLOR_SHEME
+SCRIPT_SET_ARG_PAR
