@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    23:25/08.12.2023                                                                   #
-# Version:      1.3.7                                                                              #
+# Time/Date:    10:30/15.12.2023                                                                   #
+# Version:      1.3.8                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -283,6 +283,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         podman \
         policycoreutils \
         policycoreutils-python-utils \
+        polkit-gnome \
         procps4 \
         rebootmgr \
         rpm \
