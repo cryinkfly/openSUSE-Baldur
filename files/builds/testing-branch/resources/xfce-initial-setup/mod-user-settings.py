@@ -8,7 +8,7 @@ from gi.repository import Gtk
 
 class Window1(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Add User")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Configure User")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
 
@@ -18,7 +18,7 @@ class Window1(Gtk.Window):
 
 class Window2(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Window 2")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Add User")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
 
@@ -66,6 +66,16 @@ class Window2(Gtk.Window):
             print("Registration successful!")
         else:
             print("Registration failed. Please check your inputs.")
+
+class Window3(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Delete User")
+        self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+
+        # Add widgets to Window3
+        self.label = Gtk.Label("This is Window 3 where you can delete a user.")
+        self.add(self.label)
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -217,10 +227,22 @@ class MainWindow(Gtk.Window):
         if selected_option:
             print(f"Add button clicked. Selected option: {selected_option}")
 
+            window2 = Window2()
+            window2.connect("destroy", Gtk.main_quit)
+            window2.show_all()
+        else:
+            print(f"Click Add button was triggered but no option was selected!")
+
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
         if selected_option:
-            print(f"Delete button clicked. Selected option: {selected_option}")   
+            print(f"Delete button clicked. Selected option: {selected_option}")
+
+            window3 = Window3()
+            window3.connect("destroy", Gtk.main_quit)
+            window3.show_all()
+        else:
+            print(f"Click Delete button was triggered but no option was selected!")
 
     def get_selected_option(self):
         selection = self.radio_list.get_iter_first()
