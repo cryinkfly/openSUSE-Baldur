@@ -95,6 +95,15 @@ LIST_ALL_HUMAN_USERS() {
     tmpfile0=$(mktemp -t /tmp/_all_users_list_.XXXXXXX)
     list_users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
     echo "$list_users" | tr ' ' '\n' > /tmp/_all_users_list_.XXXXXXX
+
+    if [ "$(id -u)" != "0" ]; then
+        echo "Show only human users"
+    else
+        echo "FALSE" > /tmp/_all_users_list_.XXXXXXX
+        username=$(whoami)
+        echo "$username" > /tmp/_all_users_list_.XXXXXXX
+    fi
+
     cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_users_list_new.XXXXXXX && echo ${line} >> /tmp/_all_users_list_new.XXXXXXX; done
     rm /tmp/_all_users_list_.XXXXXXX
     mv /tmp/_all_users_list_new.XXXXXXX /tmp/_all_users_list_.XXXXXXX
