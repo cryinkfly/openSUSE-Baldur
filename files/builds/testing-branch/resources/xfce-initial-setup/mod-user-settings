@@ -95,6 +95,9 @@ LIST_ALL_HUMAN_USERS() {
     tmpfile0=$(mktemp -t /tmp/_all_users_list_.XXXXXXX)
     list_users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
     echo "$list_users" | tr ' ' '\n' > /tmp/_all_users_list_.XXXXXXX
+    cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_users_list_new.XXXXXXX && echo ${line} >> /tmp/_all_users_list_new.XXXXXXX; done
+    rm /tmp/_all_users_list_.XXXXXXX
+    mv /tmp/_all_users_list_new.XXXXXXX /tmp/_all_users_list_.XXXXXXX
 }
 
 ##############################################################################################################################################################################
@@ -114,8 +117,14 @@ LIST_ALL_GROUPS_OF_USER() {
 LIST_ALL_GROUPS() {
     tmpfile2=$(mktemp -t /tmp/_all_groups_list_.XXXXXXX)
     list_all_groups=$(cut -d: -f1 /etc/group | sort)
-    echo "$list_all_groups" | tr ' ' '\n' > /tmp/_all_groups-list_.XXXXXXX
+    echo "$list_all_groups" | tr ' ' '\n' > /tmp/_all_groups_list_.XXXXXXX
+    cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_groups_list_new.XXXXXXX && echo ${line} >> /tmp/_all_groups_list_new.XXXXXXX; done
+    rm /tmp/_all_groups_list.XXXXXXX
+    mv /tmp/_all_groups_list_new.XXXXXXX /tmp/_all_groups_list_.XXXXXXX
 }
+
+# Next, the data from "_all_groups_of_user_list_.XXXXXXX" and "_all_groups_list_.XXXXXXX" are evaluated and then the "FALSE" values are replaced by "TRUE" values if the selected user belongs to one of the groups.
+# ...
 
 ##############################################################################################################################################################################
 # DISPLAY INFORMATION ABOUT A USER (USERNAME, USER GROUPS, ...):                                                                                                             #
@@ -236,4 +245,3 @@ CHECK_USER_SHELL() {
 
 LOAD_COLOR_SHEME
 SCRIPT_SET_ARG_PAR
-
