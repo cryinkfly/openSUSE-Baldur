@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    17:15/15.12.2023                                                                   #
-# Version:      1.3.9                                                                              #
+# Time/Date:    17:30/16.12.2023                                                                   #
+# Version:      1.4.0                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -36,7 +36,7 @@ function SP_SETUP_USER {
                     passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     echo -e "${YELLOW}The user $USERNAME will be added to the correct user groups!${NOCOLOR}"
-                    usermod -a -G users,video,audio,render,disk,lp $USERNAME
+                    usermod -a -G users $USERNAME
                     echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
                     sleep 3
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
