@@ -101,7 +101,7 @@ LIST_ALL_HUMAN_USERS() {
     else
         username=$(whoami)
         echo "FALSE" > /tmp/_all_users_list_new.XXXXXXX
-        echo "$username" > /tmp/_all_users_list_new.XXXXXXX
+        echo "$username" >> /tmp/_all_users_list_new.XXXXXXX
     fi
 
     cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_users_list_new.XXXXXXX && echo ${line} >> /tmp/_all_users_list_new.XXXXXXX; done
