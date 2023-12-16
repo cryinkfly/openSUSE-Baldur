@@ -99,9 +99,9 @@ LIST_ALL_HUMAN_USERS() {
     if [ "$(id -u)" != "0" ]; then
         echo "Show only human users"
     else
-        echo "FALSE" > /tmp/_all_users_list_.XXXXXXX
         username=$(whoami)
-        echo "$username" > /tmp/_all_users_list_.XXXXXXX
+        echo "FALSE" > /tmp/_all_users_list_new.XXXXXXX
+        echo "$username" > /tmp/_all_users_list_new.XXXXXXX
     fi
 
     cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_users_list_new.XXXXXXX && echo ${line} >> /tmp/_all_users_list_new.XXXXXXX; done
