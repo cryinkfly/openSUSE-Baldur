@@ -41,11 +41,11 @@ class Window2(Gtk.Window):
         self.password_entry = Gtk.Entry()
         self.password_entry.set_visibility(False)  # Password is hidden by default
 
-        confirm_password_label = Gtk.Label("Confirm Password:")
+        confirm_password_label = Gtk.Label("Confirmation:")
         self.confirm_password_entry = Gtk.Entry()
         self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
 
-        show_password_checkbox = Gtk.CheckButton("🔎 Password")
+        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
@@ -76,7 +76,7 @@ class Window2(Gtk.Window):
         reset_button.connect("clicked", self.reset_entries)
         button_box.pack_start(reset_button, True, True, 0)  
 
-        create_button = Gtk.Button("➕ Add User")
+        create_button = Gtk.Button("🎭 Create")
         create_button.connect("clicked", self.create_user)
         button_box.pack_start(create_button, True, True, 0)      
 
@@ -87,10 +87,14 @@ class Window2(Gtk.Window):
         confirm_password = self.confirm_password_entry.get_text()
 
         if password == confirm_password:
-            # Run the command to create the user
-            command = f"sudo useradd -m -p {password} -c '{fullname}' {username}"
-            os.system(command)
-            print("User created successfully.")
+            if len(password) < 12:
+                self.show_error_dialog("Password must be at least 10 characters.")
+                return
+            else:
+                # Run the command to create the user
+                command = f"pkexec su -c `useradd -m -p {password} -c '{fullname}' {username}`"
+                os.system(command)
+                print("User created successfully.")
         else:
             print("Passwords do not match. Please try again.")
 
@@ -212,24 +216,24 @@ class MainWindow(Gtk.Window):
         treeview.append_column(column_text)
 
         # Buttons
-        close_button = Gtk.Button(label="✖️ Close")
+        close_button = Gtk.Button(label="⛔️ Close")
         close_button.connect("clicked", self.on_close_clicked)
 
-        add_button = Gtk.Button(label="⚙️ Configure")
-        add_button.connect("clicked", self.on_configure_clicked)
+        add_button = Gtk.Button(label="🎭 Create")
+        add_button.connect("clicked", self.on_add_clicked)
 
-        extra_button_0 = Gtk.Button(label="➕ Add")
-        extra_button_0.connect("clicked", self.on_add_clicked)
+        configure_button = Gtk.Button(label="⚙️ Configure")
+        configure_button.connect("clicked", self.on_configure_clicked)
 
-        extra_button_1 = Gtk.Button(label="❌ Delete")
-        extra_button_1.connect("clicked", self.on_del_clicked)
+        del_button = Gtk.Button(label="🗑 Delete")
+        del_button.connect("clicked", self.on_del_clicked)
 
         # Button Box
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         button_box.pack_start(close_button, True, True, 0)
         button_box.pack_start(add_button, True, True, 0)
-        button_box.pack_start(extra_button_0, True, True, 0)
-        button_box.pack_start(extra_button_1, True, True, 0)
+        button_box.pack_start(configure_button, True, True, 0)
+        button_box.pack_start(del_button, True, True, 0)
 
         # Main Box
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
