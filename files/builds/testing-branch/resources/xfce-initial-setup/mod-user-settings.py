@@ -92,7 +92,10 @@ class Window2(Gtk.Window):
                 return
             else:
                 # Run the command to create the user
-                command = f"pkexec su -c `useradd -m -p {password} -c '{fullname}' {username}`"
+                command=f"""
+                    #!/bin/bash
+                    pkexec sudo useradd -m -p {password} -c '{fullname}' {username}
+                """
                 os.system(command)
                 print("User created successfully.")
         else:
