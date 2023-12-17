@@ -1,9 +1,11 @@
 #!/usr/bin/python	
 
 import gi
-import os
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
+import os
+import random
+import string
 
 
 class Window1(Gtk.Window):
@@ -18,54 +20,96 @@ class Window1(Gtk.Window):
 
 class Window2(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Add User")
+        Gtk.Window.__init__(self, title="Create New User")
         self.set_default_size(500, 350)
-        self.set_position(Gtk.WindowPosition.CENTER)
 
-        self.set_border_width(10)
+        # Main container
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(main_box)
 
-        # Vertical box to hold all widgets
-        vbox = Gtk.VBox(spacing=10)
-        self.add(vbox)
+        # Labels and Entries
+        fullname_label = Gtk.Label("Full Name:")
+        self.fullname_entry = Gtk.Entry()
 
-        # Username entry
+        username_label = Gtk.Label("Username:")
         self.username_entry = Gtk.Entry()
-        self.username_entry.set_placeholder_text("Username")
-        vbox.pack_start(self.username_entry, True, True, 0)
 
-        # Password entry
+        password_label = Gtk.Label("Password:")
         self.password_entry = Gtk.Entry()
-        self.password_entry.set_visibility(False)
-        self.password_entry.set_placeholder_text("Password")
-        vbox.pack_start(self.password_entry, True, True, 0)
+        self.password_entry.set_visibility(False)  # Password is hidden by default
 
-        # Password confirmation entry
+        confirm_password_label = Gtk.Label("Confirm Password:")
         self.confirm_password_entry = Gtk.Entry()
-        self.confirm_password_entry.set_visibility(False)
-        self.confirm_password_entry.set_placeholder_text("Confirm Password")
-        vbox.pack_start(self.confirm_password_entry, True, True, 0)
+        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
 
-        # Checkbox
-        self.checkbox = Gtk.CheckButton("I agree to the terms and conditions")
-        vbox.pack_start(self.checkbox, True, True, 0)
+        main_box.pack_start(fullname_label, False, False, 0)
+        main_box.pack_start(self.fullname_entry, False, False, 0)
+        main_box.pack_start(username_label, False, False, 0)
+        main_box.pack_start(self.username_entry, False, False, 0)
+        main_box.pack_start(password_label, False, False, 0)
+        main_box.pack_start(self.password_entry, False, False, 0)
+        main_box.pack_start(confirm_password_label, False, False, 0)
+        main_box.pack_start(self.confirm_password_entry, False, False, 0)
 
-        # Submit button
-        submit_button = Gtk.Button(label="Submit")
-        submit_button.connect("clicked", self.on_submit_clicked)
-        vbox.pack_start(submit_button, True, True, 0)
+        # Buttons
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        main_box.pack_start(button_box, False, False, 0)
 
-    def on_submit_clicked(self, widget):
+        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button.connect("clicked", self.go_back)
+        button_box.pack_start(go_back_button, True, True, 0)
+
+        create_button = Gtk.Button("➕ Create User")
+        create_button.connect("clicked", self.create_user)
+        button_box.pack_start(create_button, True, True, 0)
+
+        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button.connect("clicked", self.generate_random_password)
+        button_box.pack_start(random_password_button, True, True, 0)
+
+        show_password_checkbox = Gtk.CheckButton("🔎 Password")
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        button_box.pack_start(show_password_checkbox, True, True, 0)
+
+        reset_button = Gtk.Button("🔄 Reset")
+        reset_button.connect("clicked", self.reset_entries)
+        button_box.pack_start(reset_button, True, True, 0)        
+
+    def create_user(self, widget):
+        fullname = self.fullname_entry.get_text()
         username = self.username_entry.get_text()
         password = self.password_entry.get_text()
         confirm_password = self.confirm_password_entry.get_text()
-        agreement = self.checkbox.get_active()
 
-        if password == confirm_password and agreement:
-            print(f"Username: {username}")
-            print(f"Password: {password}")
-            print("Registration successful!")
+        if password == confirm_password:
+            # Run the command to create the user
+            command = f"sudo useradd -m -p {password} -c '{fullname}' {username}"
+            os.system(command)
+            print("User created successfully.")
         else:
-            print("Registration failed. Please check your inputs.")
+            print("Passwords do not match. Please try again.")
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&"
+        random_password = "".join(random.choice(chars) for _ in range(12))
+        self.password_entry.set_text(random_password)
+        self.confirm_password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.password_entry.set_visibility(visibility)
+        self.confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.fullname_entry.set_text("")
+        self.username_entry.set_text("")
+        self.password_entry.set_text("")
+        self.confirm_password_entry.set_text("")
+
+    def go_back(self, widget):
+        self.hide()
+        return True  # Returning True stops the default action (closing the window)
+
 
 class Window3(Gtk.Window):
     def __init__(self):
@@ -86,7 +130,6 @@ class MainWindow(Gtk.Window):
         check_file="""
             #!/bin/bash
             LIST_ALL_HUMAN_USERS() {
-                tmpfile0=$(mktemp -t /tmp/_all_users_list_.XXXXXXX)
                 list_users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
                 echo "$list_users" | tr ' ' '\n' > /tmp/_all_users_list_.XXXXXXX
 
@@ -108,7 +151,6 @@ class MainWindow(Gtk.Window):
             ##############################################################################################################################################################################
 
             LIST_ALL_GROUPS_OF_USER() {
-                tmpfile1=$(mktemp -t /tmp/_all_groups_of_user_list_.XXXXXXX)
                 list_user_groups=$(id -nG $username)
                 echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
             }
@@ -118,7 +160,6 @@ class MainWindow(Gtk.Window):
             ##############################################################################################################################################################################
 
             LIST_ALL_GROUPS() {
-                tmpfile2=$(mktemp -t /tmp/_all_groups_list_.XXXXXXX)
                 list_all_groups=$(cut -d: -f1 /etc/group | sort)
                 echo "$list_all_groups" | tr ' ' '\n' > /tmp/_all_groups_list_.XXXXXXX
                 cat /tmp/_all_users_list_.XXXXXXX | while read line; do echo "FALSE" >> /tmp/_all_groups_list_new.XXXXXXX && echo ${line} >> /tmp/_all_groups_list_new.XXXXXXX; done
@@ -205,9 +246,9 @@ class MainWindow(Gtk.Window):
         self.radio_list[path][0] = not self.radio_list[path][0]
 
     def on_close_clicked(self, button):
-        # Run your Bash command here
-        delete_file="rm /tmp/_all_users_list_.XXXXXXX"
-        os.system(delete_file)
+        # Delete tmp-files:
+        del_tmp_files="rm /tmp/_all_*_.XXXXXXX"
+        os.system(del_tmp_files)
 
         Gtk.main_quit()
 
@@ -223,15 +264,9 @@ class MainWindow(Gtk.Window):
             print(f"Click Configure button was triggered but no option was selected!")
     
     def on_add_clicked(self, button):
-        selected_option = self.get_selected_option()
-        if selected_option:
-            print(f"Add button clicked. Selected option: {selected_option}")
-
             window2 = Window2()
             window2.connect("destroy", Gtk.main_quit)
             window2.show_all()
-        else:
-            print(f"Click Add button was triggered but no option was selected!")
 
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
