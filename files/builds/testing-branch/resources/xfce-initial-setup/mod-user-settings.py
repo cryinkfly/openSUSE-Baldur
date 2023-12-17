@@ -13,6 +13,7 @@ class Window1(Gtk.Window):
         Gtk.Window.__init__(self, title="Users Settings Manager - Configure User")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
 
         # Add widgets to Window1
         self.label = Gtk.Label("This is Window 1 where you can add a new user.")
@@ -22,6 +23,8 @@ class Window2(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Create New User")
         self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
 
         # Main container
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
@@ -51,29 +54,33 @@ class Window2(Gtk.Window):
         main_box.pack_start(confirm_password_label, False, False, 0)
         main_box.pack_start(self.confirm_password_entry, False, False, 0)
 
-        # Buttons
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        # Buttons - Container 1
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         main_box.pack_start(button_box, False, False, 0)
 
-        go_back_button = Gtk.Button("◀️ Back")
-        go_back_button.connect("clicked", self.go_back)
-        button_box.pack_start(go_back_button, True, True, 0)
-
-        create_button = Gtk.Button("➕ Create User")
-        create_button.connect("clicked", self.create_user)
-        button_box.pack_start(create_button, True, True, 0)
-
-        random_password_button = Gtk.Button("🎲 Password")
-        random_password_button.connect("clicked", self.generate_random_password)
-        button_box.pack_start(random_password_button, True, True, 0)
-
-        show_password_checkbox = Gtk.CheckButton("🔎 Password")
+        show_password_checkbox = Gtk.CheckButton("🔎 Show Password")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         button_box.pack_start(show_password_checkbox, True, True, 0)
 
+        # Buttons - Container 2
+        button_box_1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        main_box.pack_start(button_box_1, False, False, 0)
+
+        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button.connect("clicked", self.go_back)
+        button_box_1.pack_start(go_back_button, True, True, 0)
+
+        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button.connect("clicked", self.generate_random_password)
+        button_box_1.pack_start(random_password_button, True, True, 0)
+
         reset_button = Gtk.Button("🔄 Reset")
         reset_button.connect("clicked", self.reset_entries)
-        button_box.pack_start(reset_button, True, True, 0)        
+        button_box_1.pack_start(reset_button, True, True, 0)  
+
+        create_button = Gtk.Button("➕ Add User")
+        create_button.connect("clicked", self.create_user)
+        button_box_1.pack_start(create_button, True, True, 0)      
 
     def create_user(self, widget):
         fullname = self.fullname_entry.get_text()
@@ -126,6 +133,7 @@ class MainWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="Users Settings Manager")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
 
         check_file="""
             #!/bin/bash
