@@ -16,12 +16,12 @@ class Window_Configure_User(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
 
         # Add widgets to Window1
-        self.label = Gtk.Label("This is Window 1 where you can add a new user.")
+        self.label = Gtk.Label("This is Window 1 where you can configure the selected user.")
         self.add(self.label)
 
 class Window_Create_User(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Create New User")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Create a Account")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
@@ -123,7 +123,7 @@ class Window_Create_User(Gtk.Window):
 
 class Window_Del_Selection_Info(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Info about current using user")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
@@ -164,7 +164,7 @@ class Window_Del_Selection_Info(Gtk.Window):
 
 class Window_Del_Selection_Warn(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Delete a User")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Warning")
         #self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_border_width(10)
@@ -205,7 +205,7 @@ class Window_Del_Selection_Warn(Gtk.Window):
 
 class Window5(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Info about current using user")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
