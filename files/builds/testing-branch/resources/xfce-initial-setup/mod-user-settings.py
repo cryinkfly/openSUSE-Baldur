@@ -2,7 +2,7 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Pango
 import os
 import random
 import string
@@ -92,11 +92,11 @@ class Window2(Gtk.Window):
                 return
             else:
                 # Run the command to create the user
-                command=f"""
+                add_new_user_cmd=f"""
                     #!/bin/bash
                     pkexec sudo useradd -m -p {password} -c '{fullname}' {username}
                 """
-                os.system(command)
+                os.system(add_new_user_cmd)
                 print("User created successfully.")
         else:
             print("Passwords do not match. Please try again.")
@@ -122,15 +122,89 @@ class Window2(Gtk.Window):
         return True  # Returning True stops the default action (closing the window)
 
 
-class Window3(Gtk.Window):
+class Window_Del_Selection_Warn(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Users Settings Manager - Delete User")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
 
-        # Add widgets to Window3
-        self.label = Gtk.Label("This is Window 3 where you can delete a user.")
-        self.add(self.label)
+        open_selected_del_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_selected_del_user_file = open_selected_del_user_file.read()
+        open_selected_del_user_file.close() 
+        selected_del_user_warn_text="Are you sure you want to remove user >" + str(read_selected_del_user_file) + "< from your system? (Keep in mind that all saved data from that user will be lost as the home directory will also be deleted!)"
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add a label with the desired text
+        label = Gtk.Label()
+        label.set_text(label=str(selected_del_user_warn_text))
+        vbox.pack_start(label, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, False, False, 0)
+
+        # Add a "Yes" button
+        button_yes = Gtk.Button.new_with_label("Yes")
+        button_yes.connect("clicked", self.on_yes_clicked)
+        hbox.pack_start(button_yes, True, True, 0)
+
+        # Add a "No" button
+        button_no = Gtk.Button.new_with_label("No")
+        button_no.connect("clicked", self.on_no_clicked)
+        hbox.pack_start(button_no, True, True, 0)
+
+    def on_yes_clicked(self, widget):
+        print("Yes button clicked")
+        # Remove USER ...
+
+    def on_no_clicked(self, widget):
+        self.hide()
+        return True  # Returning True stops the default action (closing the window)
+
+class Window_Del_No_Selection_Info(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Info about current using user")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_selected_del_user_file = open_selected_del_user_file.read()
+        open_selected_del_user_file.close() 
+        selected_del_user_info_text="The selected user " + str(read_selected_del_user_file) + " cannot be deleted because you are logged in to this system with it! \nPlease select a different user if you would like to continue deleting users that are no longer needed on this system." 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("💡")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label=str(selected_del_user_info_text))
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Yes" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        self.hide()
+        return True  # Returning True stops the default action (closing the window)
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -139,7 +213,7 @@ class MainWindow(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
-        check_file="""
+        check_file_cmd="""
             #!/bin/bash
             LIST_ALL_HUMAN_USERS() {
                 list_users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
@@ -184,7 +258,7 @@ class MainWindow(Gtk.Window):
             LIST_ALL_GROUPS_OF_USER
             LIST_ALL_GROUPS
         """
-        os.system(check_file)
+        os.system(check_file_cmd)
 
         # Add a Description
         label = Gtk.Label()
@@ -258,8 +332,8 @@ class MainWindow(Gtk.Window):
 
     def on_close_clicked(self, button):
         # Delete tmp-files:
-        del_tmp_files="rm /tmp/_all_*_.XXXXXXX"
-        os.system(del_tmp_files)
+        del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
+        os.system(del_tmp_files_cmd)
 
         Gtk.main_quit()
 
@@ -282,11 +356,35 @@ class MainWindow(Gtk.Window):
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
         if selected_option:
-            print(f"Delete button clicked. Selected option: {selected_option}")
+            del_selected_user_cmd=f"""
+                    #!/bin/bash
+                    echo {selected_option} > /tmp/_selected_user.XXXXXXX
+                """
+            os.system(del_selected_user_cmd)
 
-            window3 = Window3()
-            window3.connect("destroy", Gtk.main_quit)
-            window3.show_all()
+            check_active_user_cmd=f"""
+                    #!/bin/bash
+                    peter > /tmp/_active_user.XXXXXXX
+                """
+
+            active_user = os.system(check_active_user_cmd)
+            open_active_user_file = open(r"/tmp/_active_user.XXXXXXX",'r') 
+            read_active_user_file = open_active_user_file.read()
+            open_active_user_file.close()
+
+            print(f"Active user: {read_active_user_file}")
+
+            # This checks whether the selected user is currently logged in or not! (if...else...)
+            if selected_option in read_active_user_file:
+                print(f"The user is currently logged in!")
+                # Perform actions if variable1 is found
+            else:
+                print(f"The user is not currently logged in.")
+                # Perform actions if variable1 is not found
+
+                window3 = Window_Del_Selection_Warn()
+                window3.connect("destroy", Gtk.main_quit)
+                window3.show_all()
         else:
             print(f"Click Delete button was triggered but no option was selected!")
 
@@ -299,9 +397,9 @@ class MainWindow(Gtk.Window):
         return None
 
 def main():
-    win = MainWindow()
-    win.connect("destroy", Gtk.main_quit)
-    win.show_all()
+    window = MainWindow()
+    window.connect("destroy", Gtk.main_quit)
+    window.show_all()
     Gtk.main()
 
 if __name__ == "__main__":
