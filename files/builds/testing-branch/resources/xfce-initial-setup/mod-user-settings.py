@@ -377,15 +377,10 @@ class MainWindow(Gtk.Window):
             window1.show_all()
 
     def on_configure_clicked(self, widget):
-        selected_option = self.get_selected_option()
-        if selected_option:
-            print(f"Configure button clicked. Selected option: {selected_option}")
-            
-            window2 = Window_Configure_User()
-            window2.connect("destroy", Gtk.main_quit)
-            window2.show_all()
-        else:
-            print(f"Click Configure button was triggered but no option was selected!")
+        print(f"Configure button clicked.")
+        window2 = Window_Configure_User()
+        window2.connect("destroy", Gtk.main_quit)
+        window2.show_all()
 
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
