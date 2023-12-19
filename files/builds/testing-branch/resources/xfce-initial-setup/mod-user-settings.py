@@ -15,9 +15,40 @@ class Window_Configure_User(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
-        # Add widgets to Window1
-        self.label = Gtk.Label("This is Window 1 where you can configure the selected user.")
-        self.add(self.label)
+        # Main container
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(main_box)
+
+        # Labels and Entries
+        fullname_label = Gtk.Label("Full Name:")
+        self.fullname_entry = Gtk.Entry()
+
+        # Get info ... in progress ...
+        username_label = Gtk.Label("Username:")
+        self.username_entry = Gtk.Entry()
+
+        password_label = Gtk.Label("Password:")
+        self.password_entry = Gtk.Entry()
+        self.password_entry.set_visibility(False)  # Password is hidden by default
+
+        confirm_password_label = Gtk.Label("Confirmation:")
+        self.confirm_password_entry = Gtk.Entry()
+        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+
+        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
+        #show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.set_halign(Gtk.Align.CENTER)
+        show_password_checkbox.set_valign(Gtk.Align.CENTER)
+
+        main_box.pack_start(fullname_label, False, False, 0)
+        main_box.pack_start(self.fullname_entry, False, False, 0)
+        main_box.pack_start(username_label, False, False, 0)
+        main_box.pack_start(self.username_entry, False, False, 0)
+        main_box.pack_start(password_label, False, False, 0)
+        main_box.pack_start(self.password_entry, False, False, 0)
+        main_box.pack_start(confirm_password_label, False, False, 0)
+        main_box.pack_start(self.confirm_password_entry, False, False, 0)
+        main_box.pack_start(show_password_checkbox, False, False, 0)
 
 class Window_Create_User(Gtk.Window):
     def __init__(self):
@@ -296,12 +327,7 @@ class MainWindow(Gtk.Window):
 
         # Add a Description
         label = Gtk.Label()
-        label.set_markup(
-            "Text can be <small>small</small>, <big>big</big>, "
-            "<b>bold</b>, <i>italic</i> and even point to "
-            'somewhere in the <a href="https://www.gtk.org" '
-            'title="Click to find out more">internets</a>.'
-        )
+        label.set_text("In this area you can change the user account settings and add/delete users associated with their account. Simply select the user you want to modify from the list.")
         label.set_line_wrap(True)
         label.set_max_width_chars(48)
 
