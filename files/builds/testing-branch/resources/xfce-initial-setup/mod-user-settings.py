@@ -92,8 +92,8 @@ class Window_Configure_User(Gtk.Window):
             print("The new and old passwords are the same. Please choose a different password to continue setting a new password!")
         else:
             if password == confirm_password:
-                if len(password) < 12:
-                    self.show_error_dialog("Password must be at least 10 characters.")
+                if len(password) < 8:
+                    self.show_error_dialog("Password must be at least 8 characters.")
                     return
                 else:
                     # Run the command to create the user
@@ -195,8 +195,8 @@ class Window_Create_User(Gtk.Window):
         confirm_password = self.confirm_password_entry.get_text()
 
         if password == confirm_password:
-            if len(password) < 12:
-                self.show_error_dialog("Password must be at least 10 characters.")
+            if len(password) < 8:
+                self.show_error_dialog("Password must be at least 8 characters.")
                 return
             else:
                 # Run the command to create the user
