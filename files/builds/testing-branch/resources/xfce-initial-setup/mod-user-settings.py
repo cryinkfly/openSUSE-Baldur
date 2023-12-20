@@ -93,7 +93,7 @@ class Window_Configure_User(Gtk.Window):
         else:
             if password == confirm_password:
                 if len(password) < 8:
-                    self.show_error_dialog("Password must be at least 8 characters.")
+                    print("Password must be at least 8 characters.")
                     return
                 else:
                     # Run the command to create the user
@@ -196,7 +196,7 @@ class Window_Create_User(Gtk.Window):
 
         if password == confirm_password:
             if len(password) < 8:
-                self.show_error_dialog("Password must be at least 8 characters.")
+                print("Password must be at least 8 characters.")
                 return
             else:
                 # Run the command to create the user
@@ -304,8 +304,13 @@ class Window_Del_Selection_Warn(Gtk.Window):
         hbox.pack_start(button_no, True, True, 0)
 
     def on_yes_clicked(self, widget):
-        print("Yes button clicked")
-        # Remove USER ...
+        # Remove the USER ...
+        print("The selected user will be deleted!")
+
+        # Command ...
+        
+        self.hide()
+        return True  # Returning True stops the default action (closing the window)
 
     def on_no_clicked(self, widget):
         self.hide()
@@ -500,24 +505,19 @@ class MainWindow(Gtk.Window):
         if selected_option:
             del_selected_user_cmd=f"""
                     #!/bin/bash
+                    whoami > /tmp/_active_user.XXXXXXX
                     echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
                     echo -n "Are you sure you want to remove the user {selected_option} from your system? \nIf your answer is >>YES<<, then the selected user and all their associated data will be removed from this system!" > /tmp/_selected_del_user_warn_text.XXXXXXX
                     echo -n "The selected user {selected_option} cannot be deleted because you are logged in to this system with it! \nPlease select a different user if you would like to continue deleting users that are no longer needed on this system." > /tmp/_selected_del_user_info_text.XXXXXXX
                """
             os.system(del_selected_user_cmd)
 
-            check_active_user_cmd=f"""
-                    #!/bin/bash
-                    whoami > /tmp/_active_user.XXXXXXX
-                """
-
-            active_user = os.system(check_active_user_cmd)
             open_active_user_file = open(r"/tmp/_active_user.XXXXXXX",'r') 
             read_active_user_file = open_active_user_file.read()
             open_active_user_file.close()
 
             # Test another user with overriding the variable ...
-            #read_active_user_file="peter"
+            #read_active_user_file="max"
 
             print(f"Active user: {read_active_user_file}")
 
@@ -532,7 +532,6 @@ class MainWindow(Gtk.Window):
             else:
                 print(f"The user is not currently logged in.")
                 # Perform actions if variable1 is not found
-
                 window4 = Window_Del_Selection_Warn()
                 window4.connect("destroy", Gtk.main_quit)
                 window4.show_all()
