@@ -15,40 +15,117 @@ class Window_Configure_User(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
+        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_open_selected_user_file = open_selected_user_file.read()
+        open_selected_user_file.close() 
+
         # Main container
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.add(main_box)
 
-        # Labels and Entries
-        fullname_label = Gtk.Label("Full Name:")
-        self.fullname_entry = Gtk.Entry()
-
         # Get info ... in progress ...
-        username_label = Gtk.Label("Username:")
+        username_label = Gtk.Label("Current Username:")
         self.username_entry = Gtk.Entry()
+        self.username_entry.set_text(text=str(read_open_selected_user_file))
+        self.username_entry.set_editable(False)
+        self.username_entry.set_can_focus(False)
+        self.username_entry.set_alignment(xalign = 0.5)
 
-        password_label = Gtk.Label("Password:")
-        self.password_entry = Gtk.Entry()
-        self.password_entry.set_visibility(False)  # Password is hidden by default
+        old_password_label = Gtk.Label("Current Password:")
+        self.old_password_entry = Gtk.Entry()
+        self.old_password_entry.set_visibility(False)  # Password is hidden by default
 
-        confirm_password_label = Gtk.Label("Confirmation:")
-        self.confirm_password_entry = Gtk.Entry()
-        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+        new_password_label = Gtk.Label("New Password:")
+        self.new_password_entry = Gtk.Entry()
+        self.new_password_entry.set_visibility(False)  # Password is hidden by default
+
+        new_confirm_password_label = Gtk.Label("Confirm New Password:")
+        self.new_confirm_password_entry = Gtk.Entry()
+        self.new_confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
 
         show_password_checkbox = Gtk.CheckButton("🔎 Show password")
-        #show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
 
-        main_box.pack_start(fullname_label, False, False, 0)
-        main_box.pack_start(self.fullname_entry, False, False, 0)
+        change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
+        #change_user_groups_button.connect("clicked", self.user_groups_settings)
+
         main_box.pack_start(username_label, False, False, 0)
         main_box.pack_start(self.username_entry, False, False, 0)
-        main_box.pack_start(password_label, False, False, 0)
-        main_box.pack_start(self.password_entry, False, False, 0)
-        main_box.pack_start(confirm_password_label, False, False, 0)
-        main_box.pack_start(self.confirm_password_entry, False, False, 0)
+        main_box.pack_start(old_password_label, False, False, 0)
+        main_box.pack_start(self.old_password_entry, False, False, 0)
+        main_box.pack_start(new_password_label, False, False, 0)
+        main_box.pack_start(self.new_password_entry, False, False, 0)
+        main_box.pack_start(new_confirm_password_label, False, False, 0)
+        main_box.pack_start(self.new_confirm_password_entry, False, False, 0)
         main_box.pack_start(show_password_checkbox, False, False, 0)
+        main_box.pack_start(change_user_groups_button, False, False, 0)
+
+        # Buttons - Container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        main_box.pack_start(button_box, False, False, 0)
+
+        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button.connect("clicked", self.go_back)
+        button_box.pack_start(go_back_button, True, True, 0)
+
+        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button.connect("clicked", self.generate_random_password)
+        button_box.pack_start(random_password_button, True, True, 0)
+
+        reset_button = Gtk.Button("🔄 Reset")
+        reset_button.connect("clicked", self.reset_entries)
+        button_box.pack_start(reset_button, True, True, 0)  
+
+        save_button = Gtk.Button("📝 Save")
+        save_button.connect("clicked", self.save_user_settings)
+        button_box.pack_start(save_button, True, True, 0)
+
+    def save_user_settings(self, widget):
+        username = self.username_entry.get_text()
+        old_password = self.old_password_entry.get_text()
+        new_password = self.password_entry.get_text()
+        new_confirm_password = self.confirm_password_entry.get_text()
+
+        if old_password == new_password:
+            print("The new and old passwords are the same. Please choose a different password to continue setting a new password!")
+        else:
+            if password == confirm_password:
+                if len(password) < 12:
+                    self.show_error_dialog("Password must be at least 10 characters.")
+                    return
+                else:
+                    # Run the command to create the user
+                    add_new_user_cmd=f"""
+                        #!/bin/bash
+                        pkexec sudo usermod -p {password} {username}
+                    """
+                    os.system(add_new_user_cmd)
+                    print("User created successfully.")
+            else:
+                print("Passwords do not match. Please try again.")
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&"
+        random_password = "".join(random.choice(chars) for _ in range(12))
+        self.new_password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.old_password_entry.set_visibility(visibility)
+        self.new_password_entry.set_visibility(visibility)
+        self.new_confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.old_password_entry.set_text("")
+        self.new_password_entry.set_text("")
+        self.new_confirm_password_entry.set_text("")
+
+    def go_back(self, widget):
+        self.hide()
+        return True  # Returning True stops the default action (closing the window)
+
 
 class Window_Create_User(Gtk.Window):
     def __init__(self):
@@ -403,19 +480,29 @@ class MainWindow(Gtk.Window):
             window1.show_all()
 
     def on_configure_clicked(self, widget):
-        print(f"Configure button clicked.")
-        window2 = Window_Configure_User()
-        window2.connect("destroy", Gtk.main_quit)
-        window2.show_all()
+        selected_option = self.get_selected_option()
+        if selected_option:
+            selected_user_cmd=f"""
+                    #!/bin/bash
+                    echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
+               """
+            os.system(selected_user_cmd)
+
+            window2 = Window_Configure_User()
+            window2.connect("destroy", Gtk.main_quit)
+            window2.show_all()
+
+        else:
+            print(f"Click Configure button was triggered but no option was selected!")        
 
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
         if selected_option:
             del_selected_user_cmd=f"""
                     #!/bin/bash
-                    echo {selected_option} > /tmp/_selected_user.XXXXXXX
-                    echo "Are you sure you want to remove the user {selected_option} from your system? \nIf your answer is >>YES<<, then the selected user and all their associated data will be removed from this system!" > /tmp/_selected_del_user_warn_text.XXXXXXX
-                    echo "The selected user {selected_option} cannot be deleted because you are logged in to this system with it! \nPlease select a different user if you would like to continue deleting users that are no longer needed on this system." > /tmp/_selected_del_user_info_text.XXXXXXX
+                    echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
+                    echo -n "Are you sure you want to remove the user {selected_option} from your system? \nIf your answer is >>YES<<, then the selected user and all their associated data will be removed from this system!" > /tmp/_selected_del_user_warn_text.XXXXXXX
+                    echo -n "The selected user {selected_option} cannot be deleted because you are logged in to this system with it! \nPlease select a different user if you would like to continue deleting users that are no longer needed on this system." > /tmp/_selected_del_user_info_text.XXXXXXX
                """
             os.system(del_selected_user_cmd)
 
