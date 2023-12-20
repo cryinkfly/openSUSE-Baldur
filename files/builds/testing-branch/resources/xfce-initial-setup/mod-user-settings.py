@@ -85,8 +85,8 @@ class Window_Configure_User(Gtk.Window):
     def save_user_settings(self, widget):
         username = self.username_entry.get_text()
         old_password = self.old_password_entry.get_text()
-        new_password = self.password_entry.get_text()
-        new_confirm_password = self.confirm_password_entry.get_text()
+        new_password = self.new_password_entry.get_text()
+        new_confirm_password = self.new_confirm_password_entry.get_text()
 
         if old_password == new_password:
             print("The new and old passwords are the same. Please choose a different password to continue setting a new password!")
