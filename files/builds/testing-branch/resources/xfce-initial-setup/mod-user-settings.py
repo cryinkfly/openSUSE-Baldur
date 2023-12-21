@@ -7,10 +7,16 @@ import os
 import random
 import string
 
+def Reload_MainWindow(self, widget):
+    window = MainWindow()
+    window.connect("destroy", Gtk.main_quit)
+    window.show_all()
+    self.hide()
+    return True  # Returning True stops the default action (closing the window)
 
 class Window_Configure_User(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Configure")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Account")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
@@ -123,34 +129,45 @@ class Window_Configure_User(Gtk.Window):
         self.new_confirm_password_entry.set_text("")
 
     def go_back(self, widget):
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
 
 class Window_Create_User(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Create a Account")
+        Gtk.Window.__init__(self, title="Users Settings Manager - Create a new Account")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
         # Main container
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.add(main_box)
+        self.add(main_box)      
 
         # Labels and Entries
         fullname_label = Gtk.Label("Full Name:")
         self.fullname_entry = Gtk.Entry()
+        self.fullname_entry.set_hexpand(True)
+        self.fullname_entry.set_halign(Gtk.Align.CENTER)
+        self.fullname_entry.set_width_chars(25)
 
         username_label = Gtk.Label("Username:")
         self.username_entry = Gtk.Entry()
+        self.username_entry.set_hexpand(True)
+        self.username_entry.set_halign(Gtk.Align.CENTER)
+        self.username_entry.set_width_chars(25)
 
         password_label = Gtk.Label("Password:")
         self.password_entry = Gtk.Entry()
+        self.password_entry.set_hexpand(True)
+        self.password_entry.set_halign(Gtk.Align.CENTER)
+        self.password_entry.set_width_chars(25)
         self.password_entry.set_visibility(False)  # Password is hidden by default
 
         confirm_password_label = Gtk.Label("Confirmation:")
         self.confirm_password_entry = Gtk.Entry()
+        self.confirm_password_entry.set_hexpand(True)
+        self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
+        self.confirm_password_entry.set_width_chars(25)
         self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
 
         show_password_checkbox = Gtk.CheckButton("🔎 Show password")
@@ -206,6 +223,8 @@ class Window_Create_User(Gtk.Window):
                 """
                 os.system(add_new_user_cmd)
                 print("User created successfully.")
+                
+                Reload_MainWindow(self, widget)
         else:
             print("Passwords do not match. Please try again.")
 
@@ -226,8 +245,7 @@ class Window_Create_User(Gtk.Window):
         self.confirm_password_entry.set_text("")
 
     def go_back(self, widget):
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
 class Window_Del_Selection_Info(Gtk.Window):
     def __init__(self):
@@ -267,8 +285,7 @@ class Window_Del_Selection_Info(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_okay_clicked(self, widget):
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
 class Window_Del_Selection_Warn(Gtk.Window):
     def __init__(self):
@@ -307,14 +324,17 @@ class Window_Del_Selection_Warn(Gtk.Window):
         # Remove the USER ...
         print("The selected user will be deleted!")
 
-        # Command ...
+        del_user_cmd="""
+            #!/bin/bash
+            username=$(cat /tmp/_selected_user.XXXXXXX)
+            pkexec sudo userdel -r $username
+        """
+        os.system(del_user_cmd)
         
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
     def on_no_clicked(self, widget):
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
 class Window5(Gtk.Window):
     def __init__(self):
@@ -350,8 +370,7 @@ class Window5(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_okay_clicked(self, widget):
-        self.hide()
-        return True  # Returning True stops the default action (closing the window)
+        Reload_MainWindow(self, widget)
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -484,6 +503,9 @@ class MainWindow(Gtk.Window):
             window1.connect("destroy", Gtk.main_quit)
             window1.show_all()
 
+            self.hide()
+            return True
+
     def on_configure_clicked(self, widget):
         selected_option = self.get_selected_option()
         if selected_option:
@@ -496,6 +518,9 @@ class MainWindow(Gtk.Window):
             window2 = Window_Configure_User()
             window2.connect("destroy", Gtk.main_quit)
             window2.show_all()
+            
+            self.hide()
+            return True
 
         else:
             print(f"Click Configure button was triggered but no option was selected!")        
@@ -529,17 +554,27 @@ class MainWindow(Gtk.Window):
                 window3.connect("destroy", Gtk.main_quit)
                 window3.show_all()
 
+                self.hide()
+                return True
+
             else:
                 print(f"The user is not currently logged in.")
                 # Perform actions if variable1 is not found
                 window4 = Window_Del_Selection_Warn()
                 window4.connect("destroy", Gtk.main_quit)
                 window4.show_all()
+
+                self.hide()
+                return True
+
         else:
             print(f"Click Delete button was triggered but no option was selected!")
             window5 = Window5()
             window5.connect("destroy", Gtk.main_quit)
             window5.show_all()
+
+            self.hide()
+            return True
 
     def get_selected_option(self):
         selection = self.radio_list.get_iter_first()
