@@ -370,7 +370,6 @@ class Window_Create_User(Gtk.Window):
         if password == confirm_password:
             if len(password) < 8:
                 print("Password must be at least 8 characters.")
-                return
                 window1_2 = Window_Create_User_Error_1()
                 window1_2.connect("destroy", Gtk.main_quit)
                 window1_2.show_all()
