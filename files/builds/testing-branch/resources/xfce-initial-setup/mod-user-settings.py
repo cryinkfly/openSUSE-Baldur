@@ -584,7 +584,7 @@ class Window_Configure_User(Gtk.Window):
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
 
         change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
-        #change_user_groups_button.connect("clicked", self.user_groups_settings)
+        change_user_groups_button.connect("clicked", self.user_groups_settings)
 
         main_box.pack_start(username_label, False, False, 0)
         main_box.pack_start(self.username_entry, False, False, 0)
@@ -672,6 +672,11 @@ class Window_Configure_User(Gtk.Window):
         self.new_password_entry.set_visibility(visibility)
         self.new_confirm_password_entry.set_visibility(visibility)
 
+    def user_groups_settings(self, widget):
+        window2_1_5 = Window_Configure_User_Groups()
+        window2_1_5.connect("destroy", Gtk.main_quit)
+        window2_1_5.show_all()
+
     def reset_entries(self, widget):
         self.old_password_entry.set_text("")
         self.new_password_entry.set_text("")
@@ -679,6 +684,72 @@ class Window_Configure_User(Gtk.Window):
 
     def go_back(self, widget):
         Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Configure_User_Groups(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Groups")
+        self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Add a Description
+        label = Gtk.Label()
+        label.set_text("In this area you can change the groups settings for your selceted user. Simply select the groups from the list you want to add or delete your user.")
+        label.set_line_wrap(True)
+        label.set_max_width_chars(48)
+
+        # Load options from a text file
+        options = self.load_options_from_file("/tmp/_all_groups_list_.XXXXXXX")
+
+        # Radio List
+        self.radio_list = Gtk.ListStore(bool, str)
+        for option in options:
+            self.radio_list.append([False, option])
+
+        # TreeView
+        treeview = Gtk.TreeView(model=self.radio_list)
+
+        renderer_toggle = Gtk.CellRendererToggle()
+        renderer_toggle.connect("toggled", self.on_toggle, treeview)
+        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=0)
+        treeview.append_column(column_toggle)
+
+        renderer_text = Gtk.CellRendererText()
+        column_text = Gtk.TreeViewColumn("Options", renderer_text, text=1)
+        treeview.append_column(column_text)
+
+        # Buttons
+        close_button = Gtk.Button(label="⛔️ Close")
+        close_button.connect("clicked", self.on_close_clicked)
+
+        # Button Box
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        button_box.pack_start(close_button, True, True, 0)
+
+        # Main Box
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        # Add widgets to Window1
+
+        main_box.pack_start(label, False, True, 10)
+        main_box.pack_start(treeview, True, True, 0)
+        main_box.pack_start(button_box, False, False, 0)
+        main_box.set_border_width(10)
+
+        self.add(main_box)
+
+    def load_options_from_file(self, filename):
+        with open(filename, 'r') as file:
+            options = [line.strip() for line in file.readlines()]
+        return options
+
+    def on_toggle(self, widget, path, treeview):
+        self.radio_list[path][0] = not self.radio_list[path][0]
+
+    def on_close_clicked(self, button):
+        self.hide()
+        return True       
 
 ##############################################################################################################################################################################
 
@@ -690,9 +761,9 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -732,9 +803,9 @@ class Window_Configure_User_Error_1(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -774,9 +845,9 @@ class Window_Configure_User_Error_2(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -816,9 +887,9 @@ class Window_Configure_User_Error_3(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
