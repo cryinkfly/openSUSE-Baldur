@@ -7,6 +7,18 @@ import os
 import random
 import string
 
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
+def main():
+    window = MainWindow()
+    window.connect("destroy", Gtk.main_quit)
+    window.show_all()
+    Gtk.main()
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
 def Reload_MainWindow(self, widget):
     window = MainWindow()
     window.connect("destroy", Gtk.main_quit)
@@ -14,363 +26,8 @@ def Reload_MainWindow(self, widget):
     self.hide()
     return True  # Returning True stops the default action (closing the window)
 
-class Window_Configure_User(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Account")
-        self.set_default_size(500, 350)
-        self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_resizable(False)  # Make the window non-resizable
-
-        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
-        read_open_selected_user_file = open_selected_user_file.read()
-        open_selected_user_file.close() 
-
-        # Main container
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.add(main_box)
-
-        # Get info ... in progress ...
-        username_label = Gtk.Label("Current Username:")
-        self.username_entry = Gtk.Entry()
-        self.username_entry.set_text(text=str(read_open_selected_user_file))
-        self.username_entry.set_editable(False)
-        self.username_entry.set_can_focus(False)
-        self.username_entry.set_alignment(xalign = 0.5)
-
-        old_password_label = Gtk.Label("Current Password:")
-        self.old_password_entry = Gtk.Entry()
-        self.old_password_entry.set_visibility(False)  # Password is hidden by default
-
-        new_password_label = Gtk.Label("New Password:")
-        self.new_password_entry = Gtk.Entry()
-        self.new_password_entry.set_visibility(False)  # Password is hidden by default
-
-        new_confirm_password_label = Gtk.Label("Confirm New Password:")
-        self.new_confirm_password_entry = Gtk.Entry()
-        self.new_confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
-
-        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
-        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
-        show_password_checkbox.set_halign(Gtk.Align.CENTER)
-        show_password_checkbox.set_valign(Gtk.Align.CENTER)
-
-        change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
-        #change_user_groups_button.connect("clicked", self.user_groups_settings)
-
-        main_box.pack_start(username_label, False, False, 0)
-        main_box.pack_start(self.username_entry, False, False, 0)
-        main_box.pack_start(old_password_label, False, False, 0)
-        main_box.pack_start(self.old_password_entry, False, False, 0)
-        main_box.pack_start(new_password_label, False, False, 0)
-        main_box.pack_start(self.new_password_entry, False, False, 0)
-        main_box.pack_start(new_confirm_password_label, False, False, 0)
-        main_box.pack_start(self.new_confirm_password_entry, False, False, 0)
-        main_box.pack_start(show_password_checkbox, False, False, 0)
-        main_box.pack_start(change_user_groups_button, False, False, 0)
-
-        # Buttons - Container
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        main_box.pack_start(button_box, False, False, 0)
-
-        go_back_button = Gtk.Button("◀️ Back")
-        go_back_button.connect("clicked", self.go_back)
-        button_box.pack_start(go_back_button, True, True, 0)
-
-        random_password_button = Gtk.Button("🎲 Password")
-        random_password_button.connect("clicked", self.generate_random_password)
-        button_box.pack_start(random_password_button, True, True, 0)
-
-        reset_button = Gtk.Button("🔄 Reset")
-        reset_button.connect("clicked", self.reset_entries)
-        button_box.pack_start(reset_button, True, True, 0)  
-
-        save_button = Gtk.Button("📝 Save")
-        save_button.connect("clicked", self.save_user_settings)
-        button_box.pack_start(save_button, True, True, 0)
-
-    def save_user_settings(self, widget):
-        username = self.username_entry.get_text()
-        old_password = self.old_password_entry.get_text()
-        new_password = self.new_password_entry.get_text()
-        new_confirm_password = self.new_confirm_password_entry.get_text()
-
-        if old_password == new_password:
-            print("The new and old passwords are the same. Please choose a different password to continue setting a new password!")
-        else:
-            if password == confirm_password:
-                if len(password) < 8:
-                    print("Password must be at least 8 characters.")
-                    return
-                else:
-                    # Run the command to create the user
-                    add_new_user_cmd=f"""
-                        #!/bin/bash
-                        pkexec sudo usermod -p {password} {username}
-                    """
-                    os.system(add_new_user_cmd)
-                    print("User created successfully.")
-            else:
-                print("Passwords do not match. Please try again.")
-
-    def generate_random_password(self, widget):
-        chars = string.ascii_letters + string.digits + "#$%&"
-        random_password = "".join(random.choice(chars) for _ in range(12))
-        self.new_password_entry.set_text(random_password)
-
-    def toggle_password_visibility(self, widget):
-        visibility = widget.get_active()
-        self.old_password_entry.set_visibility(visibility)
-        self.new_password_entry.set_visibility(visibility)
-        self.new_confirm_password_entry.set_visibility(visibility)
-
-    def reset_entries(self, widget):
-        self.old_password_entry.set_text("")
-        self.new_password_entry.set_text("")
-        self.new_confirm_password_entry.set_text("")
-
-    def go_back(self, widget):
-        Reload_MainWindow(self, widget)
-
-
-class Window_Create_User(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Create a new Account")
-        self.set_default_size(500, 350)
-        self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_resizable(False)  # Make the window non-resizable
-
-        # Main container
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.add(main_box)      
-
-        # Labels and Entries
-        fullname_label = Gtk.Label("Full Name:")
-        self.fullname_entry = Gtk.Entry()
-        self.fullname_entry.set_hexpand(True)
-        self.fullname_entry.set_halign(Gtk.Align.CENTER)
-        self.fullname_entry.set_width_chars(25)
-
-        username_label = Gtk.Label("Username:")
-        self.username_entry = Gtk.Entry()
-        self.username_entry.set_hexpand(True)
-        self.username_entry.set_halign(Gtk.Align.CENTER)
-        self.username_entry.set_width_chars(25)
-
-        password_label = Gtk.Label("Password:")
-        self.password_entry = Gtk.Entry()
-        self.password_entry.set_hexpand(True)
-        self.password_entry.set_halign(Gtk.Align.CENTER)
-        self.password_entry.set_width_chars(25)
-        self.password_entry.set_visibility(False)  # Password is hidden by default
-
-        confirm_password_label = Gtk.Label("Confirmation:")
-        self.confirm_password_entry = Gtk.Entry()
-        self.confirm_password_entry.set_hexpand(True)
-        self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
-        self.confirm_password_entry.set_width_chars(25)
-        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
-
-        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
-        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
-        show_password_checkbox.set_halign(Gtk.Align.CENTER)
-        show_password_checkbox.set_valign(Gtk.Align.CENTER)
-
-        main_box.pack_start(fullname_label, False, False, 0)
-        main_box.pack_start(self.fullname_entry, False, False, 0)
-        main_box.pack_start(username_label, False, False, 0)
-        main_box.pack_start(self.username_entry, False, False, 0)
-        main_box.pack_start(password_label, False, False, 0)
-        main_box.pack_start(self.password_entry, False, False, 0)
-        main_box.pack_start(confirm_password_label, False, False, 0)
-        main_box.pack_start(self.confirm_password_entry, False, False, 0)
-        main_box.pack_start(show_password_checkbox, False, False, 0)
-
-        # Buttons - Container
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        main_box.pack_start(button_box, False, False, 0)
-
-        go_back_button = Gtk.Button("◀️ Back")
-        go_back_button.connect("clicked", self.go_back)
-        button_box.pack_start(go_back_button, True, True, 0)
-
-        random_password_button = Gtk.Button("🎲 Password")
-        random_password_button.connect("clicked", self.generate_random_password)
-        button_box.pack_start(random_password_button, True, True, 0)
-
-        reset_button = Gtk.Button("🔄 Reset")
-        reset_button.connect("clicked", self.reset_entries)
-        button_box.pack_start(reset_button, True, True, 0)  
-
-        create_button = Gtk.Button("🎭 Create")
-        create_button.connect("clicked", self.create_user)
-        button_box.pack_start(create_button, True, True, 0)      
-
-    def create_user(self, widget):
-        fullname = self.fullname_entry.get_text()
-        username = self.username_entry.get_text()
-        password = self.password_entry.get_text()
-        confirm_password = self.confirm_password_entry.get_text()
-
-        if password == confirm_password:
-            if len(password) < 8:
-                print("Password must be at least 8 characters.")
-                return
-            else:
-                # Run the command to create the user
-                add_new_user_cmd=f"""
-                    #!/bin/bash
-                    pkexec sudo useradd -m -p {password} -c '{fullname}' {username}
-                """
-                os.system(add_new_user_cmd)
-                print("User created successfully.")
-                
-                Reload_MainWindow(self, widget)
-        else:
-            print("Passwords do not match. Please try again.")
-
-    def generate_random_password(self, widget):
-        chars = string.ascii_letters + string.digits + "#$%&"
-        random_password = "".join(random.choice(chars) for _ in range(12))
-        self.password_entry.set_text(random_password)
-
-    def toggle_password_visibility(self, widget):
-        visibility = widget.get_active()
-        self.password_entry.set_visibility(visibility)
-        self.confirm_password_entry.set_visibility(visibility)
-
-    def reset_entries(self, widget):
-        self.fullname_entry.set_text("")
-        self.username_entry.set_text("")
-        self.password_entry.set_text("")
-        self.confirm_password_entry.set_text("")
-
-    def go_back(self, widget):
-        Reload_MainWindow(self, widget)
-
-class Window_Del_Selection_Info(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
-        #self.set_default_size(100, 0)
-        self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
-
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
-
-        # Create a vertical box to hold the contents
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        self.add(vbox)
-
-        # Add labels with the desired text
-        label = Gtk.Label()
-        label.set_text("💡")
-        font_desc = Pango.FontDescription()
-        font_desc.set_size(20 * Pango.SCALE)
-        label.override_font(font_desc)
-        vbox.pack_start(label, True, True, 0)
-
-        label_1 = Gtk.Label(label=str(read_selected_del_user_info_text_file))
-        label_1.set_justify(Gtk.Justification.CENTER)
-        vbox.pack_start(label_1, True, True, 0)
-
-        # Create a horizontal box to hold the buttons
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        vbox.pack_start(hbox, True, True, 0)
-
-        # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
-        hbox.pack_start(button_okay, True, False, 0)
-
-    def on_okay_clicked(self, widget):
-        Reload_MainWindow(self, widget)
-
-class Window_Del_Selection_Warn(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Warning")
-        #self.set_default_size(500, 350)
-        self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_border_width(10)
-
-        open_selected_del_user_warn_text_file = open(r"/tmp/_selected_del_user_warn_text.XXXXXXX",'r') 
-        read_selected_del_user_warn_text_file = open_selected_del_user_warn_text_file.read()
-        open_selected_del_user_warn_text_file.close() 
-
-        # Create a vertical box to hold the contents
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        self.add(vbox)
-
-        # Add a label with the desired text
-        label = Gtk.Label(label=str(read_selected_del_user_warn_text_file))
-        vbox.pack_start(label, True, True, 0)
-
-        # Create a horizontal box to hold the buttons
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        vbox.pack_start(hbox, False, False, 0)
-
-        # Add a "Yes" button
-        button_yes = Gtk.Button.new_with_label("Yes")
-        button_yes.connect("clicked", self.on_yes_clicked)
-        hbox.pack_start(button_yes, True, True, 0)
-
-        # Add a "No" button
-        button_no = Gtk.Button.new_with_label("No")
-        button_no.connect("clicked", self.on_no_clicked)
-        hbox.pack_start(button_no, True, True, 0)
-
-    def on_yes_clicked(self, widget):
-        # Remove the USER ...
-        print("The selected user will be deleted!")
-
-        del_user_cmd="""
-            #!/bin/bash
-            username=$(cat /tmp/_selected_user.XXXXXXX)
-            pkexec sudo userdel -r $username
-        """
-        os.system(del_user_cmd)
-        
-        Reload_MainWindow(self, widget)
-
-    def on_no_clicked(self, widget):
-        Reload_MainWindow(self, widget)
-
-class Window5(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
-        #self.set_default_size(100, 0)
-        self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
-
-        # Create a vertical box to hold the contents
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        self.add(vbox)
-
-        # Add labels with the desired text
-        label = Gtk.Label()
-        label.set_text("💡")
-        font_desc = Pango.FontDescription()
-        font_desc.set_size(20 * Pango.SCALE)
-        label.override_font(font_desc)
-        vbox.pack_start(label, True, True, 0)
-
-        label_1 = Gtk.Label(label="You have not selected a user to delete! \nPlease select a user before continuing.")
-        label_1.set_justify(Gtk.Justification.CENTER)
-        vbox.pack_start(label_1, True, True, 0)
-
-        # Create a horizontal box to hold the buttons
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        vbox.pack_start(hbox, True, True, 0)
-
-        # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
-        hbox.pack_start(button_okay, True, False, 0)
-
-    def on_okay_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+##############################################################################################################################################################################
+##############################################################################################################################################################################
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -499,9 +156,9 @@ class MainWindow(Gtk.Window):
         Gtk.main_quit()
 
     def on_add_clicked(self, button):
-            window1 = Window_Create_User()
-            window1.connect("destroy", Gtk.main_quit)
-            window1.show_all()
+            window1_1 = Window_Create_User()
+            window1_1.connect("destroy", Gtk.main_quit)
+            window1_1.show_all()
 
             self.hide()
             return True
@@ -515,15 +172,21 @@ class MainWindow(Gtk.Window):
                """
             os.system(selected_user_cmd)
 
-            window2 = Window_Configure_User()
-            window2.connect("destroy", Gtk.main_quit)
-            window2.show_all()
+            window2_1 = Window_Configure_User()
+            window2_1.connect("destroy", Gtk.main_quit)
+            window2_1.show_all()
             
             self.hide()
             return True
 
         else:
-            print(f"Click Configure button was triggered but no option was selected!")        
+            print(f"Click Configure button was triggered but no option was selected!")
+            window2_2 = Window_Configure_User_Info()
+            window2_2.connect("destroy", Gtk.main_quit)
+            window2_2.show_all()
+            
+            self.hide()
+            return True        
 
     def on_del_clicked(self, button):
         selected_option = self.get_selected_option()
@@ -550,9 +213,9 @@ class MainWindow(Gtk.Window):
             if selected_option in read_active_user_file:
                 print(f"The user is currently logged in!")
                 # Perform actions if variable1 is found
-                window3 = Window_Del_Selection_Info()
-                window3.connect("destroy", Gtk.main_quit)
-                window3.show_all()
+                window3_1 = Window_Del_Selection_Info()
+                window3_1.connect("destroy", Gtk.main_quit)
+                window3_1.show_all()
 
                 self.hide()
                 return True
@@ -560,18 +223,18 @@ class MainWindow(Gtk.Window):
             else:
                 print(f"The user is not currently logged in.")
                 # Perform actions if variable1 is not found
-                window4 = Window_Del_Selection_Warn()
-                window4.connect("destroy", Gtk.main_quit)
-                window4.show_all()
+                window3_2 = Window_Del_Selection_Warn()
+                window3_2.connect("destroy", Gtk.main_quit)
+                window3_2.show_all()
 
                 self.hide()
                 return True
 
         else:
             print(f"Click Delete button was triggered but no option was selected!")
-            window5 = Window5()
-            window5.connect("destroy", Gtk.main_quit)
-            window5.show_all()
+            window3_3 = MainWindow_No_Del_Selected_User_Info()
+            window3_3.connect("destroy", Gtk.main_quit)
+            window3_3.show_all()
 
             self.hide()
             return True
@@ -584,11 +247,706 @@ class MainWindow(Gtk.Window):
             selection = self.radio_list.iter_next(selection)
         return None
 
-def main():
-    window = MainWindow()
-    window.connect("destroy", Gtk.main_quit)
-    window.show_all()
-    Gtk.main()
+##############################################################################################################################################################################
+
+class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("💡")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="You have not selected a user to delete! \nPlease select a user before continuing.")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
+class Window_Create_User(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Create a new Account")
+        self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Main container
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(main_box)      
+
+        # Labels and Entries
+        fullname_label = Gtk.Label("Full Name:")
+        self.fullname_entry = Gtk.Entry()
+        self.fullname_entry.set_hexpand(True)
+        self.fullname_entry.set_halign(Gtk.Align.CENTER)
+        self.fullname_entry.set_width_chars(25)
+
+        username_label = Gtk.Label("Username:")
+        self.username_entry = Gtk.Entry()
+        self.username_entry.set_hexpand(True)
+        self.username_entry.set_halign(Gtk.Align.CENTER)
+        self.username_entry.set_width_chars(25)
+
+        password_label = Gtk.Label("Password:")
+        self.password_entry = Gtk.Entry()
+        self.password_entry.set_hexpand(True)
+        self.password_entry.set_halign(Gtk.Align.CENTER)
+        self.password_entry.set_width_chars(25)
+        self.password_entry.set_visibility(False)  # Password is hidden by default
+
+        confirm_password_label = Gtk.Label("Confirmation:")
+        self.confirm_password_entry = Gtk.Entry()
+        self.confirm_password_entry.set_hexpand(True)
+        self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
+        self.confirm_password_entry.set_width_chars(25)
+        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+
+        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.set_halign(Gtk.Align.CENTER)
+        show_password_checkbox.set_valign(Gtk.Align.CENTER)
+
+        main_box.pack_start(fullname_label, False, False, 0)
+        main_box.pack_start(self.fullname_entry, False, False, 0)
+        main_box.pack_start(username_label, False, False, 0)
+        main_box.pack_start(self.username_entry, False, False, 0)
+        main_box.pack_start(password_label, False, False, 0)
+        main_box.pack_start(self.password_entry, False, False, 0)
+        main_box.pack_start(confirm_password_label, False, False, 0)
+        main_box.pack_start(self.confirm_password_entry, False, False, 0)
+        main_box.pack_start(show_password_checkbox, False, False, 0)
+
+        # Buttons - Container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        main_box.pack_start(button_box, False, False, 0)
+
+        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button.connect("clicked", self.go_back)
+        button_box.pack_start(go_back_button, True, True, 0)
+
+        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button.connect("clicked", self.generate_random_password)
+        button_box.pack_start(random_password_button, True, True, 0)
+
+        reset_button = Gtk.Button("🔄 Reset")
+        reset_button.connect("clicked", self.reset_entries)
+        button_box.pack_start(reset_button, True, True, 0)  
+
+        create_button = Gtk.Button("🎭 Create")
+        create_button.connect("clicked", self.create_user)
+        button_box.pack_start(create_button, True, True, 0)      
+
+    def create_user(self, widget):
+        fullname = self.fullname_entry.get_text()
+        username = self.username_entry.get_text()
+        password = self.password_entry.get_text()
+        confirm_password = self.confirm_password_entry.get_text()
+
+        if password == confirm_password:
+            if len(password) < 8:
+                print("Password must be at least 8 characters.")
+                return
+            else:
+                # Run the command to create the user
+                add_new_user_cmd=f"""
+                    #!/bin/bash
+                    pass=$(perl -e 'print crypt($ARGV[0], "password")' {password})
+                    pkexec sudo useradd -m -p $pass -c '{fullname}' {username}
+                """
+                os.system(add_new_user_cmd)
+                print("User created successfully.")
+                window1_2 = Window_Create_User_Info_Completed()
+                window1_2.connect("destroy", Gtk.main_quit)
+                window1_2.show_all()
+        else:
+            print("Passwords do not match. Please try again.")
+            window1_3 = Window_Create_User_Error()
+            window1_3.connect("destroy", Gtk.main_quit)
+            window1_3.show_all()
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&"
+        random_password = "".join(random.choice(chars) for _ in range(12))
+        self.password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.password_entry.set_visibility(visibility)
+        self.confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.fullname_entry.set_text("")
+        self.username_entry.set_text("")
+        self.password_entry.set_text("")
+        self.confirm_password_entry.set_text("")
+
+    def go_back(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+# ... User created ...
+class Window_Create_User_Info_Completed(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Account created successfully!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("✅")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The user account has been successfully created and you can use this new user after re-login!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+# ... Password not match ...
+class Window_Create_User_Error(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Account password incorrect!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("✅")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The user account passwords do not match. Please try again!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        self.hide()
+        return True
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
+class Window_Configure_User(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Account")
+        self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_open_selected_user_file = open_selected_user_file.read()
+        open_selected_user_file.close() 
+
+        # Main container
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.add(main_box)
+
+        # Get info ... in progress ...
+        username_label = Gtk.Label("Selected Username:")
+        self.username_entry = Gtk.Entry()
+        self.username_entry.set_text(text=str(read_open_selected_user_file))
+        self.username_entry.set_editable(False)
+        self.username_entry.set_can_focus(False)
+        self.username_entry.set_alignment(xalign = 0.5)
+
+        old_password_label = Gtk.Label("Current Password:")
+        self.old_password_entry = Gtk.Entry()
+        self.old_password_entry.set_visibility(False)  # Password is hidden by default
+
+        new_password_label = Gtk.Label("New Password:")
+        self.new_password_entry = Gtk.Entry()
+        self.new_password_entry.set_visibility(False)  # Password is hidden by default
+
+        new_confirm_password_label = Gtk.Label("Confirm New Password:")
+        self.new_confirm_password_entry = Gtk.Entry()
+        self.new_confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+
+        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.set_halign(Gtk.Align.CENTER)
+        show_password_checkbox.set_valign(Gtk.Align.CENTER)
+
+        change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
+        #change_user_groups_button.connect("clicked", self.user_groups_settings)
+
+        main_box.pack_start(username_label, False, False, 0)
+        main_box.pack_start(self.username_entry, False, False, 0)
+        main_box.pack_start(old_password_label, False, False, 0)
+        main_box.pack_start(self.old_password_entry, False, False, 0)
+        main_box.pack_start(new_password_label, False, False, 0)
+        main_box.pack_start(self.new_password_entry, False, False, 0)
+        main_box.pack_start(new_confirm_password_label, False, False, 0)
+        main_box.pack_start(self.new_confirm_password_entry, False, False, 0)
+        main_box.pack_start(show_password_checkbox, False, False, 0)
+        main_box.pack_start(change_user_groups_button, False, False, 0)
+
+        # Buttons - Container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        main_box.pack_start(button_box, False, False, 0)
+
+        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button.connect("clicked", self.go_back)
+        button_box.pack_start(go_back_button, True, True, 0)
+
+        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button.connect("clicked", self.generate_random_password)
+        button_box.pack_start(random_password_button, True, True, 0)
+
+        reset_button = Gtk.Button("🔄 Reset")
+        reset_button.connect("clicked", self.reset_entries)
+        button_box.pack_start(reset_button, True, True, 0)  
+
+        save_button = Gtk.Button("📝 Save")
+        save_button.connect("clicked", self.save_user_settings)
+        button_box.pack_start(save_button, True, True, 0)
+
+    def save_user_settings(self, widget):
+        username = self.username_entry.get_text()
+        old_password = self.old_password_entry.get_text()
+        new_password = self.new_password_entry.get_text()
+        new_confirm_password = self.new_confirm_password_entry.get_text()
+
+        if old_password == new_password:
+            print("The new and old passwords are the same. Please choose a different password to continue setting a new password!")
+            window2_1_1 = Window_Configure_User_Error_1()
+            window2_1_1.connect("destroy", Gtk.main_quit)
+            window2_1_1.show_all()
+        else:
+            if new_password == new_confirm_password:
+                if len(new_password) < 8:
+                    print("Password must be at least 8 characters.")
+                    # Muss noch erstellt werden ...
+                    window2_1_2 = Window_Configure_User_Error_2()
+                    window2_1_2.connect("destroy", Gtk.main_quit)
+                    window2_1_2.show_all()
+                else:
+                    # Run the command to create the user
+                    add_new_user_cmd=f"""
+                        #!/bin/bash
+                        pass=$(perl -e 'print crypt($ARGV[0], "password")' {new_password})
+                        pkexec sudo usermod -p $pass {username}
+                    """
+                    os.system(add_new_user_cmd)
+                    print("User settings successfully saved!")
+                    window2_1_3 = Window_Configure_User_Info_Completed()
+                    window2_1_3.connect("destroy", Gtk.main_quit)
+                    window2_1_3.show_all()
+
+                    self.hide()
+                    return True
+            else:
+                print("Passwords do not match. Please try again.")
+                # Muss noch erstellt werden ...
+                window2_1_4 = Window_Configure_User_Error_3()
+                window2_1_4.connect("destroy", Gtk.main_quit)
+                window2_1_4.show_all()
+
+                self.hide()
+                return True
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&"
+        random_password = "".join(random.choice(chars) for _ in range(12))
+        self.new_password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.old_password_entry.set_visibility(visibility)
+        self.new_password_entry.set_visibility(visibility)
+        self.new_confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.old_password_entry.set_text("")
+        self.new_password_entry.set_text("")
+        self.new_confirm_password_entry.set_text("")
+
+    def go_back(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Configure_User_Info_Completed(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Account deleted successfully!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("✅")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The user account has been successfully deleted with all associated data!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Configure_User_Error_1(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Error account password match!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The old account password must not match the new password! \nPlease choose a different password.")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Configure_User_Error_2(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Error short password!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The new password must be at least 8 characters long!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Configure_User_Error_3(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Error Password doesn't match!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The new password and repeatedly entered new password do not match!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
+class Window_Del_Selection_Warn(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Delete Account?")
+        #self.set_default_size(500, 350)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_border_width(10)
+
+        open_selected_del_user_warn_text_file = open(r"/tmp/_selected_del_user_warn_text.XXXXXXX",'r') 
+        read_selected_del_user_warn_text_file = open_selected_del_user_warn_text_file.read()
+        open_selected_del_user_warn_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add a label with the desired text
+        label = Gtk.Label(label=str(read_selected_del_user_warn_text_file))
+        vbox.pack_start(label, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, False, False, 0)
+
+        # Add a "Yes" button
+        button_yes = Gtk.Button.new_with_label("Yes")
+        button_yes.connect("clicked", self.on_yes_clicked)
+        hbox.pack_start(button_yes, True, True, 0)
+
+        # Add a "No" button
+        button_no = Gtk.Button.new_with_label("No")
+        button_no.connect("clicked", self.on_no_clicked)
+        hbox.pack_start(button_no, True, True, 0)
+
+    def on_yes_clicked(self, widget):
+        # Remove the USER ...
+        print("The selected user will be deleted!")
+
+        del_user_cmd="""
+            #!/bin/bash
+            username=$(cat /tmp/_selected_user.XXXXXXX)
+            command="sudo userdel -r -f $username"
+            pkexec $command
+        """
+        os.system(del_user_cmd)
+        
+        window3_2_1 = Window_Del_User_Info_Completed()
+        window3_2_1.connect("destroy", Gtk.main_quit)
+        window3_2_1.show_all()
+
+        self.hide()
+        return True
+
+    def on_no_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Del_User_Info_Completed(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Account deleted successfully!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("✅")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The user account has been successfully deleted with all associated data!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class Window_Del_Selection_Info(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Error while deleting the account!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("💡")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label=str(read_selected_del_user_info_text_file))
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
 
 if __name__ == "__main__":
     main()
