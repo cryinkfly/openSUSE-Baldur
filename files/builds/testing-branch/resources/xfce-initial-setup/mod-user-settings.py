@@ -421,9 +421,9 @@ class Window_Create_User_Info_Completed(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_create_user_info_text_file = open(r"/tmp/_create_user_text.XXXXXXX",'r') 
+        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
+        #open_create_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -463,9 +463,9 @@ class Window_Create_User_Error_1(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r') 
+        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
+        #open_create_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -507,9 +507,9 @@ class Window_Create_User_Error_2(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
+        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r') 
+        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
+        #open_create_user_info_text_file.close()  
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
