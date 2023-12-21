@@ -371,6 +371,9 @@ class Window_Create_User(Gtk.Window):
             if len(password) < 8:
                 print("Password must be at least 8 characters.")
                 return
+                window1_2 = Window_Create_User_Error_1()
+                window1_2.connect("destroy", Gtk.main_quit)
+                window1_2.show_all()
             else:
                 # Run the command to create the user
                 add_new_user_cmd=f"""
@@ -380,14 +383,14 @@ class Window_Create_User(Gtk.Window):
                 """
                 os.system(add_new_user_cmd)
                 print("User created successfully.")
-                window1_2 = Window_Create_User_Info_Completed()
-                window1_2.connect("destroy", Gtk.main_quit)
-                window1_2.show_all()
+                window1_3 = Window_Create_User_Info_Completed()
+                window1_3.connect("destroy", Gtk.main_quit)
+                window1_3.show_all()
         else:
             print("Passwords do not match. Please try again.")
-            window1_3 = Window_Create_User_Error()
-            window1_3.connect("destroy", Gtk.main_quit)
-            window1_3.show_all()
+            window1_4 = Window_Create_User_Error_2()
+            window1_4.connect("destroy", Gtk.main_quit)
+            window1_4.show_all()
 
     def generate_random_password(self, widget):
         chars = string.ascii_letters + string.digits + "#$%&"
@@ -453,8 +456,51 @@ class Window_Create_User_Info_Completed(Gtk.Window):
 
 ##############################################################################################################################################################################
 
+class Window_Create_User_Error_1(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Error short password!")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
+        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
+        open_selected_del_user_info_text_file.close() 
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The new password must be at least 8 characters long!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_okay_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_okay_clicked(self, widget):
+        self.hide()
+        return True
+
+##############################################################################################################################################################################
+
 # ... Password not match ...
-class Window_Create_User_Error(Gtk.Window):
+class Window_Create_User_Error_2(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Users Settings Manager - Account password incorrect!")
         #self.set_default_size(100, 0)
@@ -472,7 +518,7 @@ class Window_Create_User_Error(Gtk.Window):
 
         # Add labels with the desired text
         label = Gtk.Label()
-        label.set_text("✅")
+        label.set_text("⚠️")
         font_desc = Pango.FontDescription()
         font_desc.set_size(20 * Pango.SCALE)
         label.override_font(font_desc)
@@ -923,7 +969,7 @@ class Window_Del_Selection_Info(Gtk.Window):
 
         # Add labels with the desired text
         label = Gtk.Label()
-        label.set_text("💡")
+        label.set_text("⚠️")
         font_desc = Pango.FontDescription()
         font_desc.set_size(20 * Pango.SCALE)
         label.override_font(font_desc)
