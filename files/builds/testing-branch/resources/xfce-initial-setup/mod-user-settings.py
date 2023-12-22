@@ -695,8 +695,8 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-                self.all_groups_list = self.load_groups("_all_groups_list_.XXXXXXX")
-        self.user_groups_list = self.load_groups("_all_groups_of_user_list_.XXXXXXX")
+                self.all_groups_list = self.load_groups("/tmp/_all_groups_list_.XXXXXXX")
+        self.user_groups_list = self.load_groups("/tmp/_all_groups_of_user_list_.XXXXXXX")
 
         self.selected_groups = set()
 
@@ -773,7 +773,7 @@ class Window_Configure_User_Groups(Gtk.Window):
             for group in self.selected_groups:
                 file.write(f"{group}\n")
 
-        print("Selection saved to selected_groups.txt")
+        print("Selection saved to /tmp/selected_groups.txt")
 
 ##############################################################################################################################################################################
 
