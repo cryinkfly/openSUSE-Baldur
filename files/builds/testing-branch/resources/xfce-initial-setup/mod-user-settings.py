@@ -693,63 +693,72 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
 
-        # Add a Description
-        label = Gtk.Label()
-        label.set_text("In this area you can change the groups settings for your selceted user. Simply select the groups from the list you want to add or delete your user.")
-        label.set_line_wrap(True)
-        label.set_max_width_chars(48)
+        # Load options from a file (replace 'options.txt' with your file)
+        #self.options = self.load_options_from_file('/tmp/test.txt')
 
-        # Load options from a text file
-        options = self.load_options_from_file("/tmp/_all_groups_list_.XXXXXXX")
+        # Dummy data for user groups
+        self.all_user_groups = ["Group1", "Group2", "Group3", "Group4", "Group5",
+                                "Group6", "Group7", "Group8", "Group9", "Group10",
+                                "Group11", "Group12", "Group13", "Group14", "Group15",
+                                "Group16", "Group17", "Group18", "Group19", "Group20"]
 
-        # Radio List
-        self.radio_list = Gtk.ListStore(bool, str)
-        for option in options:
-            self.radio_list.append([False, option])
+        self.current_user_groups = ["Group3", "Group5", "Group10", "Group12"]
 
-        # TreeView
-        treeview = Gtk.TreeView(model=self.radio_list)
+        self.build_ui()
 
-        renderer_toggle = Gtk.CellRendererToggle()
-        renderer_toggle.connect("toggled", self.on_toggle, treeview)
-        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=0)
-        treeview.append_column(column_toggle)
+    def build_ui(self):
+        # Create a scrolled window for the user group list
+        #scrolled_window = Gtk.ScrolledWindow()
+        #scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-        renderer_text = Gtk.CellRendererText()
-        column_text = Gtk.TreeViewColumn("Options", renderer_text, text=1)
-        treeview.append_column(column_text)
+        # Create a list store
+        #list_store = Gtk.ListStore(str)
+        #for group in self.all_user_groups:
+        #    list_store.append([group])
 
-        # Buttons
-        close_button = Gtk.Button(label="⛔️ Close")
-        close_button.connect("clicked", self.on_close_clicked)
+        # Create a tree view with the list store
+        #tree_view = Gtk.TreeView(model=list_store)
 
-        # Button Box
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
-        button_box.pack_start(close_button, True, True, 0)
+        # Add a column to the tree view
+        #renderer_text = Gtk.CellRendererText()
+        #column = Gtk.TreeViewColumn("User Groups", renderer_text, text=0)
+        #tree_view.append_column(column)
 
-        # Main Box
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
-        # Add widgets to Window1
+        # Create a list box for the current user groups
+        list_box = Gtk.ListBox()
+        for group in self.all_user_groups:
+            row = Gtk.ListBoxRow()
+            check_button = Gtk.CheckButton(label=group)
+            check_button.set_active(group in self.current_user_groups)
+            check_button.connect("toggled", self.on_check_toggled, group)
+            row.add(check_button)
+            list_box.add(row)
 
-        main_box.pack_start(label, False, True, 10)
-        main_box.pack_start(treeview, True, True, 0)
-        main_box.pack_start(button_box, False, False, 0)
-        main_box.set_border_width(10)
+        # Create a button to save selected options
+        save_button = Gtk.Button(label="Save Selection")
+        save_button.connect("clicked", self.on_save_clicked)
 
-        self.add(main_box)
+        # Create a vertical box to organize the widgets
+        vbox = Gtk.VBox(spacing=10)
+        #vbox.pack_start(scrolled_window, True, True, 0)
+        vbox.pack_start(list_box, True, True, 0)
+        vbox.pack_start(save_button, False, False, 0)
 
-    def load_options_from_file(self, filename):
-        with open(filename, 'r') as file:
-            options = [line.strip() for line in file.readlines()]
-        return options
+        #scrolled_window.add(tree_view)
 
-    def on_toggle(self, widget, path, treeview):
-        self.radio_list[path][0] = not self.radio_list[path][0]
+        self.add(vbox)
 
-    def on_close_clicked(self, button):
-        self.hide()
-        return True       
+    def on_check_toggled(self, widget, group):
+        if widget.get_active():
+            self.current_user_groups.append(group)
+        else:
+            self.current_user_groups.remove(group)
+
+    def on_save_clicked(self, widget):
+        # Save the selected options to a file or perform other actions
+        print("Selected groups:", self.current_user_groups)
 
 ##############################################################################################################################################################################
 
