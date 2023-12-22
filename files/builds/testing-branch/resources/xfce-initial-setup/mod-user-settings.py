@@ -733,12 +733,12 @@ class Window_Configure_User_Groups(Gtk.Window):
         renderer_toggle = Gtk.CellRendererToggle()
         renderer_toggle.connect("toggled", self.on_toggle, list_store)
 
+        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=1)
+        tree_view.append_column(column_toggle)
+
         # Adding columns to the tree view
         column_text = Gtk.TreeViewColumn("Groups", renderer_text, text=0)
         tree_view.append_column(column_text)
-
-        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=1)
-        tree_view.append_column(column_toggle)
 
         # Adding tree view to the scrolled window
         scrolled_window.add(tree_view)
