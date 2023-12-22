@@ -695,70 +695,85 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
 
-        # Load options from a file (replace 'options.txt' with your file)
-        #self.options = self.load_options_from_file('/tmp/test.txt')
+                self.all_groups_list = self.load_groups("_all_groups_list_.XXXXXXX")
+        self.user_groups_list = self.load_groups("_all_groups_of_user_list_.XXXXXXX")
 
-        # Dummy data for user groups
-        self.all_user_groups = ["Group1", "Group2", "Group3", "Group4", "Group5",
-                                "Group6", "Group7", "Group8", "Group9", "Group10",
-                                "Group11", "Group12", "Group13", "Group14", "Group15",
-                                "Group16", "Group17", "Group18", "Group19", "Group20"]
-
-        self.current_user_groups = ["Group3", "Group5", "Group10", "Group12"]
+        self.selected_groups = set()
 
         self.build_ui()
 
+    def load_groups(self, filename):
+        try:
+            with open(filename, 'r') as file:
+                return [line.strip() for line in file.readlines()]
+        except FileNotFoundError:
+            print(f"Error: File '{filename}' not found.")
+            return []
+
     def build_ui(self):
-        # Create a scrolled window for the user group list
-        #scrolled_window = Gtk.ScrolledWindow()
-        #scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        # Creating a scrolled window
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_hexpand(True)
+        scrolled_window.set_vexpand(True)
+        self.add(scrolled_window)
 
-        # Create a list store
-        #list_store = Gtk.ListStore(str)
-        #for group in self.all_user_groups:
-        #    list_store.append([group])
+        # Creating a list store
+        list_store = Gtk.ListStore(str, bool)
+        for group in self.all_groups_list:
+            list_store.append([group, group in self.user_groups_list])
 
-        # Create a tree view with the list store
-        #tree_view = Gtk.TreeView(model=list_store)
+        # Creating a tree view
+        tree_view = Gtk.TreeView(model=list_store)
 
-        # Add a column to the tree view
-        #renderer_text = Gtk.CellRendererText()
-        #column = Gtk.TreeViewColumn("User Groups", renderer_text, text=0)
-        #tree_view.append_column(column)
+        # Creating a text renderer
+        renderer_text = Gtk.CellRendererText()
 
-        # Create a list box for the current user groups
-        list_box = Gtk.ListBox()
-        for group in self.all_user_groups:
-            row = Gtk.ListBoxRow()
-            check_button = Gtk.CheckButton(label=group)
-            check_button.set_active(group in self.current_user_groups)
-            check_button.connect("toggled", self.on_check_toggled, group)
-            row.add(check_button)
-            list_box.add(row)
+        # Creating a toggle renderer
+        renderer_toggle = Gtk.CellRendererToggle()
+        renderer_toggle.connect("toggled", self.on_toggle, list_store)
 
-        # Create a button to save selected options
+        # Adding columns to the tree view
+        column_text = Gtk.TreeViewColumn("Groups", renderer_text, text=0)
+        tree_view.append_column(column_text)
+
+        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=1)
+        tree_view.append_column(column_toggle)
+
+        # Adding tree view to the scrolled window
+        scrolled_window.add(tree_view)
+
+        # Creating a save button
         save_button = Gtk.Button(label="Save Selection")
-        save_button.connect("clicked", self.on_save_clicked)
+        save_button.connect("clicked", self.save_selection)
 
-        # Create a vertical box to organize the widgets
-        vbox = Gtk.VBox(spacing=10)
-        #vbox.pack_start(scrolled_window, True, True, 0)
-        vbox.pack_start(list_box, True, True, 0)
+        # Creating a status bar
+        status_bar = Gtk.Statusbar()
+        context_id = status_bar.get_context_id("Status")
+        status_bar.push(context_id, "Select groups and click 'Save Selection' to save.")
+
+        # Creating a vertical box
+        vbox = Gtk.VBox(spacing=6)
+        vbox.pack_start(scrolled_window, True, True, 0)
         vbox.pack_start(save_button, False, False, 0)
+        vbox.pack_start(status_bar, False, False, 0)
 
-        #scrolled_window.add(tree_view)
-
+        # Adding the vertical box to the window
         self.add(vbox)
 
-    def on_check_toggled(self, widget, group):
-        if widget.get_active():
-            self.current_user_groups.append(group)
-        else:
-            self.current_user_groups.remove(group)
+    def on_toggle(self, renderer, path, list_store):
+        iter = list_store.get_iter(path)
+        list_store[iter][1] = not list_store[iter][1]
 
-    def on_save_clicked(self, widget):
-        # Save the selected options to a file or perform other actions
-        print("Selected groups:", self.current_user_groups)
+    def save_selection(self, button):
+        for row in self.all_groups_list:
+            if row[1]:  # If the group is selected
+                self.selected_groups.add(row[0])
+
+        with open("selected_groups.txt", 'w') as file:
+            for group in self.selected_groups:
+                file.write(f"{group}\n")
+
+        print("Selection saved to selected_groups.txt")
 
 ##############################################################################################################################################################################
 
