@@ -10,6 +10,12 @@ import string
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
+del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
+os.system(del_tmp_files_cmd)
+
+##############################################################################################################################################################################
+##############################################################################################################################################################################
+
 def main():
     window = MainWindow()
     window.connect("destroy", Gtk.main_quit)
@@ -764,6 +770,14 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.selected_groups = self.get_selected_groups()
         print(f"Selected groups are: {self.selected_groups}")
         # Save selected groups to file "_selected_groups_.XXXXXXX"
+        selected_user_groups_cmd=f"""
+                    #!/bin/bash
+                    echo -n {self.selected_groups} > /tmp/_selected_groups_.XXXXXXX
+               """
+        os.system(selected_user_groups_cmd)
+
+        # Next check the selected groups file and add user to these groups and remove the user from all other groups:
+        # ... in progress! ...
 
     def get_selected_groups(self):
         selected_groups = []
