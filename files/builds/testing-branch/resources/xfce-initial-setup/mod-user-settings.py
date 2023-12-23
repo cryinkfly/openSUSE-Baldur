@@ -789,7 +789,9 @@ class Window_Configure_User_Groups(Gtk.Window):
             SELECTED_USER_GROUPS=$(echo "$line" | tr -d '[] ')
 
             # Remove and Add the user to the correct groups:
-            pkexec su -c "usermod -G '' $SELECTED_USER ; usermod -aG '$SELECTED_USER_GROUPS' $SELECTED_USER"  
+            script=`usermod -G '' $SELECTED_USER ; usermod -aG '$SELECTED_USER_GROUPS' $SELECTED_USER`
+            pkexec su -c "$script"
+            rm "$script"  
         """
         os.system(selected_user_groups_cmd)
 
