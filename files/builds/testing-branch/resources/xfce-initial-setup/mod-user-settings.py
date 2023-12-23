@@ -280,10 +280,10 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -347,7 +347,7 @@ class Window_Create_User(Gtk.Window):
         main_box.pack_start(button_box, False, False, 0)
 
         go_back_button = Gtk.Button("◀️ Back")
-        go_back_button.connect("clicked", self.go_back)
+        go_back_button.connect("clicked", self.on_back_clicked)
         button_box.pack_start(go_back_button, True, True, 0)
 
         random_password_button = Gtk.Button("🎲 Password")
@@ -408,7 +408,7 @@ class Window_Create_User(Gtk.Window):
         self.password_entry.set_text("")
         self.confirm_password_entry.set_text("")
 
-    def go_back(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -448,10 +448,10 @@ class Window_Create_User_Info_Completed(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -490,7 +490,7 @@ class Window_Create_User_Error_1(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_okay_clicked(self, widget):
@@ -534,7 +534,7 @@ class Window_Create_User_Error_2(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_okay_clicked(self, widget):
@@ -603,7 +603,7 @@ class Window_Configure_User(Gtk.Window):
         main_box.pack_start(button_box, False, False, 0)
 
         go_back_button = Gtk.Button("◀️ Back")
-        go_back_button.connect("clicked", self.go_back)
+        go_back_button.connect("clicked", self.on_back_clicked)
         button_box.pack_start(go_back_button, True, True, 0)
 
         random_password_button = Gtk.Button("🎲 Password")
@@ -683,7 +683,7 @@ class Window_Configure_User(Gtk.Window):
         self.new_password_entry.set_text("")
         self.new_confirm_password_entry.set_text("")
 
-    def go_back(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -733,9 +733,21 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.scrollable_treelist.add(self.treeview)
         self.main_box.pack_start(self.scrollable_treelist, True, True, 20)
 
-        self.save_button = Gtk.Button(label="Save")
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        self.main_box.pack_start(hbox, False, True, 0)
+
+        self.button_okay = Gtk.Button.new_with_label("◀️ Back")
+        self.button_okay.connect("clicked", self.on_back_clicked)
+        hbox.pack_start(self.button_okay, True, True, 0)
+
+        self.button_reset_groups = Gtk.Button.new_with_label("🔄 Reset")
+        self.button_reset_groups.connect("clicked", self.reset_groups)
+        hbox.pack_start(self.button_reset_groups, True, True, 0)
+
+        self.save_button = Gtk.Button(label="💾 Save")
         self.save_button.connect("clicked", self.on_save_button_clicked)
-        self.main_box.pack_start(self.save_button, False, False, 0)
+        hbox.pack_start(self.save_button, True, True, 0)
 
     def load_groups(self, filename):
         try:
@@ -762,6 +774,17 @@ class Window_Configure_User_Groups(Gtk.Window):
         return selected_groups
 
         #print("Selection saved to /tmp/selected_groups.txt")
+
+    def reset_groups(self, widget):
+        window2_1_6 = Window_Configure_User_Groups()
+        window2_1_6.connect("destroy", Gtk.main_quit)
+        window2_1_6.show_all()  
+        self.hide()
+        return True        
+
+    def on_back_clicked(self, widget):
+        self.hide()
+        return True 
 
 ##############################################################################################################################################################################
 
@@ -799,10 +822,10 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -841,10 +864,10 @@ class Window_Configure_User_Error_1(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -883,10 +906,10 @@ class Window_Configure_User_Error_2(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -925,10 +948,10 @@ class Window_Configure_User_Error_3(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -986,7 +1009,7 @@ class Window_Del_Selection_Warn(Gtk.Window):
         self.hide()
         return True
 
-    def on_no_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -1025,10 +1048,10 @@ class Window_Del_User_Info_Completed(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
@@ -1067,10 +1090,10 @@ class Window_Del_Selection_Info(Gtk.Window):
 
         # Add a "Okay" button
         button_okay = Gtk.Button.new_with_label("◀️ Back")
-        button_okay.connect("clicked", self.on_okay_clicked)
+        button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
