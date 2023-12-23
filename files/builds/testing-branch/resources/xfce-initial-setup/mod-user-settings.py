@@ -62,17 +62,6 @@ class MainWindow(Gtk.Window):
             }
 
             ##############################################################################################################################################################################
-            # LIST OF ALL GROUPS OF A SPECIAL HUMAN USER ON THIS SYSTEM (/etc/group):                                                                                                    #
-            ##############################################################################################################################################################################
-
-            LIST_ALL_GROUPS_OF_USER() {
-                list_user_groups=$(id -nG $username)
-                echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
-            }
-
-            ##############################################################################################################################################################################
-            # LIST OF ALL GROUPS ON THIS SYSTEM (/etc/group):                                                                                                                            #
-            ##############################################################################################################################################################################
 
             LIST_ALL_GROUPS() {
                 list_all_groups=$(cut -d: -f1 /etc/group | sort)
@@ -85,7 +74,6 @@ class MainWindow(Gtk.Window):
             ##############################################################################################################################################################################
 
             LIST_ALL_HUMAN_USERS
-            LIST_ALL_GROUPS_OF_USER
             LIST_ALL_GROUPS
         """
         os.system(check_file_cmd)
@@ -174,9 +162,17 @@ class MainWindow(Gtk.Window):
         selected_option = self.get_selected_option()
         if selected_option:
             selected_user_cmd=f"""
-                    #!/bin/bash
-                    echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
-               """
+                #!/bin/bash
+                echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
+
+                ##############################################################################################################################################################################
+                # LIST OF ALL GROUPS OF A SPECIAL HUMAN USER ON THIS SYSTEM (/etc/group):                                                                                                    #
+                ##############################################################################################################################################################################
+
+                list_user_groups=$(id -nG {selected_option})
+                echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
+
+            """
             os.system(selected_user_cmd)
 
             window2_1 = Window_Configure_User()
@@ -766,18 +762,41 @@ class Window_Configure_User_Groups(Gtk.Window):
     def on_toggle_toggled(self, widget, path):
         self.liststore[path][1] = not self.liststore[path][1]
 
+    def reset_groups(self, widget):
+        window2_1_6 = Window_Configure_User_Groups()
+        window2_1_6.connect("destroy", Gtk.main_quit)
+        window2_1_6.show_all()  
+        self.hide()
+        return True
+
     def on_save_button_clicked(self, widget):
+
+        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_open_selected_user_file = open_selected_user_file.read()
+        open_selected_user_file.close()
+
         self.selected_groups = self.get_selected_groups()
         print(f"Selected groups are: {self.selected_groups}")
         # Save selected groups to file "_selected_groups_.XXXXXXX"
         selected_user_groups_cmd=f"""
-                    #!/bin/bash
-                    echo -n {self.selected_groups} > /tmp/_selected_groups_.XXXXXXX
-               """
+            #!/bin/bash
+            echo -n {self.selected_groups} > /tmp/_selected_groups_.XXXXXXX
+            
+            # Read one line from the file
+            line=$(head -n 1 "/tmp/_selected_groups_.XXXXXXX")
+
+            SELECTED_USER=$(cat /tmp/_selected_user.XXXXXXX)
+            SELECTED_USER_GROUPS=$(echo "$line" | tr -d '[] ')
+
+            # Remove and Add the user to the correct groups:
+            pkexec sudo usermod -G "" $SELECTED_USER
+            pkexec sudo usermod -aG $SELECTED_USER_GROUPS $SELECTED_USER    
+        """
         os.system(selected_user_groups_cmd)
 
-        # Next check the selected groups file and add user to these groups and remove the user from all other groups:
-        # ... in progress! ...
+        reset_groups()
+        self.hide()
+        return True
 
     def get_selected_groups(self):
         selected_groups = []
@@ -787,18 +806,10 @@ class Window_Configure_User_Groups(Gtk.Window):
                 selected_groups.append(group)
         return selected_groups
 
-        #print("Selection saved to /tmp/selected_groups.txt")
-
-    def reset_groups(self, widget):
-        window2_1_6 = Window_Configure_User_Groups()
-        window2_1_6.connect("destroy", Gtk.main_quit)
-        window2_1_6.show_all()  
-        self.hide()
-        return True        
+        #print("Selection saved to /tmp/selected_groups.txt")        
 
     def on_back_clicked(self, widget):
-        self.hide()
-        return True 
+        Reload_MainWindow(self, widget)
 
 ##############################################################################################################################################################################
 
