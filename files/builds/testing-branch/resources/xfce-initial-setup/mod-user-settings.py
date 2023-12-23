@@ -691,7 +691,7 @@ class Window_Configure_User(Gtk.Window):
 class Window_Configure_User_Groups(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Groups")
-        self.set_default_size(500, 350)
+        self.set_default_size(500, 550)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
@@ -703,8 +703,13 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(self.main_box)
 
-        self.label = Gtk.Label(label="Group Comparison:")
-        self.main_box.pack_start(self.label, True, True, 0)
+        self.label = Gtk.Label(label="In this area you can see which groups your selected user belongs to and you can also change the group membership. \n\n"
+            "But be careful! You have to realize that you should know exactly what you are doing. Playing around and trying out user and group permissions can bring your entire system to a halt! \n\n"
+            "If you want to create or delete a user, you simply have to have one more or less user. "
+            "However, if you give a user more rights or bend the rights of a system account or system group, you may be putting your system's security at risk!")
+        self.label.set_line_wrap(True)
+        self.label.set_max_width_chars(50)
+        self.main_box.pack_start(self.label, False, False, 0)
 
         self.liststore = Gtk.ListStore(str, bool)  # Store data for the list
 
@@ -726,11 +731,11 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.scrollable_treelist = Gtk.ScrolledWindow()
         self.scrollable_treelist.set_vexpand(True)
         self.scrollable_treelist.add(self.treeview)
-        self.main_box.pack_start(self.scrollable_treelist, True, True, 0)
+        self.main_box.pack_start(self.scrollable_treelist, True, True, 20)
 
         self.save_button = Gtk.Button(label="Save")
         self.save_button.connect("clicked", self.on_save_button_clicked)
-        self.main_box.pack_start(self.save_button, True, True, 0)
+        self.main_box.pack_start(self.save_button, False, False, 0)
 
     def load_groups(self, filename):
         try:
