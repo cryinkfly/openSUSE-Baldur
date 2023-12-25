@@ -656,6 +656,20 @@ class Window_Configure_User(Gtk.Window):
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
 
+        # Create a box to hold the label and switch
+        box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        box_autologin.set_halign(Gtk.Align.CENTER)
+        box_autologin.set_valign(Gtk.Align.CENTER)
+
+        # Create a label
+        label_autologin = Gtk.Label(label="Automatic Login:")
+        box_autologin.pack_start(label_autologin, True, True, 0)
+
+        # Create a switch
+        autologin_switch = Gtk.Switch()
+        autologin_switch.connect("notify::active", self.autologin_check_status)
+        box_autologin.pack_start(autologin_switch, True, True, 0)
+
         change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
         change_user_groups_button.connect("clicked", self.user_groups_settings)
 
@@ -668,6 +682,7 @@ class Window_Configure_User(Gtk.Window):
         main_box.pack_start(new_confirm_password_label, False, False, 0)
         main_box.pack_start(self.new_confirm_password_entry, False, False, 0)
         main_box.pack_start(show_password_checkbox, False, False, 0)
+        main_box.pack_start(box_autologin, True, True, 0)
         main_box.pack_start(change_user_groups_button, False, False, 0)
 
         # Buttons - Container
@@ -711,12 +726,25 @@ class Window_Configure_User(Gtk.Window):
                     window2_1_2.show_all()
                 else:
                     # Run the command to create the user
-                    add_new_user_cmd=f"""
+                    safe_user_settings_cmd=f"""
                         #!/bin/bash
                         pass=$(perl -e 'print crypt($ARGV[0], "password")' {new_password})
+
                         pkexec sudo usermod -p $pass {username}
+
+                        # Set the desired username for autologin:
+                        autologin_user="{username}"
+
+                        # Specify the path to the display manager configuration file:
+                        display_manager_config="/etc/sysconfig/displaymanager"
+                        
+                        if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
+                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+                        else
+                            echo "Autologin not activated."
+                        fi
                     """
-                    os.system(add_new_user_cmd)
+                    os.system(safe_user_settings_cmd)
                     print("User settings successfully saved!")
                     window2_1_3 = Window_Configure_User_Info_Completed()
                     window2_1_3.connect("destroy", Gtk.main_quit)
@@ -744,6 +772,14 @@ class Window_Configure_User(Gtk.Window):
         self.old_password_entry.set_visibility(visibility)
         self.new_password_entry.set_visibility(visibility)
         self.new_confirm_password_entry.set_visibility(visibility)
+
+    def autologin_check_status(self, autologin_switch, gparam):
+        if autologin_switch.get_active():
+            print("Automatic login: Yes")
+            autologin_status_cmd="echo -n 'Yes' > /tmp/_autologin_status_.XXXXXXX"
+            os.system(autologin_status_cmd)
+        else:
+            print("Automatic login: No")
 
     def user_groups_settings(self, widget):
         window2_1_5 = Window_Configure_User_Groups()
