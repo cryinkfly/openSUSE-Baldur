@@ -731,18 +731,6 @@ class Window_Configure_User(Gtk.Window):
                         pass=$(perl -e 'print crypt($ARGV[0], "password")' {new_password})
 
                         pkexec sudo usermod -p $pass {username}
-
-                        # Set the desired username for autologin:
-                        autologin_user="{username}"
-
-                        # Specify the path to the display manager configuration file:
-                        display_manager_config="/etc/sysconfig/displaymanager"
-                        
-                        if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
-                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
-                        else
-                            echo "Autologin not activated."
-                        fi
                     """
                     os.system(safe_user_settings_cmd)
                     print("User settings successfully saved!")
@@ -774,12 +762,31 @@ class Window_Configure_User(Gtk.Window):
         self.new_confirm_password_entry.set_visibility(visibility)
 
     def autologin_check_status(self, autologin_switch, gparam):
+        username = self.username_entry.get_text()
         if autologin_switch.get_active():
             print("Automatic login: Yes")
-            autologin_status_cmd="echo -n 'Yes' > /tmp/_autologin_status_.XXXXXXX"
-            os.system(autologin_status_cmd)
+            autologin_activate_cmd=f"""
+                # Set the desired username for autologin:
+                autologin_user="{username}"
+
+                # Specify the path to the display manager configuration file:
+                display_manager_config="/etc/sysconfig/displaymanager"
+                                 
+                pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+            """
+            os.system(autologin_activate_cmd)
         else:
             print("Automatic login: No")
+            autologin_deactivate_cmd=f"""
+                # Set the desired username for autologin:
+                autologin_user=""
+
+                # Specify the path to the display manager configuration file:
+                display_manager_config="/etc/sysconfig/displaymanager"
+                                 
+                pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+            """
+            os.system(autologin_deactivate_cmd)          
 
     def user_groups_settings(self, widget):
         window2_1_5 = Window_Configure_User_Groups()
