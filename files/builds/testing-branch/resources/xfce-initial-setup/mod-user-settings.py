@@ -147,7 +147,6 @@ class MainWindow(Gtk.Window):
         # Delete tmp-files:
         del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
         os.system(del_tmp_files_cmd)
-
         Gtk.main_quit()
 
     def on_add_clicked(self, button):
@@ -344,6 +343,21 @@ class Window_Create_User(Gtk.Window):
         main_box.pack_start(self.confirm_password_entry, False, False, 0)
         main_box.pack_start(show_password_checkbox, False, False, 0)
 
+        # Create a box to hold the label and switch
+        box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        box_autologin.set_halign(Gtk.Align.CENTER)
+        box_autologin.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(box_autologin, False, False, 0)
+
+        # Create a label
+        label = Gtk.Label(label="Automatic Login:")
+        box_autologin.pack_start(label, True, True, 0)
+
+        # Create a switch
+        autologin_switch = Gtk.Switch()
+        autologin_switch.connect("notify::active", self.autologin_check_status)
+        box_autologin.pack_start(autologin_switch, True, True, 0)
+
         # Buttons - Container
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         main_box.pack_start(button_box, False, False, 0)
@@ -362,7 +376,15 @@ class Window_Create_User(Gtk.Window):
 
         create_button = Gtk.Button("🎭 Create")
         create_button.connect("clicked", self.create_user)
-        button_box.pack_start(create_button, True, True, 0)      
+        button_box.pack_start(create_button, True, True, 0)
+
+    def autologin_check_status(self, autologin_switch, gparam):
+        if autologin_switch.get_active():
+            print("Automatic login: Yes")
+            autologin_status_cmd="echo -n 'Yes' > /tmp/_autologin_status_.XXXXXXX"
+            os.system(autologin_status_cmd)
+        else:
+            print("Automatic login: No")
 
     def create_user(self, widget):
         fullname = self.fullname_entry.get_text()
@@ -377,13 +399,61 @@ class Window_Create_User(Gtk.Window):
                 window1_2.connect("destroy", Gtk.main_quit)
                 window1_2.show_all()
             else:
-                # Run the command to create the user
-                add_new_user_cmd=f"""
+                add_user_cmd=f"""
                     #!/bin/bash
+                    # Converting the password:
                     pass=$(perl -e 'print crypt($ARGV[0], "password")' {password})
-                    pkexec sudo useradd -m -p $pass -c '{fullname}' {username}
+                        
+                    # Set the desired username for autologin:
+                    autologin_user="{username}"
+
+                    # Specify the path to the display manager configuration file:
+                    display_manager_config="/etc/sysconfig/displaymanager"
+
+                    # Check the Autologin-Status:
+                    if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
+                        # Check if the file exists
+                        if [ -f "$display_manager_config" ]; then
+                            # Create a temporary script file
+                            script_1=$(mktemp)
+
+                            # Add user and modify group membership in the temporary script
+                            echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_1"
+                            echo "usermod -a -G users {username}" >> "$script_1"
+
+                            echo "$script_1"
+
+                            # Execute the temporary script with elevated privileges using pkexec
+                            pkexec su -c "bash $script_1"
+
+                            # Remove the temporary script
+                            rm "$script_1"
+
+                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+ 
+                            # Display a message indicating success
+                            echo "Autologin user set to: $autologin_user"
+                        else
+                            # Display an error message if the file does not exist
+                            echo "Error: Display manager configuration file not found at $display_manager_config"
+                        fi
+                    else
+                        # Create a temporary script file
+                        script_2=$(mktemp)
+
+                        # Add user and modify group membership in the temporary script
+                        echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_2"
+                        echo "usermod -a -G users {username}" >> "$script_2"
+
+                        # Execute the temporary script with elevated privileges using pkexec
+                        pkexec su -c "bash $script_2"
+
+                        # Remove the temporary script
+                        rm "$script_2"
+                    fi
                 """
-                os.system(add_new_user_cmd)
+                os.system(add_user_cmd)
+
                 print("User created successfully.")
                 window1_3 = Window_Create_User_Info_Completed()
                 window1_3.connect("destroy", Gtk.main_quit)
@@ -495,7 +565,7 @@ class Window_Create_User_Error_1(Gtk.Window):
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         self.hide()
         return True
 
@@ -539,7 +609,7 @@ class Window_Create_User_Error_2(Gtk.Window):
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
-    def on_okay_clicked(self, widget):
+    def on_back_clicked(self, widget):
         self.hide()
         return True
 
@@ -1013,7 +1083,7 @@ class Window_Del_Selection_Warn(Gtk.Window):
 
         # Add a "No" button
         button_no = Gtk.Button.new_with_label("No")
-        button_no.connect("clicked", self.on_no_clicked)
+        button_no.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_no, True, True, 0)
 
     def on_yes_clicked(self, widget):
