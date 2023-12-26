@@ -16,7 +16,7 @@ os.system(del_tmp_files_cmd)
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
-def main():
+def Main():
     window = MainWindow()
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
@@ -194,7 +194,7 @@ class MainWindow(Gtk.Window):
 
         else:
             print(f"Click Configure button was triggered but no option was selected!")
-            window2_2 = Window_Configure_User_Info()
+            window2_2 = MainWindow_No_Configure_Selected_User_Info()
             window2_2.connect("destroy", Gtk.main_quit)
             window2_2.show_all()
             
@@ -283,6 +283,44 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
         vbox.pack_start(label, True, True, 0)
 
         label_1 = Gtk.Label(label="You have not selected a user to delete! \nPlease select a user before continuing.")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay.connect("clicked", self.on_back_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_back_clicked(self, widget):
+        Reload_MainWindow(self, widget)
+
+##############################################################################################################################################################################
+
+class MainWindow_No_Configure_Selected_User_Info(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("💡")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="You have not selected a user to configure! \nPlease select a user before continuing.")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1282,4 +1320,4 @@ class Window_Del_Selection_Info(Gtk.Window):
 ##############################################################################################################################################################################
 
 if __name__ == "__main__":
-    main()
+    Main()
