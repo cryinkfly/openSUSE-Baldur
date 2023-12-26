@@ -37,10 +37,32 @@ def Reload_MainWindow(self, widget):
 
 class MainWindow(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager")
+        Gtk.Window.__init__(self, title="")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
+
+        # Main container (VERTICAL)
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.set_border_width(10)
+        self.add(main_box)
+
+        # Info text container (HORIZONTAL)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(info_box, False, False, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            "<big><b>User Manager Settings</b></big>"
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label(label="In this area you can change the user account settings and add/delete users associated with their account. Simply select the user you want to modify from the list.")
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)
 
         check_file_cmd="""
             #!/bin/bash
@@ -77,12 +99,6 @@ class MainWindow(Gtk.Window):
             LIST_ALL_GROUPS
         """
         os.system(check_file_cmd)
-
-        # Add a Description
-        label = Gtk.Label()
-        label.set_text("In this area you can change the user account settings and add/delete users associated with their account. Simply select the user you want to modify from the list.")
-        label.set_line_wrap(True)
-        label.set_max_width_chars(48)
 
         # Load options from a text file
         options = self.load_options_from_file("/tmp/_all_users_list_.XXXXXXX")
@@ -124,14 +140,9 @@ class MainWindow(Gtk.Window):
         button_box.pack_start(configure_button, True, True, 0)
         button_box.pack_start(del_button, True, True, 0)
 
-        # Main Box
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
-        # Add widgets to Window1
-
-        main_box.pack_start(label, False, True, 10)
+        main_box.pack_start(label_info, False, True, 10)
         main_box.pack_start(treeview, True, True, 0)
         main_box.pack_start(button_box, False, False, 0)
-        main_box.set_border_width(10)
 
         self.add(main_box)
 
@@ -292,88 +303,120 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
 
 class Window_Create_User(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Create a new Account")
+        Gtk.Window.__init__(self, title="")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
-        # Main container
+        # Main container (VERTICAL)
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.add(main_box)      
+        self.set_border_width(10)
+        self.add(main_box)
 
-        # Labels and Entries
-        fullname_label = Gtk.Label("Full Name:")
+        # Info text container (HORIZONTAL)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(info_box, False, False, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            "<big><b>Create an Account</b></big>"
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label(label="Kindly fill the following details to create a new account.")
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)      
+
+        # Fullname container (HORIZONTAL)
+        fullname_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        fullname_box.set_halign(Gtk.Align.CENTER)
+        fullname_box.set_valign(Gtk.Align.CENTER)
+        fullname_box.set_margin_top(20)
+        main_box.pack_start(fullname_box, False, False, 0)
+        fullname_label = Gtk.Label("Full Name:    ")
+        fullname_box.pack_start(fullname_label, False, False, 0)
         self.fullname_entry = Gtk.Entry()
         self.fullname_entry.set_hexpand(True)
         self.fullname_entry.set_halign(Gtk.Align.CENTER)
         self.fullname_entry.set_width_chars(25)
+        fullname_box.pack_start(self.fullname_entry, False, False, 0)
 
-        username_label = Gtk.Label("Username:")
+        # Username container (HORIZONTAL)
+        username_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        username_box.set_halign(Gtk.Align.CENTER)
+        username_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(username_box, False, False, 0)
+        username_label = Gtk.Label("Username:    ")
+        username_box.pack_start(username_label, False, False, 0)
         self.username_entry = Gtk.Entry()
         self.username_entry.set_hexpand(True)
         self.username_entry.set_halign(Gtk.Align.CENTER)
         self.username_entry.set_width_chars(25)
-
-        password_label = Gtk.Label("Password:")
+        username_box.pack_start(self.username_entry, False, False, 0)
+        
+        # Password container (HORIZONTAL)
+        password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_box.set_halign(Gtk.Align.CENTER)
+        password_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(password_box, False, False, 0)
+        password_label = Gtk.Label("Password:      ")
+        password_box.pack_start(password_label, False, False, 0)
         self.password_entry = Gtk.Entry()
         self.password_entry.set_hexpand(True)
         self.password_entry.set_halign(Gtk.Align.CENTER)
         self.password_entry.set_width_chars(25)
         self.password_entry.set_visibility(False)  # Password is hidden by default
+        password_box.pack_start(self.password_entry, False, False, 0)
 
+        # Password-Confirm container (HORIZONTAL)
+        password_confirm_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_confirm_box.set_halign(Gtk.Align.CENTER)
+        password_confirm_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(password_confirm_box, False, False, 0)
         confirm_password_label = Gtk.Label("Confirmation:")
+        password_confirm_box.pack_start(confirm_password_label, False, False, 0)
         self.confirm_password_entry = Gtk.Entry()
         self.confirm_password_entry.set_hexpand(True)
         self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
         self.confirm_password_entry.set_width_chars(25)
         self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+        password_confirm_box.pack_start(self.confirm_password_entry, False, False, 0)
 
+        # Show password checkbox container (HORIZONTAL)
+        show_password_autologin_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        show_password_autologin_box.set_margin_top(10)
+        show_password_autologin_box.set_halign(Gtk.Align.CENTER)
+        show_password_autologin_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(show_password_autologin_box, False, False, 0)
         show_password_checkbox = Gtk.CheckButton("🔎 Show password")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
-
-        main_box.pack_start(fullname_label, False, False, 0)
-        main_box.pack_start(self.fullname_entry, False, False, 0)
-        main_box.pack_start(username_label, False, False, 0)
-        main_box.pack_start(self.username_entry, False, False, 0)
-        main_box.pack_start(password_label, False, False, 0)
-        main_box.pack_start(self.password_entry, False, False, 0)
-        main_box.pack_start(confirm_password_label, False, False, 0)
-        main_box.pack_start(self.confirm_password_entry, False, False, 0)
-        main_box.pack_start(show_password_checkbox, False, False, 0)
-
-        # Create a box to hold the label and switch
+        show_password_autologin_box.pack_start(show_password_checkbox, False, False, 0)
         box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         box_autologin.set_halign(Gtk.Align.CENTER)
         box_autologin.set_valign(Gtk.Align.CENTER)
-        main_box.pack_start(box_autologin, False, False, 0)
-
-        # Create a label
-        label = Gtk.Label(label="Automatic Login:")
+        label = Gtk.Label(label="|   Automatic Login:")
         box_autologin.pack_start(label, True, True, 0)
-
-        # Create a switch
+        show_password_autologin_box.pack_start(box_autologin, False, False, 0)
         autologin_switch = Gtk.Switch()
         autologin_switch.connect("notify::active", self.autologin_check_status)
-        box_autologin.pack_start(autologin_switch, True, True, 0)
+        show_password_autologin_box.pack_start(autologin_switch, True, True, 0)
 
         # Buttons - Container
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        button_box.set_margin_top(20)
         main_box.pack_start(button_box, False, False, 0)
-
         go_back_button = Gtk.Button("◀️ Back")
         go_back_button.connect("clicked", self.on_back_clicked)
         button_box.pack_start(go_back_button, True, True, 0)
-
         random_password_button = Gtk.Button("🎲 Password")
         random_password_button.connect("clicked", self.generate_random_password)
         button_box.pack_start(random_password_button, True, True, 0)
-
         reset_button = Gtk.Button("🔄 Reset")
         reset_button.connect("clicked", self.reset_entries)
         button_box.pack_start(reset_button, True, True, 0)  
-
         create_button = Gtk.Button("🎭 Create")
         create_button.connect("clicked", self.create_user)
         button_box.pack_start(create_button, True, True, 0)
