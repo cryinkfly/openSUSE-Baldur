@@ -10,12 +10,14 @@ import string
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
+# Remove all TMP-Files:
 del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
 os.system(del_tmp_files_cmd)
 
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
+# Load the MainWindow:
 def Main():
     window = MainWindow()
     window.connect("destroy", Gtk.main_quit)
@@ -25,6 +27,7 @@ def Main():
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
+# Reload the MainWindow:
 def Reload_MainWindow(self, widget):
     window = MainWindow()
     window.connect("destroy", Gtk.main_quit)
@@ -35,6 +38,7 @@ def Reload_MainWindow(self, widget):
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
+# Show the MainWindow:
 class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
@@ -213,8 +217,7 @@ class MainWindow(Gtk.Window):
             open_active_user_file.close()
 
             # Test another user with overriding the variable ...
-            #read_active_user_file="max"
-
+            #read_active_user_file="user"
             print(f"Active user: {read_active_user_file}")
 
             # This checks whether the selected user is currently logged in or not! (if...else...)
@@ -224,7 +227,6 @@ class MainWindow(Gtk.Window):
                 window3_1 = Window_Del_Selection_Info()
                 window3_1.connect("destroy", Gtk.main_quit)
                 window3_1.show_all()
-
                 self.hide()
                 return True
 
@@ -234,7 +236,6 @@ class MainWindow(Gtk.Window):
                 window3_2 = Window_Del_Selection_Warn()
                 window3_2.connect("destroy", Gtk.main_quit)
                 window3_2.show_all()
-
                 self.hide()
                 return True
 
@@ -243,7 +244,6 @@ class MainWindow(Gtk.Window):
             window3_3 = MainWindow_No_Del_Selected_User_Info()
             window3_3.connect("destroy", Gtk.main_quit)
             window3_3.show_all()
-
             self.hide()
             return True
 
