@@ -59,11 +59,11 @@ class MainWindow(Gtk.Window):
         main_box.pack_start(info_box, False, False, 0)
         label_title = Gtk.Label()
         label_title.set_markup(
-            "<big><b>User Manager Settings</b></big>"
+            "<big><b>Benutzereinstellungen</b></big>"
         )
         label_title.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_title, True, True, 0)
-        label_info = Gtk.Label(label="In this area you can change the user account settings and add/delete users associated with their account. Simply select the user you want to modify from the list.")
+        label_info = Gtk.Label(label="In diesem Bereich können Sie die Einstellungen des Benutzerkontos ändern und Benutzer hinzufügen/löschen, die mit ihrem Konto verknüpft sind. Wählen Sie einfach aus der Liste den Benutzer aus, den Sie ändern oder löschen möchten.")
         label_info.set_line_wrap(True)
         label_info.set_max_width_chars(55)
         label_info.set_justify(Gtk.Justification.CENTER)
@@ -127,16 +127,16 @@ class MainWindow(Gtk.Window):
         treeview.append_column(column_text)
 
         # Buttons
-        close_button = Gtk.Button(label="◀️ Back")
+        close_button = Gtk.Button(label="◀️ Zurück")
         close_button.connect("clicked", self.on_close_clicked)
 
-        add_button = Gtk.Button(label="🎭 Create")
+        add_button = Gtk.Button(label="🎭 Erstellen")
         add_button.connect("clicked", self.on_add_clicked)
 
-        configure_button = Gtk.Button(label="⚙️ Configure")
+        configure_button = Gtk.Button(label="⚙️ Konfigurieren")
         configure_button.connect("clicked", self.on_configure_clicked)
 
-        del_button = Gtk.Button(label="🗑 Delete")
+        del_button = Gtk.Button(label="🗑 Löschen")
         del_button.connect("clicked", self.on_del_clicked)
 
         # Button Box
@@ -208,8 +208,8 @@ class MainWindow(Gtk.Window):
                     #!/bin/bash
                     whoami > /tmp/_active_user.XXXXXXX
                     echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
-                    echo -n "Are you sure you want to remove the user {selected_option} from your system? \nIf your answer is >>YES<<, then the selected user and all their associated data will be removed from this system!" > /tmp/_selected_del_user_warn_text.XXXXXXX
-                    echo -n "The selected user {selected_option} cannot be deleted because you are logged in to this system with it! \nPlease select a different user if you would like to continue deleting users that are no longer needed on this system." > /tmp/_selected_del_user_info_text.XXXXXXX
+                    echo -n "Möchten Sie den Benutzer {selected_option} wirklich von Ihrem System entfernen? \nWenn Ihre Antwort >>JA<< ist, werden der ausgewählte Benutzer und alle damit verbundenen Daten aus diesem System entfernt!" > /tmp/_selected_del_user_warn_text.XXXXXXX
+                    echo -n "Der ausgewählte Benutzer {selected_option} kann nicht gelöscht werden, da Sie mit ihm bei diesem System angemeldet sind! \nWählen Sie bitte einen anderen Benutzer aus, falls Sie mit dem Löschen von Benutzern fortfahren möchten, die auf diesem System nicht mehr benötigt werden." > /tmp/_selected_del_user_info_text.XXXXXXX
                """
             os.system(del_selected_user_cmd)
 
@@ -277,7 +277,7 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="You have not selected a user to delete! \nPlease select a user before continuing.")
+        label_1 = Gtk.Label(label="Sie haben keinen Benutzer zum Löschen ausgewählt! \nBitte wählen Sie einen Benutzer aus, bevor Sie fortfahren.")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -286,7 +286,7 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -314,7 +314,7 @@ class MainWindow_No_Configure_Selected_User_Info(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="You have not selected a user to configure! \nPlease select a user before continuing.")
+        label_1 = Gtk.Label(label="Sie haben keinen Benutzer zum Konfigurieren ausgewählt! \nBitte wählen Sie einen Benutzer aus, bevor Sie fortfahren.")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -323,7 +323,7 @@ class MainWindow_No_Configure_Selected_User_Info(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -352,11 +352,11 @@ class Window_Create_User(Gtk.Window):
         main_box.pack_start(info_box, False, False, 0)
         label_title = Gtk.Label()
         label_title.set_markup(
-            "<big><b>Create an Account</b></big>"
+            "<big><b>Benutzerkonto erstellen</b></big>"
         )
         label_title.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_title, True, True, 0)
-        label_info = Gtk.Label(label="Kindly fill the following details to create a new account.")
+        label_info = Gtk.Label(label="Bitte füllen Sie die folgenden Angaben aus, um ein neues Konto zu erstellen.")
         label_info.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_info, True, True, 0)      
 
@@ -366,7 +366,7 @@ class Window_Create_User(Gtk.Window):
         fullname_box.set_valign(Gtk.Align.CENTER)
         fullname_box.set_margin_top(20)
         main_box.pack_start(fullname_box, False, False, 0)
-        fullname_label = Gtk.Label("Full Name:    ")
+        fullname_label = Gtk.Label("Vollständiger Name:    ")
         fullname_box.pack_start(fullname_label, False, False, 0)
         self.fullname_entry = Gtk.Entry()
         self.fullname_entry.set_hexpand(True)
@@ -379,7 +379,7 @@ class Window_Create_User(Gtk.Window):
         username_box.set_halign(Gtk.Align.CENTER)
         username_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(username_box, False, False, 0)
-        username_label = Gtk.Label("Username:    ")
+        username_label = Gtk.Label("Benutzername:    ")
         username_box.pack_start(username_label, False, False, 0)
         self.username_entry = Gtk.Entry()
         self.username_entry.set_hexpand(True)
@@ -392,7 +392,7 @@ class Window_Create_User(Gtk.Window):
         password_box.set_halign(Gtk.Align.CENTER)
         password_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(password_box, False, False, 0)
-        password_label = Gtk.Label("Password:      ")
+        password_label = Gtk.Label("Passwort:      ")
         password_box.pack_start(password_label, False, False, 0)
         self.password_entry = Gtk.Entry()
         self.password_entry.set_hexpand(True)
@@ -406,7 +406,7 @@ class Window_Create_User(Gtk.Window):
         password_confirm_box.set_halign(Gtk.Align.CENTER)
         password_confirm_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(password_confirm_box, False, False, 0)
-        confirm_password_label = Gtk.Label("Confirmation:")
+        confirm_password_label = Gtk.Label("Passwort bestätigen:")
         password_confirm_box.pack_start(confirm_password_label, False, False, 0)
         self.confirm_password_entry = Gtk.Entry()
         self.confirm_password_entry.set_hexpand(True)
@@ -421,7 +421,7 @@ class Window_Create_User(Gtk.Window):
         show_password_autologin_box.set_halign(Gtk.Align.CENTER)
         show_password_autologin_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(show_password_autologin_box, False, False, 0)
-        show_password_checkbox = Gtk.CheckButton(" Show Password")
+        show_password_checkbox = Gtk.CheckButton(" Passwort anzeigen")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
@@ -429,7 +429,7 @@ class Window_Create_User(Gtk.Window):
         box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         box_autologin.set_halign(Gtk.Align.CENTER)
         box_autologin.set_valign(Gtk.Align.CENTER)
-        label = Gtk.Label(label="|   Automatic Login:")
+        label = Gtk.Label(label="|   Automatische Anmeldung:")
         box_autologin.pack_start(label, True, True, 0)
         show_password_autologin_box.pack_start(box_autologin, False, False, 0)
         autologin_switch = Gtk.Switch()
@@ -440,16 +440,16 @@ class Window_Create_User(Gtk.Window):
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         button_box.set_margin_top(20)
         main_box.pack_start(button_box, False, False, 0)
-        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button = Gtk.Button("◀️ Zurück")
         go_back_button.connect("clicked", self.on_back_clicked)
         button_box.pack_start(go_back_button, True, True, 0)
-        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button = Gtk.Button("🎲 Passwort")
         random_password_button.connect("clicked", self.generate_random_password)
         button_box.pack_start(random_password_button, True, True, 0)
-        reset_button = Gtk.Button("🔄 Reset")
+        reset_button = Gtk.Button("🔄 Zurücksetzen")
         reset_button.connect("clicked", self.reset_entries)
         button_box.pack_start(reset_button, True, True, 0)  
-        create_button = Gtk.Button("🎭 Create")
+        create_button = Gtk.Button("🎭 Erstellen")
         create_button.connect("clicked", self.create_user)
         button_box.pack_start(create_button, True, True, 0)
 
@@ -585,7 +585,7 @@ class Window_Create_User_Info_Completed(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The user account has been successfully created and you can use this new user after re-login!")
+        label_1 = Gtk.Label(label="Das Benutzerkonto wurde erfolgreich erstellt und Sie können diesen neuen Benutzer nach erneuter Anmeldung verwenden!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -594,7 +594,7 @@ class Window_Create_User_Info_Completed(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -627,7 +627,7 @@ class Window_Create_User_Error_1(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The new password must be at least 8 characters long!")
+        label_1 = Gtk.Label(label="Das neue Passwort muss mindestens 8 Zeichen lang sein!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -636,7 +636,7 @@ class Window_Create_User_Error_1(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -671,7 +671,7 @@ class Window_Create_User_Error_2(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The user account passwords do not match. Please try again!")
+        label_1 = Gtk.Label(label="Die neuen Kennwörter des Benutzerkontos stimmen nicht überein. Bitte versuche es erneut!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -680,7 +680,7 @@ class Window_Create_User_Error_2(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -727,11 +727,11 @@ class Window_Configure_User(Gtk.Window):
         main_box.pack_start(info_box, False, False, 0)
         label_title = Gtk.Label()
         label_title.set_markup(
-            "<big><b>Configure an Account</b></big>"
+            "<big><b>Konto konfigurieren</b></big>"
         )
         label_title.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_title, True, True, 0)
-        label_info = Gtk.Label(label="In this area you can change the user account settings.")
+        label_info = Gtk.Label(label="In diesem Bereich können Sie die Einstellungen des Benutzerkontos ändern.")
         label_info.set_line_wrap(True)
         label_info.set_max_width_chars(55)
         label_info.set_justify(Gtk.Justification.CENTER)
@@ -746,7 +746,7 @@ class Window_Configure_User(Gtk.Window):
         username_box.set_halign(Gtk.Align.CENTER)
         username_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(username_box, False, False, 0)
-        username_label = Gtk.Label("Selected Username:      ")
+        username_label = Gtk.Label("Ausgewählter Benutzername:      ")
         username_box.pack_start(username_label, False, False, 0)
         self.username_entry = Gtk.Entry()
         self.username_entry.set_text(text=str(read_open_selected_user_file))
@@ -760,7 +760,7 @@ class Window_Configure_User(Gtk.Window):
         old_password_box.set_halign(Gtk.Align.CENTER)
         old_password_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(old_password_box, False, False, 0)
-        old_password_label = Gtk.Label("Current Password:         ")
+        old_password_label = Gtk.Label("Aktuelles Passwort:         ")
         old_password_box.pack_start(old_password_label, False, False, 0)
         self.old_password_entry = Gtk.Entry()
         self.old_password_entry.set_visibility(False)  # Password is hidden by default
@@ -771,7 +771,7 @@ class Window_Configure_User(Gtk.Window):
         new_password_box.set_halign(Gtk.Align.CENTER)
         new_password_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(new_password_box, False, False, 0)
-        new_password_label = Gtk.Label("New Password:              ")
+        new_password_label = Gtk.Label("Neues Passwort:              ")
         new_password_box.pack_start(new_password_label, False, False, 0)
         self.new_password_entry = Gtk.Entry()
         self.new_password_entry.set_visibility(False)  # Password is hidden by default
@@ -782,7 +782,7 @@ class Window_Configure_User(Gtk.Window):
         new_confirmed_password_box.set_halign(Gtk.Align.CENTER)
         new_confirmed_password_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(new_confirmed_password_box, False, False, 0)
-        new_confirm_password_label = Gtk.Label("Confirm New Password:")
+        new_confirm_password_label = Gtk.Label("Neues Passwort bestätigen:")
         new_confirmed_password_box.pack_start(new_confirm_password_label, False, False, 0)
         self.new_confirm_password_entry = Gtk.Entry()
         self.new_confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
@@ -794,7 +794,7 @@ class Window_Configure_User(Gtk.Window):
         show_password_autologin_box.set_halign(Gtk.Align.CENTER)
         show_password_autologin_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(show_password_autologin_box, False, False, 0)
-        show_password_checkbox = Gtk.CheckButton(" Show Password")
+        show_password_checkbox = Gtk.CheckButton(" Passwort anzeigen")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
@@ -824,7 +824,7 @@ class Window_Configure_User(Gtk.Window):
         show_password_autologin_box.pack_start(autologin_switch, True, True, 0)
 
         # Show change user groups button container (HORIZONTAL)
-        change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
+        change_user_groups_button = Gtk.Button("⚙️ Gruppeneinstellungen")
         change_user_groups_button.connect("clicked", self.user_groups_settings)
         change_user_groups_button.set_halign(Gtk.Align.CENTER)
         change_user_groups_button.set_valign(Gtk.Align.CENTER)
@@ -835,19 +835,19 @@ class Window_Configure_User(Gtk.Window):
         button_box.set_margin_top(20)
         main_box.pack_start(button_box, False, False, 0)
 
-        go_back_button = Gtk.Button("◀️ Back")
+        go_back_button = Gtk.Button("◀️ Zurück")
         go_back_button.connect("clicked", self.on_back_clicked)
         button_box.pack_start(go_back_button, True, True, 0)
 
-        random_password_button = Gtk.Button("🎲 Password")
+        random_password_button = Gtk.Button("🎲 Passwort")
         random_password_button.connect("clicked", self.generate_random_password)
         button_box.pack_start(random_password_button, True, True, 0)
 
-        reset_button = Gtk.Button("🔄 Reset")
+        reset_button = Gtk.Button("🔄 Zurücksetzen")
         reset_button.connect("clicked", self.reset_entries)
         button_box.pack_start(reset_button, True, True, 0)  
 
-        save_button = Gtk.Button("💾 Save")
+        save_button = Gtk.Button("💾 Speichern")
         save_button.connect("clicked", self.save_user_settings)
         button_box.pack_start(save_button, True, True, 0)
 
@@ -996,14 +996,14 @@ class Window_Configure_User_Groups(Gtk.Window):
         self.main_box.pack_start(info_box, False, False, 0)
         label_title = Gtk.Label()
         label_title.set_markup(
-            "<big><b>Configure the Groups</b></big>"
+            "<big><b>Gruppen konfigurieren</b></big>"
         )
         label_title.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_title, True, True, 0)
-        label_info = Gtk.Label(label="In this area you can see which groups your selected user belongs to and you can also change the group membership. \n\n"
-            "But be careful! You have to realize that you should know exactly what you are doing. Playing around and trying out user and group permissions can bring your entire system to a halt! \n\n"
-            "If you want to create or delete a user, you simply have to have one more or less user. "
-            "However, if you give a user more rights or bend the rights of a system account or system group, you may be putting your system's security at risk!")
+        label_info = Gtk.Label(label="In diesem Bereich können Sie sehen, zu welchen Gruppen Ihr ausgewählter Benutzer gehört und Sie können auch die Gruppenzugehörigkeit ändern. \n\n"
+             "Aber seien Sie vorsichtig! Sie müssen sich darüber im Klaren sein, dass Sie genau wissen sollten, was Sie tun. Herumspielen und Ausprobieren von Benutzer- und Gruppenberechtigungen kann Ihr gesamtes System zum Stillstand bringen! \n\n"
+             "Wenn Sie einen Benutzer erstellen oder löschen möchten, müssen Sie einfach einen mehr oder weniger Benutzer haben. "
+             "Wenn Sie einem Benutzer jedoch mehr Rechte gewähren oder die Rechte eines Systemkontos oder einer Systemgruppe einschränken, gefährden Sie möglicherweise die Sicherheit Ihres Systems!")
         label_info.set_line_wrap(True)
         label_info.set_max_width_chars(55)
         label_info.set_justify(Gtk.Justification.CENTER)
@@ -1035,15 +1035,15 @@ class Window_Configure_User_Groups(Gtk.Window):
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.main_box.pack_start(hbox, False, True, 0)
 
-        self.button_okay = Gtk.Button.new_with_label("◀️ Back")
+        self.button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         self.button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(self.button_okay, True, True, 0)
 
-        self.button_reset_groups = Gtk.Button.new_with_label("🔄 Reset")
+        self.button_reset_groups = Gtk.Button.new_with_label("🔄 Zurücksetzen")
         self.button_reset_groups.connect("clicked", self.reset_groups)
         hbox.pack_start(self.button_reset_groups, True, True, 0)
 
-        self.save_button = Gtk.Button(label="💾 Save")
+        self.save_button = Gtk.Button(label="💾 Speichern")
         self.save_button.connect("clicked", self.on_save_button_clicked)
         hbox.pack_start(self.save_button, True, True, 0)
 
@@ -1139,7 +1139,7 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The user account has been successfully deleted with all associated data!")
+        label_1 = Gtk.Label(label="Das Benutzerkonto wurde mit allen zugehörigen Daten erfolgreich gelöscht!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1148,7 +1148,7 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -1182,7 +1182,7 @@ class Window_Configure_User_Error_1(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The old account password must not match the new password! \nPlease choose a different password.")
+        label_1 = Gtk.Label(label="Das alte Passwort des Kontos darf nicht mit dem neuen Passwort übereinstimmen! \nBitte wählen Sie ein anderes Passwort.")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1191,7 +1191,7 @@ class Window_Configure_User_Error_1(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -1225,7 +1225,7 @@ class Window_Configure_User_Error_2(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The new password must be at least 8 characters long!")
+        label_1 = Gtk.Label(label="Das neue Passwort muss mindestens 8 Zeichen lang sein!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1234,7 +1234,7 @@ class Window_Configure_User_Error_2(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -1268,7 +1268,7 @@ class Window_Configure_User_Error_3(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The new password and repeatedly entered new password do not match!")
+        label_1 = Gtk.Label(label="Das neue Passwort und das wiederholt eingegebene neue Passwort stimmen nicht überein!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1277,7 +1277,7 @@ class Window_Configure_User_Error_3(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -1378,7 +1378,7 @@ class Window_Del_User_Info_Completed(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
@@ -1420,7 +1420,7 @@ class Window_Del_Selection_Info(Gtk.Window):
         vbox.pack_start(hbox, True, True, 0)
 
         # Add a "Okay" button
-        button_okay = Gtk.Button.new_with_label("◀️ Back")
+        button_okay = Gtk.Button.new_with_label("◀️ Zurück")
         button_okay.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_okay, True, False, 0)
 
