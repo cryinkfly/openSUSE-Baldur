@@ -150,10 +150,10 @@ def Load_Language():
             locale_var_2 = line2
             locale_var_3 = line3
             # locale_var_... = line...
-            print(f"{locale_var1}")
-            print(f"{locale_var2}")
-            print(f"{locale_var3}")
-            # print(f"{locale_var...}")
+            print(f"{locale_var_1}")
+            print(f"{locale_var_2}")
+            print(f"{locale_var_3}")
+            # print(f"{locale_var_...}")
         else:
             print(f"Error: Unable to load content for language '{language}'.")
     else:
