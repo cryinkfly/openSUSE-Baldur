@@ -1,1 +1,178 @@
-...
+#!/bin/bash
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - User Management Tool                         #
+# Description:  This file invokes the correct UI for the user management tool!                     #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    18:00/27.12.2023                                                                   #
+# Version:      1.0.0                                                                              #
+####################################################################################################
+
+function LOAD_USER_MANAGER_UI {
+
+    i18n_file="$HOME/.i18n"
+
+    # Check if the ".i18n" file exists
+    if [ -e "$i18n_file" ]; then
+        # Read the content of the ".i18n" file
+        language_setting=$(grep "^export LANGUAGE=" "$i18n_file")
+
+        # Extract the language code
+        language_code=$(echo "$language_setting" | cut -d'=' -f2)
+
+        case "$language_code" in
+            "af_ZA.UTF-8")
+                python3 client_ui/af_ZA/user-manager-ui.py
+                ;;
+            "sq_AL.UTF-8")
+                python3 client_ui/sq_AL/user-manager-ui.py
+                ;;
+            "ar_SA.UTF-8")
+                python3 client_ui/ar_SA/user-manager-ui.py
+                ;;
+            "eu_ES.UTF-8")
+                python3 client_ui/eu_ES/user-manager-ui.py
+                ;;
+            "be_BY.UTF-8")
+                python3 client_ui/be_BY/user-manager-ui.py
+                ;;
+            "bs_BA.UTF-8")
+                python3 client_ui/bs_BA/user-manager-ui.py
+                ;;
+            "bg_BG.UTF-8")
+                python3 client_ui/bg_BG/user-manager-ui.py
+                ;;
+            "ca_ES.UTF-8")
+                python3 client_ui/ca_ES/user-manager-ui.py
+                ;;
+            "hr_HR.UTF-8")
+                python3 client_ui/hr_HR/user-manager-ui.py
+                ;;
+            "zh_CN.UTF-8")
+                python3 client_ui/zh_CN/user-manager-ui.py
+                ;;
+            "zh_TW.UTF-8")
+                python3 client_ui/zh_TW/user-manager-ui.py
+                ;;
+            "cs_CZ.UTF-8")
+                python3 client_ui/cs_CZ/user-manager-ui.py
+                ;;
+            "da_DK.UTF-8")
+                python3 client_ui/da_DK/user-manager-ui.py
+                ;;
+            "nl_NL.UTF-8")
+                python3 client_ui/nl_NL/user-manager-ui.py
+                ;;
+            "et_EE.UTF-8")
+                python3 client_ui/et_EE/user-manager-ui.py
+                ;;
+            "fi_FI.UTF-8")
+                python3 client_ui/fi_FI/user-manager-ui.py
+                ;;
+            "fr*")
+                python3 client_ui/fr_FR/user-manager-ui.py
+                ;;
+            "ga_IE.UTF-8")
+                python3 client_ui/ga_IE/user-manager-ui.py
+                ;;
+            "gl_ES.UTF-8")
+                python3 client_ui/gl_ES/user-manager-ui.py
+                ;;
+            "ka_GE.UTF-8")
+                python3 client_ui/ka_GE/user-manager-ui.py
+                ;;
+            "de_DE.UTF-8")
+                python3 client_ui/de_DE/user-manager-ui.py
+                ;;
+            "el_GR.UTF-8")
+                python3 client_ui/el_GR/user-manager-ui.py
+                ;;
+            "he_IL.utf8")
+                python3 client_ui/he_IL/user-manager-ui.py
+                ;;
+            "hu_HU.UTF-8")
+                python3 client_ui/hu_HU/user-manager-ui.py
+                ;;
+            "is_IS.UTF-8")
+                python3 client_ui/is_IS/user-manager-ui.py
+                ;;
+            "id_ID.UTF-8")
+                python3 client_ui/id_ID/user-manager-ui.py
+                ;;
+            "it_IT.UTF-8")
+                python3 client_ui/it_IT/user-manager-ui.py
+                ;;
+            "ja_JP.UTF-8")
+                python3 client_ui/ja_JP/user-manager-ui.py
+                ;;
+            "ko_KR.UTF-8")
+                python3 client_ui/ko_KR/user-manager-ui.py
+                ;;
+            "lt_LT.UTF-8")
+                python3 client_ui/lt_LT/user-manager-ui.py
+                ;;
+            "ms_MY.UTF-8")
+                python3 client_ui/ms_MY/user-manager-ui.py
+                ;;
+            "mi_NZ.UTF-8")
+                python3 client_ui/mi_NZ/user-manager-ui.py
+                ;;
+            "*NO.UTF-8")
+                python3 client_ui/no_NO/user-manager-ui.py
+                ;;
+            "pl_PL.UTF-8")
+                python3 client_ui/pl_PL/user-manager-ui.py
+                ;;
+            "pt_*UTF-8")
+                python3 client_ui/pt_PT/user-manager-ui.py
+                ;;
+            "ro_RO.UTF-8")
+                python3 client_ui/ro_RO/user-manager-ui.py
+                ;;
+            "ru_RU.UTF-8")
+                python3 client_ui/ru_RU/user-manager-ui.py
+                ;;
+            "mi_NZ.UTF-8")
+                python3 client_ui/mi_NZ/user-manager-ui.py
+                ;;
+            "sk_SK.UTF-8")
+                python3 client_ui/sk_SK/user-manager-ui.py
+                ;;
+            "sl_SI.UTF-8")
+                python3 client_ui/sl_SI/user-manager-ui.py
+                ;;
+            "so_SO.UTF-8")
+                python3 client_ui/so_SO/user-manager-ui.py
+                ;;
+            "es_ES.UTF-8")
+                python3 client_ui/es_ES/user-manager-ui.py
+                ;;
+            "sv_SE.UTF-8")
+                python3 client_ui/sv_SE/user-manager-ui.py
+                ;;
+            "tl_PH.UTF-8")
+                python3 client_ui/tl_PH/user-manager-ui.py
+                ;;
+            "th_TH.UTF-8")
+                python3 client_ui/th_TH/user-manager-ui.py
+                ;;
+            "tr_TR.UTF-8")
+                python3 client_ui/tr_TR/user-manager-ui.py
+                ;;
+            "uk_UA.UTF-8")
+                python3 client_ui/uk_UA/user-manager-ui.py
+                ;;
+            *)
+                python3 client_ui/en_US/user-manager-ui.py
+                ;;
+        esac
+    else
+        echo "Error: The .i18n file does not exist in $HOME."
+        python3 client_ui/en_US/user-manager-ui.py
+    fi
+}
+
+LOAD_USER_MANAGER_UI
