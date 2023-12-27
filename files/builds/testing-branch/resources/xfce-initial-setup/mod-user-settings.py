@@ -64,6 +64,7 @@ class MainWindow(Gtk.Window):
         label_info.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_info, True, True, 0)
 
+        # Checklist container (HORIZONTAL)
         check_file_cmd="""
             #!/bin/bash
             LIST_ALL_HUMAN_USERS() {
@@ -121,7 +122,7 @@ class MainWindow(Gtk.Window):
         treeview.append_column(column_text)
 
         # Buttons
-        close_button = Gtk.Button(label="⛔️ Close")
+        close_button = Gtk.Button(label="◀️ Back")
         close_button.connect("clicked", self.on_close_clicked)
 
         add_button = Gtk.Button(label="🎭 Create")
@@ -174,14 +175,8 @@ class MainWindow(Gtk.Window):
             selected_user_cmd=f"""
                 #!/bin/bash
                 echo -n {selected_option} > /tmp/_selected_user.XXXXXXX
-
-                ##############################################################################################################################################################################
-                # LIST OF ALL GROUPS OF A SPECIAL HUMAN USER ON THIS SYSTEM (/etc/group):                                                                                                    #
-                ##############################################################################################################################################################################
-
                 list_user_groups=$(id -nG {selected_option})
                 echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
-
             """
             os.system(selected_user_cmd)
 
@@ -264,14 +259,13 @@ class MainWindow(Gtk.Window):
 
 class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
-        #self.set_default_size(100, 0)
+        Gtk.Window.__init__(self, title="")
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -302,14 +296,13 @@ class MainWindow_No_Del_Selected_User_Info(Gtk.Window):
 
 class MainWindow_No_Configure_Selected_User_Info(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Info")
-        #self.set_default_size(100, 0)
+        Gtk.Window.__init__(self, title="")
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -427,7 +420,7 @@ class Window_Create_User(Gtk.Window):
         show_password_autologin_box.set_halign(Gtk.Align.CENTER)
         show_password_autologin_box.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(show_password_autologin_box, False, False, 0)
-        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
+        show_password_checkbox = Gtk.CheckButton(" Show Password")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
@@ -569,11 +562,10 @@ class Window_Create_User(Gtk.Window):
 # ... User created ...
 class Window_Create_User_Info_Completed(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Account created successfully!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_create_user_info_text_file = open(r"/tmp/_create_user_text.XXXXXXX",'r') 
         #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
@@ -581,6 +573,7 @@ class Window_Create_User_Info_Completed(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -611,11 +604,10 @@ class Window_Create_User_Info_Completed(Gtk.Window):
 
 class Window_Create_User_Error_1(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Error short password!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r') 
         #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
@@ -623,6 +615,7 @@ class Window_Create_User_Error_1(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -655,7 +648,7 @@ class Window_Create_User_Error_1(Gtk.Window):
 # ... Password not match ...
 class Window_Create_User_Error_2(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Account password incorrect!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
@@ -698,76 +691,147 @@ class Window_Create_User_Error_2(Gtk.Window):
 ##############################################################################################################################################################################
 
 class Window_Configure_User(Gtk.Window):
+
+    # Check if the autologin user is the same as the current user
+    def is_autologin_user():   
+        try:
+            with open("/etc/sysconfig/displaymanager", "r") as file:
+                for line in file:
+                    if line.startswith("DISPLAYMANAGER_AUTOLOGIN="):
+                        autologin_user = line.split("=")[1].strip()
+                        #current_user = os.getenv("USER")
+                        current_user = os.system(cat /tmp/_selected_user.XXXXXXX)
+                        print
+                        return autologin_user == current_user
+                    else:
+                        self.autologin_switch.set_active(False)
+        except FileNotFoundError:
+            return False
+
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Account")
+        Gtk.Window.__init__(self, title="")
         self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
-        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
-        read_open_selected_user_file = open_selected_user_file.read()
-        open_selected_user_file.close() 
-
         # Main container
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.set_border_width(10)
         self.add(main_box)
 
-        # Get info ... in progress ...
-        username_label = Gtk.Label("Selected Username:")
+        # Info text container (HORIZONTAL)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(info_box, False, False, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            "<big><b>Configure an Account</b></big>"
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label(label="In this area you can change the user account settings.")
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)
+
+        open_selected_user_file = open(r"/tmp/_selected_user.XXXXXXX",'r') 
+        read_open_selected_user_file = open_selected_user_file.read()
+        open_selected_user_file.close()
+
+        # Username container (HORIZONTAL)
+        username_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        username_box.set_halign(Gtk.Align.CENTER)
+        username_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(username_box, False, False, 0)
+        username_label = Gtk.Label("Selected Username:      ")
+        username_box.pack_start(username_label, False, False, 0)
         self.username_entry = Gtk.Entry()
         self.username_entry.set_text(text=str(read_open_selected_user_file))
         self.username_entry.set_editable(False)
         self.username_entry.set_can_focus(False)
         self.username_entry.set_alignment(xalign = 0.5)
+        username_box.pack_start(self.username_entry, False, False, 0)
 
-        old_password_label = Gtk.Label("Current Password:")
+        # Old password container (HORIZONTAL)
+        old_password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        old_password_box.set_halign(Gtk.Align.CENTER)
+        old_password_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(old_password_box, False, False, 0)
+        old_password_label = Gtk.Label("Current Password:         ")
+        old_password_box.pack_start(old_password_label, False, False, 0)
         self.old_password_entry = Gtk.Entry()
         self.old_password_entry.set_visibility(False)  # Password is hidden by default
+        old_password_box.pack_start(self.old_password_entry, False, False, 0)
 
-        new_password_label = Gtk.Label("New Password:")
+        # New password container (HORIZONTAL)
+        new_password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        new_password_box.set_halign(Gtk.Align.CENTER)
+        new_password_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(new_password_box, False, False, 0)
+        new_password_label = Gtk.Label("New Password:              ")
+        new_password_box.pack_start(new_password_label, False, False, 0)
         self.new_password_entry = Gtk.Entry()
         self.new_password_entry.set_visibility(False)  # Password is hidden by default
+        new_password_box.pack_start(self.new_password_entry, False, False, 0)
 
+        # New confirmed password container (HORIZONTAL)
+        new_confirmed_password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        new_confirmed_password_box.set_halign(Gtk.Align.CENTER)
+        new_confirmed_password_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(new_confirmed_password_box, False, False, 0)
         new_confirm_password_label = Gtk.Label("Confirm New Password:")
+        new_confirmed_password_box.pack_start(new_confirm_password_label, False, False, 0)
         self.new_confirm_password_entry = Gtk.Entry()
         self.new_confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+        new_confirmed_password_box.pack_start(self.new_confirm_password_entry, False, False, 0)
 
-        show_password_checkbox = Gtk.CheckButton("🔎 Show password")
+        # Show password checkbox container (HORIZONTAL)
+        show_password_autologin_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        show_password_autologin_box.set_margin_top(10)
+        show_password_autologin_box.set_halign(Gtk.Align.CENTER)
+        show_password_autologin_box.set_valign(Gtk.Align.CENTER)
+        main_box.pack_start(show_password_autologin_box, False, False, 0)
+        show_password_checkbox = Gtk.CheckButton(" Show Password")
         show_password_checkbox.connect("toggled", self.toggle_password_visibility)
         show_password_checkbox.set_halign(Gtk.Align.CENTER)
         show_password_checkbox.set_valign(Gtk.Align.CENTER)
-
-        # Create a box to hold the label and switch
+        show_password_autologin_box.pack_start(show_password_checkbox, False, False, 0)
+        show_password_autologin_box.pack_start(show_password_checkbox, False, False, 0)
         box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         box_autologin.set_halign(Gtk.Align.CENTER)
         box_autologin.set_valign(Gtk.Align.CENTER)
+        label = Gtk.Label(label="|   Automatic Login:")
+        box_autologin.pack_start(label, True, True, 0)
+        show_password_autologin_box.pack_start(box_autologin, False, False, 0)
 
-        # Create a label
-        label_autologin = Gtk.Label(label="Automatic Login:")
-        box_autologin.pack_start(label_autologin, True, True, 0)
+        # Read autologin user from "/etc/sysconfig/displaymanager"
+        autologin_user = self.get_autologin_user()
 
-        # Create a switch
+        # Read current user from "/tmp/_selected_user.XXXXXXX"
+        current_user = self.get_current_user()
+
+        # Create a Gtk.Switch
         autologin_switch = Gtk.Switch()
-        autologin_switch.connect("notify::active", self.autologin_check_status)
-        box_autologin.pack_start(autologin_switch, True, True, 0)
+        autologin_switch.set_active(current_user == autologin_user)
 
+        # Connect the "state-set" signal to a callback
+        autologin_switch.connect("state-set", self.on_switch_activated)
+  
+        # Show the Gtk.Switch
+        show_password_autologin_box.pack_start(autologin_switch, True, True, 0)
+
+        # Show change user groups button container (HORIZONTAL)
         change_user_groups_button = Gtk.Button("⚙️ Configure Groups")
         change_user_groups_button.connect("clicked", self.user_groups_settings)
-
-        main_box.pack_start(username_label, False, False, 0)
-        main_box.pack_start(self.username_entry, False, False, 0)
-        main_box.pack_start(old_password_label, False, False, 0)
-        main_box.pack_start(self.old_password_entry, False, False, 0)
-        main_box.pack_start(new_password_label, False, False, 0)
-        main_box.pack_start(self.new_password_entry, False, False, 0)
-        main_box.pack_start(new_confirm_password_label, False, False, 0)
-        main_box.pack_start(self.new_confirm_password_entry, False, False, 0)
-        main_box.pack_start(show_password_checkbox, False, False, 0)
-        main_box.pack_start(box_autologin, True, True, 0)
+        change_user_groups_button.set_halign(Gtk.Align.CENTER)
+        change_user_groups_button.set_valign(Gtk.Align.CENTER)
         main_box.pack_start(change_user_groups_button, False, False, 0)
 
         # Buttons - Container
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        button_box.set_margin_top(20)
         main_box.pack_start(button_box, False, False, 0)
 
         go_back_button = Gtk.Button("◀️ Back")
@@ -782,7 +846,7 @@ class Window_Configure_User(Gtk.Window):
         reset_button.connect("clicked", self.reset_entries)
         button_box.pack_start(reset_button, True, True, 0)  
 
-        save_button = Gtk.Button("📝 Save")
+        save_button = Gtk.Button("💾 Save")
         save_button.connect("clicked", self.save_user_settings)
         button_box.pack_start(save_button, True, True, 0)
 
@@ -797,6 +861,7 @@ class Window_Configure_User(Gtk.Window):
             window2_1_1 = Window_Configure_User_Error_1()
             window2_1_1.connect("destroy", Gtk.main_quit)
             window2_1_1.show_all()
+        
         else:
             if new_password == new_confirm_password:
                 if len(new_password) < 8:
@@ -810,7 +875,6 @@ class Window_Configure_User(Gtk.Window):
                     safe_user_settings_cmd=f"""
                         #!/bin/bash
                         pass=$(perl -e 'print crypt($ARGV[0], "password")' {new_password})
-
                         pkexec sudo usermod -p $pass {username}
                     """
                     os.system(safe_user_settings_cmd)
@@ -818,7 +882,6 @@ class Window_Configure_User(Gtk.Window):
                     window2_1_3 = Window_Configure_User_Info_Completed()
                     window2_1_3.connect("destroy", Gtk.main_quit)
                     window2_1_3.show_all()
-
                     self.hide()
                     return True
             else:
@@ -827,7 +890,6 @@ class Window_Configure_User(Gtk.Window):
                 window2_1_4 = Window_Configure_User_Error_3()
                 window2_1_4.connect("destroy", Gtk.main_quit)
                 window2_1_4.show_all()
-
                 self.hide()
                 return True
 
@@ -842,13 +904,40 @@ class Window_Configure_User(Gtk.Window):
         self.new_password_entry.set_visibility(visibility)
         self.new_confirm_password_entry.set_visibility(visibility)
 
-    def autologin_check_status(self, autologin_switch, gparam):
-        username = self.username_entry.get_text()
-        if autologin_switch.get_active():
-            print("Automatic login: Yes")
+    def get_autologin_user(self):
+        config_path = "/etc/sysconfig/displaymanager"
+        autologin_user = None
+
+        try:
+            with open(config_path, 'r') as config_file:
+                for line in config_file:
+                    if line.startswith("DISPLAYMANAGER_AUTOLOGIN="):
+                        autologin_user = line.split('=')[1].strip()
+                        break
+        except FileNotFoundError:
+            print(f"Error: {config_path} not found.")
+
+        return autologin_user
+
+    def get_current_user(self):
+        user_file_path = "/tmp/_selected_user.XXXXXXX"
+        current_user = None
+
+        try:
+            with open(user_file_path, 'r') as user_file:
+                current_user = user_file.read().strip()
+        except FileNotFoundError:
+            print(f"Error: {user_file_path} not found.")
+
+        return current_user
+
+    def on_switch_activated(self, switch, gparam):
+        # Handle the switch activation manually
+        if switch.get_active():
+            print("Switch manually activated. Do something here.")
             autologin_activate_cmd=f"""
                 # Set the desired username for autologin:
-                autologin_user="{username}"
+                autologin_user=$(cat /tmp/_selected_user.XXXXXXX)
 
                 # Specify the path to the display manager configuration file:
                 display_manager_config="/etc/sysconfig/displaymanager"
@@ -857,7 +946,7 @@ class Window_Configure_User(Gtk.Window):
             """
             os.system(autologin_activate_cmd)
         else:
-            print("Automatic login: No")
+            print("Switch manually deactivated. Do something else here.")
             autologin_deactivate_cmd=f"""
                 # Set the desired username for autologin:
                 autologin_user=""
@@ -867,7 +956,7 @@ class Window_Configure_User(Gtk.Window):
                                  
                 pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
             """
-            os.system(autologin_deactivate_cmd)          
+            os.system(autologin_deactivate_cmd)    
 
     def user_groups_settings(self, widget):
         window2_1_5 = Window_Configure_User_Groups()
@@ -886,26 +975,38 @@ class Window_Configure_User(Gtk.Window):
 
 class Window_Configure_User_Groups(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Configure the Groups")
+        Gtk.Window.__init__(self, title="")
         self.set_default_size(500, 550)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         self.all_groups_list = self.load_groups("/tmp/_all_groups_list_.XXXXXXX")
         self.user_groups_list = self.load_groups("/tmp/_all_groups_of_user_list_.XXXXXXX")
         self.selected_groups = []
 
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(self.main_box)
 
-        self.label = Gtk.Label(label="In this area you can see which groups your selected user belongs to and you can also change the group membership. \n\n"
+        # Info text container (HORIZONTAL)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        self.main_box.pack_start(info_box, False, False, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            "<big><b>Configure the Groups</b></big>"
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label(label="In this area you can see which groups your selected user belongs to and you can also change the group membership. \n\n"
             "But be careful! You have to realize that you should know exactly what you are doing. Playing around and trying out user and group permissions can bring your entire system to a halt! \n\n"
             "If you want to create or delete a user, you simply have to have one more or less user. "
             "However, if you give a user more rights or bend the rights of a system account or system group, you may be putting your system's security at risk!")
-        self.label.set_line_wrap(True)
-        self.label.set_max_width_chars(50)
-        self.main_box.pack_start(self.label, False, False, 0)
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)
 
         self.liststore = Gtk.ListStore(str, bool)  # Store data for the list
 
@@ -981,11 +1082,15 @@ class Window_Configure_User_Groups(Gtk.Window):
 
             SELECTED_USER=$(cat /tmp/_selected_user.XXXXXXX)
             SELECTED_USER_GROUPS=$(echo "$line" | tr -d '[] ')
+            echo "$SELECTED_USER_GROUPS"
 
             # Remove and Add the user to the correct groups:
-            script=`usermod -G '' $SELECTED_USER ; usermod -aG '$SELECTED_USER_GROUPS' $SELECTED_USER`
-            pkexec su -c "$script"
-            rm "$script"  
+            pkexec sudo usermod -G '' $SELECTED_USER
+            pkexec sudo usermod -aG $SELECTED_USER_GROUPS $SELECTED_USER
+
+            list_user_groups=$(id -nG $SELECTED_USER)
+            echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
+
         """
         os.system(selected_user_groups_cmd)
 
@@ -1004,17 +1109,17 @@ class Window_Configure_User_Groups(Gtk.Window):
         #print("Selection saved to /tmp/selected_groups.txt")        
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 
 class Window_Configure_User_Info_Completed(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Account deleted successfully!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1022,6 +1127,7 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -1046,17 +1152,17 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 
 class Window_Configure_User_Error_1(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Error account password match!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1064,6 +1170,7 @@ class Window_Configure_User_Error_1(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -1088,17 +1195,17 @@ class Window_Configure_User_Error_1(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 
 class Window_Configure_User_Error_2(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Error short password!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1106,6 +1213,7 @@ class Window_Configure_User_Error_2(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -1130,17 +1238,17 @@ class Window_Configure_User_Error_2(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 
 class Window_Configure_User_Error_3(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Error Password doesn't match!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1148,6 +1256,7 @@ class Window_Configure_User_Error_3(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -1172,17 +1281,17 @@ class Window_Configure_User_Error_3(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
 class Window_Del_Selection_Warn(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Delete Account?")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_border_width(10)
 
         open_selected_del_user_warn_text_file = open(r"/tmp/_selected_del_user_warn_text.XXXXXXX",'r') 
         read_selected_del_user_warn_text_file = open_selected_del_user_warn_text_file.read()
@@ -1190,6 +1299,7 @@ class Window_Del_Selection_Warn(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add a label with the desired text
@@ -1236,11 +1346,10 @@ class Window_Del_Selection_Warn(Gtk.Window):
 
 class Window_Del_User_Info_Completed(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Account deleted successfully!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1248,6 +1357,7 @@ class Window_Del_User_Info_Completed(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
@@ -1278,11 +1388,10 @@ class Window_Del_User_Info_Completed(Gtk.Window):
 
 class Window_Del_Selection_Info(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Users Settings Manager - Error while deleting the account!")
+        Gtk.Window.__init__(self, title="")
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-        self.set_border_width(10)
 
         open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
         read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
@@ -1290,6 +1399,7 @@ class Window_Del_Selection_Info(Gtk.Window):
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
         self.add(vbox)
 
         # Add labels with the desired text
