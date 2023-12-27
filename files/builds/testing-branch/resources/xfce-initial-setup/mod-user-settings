@@ -127,7 +127,7 @@ def Get_language_from_i18n_file():
     return "en_US"
 
 def Load_content_from_file(language):
-    file_path = f"/usr/lib/locale/{language}/xfce-settings-user-manager.locale"
+    file_path = f"/usr/lib/locale/{language}/xfce-settings/user-manager.locale"
 
     if os.path.exists(file_path):
         with open(file_path, 'r') as content_file:
