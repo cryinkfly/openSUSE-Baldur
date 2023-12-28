@@ -59,11 +59,11 @@ class MainWindow(Gtk.Window):
         main_box.pack_start(info_box, False, False, 0)
         label_title = Gtk.Label()
         label_title.set_markup(
-            "<big><b>User Manager Settings</b></big>"
+            "<big><b>Gebruiker Bestuurder instellings</b></big>"
         )
         label_title.set_justify(Gtk.Justification.CENTER)
         info_box.pack_start(label_title, True, True, 0)
-        label_info = Gtk.Label(label="In this area you can change the user account settings and add/delete users associated with their account. Simply select the user you want to modify from the list.")
+        label_info = Gtk.Label(label="In hierdie area kan jy die gebruikerrekeninginstellings verander en gebruikers wat met hul rekening geassosieer word byvoeg/vee. Kies eenvoudig die gebruiker wat jy wil wysig uit die lys.")
         label_info.set_line_wrap(True)
         label_info.set_max_width_chars(55)
         label_info.set_justify(Gtk.Justification.CENTER)
@@ -80,7 +80,6 @@ class MainWindow(Gtk.Window):
                     echo "Show only human users"
                 else
                     username=$(whoami)
-                    echo "FALSE" > /tmp/_all_users_list_new.XXXXXXX
                     echo "$username" >> /tmp/_all_users_list_new.XXXXXXX
                 fi
 
