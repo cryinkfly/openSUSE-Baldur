@@ -169,7 +169,6 @@ class MainWindow(Gtk.Window):
             window1_1 = Window_Create_User()
             window1_1.connect("destroy", Gtk.main_quit)
             window1_1.show_all()
-
             self.hide()
             return True
 
@@ -186,8 +185,7 @@ class MainWindow(Gtk.Window):
 
             window2_1 = Window_Configure_User()
             window2_1.connect("destroy", Gtk.main_quit)
-            window2_1.show_all()
-            
+            window2_1.show_all()  
             self.hide()
             return True
 
@@ -195,8 +193,7 @@ class MainWindow(Gtk.Window):
             print(f"Click Configure button was triggered but no option was selected!")
             window2_2 = MainWindow_No_Configure_Selected_User_Info()
             window2_2.connect("destroy", Gtk.main_quit)
-            window2_2.show_all()
-            
+            window2_2.show_all()           
             self.hide()
             return True        
 
@@ -587,13 +584,8 @@ class Window_Create_User(Gtk.Window):
 class Window_Create_User_Info_Completed(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_create_user_info_text_file = open(r"/tmp/_create_user_text.XXXXXXX",'r') 
-        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
-        #open_create_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -629,13 +621,8 @@ class Window_Create_User_Info_Completed(Gtk.Window):
 class Window_Create_User_Error_1(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r') 
-        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
-        #open_create_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -673,14 +660,9 @@ class Window_Create_User_Error_1(Gtk.Window):
 class Window_Create_User_Error_2(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
-
-        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r') 
-        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
-        #open_create_user_info_text_file.close()  
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -910,7 +892,6 @@ class Window_Configure_User(Gtk.Window):
                     return True
             else:
                 print("Passwords do not match. Please try again.")
-                # Muss noch erstellt werden ...
                 window2_1_4 = Window_Configure_User_Error_3()
                 window2_1_4.connect("destroy", Gtk.main_quit)
                 window2_1_4.show_all()
@@ -1151,14 +1132,9 @@ class Window_Configure_User_Groups(Gtk.Window):
 class Window_Configure_User_Info_Completed(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        #open_selected_del_user_info_text_file.close() 
-
+        
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.set_border_width(10)
@@ -1194,13 +1170,8 @@ class Window_Configure_User_Info_Completed(Gtk.Window):
 class Window_Configure_User_Error_1(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1237,13 +1208,8 @@ class Window_Configure_User_Error_1(Gtk.Window):
 class Window_Configure_User_Error_2(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1280,13 +1246,8 @@ class Window_Configure_User_Error_2(Gtk.Window):
 class Window_Configure_User_Error_3(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        #read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        #open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1324,7 +1285,6 @@ class Window_Configure_User_Error_3(Gtk.Window):
 class Window_Del_Selection_Warn(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(500, 350)
         self.set_position(Gtk.WindowPosition.CENTER)
 
         open_selected_del_user_warn_text_file = open(r"/tmp/_selected_del_user_warn_text.XXXXXXX",'r') 
@@ -1345,12 +1305,12 @@ class Window_Del_Selection_Warn(Gtk.Window):
         vbox.pack_start(hbox, False, False, 0)
 
         # Add a "Yes" button
-        button_yes = Gtk.Button.new_with_label("Yes")
+        button_yes = Gtk.Button.new_with_label("Ja")
         button_yes.connect("clicked", self.on_yes_clicked)
         hbox.pack_start(button_yes, True, True, 0)
 
         # Add a "No" button
-        button_no = Gtk.Button.new_with_label("No")
+        button_no = Gtk.Button.new_with_label("Nein")
         button_no.connect("clicked", self.on_back_clicked)
         hbox.pack_start(button_no, True, True, 0)
 
@@ -1381,13 +1341,8 @@ class Window_Del_Selection_Warn(Gtk.Window):
 class Window_Del_User_Info_Completed(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        open_selected_del_user_info_text_file = open(r"/tmp/_selected_del_user_info_text.XXXXXXX",'r') 
-        read_selected_del_user_info_text_file = open_selected_del_user_info_text_file.read()
-        open_selected_del_user_info_text_file.close() 
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1402,7 +1357,7 @@ class Window_Del_User_Info_Completed(Gtk.Window):
         label.override_font(font_desc)
         vbox.pack_start(label, True, True, 0)
 
-        label_1 = Gtk.Label(label="The user account has been successfully deleted with all associated data!")
+        label_1 = Gtk.Label(label="Das Benutzerkonto wurde mit allen zugehörigen Daten erfolgreich gelöscht!")
         label_1.set_justify(Gtk.Justification.CENTER)
         vbox.pack_start(label_1, True, True, 0)
 
@@ -1423,7 +1378,6 @@ class Window_Del_User_Info_Completed(Gtk.Window):
 class Window_Del_Selection_Info(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="")
-        #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
