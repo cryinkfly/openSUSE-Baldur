@@ -519,6 +519,28 @@ class Window_Create_User(Gtk.Window):
                         # Add user and modify group membership in the temporary script
                         echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_2"
                         echo "usermod -a -G users {username}" >> "$script_2"
+                        echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_2"
+
+                        # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
+                        echo "curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
+                        echo "curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
+                        echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_2"
+                        echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+                        echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+
+                        # FIRSTBOOT SETUP OF FLATPAK:
+                        echo "mkdir -p /home/{username}/.config/autostart" >> "$script_2"
+                        echo "cat > /home/{username}/.config/autostart/mod-firstboot.desktop << EOF" >> "$script_2"
+                        echo "[Desktop Entry]" >> "$script_2"
+                        echo "Name=MicroOS Desktop FirstBoot Setup" >> "$script_2"
+                        echo "Comment=Sets up MicroOS Desktop Correctly On FirstBoot" >> "$script_2"
+                        echo "Exec=/usr/bin/mod-firstboot" >> "$script_2"
+                        echo "Icon=org.xfce.terminal" >> "$script_2"
+                        echo "Type=Application" >> "$script_2"
+                        echo "Categories=Utility;System;" >> "$script_2"
+                        echo "Name[en_US]=startup" >> "$script_2"
+                        echo "EOF" >> "$script_2"
+                        echo "chown {username}:{username} /home/{username}/.config/autostart/" >> "$script_2"
 
                         # Execute the temporary script with elevated privileges using pkexec
                         pkexec su -c "bash $script_2"
@@ -1085,13 +1107,23 @@ class Window_Configure_User_Groups(Gtk.Window):
             SELECTED_USER_GROUPS=$(echo "$line" | tr -d '[] ')
             echo "$SELECTED_USER_GROUPS"
 
-            # Remove and Add the user to the correct groups:
-            pkexec sudo usermod -G '' $SELECTED_USER
-            pkexec sudo usermod -aG $SELECTED_USER_GROUPS $SELECTED_USER
+            # Create a temporary script file
+            script_1=$(mktemp)
+
+           # Add user and modify group membership in the temporary script
+           echo "sudo usermod -G '' $SELECTED_USER" > "$script_1"
+           echo "sudo usermod -aG $SELECTED_USER_GROUPS $SELECTED_USER" >> "$script_1"
+
+           echo "$script_1"
+
+           # Execute the temporary script with elevated privileges using pkexec
+           pkexec su -c "bash $script_1"
+
+           # Remove the temporary script
+           rm "$script_1"
 
             list_user_groups=$(id -nG $SELECTED_USER)
             echo "$list_user_groups" | tr ' ' '\n' > /tmp/_all_groups_of_user_list_.XXXXXXX
-
         """
         os.system(selected_user_groups_cmd)
 
