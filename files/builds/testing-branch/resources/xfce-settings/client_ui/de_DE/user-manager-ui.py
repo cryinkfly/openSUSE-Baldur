@@ -80,7 +80,6 @@ class MainWindow(Gtk.Window):
                     echo "Show only human users"
                 else
                     username=$(whoami)
-                    echo "FALSE" > /tmp/_all_users_list_new.XXXXXXX
                     echo "$username" >> /tmp/_all_users_list_new.XXXXXXX
                 fi
 
