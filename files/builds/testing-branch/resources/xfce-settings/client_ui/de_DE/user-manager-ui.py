@@ -522,8 +522,8 @@ class Window_Create_User(Gtk.Window):
                         echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_2"
 
                         # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
-                        echo "curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
-                        echo "curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
                         echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_2"
                         echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_2"
                         echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_2"
@@ -555,6 +555,8 @@ class Window_Create_User(Gtk.Window):
                 window1_3 = Window_Create_User_Info_Completed()
                 window1_3.connect("destroy", Gtk.main_quit)
                 window1_3.show_all()
+                self.hide()
+                return True
         else:
             print("Passwords do not match. Please try again.")
             window1_4 = Window_Create_User_Error_2()
