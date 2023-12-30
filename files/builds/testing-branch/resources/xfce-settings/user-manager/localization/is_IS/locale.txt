@@ -1,0 +1,52 @@
+<big><b>Notendastillingar</b></big>
+Þessi hluti gerir þér kleift að breyta stillingum notendareiknings og bæta við/eyða notendum sem tengjast reikningnum þeirra. Veldu einfaldlega notandann sem þú vilt breyta af listanum.
+Veldu
+notandi
+stöðu
+hóp
+◀️ Til baka
+🎭 Búðu til
+⚙️ Stilla
+⚙️ Stilla hópa
+🗑 Eyða
+🎲 Lykilorð
+🔄 Núllstilla
+💾 Sparaðu
+Þú hefur ekki valið notanda til að eyða!
+Vinsamlegast veldu notanda áður en þú heldur áfram.
+Þú hefur ekki valið notanda til að stilla!
+Vinsamlegast veldu notanda áður en þú heldur áfram.
+<big><b>Búa til reikning</b></big>
+Vinsamlegast fylltu út eftirfarandi upplýsingar til að búa til nýjan reikning.
+Fullt nafn:
+Notandanafn:
+Lykilorð:
+Staðfesting:
+Sýna lykilorð
+|   Sjálfvirk innskráning:
+Notendareikningurinn var búinn til og þú getur notað þennan nýja notanda eftir að hafa skráð þig inn aftur!
+Nýja lykilorðið verður að vera að minnsta kosti 8 stafir að lengd!
+Lykilorð notendareikninganna passa ekki saman. Vinsamlegast reyndu aftur!
+<big><b>Stilltu reikning</b></big>
+Á þessu svæði geturðu breytt stillingum notendareiknings.
+Valið notandanafn:
+Núverandi lykilorð:
+Nýtt lykilorð:
+Staðfestu nýtt lykilorð:
+<big><b>Stilla hópa</b></big>
+Á þessu svæði geturðu séð hvaða hópum valinn notandi tilheyrir og þú getur líka breytt hópaðildinni.
+En farðu varlega! Þú verður að gera þér grein fyrir því að þú ættir að vita nákvæmlega hvað þú ert að gera. Að leika sér og prófa notenda- og hópheimildir getur stöðvað allt kerfið þitt!
+Ef þú vilt búa til eða eyða notanda þarftu bara að hafa einn meira eða færri notanda.
+Hins vegar, ef þú veitir notanda meiri réttindi eða takmarkar réttindi kerfisreiknings eða hóps gætirðu verið að setja öryggi kerfisins í hættu!
+Stillingar notandareiknings hafa verið vistaðar með góðum árangri!
+Gamla lykilorð reikningsins má ekki passa við nýja lykilorðið!
+Vinsamlegast veldu annað lykilorð.
+Nýja lykilorðið verður að vera að minnsta kosti 8 stafir að lengd!
+Nýja lykilorðið og endurtekið nýtt lykilorð passa ekki saman!
+Ertu viss um að þú viljir fjarlægja notandann úr kerfinu þínu?
+Ef þú svarar >>JÁ<< verður valinn notandi og öll tengd gögn fjarlægð úr þessu kerfi!
+Já
+NEI
+Ekki er hægt að eyða völdum notanda vegna þess að þú ert skráður inn á þetta kerfi með honum!
+Vinsamlegast veldu annan notanda ef þú vilt halda áfram að eyða notendum sem ekki er lengur þörf á á þessu kerfi.
+Notendareikningnum og öllum tengdum gögnum hefur verið eytt!
