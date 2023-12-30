@@ -1,0 +1,52 @@
+<big><b>Impostazioni utente</b></big>
+Questa sezione ti consente di modificare le impostazioni dell'account utente e aggiungere/eliminare utenti associati al loro account. Seleziona semplicemente l'utente che desideri modificare dall'elenco.
+Scegliere
+utente
+stato
+gruppo
+◀️ Indietro
+🎭 Crea
+⚙️ Configura
+⚙️ Configura gruppi
+🗑 Elimina
+🎲 Parola d'ordine
+🔄Reimposta
+💾 Risparmia
+Non hai selezionato un utente da eliminare!
+Seleziona un utente prima di continuare.
+Non hai selezionato un utente da configurare!
+Seleziona un utente prima di continuare.
+<big><b>Crea un account</b></big>
+Compila le seguenti informazioni per creare un nuovo account.
+Nome e cognome:
+Nome utente:
+Parola d'ordine:
+Conferma:
+Mostra password
+|   Accesso automatico:
+L'account utente è stato creato correttamente e potrai utilizzare questo nuovo utente dopo aver effettuato nuovamente l'accesso!
+La nuova password deve essere lunga almeno 8 caratteri!
+Le password degli account utente non corrispondono. Per favore riprova!
+<big><b>Configura un account</b></big>
+In quest'area è possibile modificare le impostazioni dell'account utente.
+Nome utente selezionato:
+Password attuale:
+Nuova password:
+Conferma la nuova password:
+<big><b>Configura gruppi</b></big>
+In quest'area puoi vedere a quali gruppi appartiene l'utente selezionato e puoi anche modificare l'appartenenza al gruppo.
+Ma fa attenzione! Devi renderti conto che dovresti sapere esattamente cosa stai facendo. Giocare e provare i permessi di utenti e gruppi può bloccare l'intero sistema!
+Se vuoi creare o eliminare un utente, devi solo avere un utente in più o in meno.
+Tuttavia, se concedi più diritti a un utente o limiti i diritti di un account o gruppo di sistema, potresti mettere a rischio la sicurezza del tuo sistema!
+Le impostazioni dell'account utente sono state salvate con successo!
+La vecchia password dell'account non deve corrispondere alla nuova password!
+Scegli un'altra password.
+La nuova password deve essere lunga almeno 8 caratteri!
+La nuova password e la nuova password inserita ripetutamente non corrispondono!
+Sei sicuro di voler rimuovere l'utente dal tuo sistema?
+Se rispondi >>SI<<, l'utente selezionato e tutti i dati associati verranno rimossi da questo sistema!
+SÌ
+NO
+L'utente selezionato non può essere eliminato perché hai effettuato l'accesso a questo sistema con esso!
+Seleziona un utente diverso se desideri continuare a eliminare gli utenti che non sono più necessari su questo sistema.
+L'account utente e tutti i dati associati sono stati eliminati con successo!
