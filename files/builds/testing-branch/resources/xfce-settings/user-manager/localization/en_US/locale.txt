@@ -22,7 +22,7 @@ Full Name:
 Username:
 Password:
 Confirmation:
- Show Password
+Show Password
 |   Automatic Login:
 The user account has been successfully created and you can use this new user after re-login!
 The new password must be at least 8 characters long!
