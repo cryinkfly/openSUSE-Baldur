@@ -1,0 +1,52 @@
+<big><b>Ustawienia użytkownika</b></big>
+W tej sekcji możesz zmienić ustawienia konta użytkownika oraz dodać/usunąć użytkowników powiązanych z ich kontem. Po prostu wybierz z listy użytkownika, którego chcesz zmienić.
+Wybierać
+użytkownik
+status
+Grupa
+◀️ Powrót
+🎭 Twórz
+⚙️ Skonfiguruj
+⚙️ Skonfiguruj grupy
+🗑 Usuń
+🎲 Hasło
+🔄 Zresetuj
+💾 Zapisz
+Nie wybrałeś użytkownika do usunięcia!
+Zanim przejdziesz dalej, wybierz użytkownika.
+Nie wybrałeś użytkownika do konfiguracji!
+Zanim przejdziesz dalej, wybierz użytkownika.
+<big><b>Utwórz konto</b></big>
+Aby utworzyć nowe konto, wypełnij poniższe informacje.
+Pełne imię i nazwisko:
+Nazwa użytkownika:
+Hasło:
+Potwierdzenie:
+Pokaż hasło
+|   Automatyczne logowanie:
+Konto użytkownika zostało utworzone pomyślnie i możesz korzystać z tego nowego użytkownika po ponownym zalogowaniu!
+Nowe hasło musi mieć co najmniej 8 znaków!
+Hasła do kont użytkowników nie są zgodne. Proszę spróbuj ponownie!
+<big><b>Skonfiguruj konto</b></big>
+W tym obszarze możesz zmienić ustawienia konta użytkownika.
+Wybrana nazwa użytkownika:
+Aktualne hasło:
+Nowe hasło:
+Potwierdź nowe hasło:
+<big><b>Skonfiguruj grupy</b></big>
+W tym obszarze możesz zobaczyć do jakich grup należy wybrany użytkownik, a także możesz zmienić członkostwo w grupie.
+Ale bądź ostrożny! Musisz zdać sobie sprawę, że powinieneś dokładnie wiedzieć, co robisz. Zabawa i wypróbowywanie uprawnień użytkowników i grup może spowodować zatrzymanie całego systemu!
+Jeśli chcesz utworzyć lub usunąć użytkownika, wystarczy, że masz jednego użytkownika więcej lub mniej.
+Jeśli jednak przyznasz użytkownikowi więcej uprawnień lub ograniczysz uprawnienia konta systemowego lub grupy, możesz narazić bezpieczeństwo swojego systemu na ryzyko!
+Ustawienia konta użytkownika zostały pomyślnie zapisane!
+Stare hasło do konta nie może być zgodne z nowym hasłem!
+Proszę wybrać inne hasło.
+Nowe hasło musi mieć co najmniej 8 znaków!
+Nowe hasło i wielokrotnie wpisywane nowe hasło nie pasują do siebie!
+Czy na pewno chcesz usunąć użytkownika ze swojego systemu?
+Jeśli odpowiesz >>TAK<<, wybrany użytkownik i wszystkie powiązane z nim dane zostaną usunięte z tego systemu!
+Tak
+NIE
+Wybranego użytkownika nie można usunąć, ponieważ jesteś nim zalogowany do tego systemu!
+Jeśli chcesz kontynuować usuwanie użytkowników, którzy nie są już potrzebni w tym systemie, wybierz innego użytkownika.
+Konto użytkownika i wszystkie powiązane dane zostały pomyślnie usunięte!
