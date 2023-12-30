@@ -1,0 +1,52 @@
+<big><b>Tokotaha Ngāue ki he Polo</b></big>
+ʻI he konga ko ʻeni, te ke lava ʻo liliu ʻa e settings ʻo e ʻakauni ngaue pea tanaki/tamateʻi ʻa e kau fakaʻaongaʻi ʻoku fekauʻaki mo ʻenau ʻakauni. Fili pe ʻa e tokotaha ngaue ʻoku ke fie liliu mei he lisi.
+Fili
+Tokotaha Ngāue ki he Polo
+Tuʻungá
+Kulupu
+◀️ Toe foki
+🎭 Faʻu
+⚙️ Configure
+⚙️ Ngaahi kulupu Configuring
+🗑 Tāmateʻi
+🎲 Lea Fufuú
+🔄 Fakafoʻou
+💾 Seivi
+Kuo teʻeki ai ke ke fili ha tokotaha ngaue ke tamateʻi!
+Kataki ʻo fili ha tokotaha ngaue ki muʻa pea toki hoko atu.
+Kuo teʻeki ai ke ke fili ha tokotaha ngaue ke configure!
+Kataki ʻo fili ha tokotaha ngaue ki muʻa pea toki hoko atu.
+<big><b>Faʻu ha ʻakauni</b></big>
+Kātaki ʻo fakafonu e ngaahi fakaikiiki ko ʻení ke faʻu ʻaki ha ʻakauni foʻou.
+Hingoa kakató:
+Hingoa Ngāue ki he Polokalamá
+Lea Fufuú:
+Hilifakinima ke Maʻu ʻa e Foaki
+Fakaʻasi mai ʻa e Lea Fufuú
+|   Login fakahangatonu:
+Kuo lava lelei hono faʻu ʻo e ʻakauni ngaue pea ʻe lava ke ke fakaʻaongaʻi ʻa e tokotaha foʻou ko ʻeni hili haʻo toe loka ʻi he polokalama!
+Kuo pau ke ʻoua naʻa toe siʻi hifo he mataʻitohi ʻe 8 ʻa e lea fufū foʻoú!
+ʻOku ʻikai tatau ʻa e lea fufu ʻo e ngaahi ʻakauni ngaue. Kātaki ʻo toe feinga pē!
+<big><b>Configure ha ʻakauni</b></big>
+ʻI he konga ko ʻeni, te ke lava ʻo liliu ʻa e settings ʻo e ʻakauni ngaue.
+Hingoa ngāue kuo fili:
+Lea Fufū Lolotongá
+Lea fufū foʻoú:
+Fakapapauʻi ʻa e lea fufū foʻoú:
+Ngaahi <big><b>kulupu Configuring</b></big>
+ʻI he konga ko ʻeni, te ke lava ʻo sio pe ko e fe ʻa e ngaahi kulupu ʻoku kau ki ai hoʻo tokotaha ngaue kuo fili, pea te ke lava foki ʻo liliu ʻa e memipasipi ʻo e kulupu.
+Kae tokanga! ʻOku fie maʻu ke ke ʻiloʻi ʻoku totonu ke ke ʻiloʻi lelei ʻa e meʻa ʻokú ke faí. ʻE lava ʻe he vaʻinga holo mo hono ʻahiʻahiʻi ʻo e tokotaha ngaue mo e ngaahi fakangofua fakakulupu ʻo ʻomi hoʻo polokalama kotoa ke taʻofi!
+Kapau ʻoku ke fie faʻu pe tamateʻi ha tokotaha ngaue ki he polokalama, ko e meʻa pe ʻoku fie maʻu ke ke fai ko ha toe tokotaha ngaue pe siʻi ange.
+Neongo ia, kapau te ke foaki ki ha tokotaha ngaue ha ngaahi totonu lahi ange pe fakangatangata ʻa e ngaahi totonu ʻa ha ʻakauni System pe kulupu ʻo e ngaahi System, mahalo te ke fokotuʻu ʻa e maluʻi hoʻo polokalama ʻi ha tuʻunga fakatuʻutamaki!
+Kuo lava lelei hono seivi ʻo e fokotuʻutuʻu ʻo e ʻakauni ngaue!
+Kuo pau ke ʻoua naʻa tatau e lea fufū motuʻa ʻo e ʻakauní mo e lea fufū foʻoú!
+Kātaki ʻo fili ha lea fufū kehe.
+Kuo pau ke ʻoua naʻa toe siʻi hifo he mataʻitohi ʻe 8 ʻa e lea fufū foʻoú!
+Oku ikai faʻa tatau a e lea fufū foʻoú mo e lea fufū foʻou naʻá ke fakahuú!
+ʻOkú ke fakapapauʻi ʻokú ke fie toʻo ʻa e tokotaha ngāue ki he polokalamá mei hoʻo polokalamá?
+Kapau te ke tali >>YES<< ʻe toʻo ʻa e tokotaha ngaue kuo fili mo e ngaahi fakamatala kotoa pe ʻoku fekauʻaki mo ia mei he polokalama ko ʻeni!
+ʻIo
+ʻIKAI
+E ikai lava o tāmateʻi a e tokotaha ngāue ki he polokalama ko ení koeʻuhí he okú ke hū ki he polokalamá ni mo ia!
+Kataki ʻo fili ha tokotaha ngaue kehe kapau ʻoku ke fie hoko atu ʻi hono tamateʻi ʻo e kau fakaʻaongaʻi ʻoku ʻikai toe fie maʻu ʻi he polokalama ko ʻeni.
+Kuo lava lelei hono tamateʻi ʻo e ʻakauni ngaue ʻaki e ngaahi fakamatala kotoa ʻoku fekauʻaki mo ia!
