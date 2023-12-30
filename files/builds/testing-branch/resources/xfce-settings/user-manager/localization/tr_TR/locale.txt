@@ -1,0 +1,52 @@
+<big><b>Kullanıcı Ayarları</b></big>
+Bu bölüm, kullanıcı hesabı ayarlarını değiştirmenize ve hesaplarıyla ilişkili kullanıcıları eklemenize/silmenize olanak tanır. Değiştirmek istediğiniz kullanıcıyı listeden seçmeniz yeterlidir.
+Seçmek
+kullanıcı
+durum
+grup
+◀️ Geri
+🎭 Oluştur
+⚙️ Yapılandır
+⚙️ Grupları yapılandırın
+🗑 Sil
+🎲 Şifre
+🔄 Sıfırla
+💾 Kaydet
+Silinecek kullanıcıyı seçmediniz!
+Devam etmeden önce lütfen bir kullanıcı seçin.
+Yapılandırmak için bir kullanıcı seçmediniz!
+Devam etmeden önce lütfen bir kullanıcı seçin.
+<big><b>Hesap oluştur</b></big>
+Yeni bir hesap oluşturmak için lütfen aşağıdaki bilgileri doldurun.
+Ad Soyad:
+Kullanıcı adı:
+Şifre:
+Onayla:
+Şifreyi göster
+|   Otomatik giriş:
+Kullanıcı hesabı başarıyla oluşturuldu ve bu yeni kullanıcıyı tekrar giriş yaptıktan sonra kullanabilirsiniz!
+Yeni şifre en az 8 karakter uzunluğunda olmalıdır!
+Kullanıcı hesaplarının şifreleri eşleşmiyor. Lütfen tekrar deneyin!
+<big><b>Hesap yapılandırma</b></big>
+Bu alanda kullanıcı hesabı ayarlarını değiştirebilirsiniz.
+Seçilen kullanıcı adı:
+Mevcut Şifre:
+Yeni Şifre:
+Yeni şifreyi onayla:
+<big><b>Grupları yapılandırma</b></big>
+Bu alanda seçtiğiniz kullanıcının hangi gruplara ait olduğunu görebilir ve grup üyeliğini de değiştirebilirsiniz.
+Ama dikkat et! Ne yaptığınızı tam olarak bilmeniz gerektiğini anlamalısınız. Kullanıcı ve grup izinlerini denemek ve denemek tüm sisteminizin durmasına neden olabilir!
+Bir kullanıcı oluşturmak veya silmek istiyorsanız, bir fazla veya daha az kullanıcıya sahip olmanız yeterlidir.
+Ancak bir kullanıcıya daha fazla hak verirseniz veya bir sistem hesabının veya grubunun haklarını sınırlandırırsanız sisteminizin güvenliğini riske atıyor olabilirsiniz!
+Kullanıcı hesabı ayarları başarıyla kaydedildi!
+Hesabın eski şifresi yeni şifreyle eşleşmemelidir!
+Lütfen başka bir şifre seçin.
+Yeni şifre en az 8 karakter uzunluğunda olmalıdır!
+Yeni şifre ile tekrar tekrar girilen yeni şifre eşleşmiyor!
+Kullanıcıyı sisteminizden kaldırmak istediğinizden emin misiniz?
+>>EVET<< cevabını verirseniz, seçilen kullanıcı ve ilgili tüm veriler bu sistemden kaldırılacaktır!
+Evet
+HAYIR
+Seçilen kullanıcı bu sisteme onunla giriş yaptığınız için silinemez!
+Bu sistemde artık ihtiyaç duyulmayan kullanıcıları silmeye devam etmek istiyorsanız lütfen farklı bir kullanıcı seçin.
+Kullanıcı hesabı ve ilgili tüm veriler başarıyla silindi!
