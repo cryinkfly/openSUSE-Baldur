@@ -1,0 +1,52 @@
+<big><b>Naudotojo nustatymai</b></big>
+Šioje skiltyje galite keisti vartotojo abonemento nustatymus ir pridėti / ištrinti su jų paskyra susietus vartotojus. Tiesiog iš sąrašo pasirinkite vartotoją, kurį norite pakeisti.
+Pasirinkite
+Vartotojas
+statusą
+grupė
+◀️ Atgal
+🎭 Sukurti
+⚙️ Konfigūruoti
+⚙️ Konfigūruoti grupes
+🗑 Ištrinti
+🎲 Slaptažodis
+🔄 Atstatyti
+💾 Išsaugokite
+Nepasirinkote vartotojo, kurį norite ištrinti!
+Prieš tęsdami pasirinkite vartotoją.
+Jūs nepasirinkote vartotojo, kurį norite konfigūruoti!
+Prieš tęsdami pasirinkite vartotoją.
+<big><b>Sukurti paskyrą</b></big>
+Norėdami sukurti naują paskyrą, užpildykite šią informaciją.
+Pilnas vardas:
+Vartotojo vardas:
+Slaptažodis:
+Patvirtinimas:
+Rodyti slaptažodį
+|   Automatinis prisijungimas:
+Vartotojo paskyra sėkmingai sukurta ir vėl prisijungę galėsite naudotis šiuo nauju vartotoju!
+Naujasis slaptažodis turi būti bent 8 simbolių ilgio!
+Vartotojų paskyrų slaptažodžiai nesutampa. Prašau, pabandykite dar kartą!
+<big><b>Konfigūruokite paskyrą</b></big>
+Šioje srityje galite keisti vartotojo abonemento nustatymus.
+Pasirinktas vartotojo vardas:
+Dabartinis slaptažodis:
+Naujas Slaptažodis:
+Patvirtinti naują slaptažodį:
+<big><b>Konfigūruoti grupes</b></big>
+Šioje srityje galite matyti, kurioms grupėms priklauso jūsų pasirinktas vartotojas, taip pat galite pakeisti grupės narystę.
+Bet buk atsargus! Turite suprasti, kad turėtumėte tiksliai žinoti, ką darote. Žaisdami ir išbandydami vartotojo bei grupės leidimus visa jūsų sistema gali sustoti!
+Jei norite sukurti arba ištrinti vartotoją, tereikia turėti vieną daugiau ar mažiau vartotojo.
+Tačiau jei vartotojui suteiksite daugiau teisių arba apribosite sistemos abonemento ar grupės teises, galite kelti pavojų savo sistemos saugumui!
+Vartotojo paskyros nustatymai sėkmingai išsaugoti!
+Senasis paskyros slaptažodis neturi sutapti su naujuoju!
+Pasirinkite kitą slaptažodį.
+Naujasis slaptažodis turi būti bent 8 simbolių ilgio!
+Naujas slaptažodis ir pakartotinai įvestas naujas slaptažodis nesutampa!
+Ar tikrai norite pašalinti vartotoją iš savo sistemos?
+Jei atsakysite >>TAIP<<, pasirinktas vartotojas ir visi susiję duomenys bus pašalinti iš šios sistemos!
+Taip
+NE
+Pasirinkto vartotojo negalima ištrinti, nes su juo esate prisijungę prie šios sistemos!
+Pasirinkite kitą naudotoją, jei norite ir toliau trinti vartotojus, kurių šioje sistemoje nebereikia.
+Vartotojo paskyra ir visi susiję duomenys buvo sėkmingai ištrinti!
