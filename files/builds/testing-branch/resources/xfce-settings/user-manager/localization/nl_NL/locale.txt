@@ -4,14 +4,14 @@ Kiezen
 gebruiker
 toestand
 groep
-◀️Terug
+◀️ Terug
 🎭 Creëer
-⚙️Configureren
+⚙️ Configureren
 ⚙️ Groepen configureren
 🗑 Verwijderen
 🎲 Wachtwoord
 🔄 Resetten
-💾Opslaan
+💾 Opslaan
 U heeft geen gebruiker geselecteerd om te verwijderen!
 Selecteer een gebruiker voordat u doorgaat.
 U heeft geen gebruiker geselecteerd om te configureren!
