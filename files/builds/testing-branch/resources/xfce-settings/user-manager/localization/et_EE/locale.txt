@@ -1,0 +1,52 @@
+<big><b>Kasutaja seaded</b></big>
+See jaotis võimaldab teil muuta kasutajakonto sätteid ja lisada/kustutada nende kontoga seotud kasutajaid. Valige lihtsalt loendist kasutaja, keda soovite muuta.
+Vali
+kasutaja
+olek
+Grupp
+◀️ Tagasi
+🎭 Loo
+⚙️ Seadistage
+⚙️ Seadistage rühmi
+🗑 Kustuta
+🎲 Parool
+🔄 Lähtesta
+💾 Salvestage
+Te pole valinud kustutamiseks kasutajat!
+Enne jätkamist valige kasutaja.
+Te pole valinud kasutajat seadistamiseks!
+Enne jätkamist valige kasutaja.
+<big><b>Loo konto</b></big>
+Uue konto loomiseks täitke järgmised andmed.
+Täisnimi:
+Kasutajanimi:
+Parool:
+Kinnitamine:
+Näita salasõna
+|   Automaatne sisselogimine:
+Kasutajakonto loomine õnnestus ja seda uut kasutajat saad kasutada peale uuesti sisselogimist!
+Uus parool peab olema vähemalt 8 tähemärgi pikkune!
+Kasutajakontode paroolid ei ühti. Palun proovi uuesti!
+<big><b>Konto seadistamine</b></big>
+Sellel alal saate muuta kasutajakonto sätteid.
+Valitud kasutajanimi:
+Praegune salasõna:
+Uus salasõna:
+Kinnita Uus salasõna:
+<big><b>Rühmade seadistamine</b></big>
+Sellel alal näete, millistesse gruppidesse teie valitud kasutaja kuulub ning saate muuta ka grupi liikmesust.
+Aga ole ettevaatlik! Peate mõistma, et peaksite täpselt teadma, mida teete. Mängimine ja kasutaja- ja grupiõiguste proovimine võib kogu teie süsteemi peatada!
+Kui soovite kasutajat luua või kustutada, peab teil olema üks rohkem või vähem kasutajat.
+Kui aga annate kasutajale rohkem õigusi või piirate süsteemikonto või grupi õigusi, võite seada ohtu oma süsteemi turvalisuse!
+Kasutajakonto seaded on edukalt salvestatud!
+Konto vana parool ei tohi kattuda uue parooliga!
+Valige mõni muu parool.
+Uus parool peab olema vähemalt 8 tähemärgi pikkune!
+Uus parool ja korduvalt sisestatud uus salasõna ei ühti!
+Kas olete kindel, et soovite kasutaja oma süsteemist eemaldada?
+Kui vastate >>JAH<<, eemaldatakse valitud kasutaja ja kõik seotud andmed sellest süsteemist!
+Jah
+EI
+Valitud kasutajat ei saa kustutada, kuna olete sellega sellesse süsteemi sisse logitud!
+Valige mõni teine ​​kasutaja, kui soovite jätkata kasutajate kustutamist, keda selles süsteemis enam vaja pole.
+Kasutajakonto ja kõik sellega seotud andmed on edukalt kustutatud!
