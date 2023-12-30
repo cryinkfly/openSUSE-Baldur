@@ -1,0 +1,52 @@
+<big><b>Configuración de usuario</b></big>
+Esta sección le permite cambiar la configuración de la cuenta de usuario y agregar/eliminar usuarios asociados con su cuenta. Simplemente seleccione el usuario que desea cambiar de la lista.
+Elegir
+usuario
+estado
+grupo
+◀️ Volver
+🎭 Crear
+⚙️ Configurar
+⚙️ Configurar grupos
+🗑 Eliminar
+🎲 Contraseña
+🔄 Restablecer
+💾 Guardar
+¡No has seleccionado un usuario para eliminar!
+Por favor seleccione un usuario antes de continuar.
+¡No has seleccionado un usuario para configurar!
+Por favor seleccione un usuario antes de continuar.
+<big><b>Crear cuenta</b></big>
+Por favor complete la siguiente información para crear una nueva cuenta.
+Nombre completo:
+Nombre de usuario:
+Contraseña:
+Confirmación:
+Mostrar contraseña
+|   Inicio de sesión automático:
+La cuenta de usuario se creó correctamente y podrá utilizar este nuevo usuario después de iniciar sesión nuevamente.
+¡La nueva contraseña debe tener al menos 8 caracteres!
+Las contraseñas de las cuentas de usuario no coinciden. ¡Inténtalo de nuevo!
+<big><b>Configurar una cuenta</b></big>
+En esta área puede cambiar la configuración de la cuenta de usuario.
+Nombre de usuario seleccionado:
+Contraseña actual:
+Nueva contraseña:
+Confirmar nueva contraseña:
+<big><b>Configurar grupos</b></big>
+En esta área puede ver a qué grupos pertenece el usuario seleccionado y también puede cambiar la membresía del grupo.
+¡Pero ten cuidado! Tienes que darte cuenta de que debes saber exactamente lo que estás haciendo. ¡Jugar y probar permisos de usuarios y grupos puede detener todo el sistema!
+Si quieres crear o eliminar un usuario, sólo necesitas tener un usuario más o menos.
+Sin embargo, si otorga más derechos a un usuario o limita los derechos de una cuenta o grupo del sistema, ¡puede estar poniendo en riesgo la seguridad de su sistema!
+¡La configuración de la cuenta de usuario se ha guardado correctamente!
+¡La contraseña anterior de la cuenta no debe coincidir con la nueva contraseña!
+Por favor elija otra contraseña.
+¡La nueva contraseña debe tener al menos 8 caracteres!
+¡La nueva contraseña y la nueva contraseña introducida repetidamente no coinciden!
+¿Está seguro de que desea eliminar al usuario de su sistema?
+Si responde >>SÍ<<, ¡el usuario seleccionado y todos los datos asociados serán eliminados de este sistema!
+Sí
+NO
+¡El usuario seleccionado no se puede eliminar porque usted ha iniciado sesión en este sistema con él!
+Seleccione un usuario diferente si desea continuar eliminando usuarios que ya no son necesarios en este sistema.
+¡La cuenta de usuario y todos los datos asociados se han eliminado correctamente!
