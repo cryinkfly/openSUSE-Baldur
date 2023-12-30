@@ -22,8 +22,8 @@ Puno ime:
 Korisničko ime:
 Lozinka:
 Potvrda:
-   Prikaži lozinku
-| Automatska prijava:
+Prikaži lozinku
+|   Automatska prijava:
 Korisnički nalog je uspješno kreiran i ovog novog korisnika možete koristiti nakon što se ponovo prijavite!
 Nova lozinka mora imati najmanje 8 znakova!
 Lozinke korisničkih naloga se ne podudaraju. Molimo pokušajte ponovo!
