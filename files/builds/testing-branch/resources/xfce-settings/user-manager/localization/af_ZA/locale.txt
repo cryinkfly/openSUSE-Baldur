@@ -22,8 +22,8 @@ Volle naam:
 Gebruikersnaam:
 Wagwoord:
 Bevestiging:
-   Wys wagwoord
-| Outomatiese aanmelding:
+Wys wagwoord
+|   Outomatiese aanmelding:
 Die gebruikersrekening is suksesvol geskep en jy kan hierdie nuwe gebruiker gebruik nadat jy weer aangemeld het!
 Die nuwe wagwoord moet ten minste 8 karakters lank wees!
 Die wagwoorde van die gebruikersrekeninge stem nie ooreen nie. Probeer asseblief weer!
