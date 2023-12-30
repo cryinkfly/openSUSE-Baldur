@@ -1,0 +1,52 @@
+<big><b>Användarinställningar</b></big>
+Det här avsnittet låter dig ändra användarkontoinställningar och lägga till/ta bort användare som är kopplade till deras konto. Välj helt enkelt den användare du vill ändra från listan.
+Välja
+användare
+status
+grupp
+◀️ Tillbaka
+🎭 Skapa
+⚙️ Konfigurera
+⚙️ Konfigurera grupper
+🗑 Radera
+🎲 Lösenord
+🔄 Återställ
+💾 Spara
+Du har inte valt en användare att ta bort!
+Välj en användare innan du fortsätter.
+Du har inte valt en användare att konfigurera!
+Välj en användare innan du fortsätter.
+<big><b>Skapa konto</b></big>
+Vänligen fyll i följande information för att skapa ett nytt konto.
+Fullständiga namn:
+Användarnamn:
+Lösenord:
+Bekräftelse:
+Visa lösenord
+|   Automatisk inloggning:
+Användarkontot skapades framgångsrikt och du kan använda denna nya användare efter att ha loggat in igen!
+Det nya lösenordet måste vara minst 8 tecken långt!
+Användarkontonas lösenord stämmer inte överens. Var god försök igen!
+<big><b>Konfigurera ett konto</b></big>
+I det här området kan du ändra användarkontoinställningarna.
+Valt användarnamn:
+Nuvarande lösenord:
+Nytt lösenord:
+Bekräfta nytt lösenord:
+<big><b>Konfigurera grupper</b></big>
+I det här området kan du se vilka grupper din valda användare tillhör och du kan även ändra gruppmedlemskapet.
+Men var försiktig! Du måste inse att du ska veta exakt vad du gör. Att leka och prova användar- och gruppbehörigheter kan få hela ditt system att stanna!
+Om du vill skapa eller ta bort en användare behöver du bara ha en mer eller mindre användare.
+Men om du beviljar fler rättigheter till en användare eller begränsar rättigheterna för ett systemkonto eller grupp, kan du riskera ditt systems säkerhet!
+Användarkontoinställningarna har sparats!
+Kontots gamla lösenord får inte matcha det nya lösenordet!
+Välj ett annat lösenord.
+Det nya lösenordet måste vara minst 8 tecken långt!
+Det nya lösenordet och det upprepade inmatade nya lösenordet stämmer inte överens!
+Är du säker på att du vill ta bort användaren från ditt system?
+Om du svarar >>JA<< kommer den valda användaren och all tillhörande data att tas bort från detta system!
+Ja
+NEJ
+Den valda användaren kan inte tas bort eftersom du är inloggad på detta system med den!
+Välj en annan användare om du vill fortsätta ta bort användare som inte längre behövs på det här systemet.
+Användarkontot och all tillhörande data har raderats!
