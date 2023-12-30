@@ -1,0 +1,52 @@
+<big><b>Paramètres utilisateur</b></big>
+Cette section vous permet de modifier les paramètres du compte utilisateur et d'ajouter/supprimer des utilisateurs associés à leur compte. Sélectionnez simplement l'utilisateur que vous souhaitez modifier dans la liste.
+Choisir
+utilisateur
+statut
+groupe
+◀️ Retour
+🎭 Créer
+⚙️ Configurer
+⚙️ Configurer les groupes
+🗑 Supprimer
+🎲 Mot de passe
+🔄 Réinitialiser
+💾 Enregistrer
+Vous n'avez pas sélectionné d'utilisateur à supprimer !
+Veuillez sélectionner un utilisateur avant de continuer.
+Vous n'avez pas sélectionné d'utilisateur à configurer !
+Veuillez sélectionner un utilisateur avant de continuer.
+<big><b>Créer un compte</b></big>
+Veuillez remplir les informations suivantes pour créer un nouveau compte.
+Nom et prénom:
+Nom d'utilisateur:
+Mot de passe:
+Confirmation:
+   Montrer le mot de passe
+| Connexion automatique :
+Le compte utilisateur a été créé avec succès et vous pouvez utiliser ce nouvel utilisateur après vous être reconnecté !
+Le nouveau mot de passe doit comporter au moins 8 caractères !
+Les mots de passe des comptes utilisateurs ne correspondent pas. Veuillez réessayer!
+<big><b>Configurer un compte</b></big>
+Dans cette zone, vous pouvez modifier les paramètres du compte utilisateur.
+Nom d'utilisateur sélectionné :
+Mot de passe actuel:
+Nouveau mot de passe:
+Confirmer le nouveau mot de passe:
+<big><b>Configurer les groupes</b></big>
+Dans cette zone, vous pouvez voir à quels groupes appartient l'utilisateur sélectionné et vous pouvez également modifier l'appartenance au groupe.
+Mais fais attention! Vous devez réaliser que vous devez savoir exactement ce que vous faites. Jouer et essayer les autorisations des utilisateurs et des groupes peut arrêter tout votre système !
+Si vous souhaitez créer ou supprimer un utilisateur, il vous suffit d'avoir un utilisateur en plus ou en moins.
+Cependant, si vous accordez plus de droits à un utilisateur ou limitez les droits d'un compte ou d'un groupe système, vous risquez de mettre en danger la sécurité de votre système !
+Les paramètres du compte utilisateur ont été enregistrés avec succès !
+L'ancien mot de passe du compte ne doit pas correspondre au nouveau mot de passe !
+Veuillez choisir un autre mot de passe.
+Le nouveau mot de passe doit comporter au moins 8 caractères !
+Le nouveau mot de passe et le nouveau mot de passe saisi à plusieurs reprises ne correspondent pas !
+Êtes-vous sûr de vouloir supprimer l'utilisateur de votre système ?
+Si vous répondez >>OUI<<, l'utilisateur sélectionné et toutes les données associées seront supprimés de ce système !
+Oui
+NON
+L'utilisateur sélectionné ne peut pas être supprimé car vous êtes connecté à ce système avec lui !
+Veuillez sélectionner un autre utilisateur si vous souhaitez continuer à supprimer les utilisateurs qui ne sont plus nécessaires sur ce système.
+Le compte utilisateur et toutes les données associées ont été supprimés avec succès !
