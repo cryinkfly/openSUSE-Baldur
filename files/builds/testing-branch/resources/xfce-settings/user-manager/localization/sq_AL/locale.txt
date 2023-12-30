@@ -1,0 +1,52 @@
+<big><b>Cilësimet e përdoruesit</b></big>
+Ky seksion ju lejon të ndryshoni cilësimet e llogarisë së përdoruesit dhe të shtoni/fshini përdoruesit e lidhur me llogarinë e tyre. Thjesht zgjidhni përdoruesin që dëshironi të ndryshoni nga lista.
+Zgjidhni
+përdorues
+statusi
+grupi
+◀️ Kthehu
+🎭 Krijo
+⚙️ Konfiguro
+⚙️ Konfiguro grupet
+🗑 Fshije
+🎲 Fjalëkalimi
+🔄 Rivendos
+💾 Kurseni
+Ju nuk keni zgjedhur një përdorues për të fshirë!
+Ju lutemi zgjidhni një përdorues përpara se të vazhdoni.
+Ju nuk keni zgjedhur një përdorues për të konfiguruar!
+Ju lutemi zgjidhni një përdorues përpara se të vazhdoni.
+<big><b>Krijo llogari</b></big>
+Ju lutemi plotësoni informacionin e mëposhtëm për të krijuar një llogari të re.
+Emri i plotë:
+Emri i përdoruesit:
+Fjalëkalimi:
+Konfirmimi:
+   Shfaq fjalëkalimin
+| Hyrja automatike:
+Llogaria e përdoruesit u krijua me sukses dhe ju mund ta përdorni këtë përdorues të ri pasi të identifikoheni përsëri!
+Fjalëkalimi i ri duhet të jetë së paku 8 karaktere!
+Fjalëkalimet e llogarive të përdoruesve nuk përputhen. Ju lutemi provoni përsëri!
+<big><b>Konfiguro një llogari</b></big>
+Në këtë zonë mund të ndryshoni cilësimet e llogarisë së përdoruesit.
+Emri i përdoruesit të zgjedhur:
+Fjalëkalimi aktual:
+Fjalëkalim i ri:
+Konfirmo fjalëkalimin e ri:
+<big><b>Konfiguro grupet</b></big>
+Në këtë zonë mund të shihni se cilit grup i përket përdoruesi juaj i zgjedhur dhe gjithashtu mund të ndryshoni anëtarësimin në grup.
+Por kujdes! Ju duhet të kuptoni se duhet të dini saktësisht se çfarë po bëni. Të luash dhe të provosh lejet e përdoruesve dhe grupeve mund të ndalojë të gjithë sistemin tuaj!
+Nëse dëshironi të krijoni ose fshini një përdorues, thjesht duhet të keni një përdorues pak a shumë.
+Megjithatë, nëse i jepni më shumë të drejta një përdoruesi ose kufizoni të drejtat e një llogarie ose grupi të sistemit, mund të jeni duke vënë në rrezik sigurinë e sistemit tuaj!
+Cilësimet e llogarisë së përdoruesit janë ruajtur me sukses!
+Fjalëkalimi i vjetër i llogarisë nuk duhet të përputhet me fjalëkalimin e ri!
+Ju lutemi zgjidhni një fjalëkalim tjetër.
+Fjalëkalimi i ri duhet të jetë së paku 8 karaktere!
+Fjalëkalimi i ri dhe fjalëkalimi i ri i futur në mënyrë të përsëritur nuk përputhen!
+Jeni i sigurt që dëshironi të hiqni përdoruesin nga sistemi juaj?
+Nëse përgjigjeni >>PO<<, përdoruesi i zgjedhur dhe të gjitha të dhënat e lidhura do të hiqen nga ky sistem!
+po
+NR
+Përdoruesi i zgjedhur nuk mund të fshihet sepse ju jeni identifikuar në këtë sistem me të!
+Ju lutemi, zgjidhni një përdorues tjetër nëse dëshironi të vazhdoni të fshini përdoruesit që nuk nevojiten më në këtë sistem.
+Llogaria e përdoruesit dhe të gjitha të dhënat e lidhura janë fshirë me sukses!
