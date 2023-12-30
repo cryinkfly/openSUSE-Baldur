@@ -1,0 +1,52 @@
+<big><b>Configuración do usuario</b></big>
+Esta sección permítelle cambiar a configuración da conta de usuario e engadir/eliminar usuarios asociados á súa conta. Só tes que seleccionar o usuario que queres cambiar da lista.
+Escolle
+usuario
+estado
+grupo
+◀️ De volta
+🎭 Crear
+⚙️ Configurar
+⚙️ Configura grupos
+🗑 Borrar
+🎲 Contrasinal
+🔄 Restablecer
+💾 Gardar
+Non seleccionaches un usuario para eliminar!
+Selecciona un usuario antes de continuar.
+Non seleccionaches un usuario para configurar!
+Selecciona un usuario antes de continuar.
+<big><b>Crear conta</b></big>
+Encha a seguinte información para crear unha nova conta.
+Nome completo:
+Nome de usuario:
+Contrasinal:
+Confirmación:
+Mostrar contrasinal
+|   Inicio de sesión automático:
+A conta de usuario creouse correctamente e podes usar este novo usuario despois de iniciar sesión de novo.
+O novo contrasinal debe ter polo menos 8 caracteres.
+Os contrasinais das contas de usuario non coinciden. Por favor intentao de novo!
+<big><b>Configurar unha conta</b></big>
+Nesta área pode cambiar a configuración da conta de usuario.
+Nome de usuario seleccionado:
+Contrasinal actual:
+Novo contrasinal:
+Confirmar o novo contrasinal:
+<big><b>Configurar grupos</b></big>
+Nesta área podes ver a que grupos pertence o teu usuario seleccionado e tamén podes cambiar a pertenza ao grupo.
+Pero teña coidado! Tes que entender que debes saber exactamente o que estás facendo. Xogar e probar permisos de usuarios e grupos pode deter todo o teu sistema.
+Se queres crear ou eliminar un usuario, só tes que ter un usuario máis ou menos.
+Non obstante, se concede máis dereitos a un usuario ou limita os dereitos dunha conta do sistema ou dun grupo, é posible que estea poñendo en risco a seguridade do seu sistema.
+A configuración da conta de usuario gardouse correctamente.
+O contrasinal antigo da conta non debe coincidir co novo contrasinal.
+Escolla outro contrasinal.
+O novo contrasinal debe ter polo menos 8 caracteres.
+O novo contrasinal e o novo contrasinal introducido repetidamente non coinciden!
+Estás seguro de que queres eliminar o usuario do teu sistema?
+Se responde >>SI<<, o usuario seleccionado e todos os datos asociados eliminaranse deste sistema!
+Si
+NON
+Non se pode eliminar o usuario seleccionado porque iniciaches sesión neste sistema con el.
+Selecciona un usuario diferente se queres continuar eliminando usuarios que xa non son necesarios neste sistema.
+A conta de usuario e todos os datos asociados foron eliminados correctamente.
