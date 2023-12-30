@@ -1,0 +1,52 @@
+<big><b>Tetapan Pengguna</b></big>
+Bahagian ini membolehkan anda menukar tetapan akaun pengguna dan menambah/memadam pengguna yang dikaitkan dengan akaun mereka. Hanya pilih pengguna yang ingin anda ubah daripada senarai.
+pilih
+pengguna
+status
+kumpulan
+◀️ Belakang
+🎭 Buat
+⚙️ Konfigurasikan
+⚙️ Konfigurasikan kumpulan
+🗑 Padam
+🎲 Kata laluan
+🔄 Tetapkan semula
+💾 Jimat
+Anda belum memilih pengguna untuk dipadamkan!
+Sila pilih pengguna sebelum meneruskan.
+Anda belum memilih pengguna untuk dikonfigurasikan!
+Sila pilih pengguna sebelum meneruskan.
+<big><b>Buat akaun</b></big>
+Sila isi maklumat berikut untuk membuat akaun baharu.
+Nama penuh:
+Nama pengguna:
+kata laluan:
+Pengesahan:
+Tunjukkan kata laluan
+|   Log masuk automatik:
+Akaun pengguna telah berjaya dibuat dan anda boleh menggunakan pengguna baharu ini selepas log masuk semula!
+Kata laluan baharu mestilah sekurang-kurangnya 8 aksara!
+Kata laluan akaun pengguna tidak sepadan. Sila cuba lagi!
+<big><b>Konfigurasikan akaun</b></big>
+Di kawasan ini anda boleh menukar tetapan akaun pengguna.
+Nama pengguna yang dipilih:
+Kata Laluan Semasa:
+Kata laluan baharu:
+Sahkan kata laluan baharu:
+<big><b>Konfigurasikan kumpulan</b></big>
+Di kawasan ini, anda boleh melihat kumpulan mana yang dimiliki oleh pengguna pilihan anda dan anda juga boleh menukar keahlian kumpulan.
+Tetapi sila berhati-hati! Anda perlu sedar bahawa anda harus tahu dengan tepat apa yang anda lakukan. Bermain-main dan mencuba kebenaran pengguna dan kumpulan boleh menghentikan keseluruhan sistem anda!
+Jika anda ingin membuat atau memadam pengguna, anda hanya perlu mempunyai lebih atau kurang pengguna.
+Walau bagaimanapun, jika anda memberikan lebih banyak hak kepada pengguna atau mengehadkan hak akaun sistem atau kumpulan, anda mungkin meletakkan keselamatan sistem anda pada risiko!
+Tetapan akaun pengguna telah berjaya disimpan!
+Kata laluan lama akaun mestilah tidak sepadan dengan kata laluan baharu!
+Sila pilih kata laluan lain.
+Kata laluan baharu mestilah sekurang-kurangnya 8 aksara!
+Kata laluan baharu dan kata laluan baharu yang dimasukkan berulang kali tidak sepadan!
+Adakah anda pasti mahu mengalih keluar pengguna daripada sistem anda?
+Jika anda menjawab >>YA<<, pengguna yang dipilih dan semua data yang berkaitan akan dialih keluar daripada sistem ini!
+ya
+TIDAK
+Pengguna yang dipilih tidak boleh dipadamkan kerana anda telah log masuk ke sistem ini dengannya!
+Sila pilih pengguna lain jika anda ingin terus memadamkan pengguna yang tidak lagi diperlukan pada sistem ini.
+Akaun pengguna dan semua data yang berkaitan telah berjaya dipadamkan!
