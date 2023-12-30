@@ -1,0 +1,52 @@
+<big><b>Gebruikerinstellings</b></big>
+Hierdie afdeling laat jou toe om gebruikersrekeninginstellings te verander en gebruikers wat met hul rekening geassosieer word by te voeg/uit te vee. Kies eenvoudig die gebruiker wat jy wil verander uit die lys.
+Kies
+gebruiker
+status
+groep
+◀️ Terug
+🎭 Skep
+⚙️ Konfigureer
+⚙️ Stel groepe op
+🗑 Vee uit
+🎲 Wagwoord
+🔄 Herstel
+💾 Stoor
+Jy het nie 'n gebruiker gekies om uit te vee nie!
+Kies asseblief 'n gebruiker voordat jy voortgaan.
+Jy het nie 'n gebruiker gekies om op te stel nie!
+Kies asseblief 'n gebruiker voordat jy voortgaan.
+<big><b>Skep rekening</b></big>
+Vul asseblief die volgende inligting in om 'n nuwe rekening te skep.
+Volle naam:
+Gebruikersnaam:
+Wagwoord:
+Bevestiging:
+   Wys wagwoord
+| Outomatiese aanmelding:
+Die gebruikersrekening is suksesvol geskep en jy kan hierdie nuwe gebruiker gebruik nadat jy weer aangemeld het!
+Die nuwe wagwoord moet ten minste 8 karakters lank wees!
+Die wagwoorde van die gebruikersrekeninge stem nie ooreen nie. Probeer asseblief weer!
+<big><b>Stel 'n rekening op</b></big>
+In hierdie area kan u die gebruikersrekeninginstellings verander.
+Geselekteerde gebruikernaam:
+Huidige Sleutelwoord:
+Nuwe Wagwoord:
+Bevestig nuwe wagwoord:
+<big><b>Stel groepe op</b></big>
+In hierdie area kan jy sien aan watter groepe jou geselekteerde gebruiker behoort en jy kan ook die groeplidmaatskap verander.
+Maar wees versigtig! Jy moet besef dat jy presies moet weet wat jy doen. Om rond te speel en gebruikers- en groeptoestemmings uit te probeer, kan jou hele stelsel tot stilstand bring!
+As jy 'n gebruiker wil skep of uitvee, moet jy net een min of meer gebruiker hê.
+As jy egter meer regte aan 'n gebruiker toeken of die regte van 'n stelselrekening of -groep beperk, kan jy jou stelsel se sekuriteit in gevaar stel!
+Die gebruikerrekeninginstellings is suksesvol gestoor!
+Die rekening se ou wagwoord moet nie ooreenstem met die nuwe wagwoord nie!
+Kies asseblief 'n ander wagwoord.
+Die nuwe wagwoord moet ten minste 8 karakters lank wees!
+Die nuwe wagwoord en die herhaaldelik ingevoerde nuwe wagwoord stem nie ooreen nie!
+Is jy seker jy wil die gebruiker van jou stelsel verwyder?
+As jy >>JA<< antwoord, sal die geselekteerde gebruiker en alle verwante data van hierdie stelsel verwyder word!
+Ja
+GEEN
+Die gekose gebruiker kan nie uitgevee word nie, want jy is daarmee by hierdie stelsel aangemeld!
+Kies asseblief 'n ander gebruiker as jy wil voortgaan om gebruikers uit te vee wat nie meer op hierdie stelsel benodig word nie.
+Die gebruikersrekening en alle gepaardgaande data is suksesvol uitgevee!
