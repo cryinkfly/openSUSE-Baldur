@@ -1,0 +1,52 @@
+<big><b>Configurações do usuário</b></big>
+Esta seção permite que você altere as configurações da conta do usuário e adicione/exclua usuários associados à sua conta. Basta selecionar o usuário que deseja alterar na lista.
+Escolher
+do utilizador
+status
+grupo
+◀️ Voltar
+🎭 Criar
+⚙️ Configurar
+⚙️ Configurar grupos
+🗑 Excluir
+🎲 Senha
+🔄 Redefinir
+💾 Salvar
+Você não selecionou um usuário para excluir!
+Selecione um usuário antes de continuar.
+Você não selecionou um usuário para configurar!
+Selecione um usuário antes de continuar.
+<big><b>Criar conta</b></big>
+Preencha as seguintes informações para criar uma nova conta.
+Nome completo:
+Nome de usuário:
+Senha:
+Confirmação:
+Mostrar senha
+|   Login automático:
+A conta de usuário foi criada com sucesso e você poderá usar esse novo usuário após fazer login novamente!
+A nova senha deve ter pelo menos 8 caracteres!
+As senhas das contas de usuário não coincidem. Por favor, tente novamente!
+<big><b>Configurar uma conta</b></big>
+Nesta área você pode alterar as configurações da conta do usuário.
+Nome de usuário selecionado:
+Senha atual:
+Nova Senha:
+Confirme a nova senha:
+<big><b>Configurar grupos</b></big>
+Nesta área você pode ver a quais grupos o usuário selecionado pertence e também pode alterar a associação ao grupo.
+Mas tenha cuidado! Você tem que perceber que deve saber exatamente o que está fazendo. Brincar e testar permissões de usuários e grupos pode paralisar todo o seu sistema!
+Se você deseja criar ou excluir um usuário, basta ter mais ou menos usuário.
+No entanto, se você conceder mais direitos a um usuário ou limitar os direitos de uma conta ou grupo do sistema, poderá colocar a segurança do seu sistema em risco!
+As configurações da conta do usuário foram salvas com sucesso!
+A senha antiga da conta não deve corresponder à nova senha!
+Por favor escolha outra senha.
+A nova senha deve ter pelo menos 8 caracteres!
+A nova senha e a nova senha digitada repetidamente não coincidem!
+Tem certeza de que deseja remover o usuário do seu sistema?
+Se você responder >>SIM<<, o usuário selecionado e todos os dados associados serão removidos deste sistema!
+Sim
+NÃO
+O usuário selecionado não pode ser excluído porque você está logado neste sistema com ele!
+Selecione um usuário diferente se desejar continuar excluindo usuários que não são mais necessários neste sistema.
+A conta do usuário e todos os dados associados foram excluídos com sucesso!
