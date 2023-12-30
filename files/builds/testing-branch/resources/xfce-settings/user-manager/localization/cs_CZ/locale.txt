@@ -1,0 +1,52 @@
+<big><b>Uživatelská nastavení</b></big>
+Tato sekce umožňuje měnit nastavení uživatelského účtu a přidávat/odstraňovat uživatele spojené s jejich účtem. Jednoduše vyberte ze seznamu uživatele, kterého chcete změnit.
+Vybrat
+uživatel
+postavení
+skupina
+◀️ Zpět
+🎭 Tvořte
+⚙️ Nakonfigurujte
+⚙️ Nakonfigurujte skupiny
+🗑 Smazat
+🎲 Heslo
+🔄 Resetovat
+💾 Ušetřete
+Nevybrali jste uživatele ke smazání!
+Než budete pokračovat, vyberte uživatele.
+Nevybrali jste uživatele ke konfiguraci!
+Než budete pokračovat, vyberte uživatele.
+<big><b>Vytvořit účet</b></big>
+Chcete-li vytvořit nový účet, vyplňte prosím následující informace.
+Celé jméno:
+Uživatelské jméno:
+Heslo:
+Potvrzení:
+Zobrazit heslo
+|   Automatické přihlášení:
+Uživatelský účet byl úspěšně vytvořen a po opětovném přihlášení můžete tohoto nového uživatele používat!
+Nové heslo musí mít alespoň 8 znaků!
+Hesla uživatelských účtů se neshodují. Prosím zkuste to znovu!
+<big><b>Nakonfigurujte účet</b></big>
+V této oblasti můžete změnit nastavení uživatelského účtu.
+Vybrané uživatelské jméno:
+Aktuální heslo:
+Nové heslo:
+Potvrďte nové heslo:
+<big><b>Konfigurovat skupiny</b></big>
+V této oblasti vidíte, do kterých skupin patří vámi vybraný uživatel a můžete také změnit členství ve skupině.
+Ale buď opatrný! Musíte si uvědomit, že byste měli přesně vědět, co děláte. Hraní a zkoušení uživatelských a skupinových oprávnění může zastavit celý váš systém!
+Pokud chcete vytvořit nebo odstranit uživatele, stačí mít o jednoho více nebo méně uživatele.
+Pokud však uživateli udělíte více práv nebo omezíte práva systémového účtu nebo skupiny, můžete ohrozit zabezpečení svého systému!
+Nastavení uživatelského účtu byla úspěšně uložena!
+Staré heslo účtu se nesmí shodovat s novým heslem!
+Zvolte prosím jiné heslo.
+Nové heslo musí mít alespoň 8 znaků!
+Nové heslo a opakovaně zadávané nové heslo se neshodují!
+Opravdu chcete odebrat uživatele z vašeho systému?
+Pokud odpovíte >>ANO<<, vybraný uživatel a všechna související data budou z tohoto systému odstraněna!
+Ano
+NE
+Vybraného uživatele nelze smazat, protože jste s ním přihlášeni do tohoto systému!
+Pokud chcete pokračovat v mazání uživatelů, kteří již v tomto systému nejsou potřeba, vyberte jiného uživatele.
+Uživatelský účet a všechna související data byly úspěšně smazány!
