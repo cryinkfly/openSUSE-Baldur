@@ -1,0 +1,52 @@
+<big><b>Uporabniške nastavitve</b></big>
+Ta razdelek vam omogoča spreminjanje nastavitev uporabniškega računa in dodajanje/brisanje uporabnikov, povezanih z njihovim računom. Na seznamu preprosto izberite uporabnika, ki ga želite spremeniti.
+Izberite
+uporabnik
+stanje
+skupina
+◀️ Nazaj
+🎭 Ustvari
+⚙️ Konfiguriraj
+⚙️ Konfigurirajte skupine
+🗑 Izbriši
+🎲 Geslo
+🔄 Ponastavi
+💾 Prihranite
+Niste izbrali uporabnika za brisanje!
+Pred nadaljevanjem izberite uporabnika.
+Niste izbrali uporabnika za konfiguracijo!
+Pred nadaljevanjem izberite uporabnika.
+<big><b>Ustvarite račun</b></big>
+Za ustvarjanje novega računa izpolnite naslednje podatke.
+Polno ime:
+uporabniško ime:
+geslo:
+Potrditev:
+Pokaži geslo
+|   Samodejna prijava:
+Uporabniški račun je bil uspešno ustvarjen in po ponovni prijavi lahko uporabljate tega novega uporabnika!
+Novo geslo mora biti dolgo vsaj 8 znakov!
+Gesli uporabniških računov se ne ujemata. Prosim poskusite ponovno!
+<big><b>Konfigurirajte račun</b></big>
+V tem območju lahko spremenite nastavitve uporabniškega računa.
+Izbrano uporabniško ime:
+Trenutno geslo:
+Novo geslo:
+Potrdite novo geslo:
+<big><b>Konfigurirajte skupine</b></big>
+V tem območju lahko vidite, katerim skupinam pripada vaš izbrani uporabnik, lahko pa tudi spremenite članstvo v skupini.
+Vendar bodite previdni! Zavedati se morate, da morate natančno vedeti, kaj počnete. Igranje in preizkušanje uporabniških in skupinskih dovoljenj lahko zaustavi vaš celoten sistem!
+Če želite ustvariti ali izbrisati uporabnika, morate imeti enega več ali manj uporabnikov.
+Če pa uporabniku dodelite več pravic ali omejite pravice sistemskega računa ali skupine, lahko ogrozite varnost svojega sistema!
+Nastavitve uporabniškega računa so bile uspešno shranjene!
+Staro geslo računa se ne sme ujemati z novim geslom!
+Prosimo izberite drugo geslo.
+Novo geslo mora biti dolgo vsaj 8 znakov!
+Novo geslo in večkrat vneseno novo geslo se ne ujemata!
+Ali ste prepričani, da želite odstraniti uporabnika iz vašega sistema?
+Če odgovorite >>DA<<, bodo izbrani uporabnik in vsi povezani podatki odstranjeni iz tega sistema!
+ja
+št
+Izbranega uporabnika ni mogoče izbrisati, ker ste z njim prijavljeni v ta sistem!
+Izberite drugega uporabnika, če želite nadaljevati z brisanjem uporabnikov, ki v tem sistemu niso več potrebni.
+Uporabniški račun in vsi povezani podatki so bili uspešno izbrisani!
