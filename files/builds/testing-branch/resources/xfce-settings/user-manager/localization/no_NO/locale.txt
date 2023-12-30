@@ -1,0 +1,52 @@
+<big><b>Brukerinnstillinger</b></big>
+Denne delen lar deg endre brukerkontoinnstillinger og legge til/slette brukere knyttet til kontoen deres. Bare velg brukeren du vil endre fra listen.
+Velge
+bruker
+status
+gruppe
+◀️ Tilbake
+🎭 Lag
+⚙️ Konfigurer
+⚙️ Konfigurer grupper
+🗑 Slett
+🎲 Passord
+🔄 Tilbakestill
+💾 Lagre
+Du har ikke valgt en bruker å slette!
+Velg en bruker før du fortsetter.
+Du har ikke valgt en bruker å konfigurere!
+Velg en bruker før du fortsetter.
+<big><b>Opprett konto</b></big>
+Fyll ut følgende informasjon for å opprette en ny konto.
+Fullt navn:
+Brukernavn:
+Passord:
+Bekreftelse:
+Vis passord
+|   Automatisk pålogging:
+Brukerkontoen ble opprettet og du kan bruke denne nye brukeren etter å ha logget på igjen!
+Det nye passordet må være på minst 8 tegn!
+Passordene til brukerkontoene stemmer ikke overens. Vær så snill, prøv på nytt!
+<big><b>Konfigurer en konto</b></big>
+I dette området kan du endre brukerkontoinnstillingene.
+Valgt brukernavn:
+Nåværende passord:
+Nytt passord:
+Bekrefte nytt passord:
+<big><b>Konfigurer grupper</b></big>
+I dette området kan du se hvilke grupper den valgte brukeren tilhører, og du kan også endre gruppemedlemskapet.
+Men vær forsiktig! Du må innse at du bør vite nøyaktig hva du gjør. Å leke og prøve ut bruker- og gruppetillatelser kan få hele systemet til å stoppe opp!
+Hvis du vil opprette eller slette en bruker, trenger du bare å ha en mer eller mindre bruker.
+Men hvis du gir flere rettigheter til en bruker eller begrenser rettighetene til en systemkonto eller gruppe, kan du sette systemets sikkerhet i fare!
+Brukerkontoinnstillingene er lagret!
+Kontoens gamle passord må ikke samsvare med det nye passordet!
+Vennligst velg et annet passord.
+Det nye passordet må være på minst 8 tegn!
+Det nye passordet og det gjentatte oppgitte nye passordet stemmer ikke overens!
+Er du sikker på at du vil fjerne brukeren fra systemet?
+Hvis du svarer >>JA<<, vil den valgte brukeren og alle tilhørende data bli fjernet fra dette systemet!
+Ja
+NEI
+Den valgte brukeren kan ikke slettes fordi du er logget på dette systemet med det!
+Velg en annen bruker hvis du vil fortsette å slette brukere som ikke lenger er nødvendige på dette systemet.
+Brukerkontoen og alle tilhørende data er slettet!
