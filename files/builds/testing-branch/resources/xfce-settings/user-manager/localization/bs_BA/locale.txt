@@ -1,0 +1,52 @@
+<big><b>Korisničke postavke</b></big>
+Ovaj odjeljak vam omogućava promjenu postavki korisničkog računa i dodavanje/brisanje korisnika povezanih s njihovim računom. Jednostavno odaberite korisnika kojeg želite promijeniti sa liste.
+Izaberi
+korisnik
+status
+grupa
+◀️ Nazad
+🎭 Kreirajte
+⚙️ Konfiguriraj
+⚙️ Konfigurišite grupe
+🗑 Izbriši
+🎲 Lozinka
+🔄 Resetuj
+💾 Sačuvaj
+Niste odabrali korisnika za brisanje!
+Molimo odaberite korisnika prije nego nastavite.
+Niste odabrali korisnika za konfiguraciju!
+Molimo odaberite korisnika prije nego nastavite.
+<big><b>Kreirajte račun</b></big>
+Molimo vas da popunite sljedeće informacije da kreirate novi račun.
+Puno ime:
+Korisničko ime:
+Lozinka:
+Potvrda:
+   Prikaži lozinku
+| Automatska prijava:
+Korisnički nalog je uspješno kreiran i ovog novog korisnika možete koristiti nakon što se ponovo prijavite!
+Nova lozinka mora imati najmanje 8 znakova!
+Lozinke korisničkih naloga se ne podudaraju. Molimo pokušajte ponovo!
+<big><b>Konfigurirajte račun</b></big>
+U ovoj oblasti možete promijeniti postavke korisničkog računa.
+Odabrano korisničko ime:
+Trenutna šifra:
+Nova šifra:
+Potvrdili novu lozinku:
+<big><b>Konfiguriraj grupe</b></big>
+U ovoj oblasti možete vidjeti kojim grupama pripada vaš odabrani korisnik i također možete promijeniti članstvo u grupi.
+Ali budite oprezni! Morate shvatiti da treba da znate tačno šta radite. Igranje i isprobavanje korisničkih i grupnih dozvola može dovesti do zastoja cijelog vašeg sistema!
+Ako želite da kreirate ili izbrišete korisnika, potrebno je samo da imate jednog više ili manje korisnika.
+Međutim, ako dodijelite više prava korisniku ili ograničite prava sistemskog naloga ili grupe, možda ugrožavate sigurnost vašeg sistema!
+Postavke korisničkog računa su uspješno sačuvane!
+Stara lozinka računa ne smije se podudarati s novom lozinkom!
+Molimo odaberite drugu lozinku.
+Nova lozinka mora imati najmanje 8 znakova!
+Nova lozinka i više puta unesena nova lozinka se ne podudaraju!
+Jeste li sigurni da želite ukloniti korisnika sa vašeg sistema?
+Ako odgovorite >>DA<<, odabrani korisnik i svi povezani podaci bit će uklonjeni iz ovog sistema!
+Da
+NO
+Odabrani korisnik se ne može izbrisati jer ste s njim prijavljeni na ovaj sistem!
+Molimo odaberite drugog korisnika ako želite da nastavite sa brisanjem korisnika koji više nisu potrebni na ovom sistemu.
+Korisnički nalog i svi povezani podaci su uspješno izbrisani!
