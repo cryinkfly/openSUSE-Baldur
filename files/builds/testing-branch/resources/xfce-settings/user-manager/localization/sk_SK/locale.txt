@@ -1,0 +1,52 @@
+<big><b>Nastavenia používateľa</b></big>
+Táto sekcia vám umožňuje zmeniť nastavenia používateľského účtu a pridať/vymazať používateľov priradených k ich účtu. Zo zoznamu jednoducho vyberte používateľa, ktorého chcete zmeniť.
+Vyberte si
+užívateľ
+postavenie
+skupina
+◀️ Späť
+🎭 Vytvorte
+⚙️ Nakonfigurujte
+⚙️ Nakonfigurujte skupiny
+🗑 Odstrániť
+🎲 Heslo
+🔄 Resetovať
+💾 Uložiť
+Nevybrali ste používateľa na odstránenie!
+Pred pokračovaním vyberte používateľa.
+Nevybrali ste používateľa na konfiguráciu!
+Pred pokračovaním vyberte používateľa.
+<big><b>Vytvoriť účet</b></big>
+Ak chcete vytvoriť nový účet, vyplňte nasledujúce informácie.
+Celé meno:
+Používateľské meno:
+heslo:
+Potvrdenie:
+Ukázať heslo
+|   Automatické prihlásenie:
+Používateľský účet bol úspešne vytvorený a po opätovnom prihlásení môžete tohto nového používateľa používať!
+Nové heslo musí mať aspoň 8 znakov!
+Heslá používateľských účtov sa nezhodujú. Prosím skúste znova!
+<big><b>Nakonfigurujte si účet</b></big>
+V tejto oblasti môžete zmeniť nastavenia používateľského účtu.
+Vybrané používateľské meno:
+Aktuálne heslo:
+Nové heslo:
+Potvrďte nové heslo:
+<big><b>Konfigurácia skupín</b></big>
+V tejto oblasti môžete vidieť, do ktorých skupín patrí váš vybraný používateľ a tiež môžete zmeniť členstvo v skupine.
+Ale buď opatrný! Musíte si uvedomiť, že by ste mali presne vedieť, čo robíte. Hranie sa a skúšanie používateľských a skupinových oprávnení môže zastaviť celý váš systém!
+Ak chcete vytvoriť alebo odstrániť používateľa, stačí mať o jedného používateľa viac alebo menej.
+Ak však používateľovi udelíte viac práv alebo obmedzíte práva systémového účtu alebo skupiny, môžete ohroziť bezpečnosť vášho systému!
+Nastavenia používateľského účtu boli úspešne uložené!
+Staré heslo účtu sa nesmie zhodovať s novým heslom!
+Zvoľte si prosím iné heslo.
+Nové heslo musí mať aspoň 8 znakov!
+Nové heslo a opakovane zadané nové heslo sa nezhodujú!
+Naozaj chcete odstrániť používateľa z vášho systému?
+Ak odpoviete >>ÁNO<<, vybraný používateľ a všetky súvisiace údaje budú z tohto systému odstránené!
+Áno
+NIE
+Vybraného používateľa nie je možné vymazať, pretože ste ním prihlásení do tohto systému!
+Ak chcete pokračovať v odstraňovaní používateľov, ktorí už v tomto systéme nie sú potrební, vyberte iného používateľa.
+Používateľský účet a všetky súvisiace údaje boli úspešne odstránené!
