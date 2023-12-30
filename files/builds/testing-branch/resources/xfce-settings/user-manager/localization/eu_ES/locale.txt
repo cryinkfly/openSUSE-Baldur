@@ -1,0 +1,52 @@
+<big><b>Erabiltzaileen ezarpenak</b></big>
+Atal honek erabiltzaile-kontuaren ezarpenak aldatzeko eta haien kontuarekin lotutako erabiltzaileak gehitzeko/ezabatzeko aukera ematen du. Besterik gabe, hautatu zerrendatik aldatu nahi duzun erabiltzailea.
+Aukeratu
+erabiltzailea
+egoera
+taldea
+◀️ Itzuli
+🎭 Sortu
+⚙️ Konfiguratu
+⚙️ Taldeak konfiguratu
+🗑 Ezabatu
+🎲 Pasahitza
+🔄 Berrezarri
+💾 Gorde
+Ez duzu ezabatzeko erabiltzailerik hautatu!
+Mesedez, hautatu erabiltzaile bat jarraitu aurretik.
+Ez duzu erabiltzailerik hautatu konfiguratzeko!
+Mesedez, hautatu erabiltzaile bat jarraitu aurretik.
+<big><b>Sortu kontua</b></big>
+Mesedez, bete informazio hau kontu berri bat sortzeko.
+Izen osoa:
+Erabiltzaile izena:
+Pasahitza:
+Berrespena:
+   Erakutsi pasahitza
+| Saio-hasiera automatikoa:
+Erabiltzaile-kontua behar bezala sortu da eta erabiltzaile berri hau berriro saioa hasi ondoren erabil dezakezu!
+Pasahitz berriak gutxienez 8 karaktere izan behar ditu!
+Erabiltzaile-kontuen pasahitzak ez datoz bat. Saiatu berriro mesedez!
+<big><b>Kontu bat konfiguratu</b></big>
+Eremu honetan erabiltzailearen kontuaren ezarpenak alda ditzakezu.
+Hautatutako erabiltzaile-izena:
+Oraingo pasahitza:
+Pasahitz berria:
+Berretsi pasahitz berria:
+<big><b>Konfiguratu taldeak</b></big>
+Eremu honetan hautatutako erabiltzailea zein taldetakoa den ikus dezakezu eta taldekidetasuna ere alda dezakezu.
+Baina kontuz! Konturatu behar duzu zertan ari zaren zehatz-mehatz jakin behar duzula. Jolasean eta erabiltzaileen eta taldeen baimenak probatzeak zure sistema osoa geldiarazi dezake!
+Erabiltzaile bat sortu edo ezabatu nahi baduzu, erabiltzaile bat gehiago edo gutxiago izan behar duzu.
+Hala ere, erabiltzaile bati eskubide gehiago ematen badiozu edo sistema-kontu edo talde baten eskubideak mugatzen badituzu, baliteke zure sistemaren segurtasuna arriskuan jartzea!
+Erabiltzaile-kontuaren ezarpenak behar bezala gorde dira!
+Kontuaren pasahitz zaharrak ez du bat etorri behar pasahitz berriarekin!
+Mesedez, aukeratu beste pasahitz bat.
+Pasahitz berriak gutxienez 8 karaktere izan behar ditu!
+Pasahitz berria eta behin eta berriz sartutako pasahitz berria ez datoz bat!
+Ziur erabiltzailea zure sistematik kendu nahi duzula?
+>>BAI<< erantzuten baduzu, hautatutako erabiltzailea eta lotutako datu guztiak sistema honetatik kenduko dira!
+Bai
+EZ
+Hautatutako erabiltzailea ezin da ezabatu sistema honekin saioa hasi duzulako!
+Mesedez, hautatu beste erabiltzaile bat sistema honetan beharrezkoak ez diren erabiltzaileak ezabatzen jarraitu nahi baduzu.
+Erabiltzaile-kontua eta lotutako datu guztiak behar bezala ezabatu dira!
