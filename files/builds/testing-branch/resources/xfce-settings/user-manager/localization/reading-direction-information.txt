@@ -1,0 +1,10 @@
+Languages that are read from left to right:
+-------------------------------------------
+
+➜ all other languages!
+
+Languages that are read from right to left:
+-------------------------------------------
+
+➜ Arabic (ar_SA.UTF-8)
+➜ Hebrew (he_IL.utf8)
