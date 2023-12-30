@@ -1,0 +1,52 @@
+<big><b>Configuració de l'usuari</b></big>
+Aquesta secció us permet canviar la configuració del compte d'usuari i afegir/suprimir usuaris associats al seu compte. Simplement seleccioneu l'usuari que voleu canviar de la llista.
+Tria
+usuari
+estat
+grup
+◀️ Enrere
+🎭 Crear
+⚙️ Configura
+⚙️ Configura grups
+🗑 Esborrar
+🎲 Contrasenya
+🔄 Restableix
+💾 Estalvia
+No heu seleccionat cap usuari per suprimir!
+Seleccioneu un usuari abans de continuar.
+No heu seleccionat cap usuari per configurar!
+Seleccioneu un usuari abans de continuar.
+<big><b>Crea un compte</b></big>
+Ompliu la informació següent per crear un compte nou.
+Nom complet:
+Nom d'usuari:
+Contrasenya:
+Confirmació:
+Ensenya la contrasenya
+|   Inici de sessió automàtic:
+El compte d'usuari s'ha creat correctament i podeu utilitzar aquest nou usuari després d'haver iniciat sessió de nou!
+La nova contrasenya ha de tenir almenys 8 caràcters!
+Les contrasenyes dels comptes d'usuari no coincideixen. Siusplau torna-ho a provar!
+<big><b>Configura un compte</b></big>
+En aquesta àrea podeu canviar la configuració del compte d'usuari.
+Nom d'usuari seleccionat:
+Contrasenya actual:
+Nova contrasenya:
+Confirmar nova contrasenya:
+<big><b>Configura grups</b></big>
+En aquesta àrea podeu veure a quins grups pertany l'usuari seleccionat i també podeu canviar la pertinença al grup.
+Però aneu amb compte! Has d'adonar-te que has de saber exactament què estàs fent. Jugar i provar els permisos d'usuari i grup pot aturar tot el vostre sistema!
+Si voleu crear o eliminar un usuari, només cal tenir-ne un més o menys.
+Tanmateix, si concedeu més drets a un usuari o limiteu els drets d'un compte o grup del sistema, és possible que esteu posant en perill la seguretat del vostre sistema!
+La configuració del compte d'usuari s'ha desat correctament!
+La contrasenya antiga del compte no ha de coincidir amb la nova!
+Si us plau, trieu una altra contrasenya.
+La nova contrasenya ha de tenir almenys 8 caràcters!
+La nova contrasenya i la nova contrasenya introduïda repetidament no coincideixen!
+Esteu segur que voleu eliminar l'usuari del vostre sistema?
+Si responeu >>SÍ<<, l'usuari seleccionat i totes les dades associades s'eliminaran d'aquest sistema!
+Sí
+NO
+L'usuari seleccionat no es pot suprimir perquè heu iniciat sessió en aquest sistema amb ell!
+Seleccioneu un usuari diferent si voleu continuar suprimint usuaris que ja no són necessaris en aquest sistema.
+El compte d'usuari i totes les dades associades s'han suprimit correctament!
