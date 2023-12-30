@@ -1,4 +1,4 @@
-<big><b>Einstellungen des Benutzermanagers</b></big>
+<big><b>Benutzereinstellungen</b></big>
 In diesem Bereich können Sie die Einstellungen des Benutzerkontos ändern und Benutzer hinzufügen/löschen, die mit ihrem Konto verknüpft sind. Wählen Sie einfach aus der Liste den Benutzer aus, den Sie ändern möchten.
 Wählen
 Benutzer
