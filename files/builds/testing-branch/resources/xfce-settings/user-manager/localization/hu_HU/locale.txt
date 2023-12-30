@@ -1,0 +1,52 @@
+<big><b>Felhasználói beállítások</b></big>
+Ez a rész lehetővé teszi a felhasználói fiók beállításainak módosítását, valamint a fiókjukhoz társított felhasználók hozzáadását/törlését. Egyszerűen válassza ki a módosítani kívánt felhasználót a listából.
+Választ
+felhasználó
+állapot
+csoport
+◀️ Vissza
+🎭 Hozzon létre
+⚙️ Konfigurálás
+⚙️ Csoportok konfigurálása
+🗑 Törlés
+🎲 Jelszó
+🔄 Reset
+💾 Mentés
+Nem választott ki törölni kívánt felhasználót!
+Kérjük, válasszon egy felhasználót a folytatás előtt.
+Nem választott ki konfigurálandó felhasználót!
+Kérjük, válasszon egy felhasználót a folytatás előtt.
+<big><b>Hozzon létre fiókot</b></big>
+Új fiók létrehozásához töltse ki az alábbi adatokat.
+Teljes név:
+Felhasználónév:
+Jelszó:
+Megerősítés:
+Mutasd a jelszót
+|   Automatikus bejelentkezés:
+A felhasználói fiók létrehozása sikeresen megtörtént, és újbóli bejelentkezés után használhatja ezt az új felhasználót!
+Az új jelszónak legalább 8 karakter hosszúnak kell lennie!
+A felhasználói fiókok jelszavai nem egyeznek. Kérlek próbáld újra!
+<big><b>Fiók konfigurálása</b></big>
+Ezen a területen módosíthatja a felhasználói fiók beállításait.
+Kiválasztott felhasználónév:
+Jelenlegi jelszó:
+Új jelszó:
+Erősítsd meg az új jelszót:
+<big><b>Csoportok konfigurálása</b></big>
+Ezen a területen láthatja, hogy a kiválasztott felhasználó mely csoportokhoz tartozik, és módosíthatja a csoporttagságot is.
+De légy óvatos! Fel kell ismerned, hogy pontosan tudnod kell, mit csinálsz. A felhasználói és csoportos engedélyek kijátszása és kipróbálása az egész rendszert leállíthatja!
+Ha szeretne létrehozni vagy törölni egy felhasználót, csak egy több vagy kevesebb felhasználóval kell rendelkeznie.
+Ha azonban több jogot ad egy felhasználónak, vagy korlátozza egy rendszerfiók vagy csoport jogait, akkor rendszere biztonságát veszélyeztetheti!
+A felhasználói fiók beállításai sikeresen elmentve!
+A fiók régi jelszava nem egyezhet meg az új jelszóval!
+Kérjük, válasszon másik jelszót.
+Az új jelszónak legalább 8 karakter hosszúnak kell lennie!
+Az új jelszó és a többször beírt új jelszó nem egyezik!
+Biztosan eltávolítja a felhasználót a rendszeréből?
+Ha >>IGEN<< válaszol, akkor a kiválasztott felhasználó és minden hozzá tartozó adat törlődik ebből a rendszerből!
+Igen
+NEM
+A kiválasztott felhasználó nem törölhető, mert ezzel be vagy jelentkezve ebbe a rendszerbe!
+Kérjük, válasszon másik felhasználót, ha folytatni szeretné a felhasználók törlését, akikre már nincs szükség ezen a rendszeren.
+A felhasználói fiók és az összes kapcsolódó adat sikeresen törölve!
