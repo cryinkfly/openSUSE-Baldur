@@ -22,8 +22,8 @@ Emri i plotë:
 Emri i përdoruesit:
 Fjalëkalimi:
 Konfirmimi:
-   Shfaq fjalëkalimin
-| Hyrja automatike:
+Shfaq fjalëkalimin
+|   Hyrja automatike:
 Llogaria e përdoruesit u krijua me sukses dhe ju mund ta përdorni këtë përdorues të ri pasi të identifikoheni përsëri!
 Fjalëkalimi i ri duhet të jetë së paku 8 karaktere!
 Fjalëkalimet e llogarive të përdoruesve nuk përputhen. Ju lutemi provoni përsëri!
