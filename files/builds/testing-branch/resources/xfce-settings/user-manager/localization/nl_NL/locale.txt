@@ -1,0 +1,52 @@
+<big><b>Gebruikersinstellingen</b></big>
+In deze sectie kunt u de instellingen van gebruikersaccounts wijzigen en gebruikers toevoegen/verwijderen die aan hun account zijn gekoppeld. Selecteer eenvoudigweg de gebruiker die u wilt wijzigen in de lijst.
+Kiezen
+gebruiker
+toestand
+groep
+◀️Terug
+🎭 Creëer
+⚙️Configureren
+⚙️ Groepen configureren
+🗑 Verwijderen
+🎲 Wachtwoord
+🔄 Resetten
+💾Opslaan
+U heeft geen gebruiker geselecteerd om te verwijderen!
+Selecteer een gebruiker voordat u doorgaat.
+U heeft geen gebruiker geselecteerd om te configureren!
+Selecteer een gebruiker voordat u doorgaat.
+<big><b>Account aanmaken</b></big>
+Vul de volgende gegevens in om een ​​nieuw account aan te maken.
+Voor-en achternaam:
+Gebruikersnaam:
+Wachtwoord:
+Bevestiging:
+Laat wachtwoord zien
+|   Automatisch inloggen:
+Het gebruikersaccount is succesvol aangemaakt en u kunt deze nieuwe gebruiker gebruiken nadat u opnieuw bent ingelogd!
+Het nieuwe wachtwoord moet minimaal 8 tekens lang zijn!
+De wachtwoorden van de gebruikersaccounts komen niet overeen. Probeer het opnieuw!
+<big><b>Configureer een account</b></big>
+In dit gebied kunt u de gebruikersaccountinstellingen wijzigen.
+Geselecteerde gebruikersnaam:
+Huidig ​​wachtwoord:
+Nieuw paswoord:
+Bevestig nieuw wachtwoord:
+<big><b>Groepen configureren</b></big>
+In dit gebied kunt u zien tot welke groepen uw geselecteerde gebruiker behoort en kunt u ook het groepslidmaatschap wijzigen.
+Maar pas op! Je moet beseffen dat je precies moet weten wat je doet. Door te spelen en gebruikers- en groepsrechten uit te proberen, kan uw hele systeem tot stilstand komen!
+Als u een gebruiker wilt aanmaken of verwijderen, hoeft u slechts één gebruiker meer of minder te hebben.
+Als u echter meer rechten toekent aan een gebruiker of de rechten van een systeemaccount of groep beperkt, brengt u mogelijk de veiligheid van uw systeem in gevaar!
+De gebruikersaccountinstellingen zijn succesvol opgeslagen!
+Het oude wachtwoord van het account mag niet overeenkomen met het nieuwe wachtwoord!
+Kies een ander wachtwoord.
+Het nieuwe wachtwoord moet minimaal 8 tekens lang zijn!
+Het nieuwe wachtwoord en het herhaaldelijk ingevoerde nieuwe wachtwoord komen niet overeen!
+Weet u zeker dat u de gebruiker van uw systeem wilt verwijderen?
+Als u >>JA<< antwoordt, worden de geselecteerde gebruiker en alle bijbehorende gegevens uit dit systeem verwijderd!
+Ja
+NEE
+De geselecteerde gebruiker kan niet worden verwijderd omdat u ermee bent ingelogd op dit systeem!
+Selecteer een andere gebruiker als u door wilt gaan met het verwijderen van gebruikers die niet langer nodig zijn op dit systeem.
+Het gebruikersaccount en alle bijbehorende gegevens zijn succesvol verwijderd!
