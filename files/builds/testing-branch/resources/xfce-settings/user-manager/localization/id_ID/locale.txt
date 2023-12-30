@@ -1,0 +1,52 @@
+<big><b>Setelan Pengguna</b></big>
+Bagian ini memungkinkan Anda mengubah pengaturan akun pengguna dan menambah/menghapus pengguna yang terkait dengan akun mereka. Cukup pilih pengguna yang ingin Anda ubah dari daftar.
+Memilih
+pengguna
+status
+kelompok
+◀️ Kembali
+🎭 Buat
+⚙️ Konfigurasi
+⚙️ Konfigurasikan grup
+🗑 Hapus
+🎲 Kata sandi
+🔄 Atur ulang
+💾 Simpan
+Anda belum memilih pengguna untuk dihapus!
+Silakan pilih pengguna sebelum melanjutkan.
+Anda belum memilih pengguna untuk dikonfigurasi!
+Silakan pilih pengguna sebelum melanjutkan.
+<big><b>Buat akun</b></big>
+Silakan isi informasi berikut untuk membuat akun baru.
+Nama lengkap:
+Nama belakang:
+Kata sandi:
+Konfirmasi:
+Tampilkan kata sandi
+|   Masuk otomatis:
+Akun pengguna berhasil dibuat dan Anda dapat menggunakan pengguna baru ini setelah masuk lagi!
+Kata sandi baru harus terdiri dari minimal 8 karakter!
+Kata sandi akun pengguna tidak cocok. Silakan coba lagi!
+<big><b>Konfigurasi akun</b></big>
+Di area ini Anda dapat mengubah pengaturan akun pengguna.
+Nama pengguna yang dipilih:
+Kata sandi saat ini:
+Kata sandi baru:
+Konfirmasi password baru:
+<big><b>Konfigurasi grup</b></big>
+Di area ini Anda dapat melihat grup mana yang termasuk dalam pengguna pilihan Anda dan Anda juga dapat mengubah keanggotaan grup.
+Tetapi berhati-hatilah! Anda harus menyadari bahwa Anda harus tahu persis apa yang Anda lakukan. Bermain-main dan mencoba izin pengguna dan grup dapat membuat seluruh sistem Anda terhenti!
+Jika Anda ingin membuat atau menghapus pengguna, Anda hanya perlu memiliki satu pengguna lebih atau kurang.
+Namun, jika Anda memberikan lebih banyak hak kepada pengguna atau membatasi hak akun atau grup sistem, Anda mungkin membahayakan keamanan sistem Anda!
+Pengaturan akun pengguna telah berhasil disimpan!
+Kata sandi akun yang lama tidak boleh sama dengan kata sandi baru!
+Silakan pilih kata sandi lain.
+Kata sandi baru harus terdiri dari minimal 8 karakter!
+Kata sandi baru dan kata sandi baru yang dimasukkan berulang kali tidak cocok!
+Apakah Anda yakin ingin menghapus pengguna tersebut dari sistem Anda?
+Jika Anda menjawab >>YA<<, pengguna yang dipilih dan semua data terkait akan dihapus dari sistem ini!
+Ya
+TIDAK
+Pengguna yang dipilih tidak dapat dihapus karena Anda masuk ke sistem ini dengan pengguna tersebut!
+Silakan pilih pengguna lain jika Anda ingin terus menghapus pengguna yang tidak diperlukan lagi di sistem ini.
+Akun pengguna dan semua data terkait telah berhasil dihapus!
