@@ -22,8 +22,8 @@ Izen osoa:
 Erabiltzaile izena:
 Pasahitza:
 Berrespena:
-   Erakutsi pasahitza
-| Saio-hasiera automatikoa:
+Erakutsi pasahitza
+|   Saio-hasiera automatikoa:
 Erabiltzaile-kontua behar bezala sortu da eta erabiltzaile berri hau berriro saioa hasi ondoren erabil dezakezu!
 Pasahitz berriak gutxienez 8 karaktere izan behar ditu!
 Erabiltzaile-kontuen pasahitzak ez datoz bat. Saiatu berriro mesedez!
