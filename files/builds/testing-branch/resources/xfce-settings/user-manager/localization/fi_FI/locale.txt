@@ -1,0 +1,52 @@
+<big><b>Käyttäjäasetukset</b></big>
+Tässä osiossa voit muuttaa käyttäjätilin asetuksia ja lisätä/poistaa heidän tiliinsä liittyviä käyttäjiä. Valitse vain luettelosta käyttäjä, jota haluat muuttaa.
+Valita
+käyttäjä
+Tila
+ryhmä
+◀️ Takaisin
+🎭 Luo
+⚙️ Määritä
+⚙️ Määritä ryhmät
+🗑 Poista
+🎲 Salasana
+🔄 Nollaa
+💾 Säästä
+Et ole valinnut poistettavaa käyttäjää!
+Valitse käyttäjä ennen kuin jatkat.
+Et ole valinnut määritettävää käyttäjää!
+Valitse käyttäjä ennen kuin jatkat.
+<big><b>Luo tili</b></big>
+Täytä seuraavat tiedot luodaksesi uuden tilin.
+Koko nimi:
+Käyttäjätunnus:
+Salasana:
+Vahvistus:
+Näytä salasana
+|   Automaattinen sisäänkirjautuminen:
+Käyttäjätilin luominen onnistui ja voit käyttää tätä uutta käyttäjää kirjautumisen jälkeen uudelleen!
+Uuden salasanan tulee olla vähintään 8 merkkiä pitkä!
+Käyttäjätilien salasanat eivät täsmää. Yritä uudelleen!
+<big><b>Määritä tili</b></big>
+Tällä alueella voit muuttaa käyttäjätilin asetuksia.
+Valittu käyttäjätunnus:
+Nykyinen salasana:
+Uusi salasana:
+Vahvista uusi salasana:
+<big><b>Määritä ryhmiä</b></big>
+Tältä alueelta näet mihin ryhmiin valitsemasi käyttäjä kuuluu ja voit myös muuttaa ryhmän jäsenyyttä.
+Mutta ole varovainen! Sinun on ymmärrettävä, että sinun pitäisi tietää tarkalleen mitä olet tekemässä. Pelaaminen ja käyttäjä- ja ryhmäkäyttöoikeuksien kokeileminen voi pysäyttää koko järjestelmäsi!
+Jos haluat luoda tai poistaa käyttäjän, sinulla on oltava yksi enemmän tai vähemmän käyttäjä.
+Jos kuitenkin myönnät käyttäjälle lisää oikeuksia tai rajoitat järjestelmätilin tai ryhmän oikeuksia, saatat vaarantaa järjestelmäsi turvallisuuden!
+Käyttäjätilin asetukset on tallennettu onnistuneesti!
+Tilin vanha salasana ei saa vastata uutta salasanaa!
+Valitse toinen salasana.
+Uuden salasanan tulee olla vähintään 8 merkkiä pitkä!
+Uusi salasana ja toistuvasti syötetty uusi salasana eivät täsmää!
+Haluatko varmasti poistaa käyttäjän järjestelmästäsi?
+Jos vastaat >>KYLLÄ<<, valittu käyttäjä ja kaikki siihen liittyvät tiedot poistetaan tästä järjestelmästä!
+Joo
+EI
+Valittua käyttäjää ei voi poistaa, koska olet kirjautunut tähän järjestelmään sillä!
+Valitse toinen käyttäjä, jos haluat jatkaa sellaisten käyttäjien poistamista, joita ei enää tarvita tässä järjestelmässä.
+Käyttäjätili ja kaikki siihen liittyvät tiedot on poistettu onnistuneesti!
