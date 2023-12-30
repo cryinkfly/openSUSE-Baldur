@@ -1,0 +1,52 @@
+<big><b>Mga Setting ng User</b></big>
+Binibigyang-daan ka ng seksyong ito na baguhin ang mga setting ng user account at magdagdag/magtanggal ng mga user na nauugnay sa kanilang account. Piliin lang ang user na gusto mong baguhin mula sa listahan.
+Pumili
+gumagamit
+katayuan
+pangkat
+◀️ Bumalik
+🎭 Lumikha
+⚙️ I-configure
+⚙️ I-configure ang mga pangkat
+🗑 Tanggalin
+🎲 Password
+🔄 I-reset
+💾 I-save
+Wala kang napiling user na tatanggalin!
+Mangyaring pumili ng user bago magpatuloy.
+Hindi ka nakapili ng user na i-configure!
+Mangyaring pumili ng user bago magpatuloy.
+<big><b>Gumawa ng account</b></big>
+Mangyaring punan ang sumusunod na impormasyon upang lumikha ng bagong account.
+Buong pangalan:
+User name:
+Password:
+Kumpirmasyon:
+Ipakita ang Password
+|   Awtomatikong pag-log in:
+Matagumpay na nalikha ang user account at magagamit mo ang bagong user na ito pagkatapos mag-log in muli!
+Ang bagong password ay dapat na hindi bababa sa 8 character ang haba!
+Ang mga password ng mga user account ay hindi tugma. Pakisubukang muli!
+<big><b>Mag-configure ng account</b></big>
+Sa lugar na ito maaari mong baguhin ang mga setting ng user account.
+Napiling username:
+Kasalukuyang Password:
+Bagong Password:
+Kumpirmahin ang bagong password:
+<big><b>I-configure ang mga pangkat</b></big>
+Sa lugar na ito makikita mo kung saang mga grupo kabilang ang iyong napiling user at maaari mo ring baguhin ang membership ng grupo.
+Ngunit mag-ingat! Kailangan mong mapagtanto na dapat mong malaman nang eksakto kung ano ang iyong ginagawa. Ang paglalaro at pagsubok ng mga pahintulot ng user at grupo ay maaaring huminto sa iyong buong system!
+Kung gusto mong gumawa o magtanggal ng user, kailangan mo lang magkaroon ng isa o mas kaunting user.
+Gayunpaman, kung magbibigay ka ng higit pang mga karapatan sa isang user o nililimitahan ang mga karapatan ng isang system account o grupo, maaari mong ilagay sa panganib ang seguridad ng iyong system!
+Ang mga setting ng user account ay matagumpay na nai-save!
+Ang lumang password ng account ay hindi dapat tumugma sa bagong password!
+Mangyaring pumili ng isa pang password.
+Ang bagong password ay dapat na hindi bababa sa 8 character ang haba!
+Hindi magkatugma ang bagong password at ang paulit-ulit na inilagay na bagong password!
+Sigurado ka bang gusto mong alisin ang user sa iyong system?
+Kung sumagot ka ng >>OO<<, ang napiling user at lahat ng nauugnay na data ay aalisin sa system na ito!
+Oo
+HINDI
+Hindi matatanggal ang napiling user dahil naka-log in ka sa system na ito kasama nito!
+Mangyaring pumili ng ibang user kung gusto mong ipagpatuloy ang pagtanggal ng mga user na hindi na kailangan sa system na ito.
+Ang user account at lahat ng nauugnay na data ay matagumpay na natanggal!
