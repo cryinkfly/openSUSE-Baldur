@@ -1,0 +1,52 @@
+<big><b>Einstellungen des Benutzermanagers</b></big>
+In diesem Bereich können Sie die Einstellungen des Benutzerkontos ändern und Benutzer hinzufügen/löschen, die mit ihrem Konto verknüpft sind. Wählen Sie einfach aus der Liste den Benutzer aus, den Sie ändern möchten.
+Wählen
+Benutzer
+Status
+Gruppe
+◀️ Zurück
+🎭 Erstellen
+⚙️ Konfigurieren
+⚙️ Gruppen konfigurieren
+🗑 Löschen
+🎲 Passwort
+🔄 Zurücksetzen
+💾 Speichern
+Sie haben keinen Benutzer zum Löschen ausgewählt!
+Bitte wählen Sie einen Benutzer aus, bevor Sie fortfahren.
+Sie haben keinen Benutzer zum Konfigurieren ausgewählt!
+Bitte wählen Sie einen Benutzer aus, bevor Sie fortfahren.
+<big><b>Konto erstellen</b></big>
+Füllen Sie bitte die folgenden Angaben aus, um ein neues Konto zu erstellen.
+Vollständiger Name:
+Benutzername:
+Passwort:
+Bestätigung:
+  Passwort anzeigen
+| Automatische Anmeldung:
+Das Benutzerkonto wurde erfolgreich erstellt und Sie können diesen neuen Benutzer nach einem erneuten Login verwenden!
+Das neue Passwort muss mindestens 8 Zeichen lang sein!
+Die Passwörter der Benutzerkonten stimmen nicht überein. Bitte versuche es erneut!
+<big><b>Konfigurieren Sie ein Konto</b></big>
+In diesem Bereich können Sie die Einstellungen des Benutzerkontos ändern.
+Ausgewählter Benutzername:
+Aktuelles Passwort:
+Neues Passwort:
+Neues Passwort bestätigen:
+<big><b>Gruppen konfigurieren</b></big>
+In diesem Bereich können Sie sehen, zu welchen Gruppen Ihr ausgewählter Benutzer gehört und Sie können auch die Gruppenzugehörigkeit ändern.
+Aber seien Sie vorsichtig! Sie müssen sich darüber im Klaren sein, dass Sie genau wissen sollten, was Sie tun. Herumspielen und Ausprobieren von Benutzer- und Gruppenberechtigungen kann Ihr gesamtes System zum Stillstand bringen!
+Wenn Sie einen Benutzer erstellen oder löschen möchten, müssen Sie lediglich einen mehr oder weniger Benutzer haben.
+Wenn Sie einem Benutzer jedoch mehr Rechte gewähren oder die Rechte eines Systemkontos oder einer Systemgruppe einschränken, gefährden Sie möglicherweise die Sicherheit Ihres Systems!
+Die Benutzerkontoeinstellungen wurden erfolgreich gespeichert!
+Das alte Passwort des Kontos darf nicht mit dem neuen Passwort übereinstimmen!
+Bitte wählen Sie ein anderes Passwort.
+Das neue Passwort muss mindestens 8 Zeichen lang sein!
+Das neue Passwort und das wiederholt eingegebene neue Passwort stimmen nicht überein!
+Sind Sie sicher, dass Sie den Benutzer aus Ihrem System entfernen möchten?
+Wenn Sie mit >>JA<< antworten, werden der ausgewählte Benutzer und alle zugehörigen Daten aus diesem System entfernt!
+Ja
+NEIN
+Der ausgewählte Benutzer kann nicht gelöscht werden, da Sie mit diesem in diesem System angemeldet sind!
+Wählen Sie bitte einen anderen Benutzer aus, wenn Sie mit dem Löschen von Benutzern fortfahren möchten, die auf diesem System nicht mehr benötigt werden.
+Das Benutzerkonto wurde mit allen zugehörigen Daten erfolgreich gelöscht!
