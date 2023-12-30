@@ -1,0 +1,52 @@
+<big><b>Setări utilizator</b></big>
+Această secțiune vă permite să modificați setările contului de utilizator și să adăugați/ștergeți utilizatori asociați contului lor. Pur și simplu selectați utilizatorul pe care doriți să-l schimbați din listă.
+Alege
+utilizator
+stare
+grup
+◀️ Înapoi
+🎭 Creați
+⚙️ Configurați
+⚙️ Configurați grupuri
+🗑 Ștergeți
+🎲 Parolă
+🔄 Resetați
+💾 Salvați
+Nu ați selectat un utilizator de șters!
+Vă rugăm să selectați un utilizator înainte de a continua.
+Nu ați selectat un utilizator de configurat!
+Vă rugăm să selectați un utilizator înainte de a continua.
+<big><b>Creați un cont</b></big>
+Vă rugăm să completați următoarele informații pentru a crea un cont nou.
+Numele complet:
+Nume de utilizator:
+Parola:
+Confirmare:
+Arata parola
+|   Autentificare automată:
+Contul de utilizator a fost creat cu succes și puteți utiliza acest nou utilizator după ce vă conectați din nou!
+Noua parolă trebuie să aibă cel puțin 8 caractere!
+Parolele conturilor de utilizator nu se potrivesc. Vă rugăm să încercați din nou!
+<big><b>Configurați un cont</b></big>
+În această zonă puteți modifica setările contului de utilizator.
+Nume de utilizator selectat:
+Parola actuală:
+Parolă Nouă:
+Confirmă noua parolă:
+<big><b>Configurați grupuri</b></big>
+În această zonă puteți vedea ce grupuri aparține utilizatorul selectat de dvs. și puteți modifica, de asemenea, apartenența la grup.
+Dar fii atent! Trebuie să realizezi că ar trebui să știi exact ce faci. Jucându-vă și încercați permisiunile de utilizator și de grup, vă poate opri întregul sistem!
+Dacă doriți să creați sau să ștergeți un utilizator, trebuie doar să aveți un utilizator mai mult sau mai puțin.
+Cu toate acestea, dacă acordați mai multe drepturi unui utilizator sau limitați drepturile unui cont de sistem sau unui grup, este posibil să puneți în pericol securitatea sistemului!
+Setările contului de utilizator au fost salvate cu succes!
+Vechea parolă a contului nu trebuie să se potrivească cu noua parolă!
+Vă rugăm să alegeți o altă parolă.
+Noua parolă trebuie să aibă cel puțin 8 caractere!
+Noua parolă și noua parolă introdusă în mod repetat nu se potrivesc!
+Sigur doriți să eliminați utilizatorul din sistemul dvs.?
+Dacă răspundeți >>DA<<, utilizatorul selectat și toate datele asociate vor fi eliminate din acest sistem!
+da
+NU
+Utilizatorul selectat nu poate fi șters deoarece sunteți autentificat la acest sistem cu acesta!
+Vă rugăm să selectați un alt utilizator dacă doriți să continuați să ștergeți utilizatorii care nu mai sunt necesari pe acest sistem.
+Contul de utilizator și toate datele asociate au fost șterse cu succes!
