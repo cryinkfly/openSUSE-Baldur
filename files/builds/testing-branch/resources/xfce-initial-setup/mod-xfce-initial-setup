@@ -11,79 +11,31 @@
 # Version:      1.0.0                                                                              #
 ####################################################################################################
 
-# Muss noch gebaut werden !!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
-
-
-###############################################################################################################################################################################
-# THIS CHECKS WHETHER THE SCRIPT IS EXECUTED IN THE ROOT SHELL:                                                                                                               #
-###############################################################################################################################################################################
-
-# Checks if I am a root user and if I run the Xfce-Initial-Setup in the first time?
-function CHECK_ROOT_SHELL {
-    if [ $(id -u) -eq 0 ]; then
-        firstboot_autostart_file="/root/.config/autostart/mod-firstboot.desktop"
-        if [ -f $firstboot_autostart_file ]; then
-            # Firstboot-Autostart-File exists.
-            XFCE-INITIAL-SETUP-START
-        else
-            # Firstboot-Autostart-File does not exist.
-            CHECK_WHICH_TOOL_TO_USE
-        fi
-    else
-        CHECK_WHICH_TOOL_TO_USE
-    fi
+function LOAD_LOCALE_SETUP {
+    source ~/usr/bin/xfc4-locale-settings
 }
 
-###############################################################################################################################################################################
-# THIS CHECKS WHICH SPECIAL FUNCTION SHOULD BE CALLED:                                                                                                                        #
-###############################################################################################################################################################################
-
-function CHECK_WHICH_TOOL_TO_USE {
-case "$tool_data" in
-  "locale_settings_tool")
-    source /usr/bin/mod-locale-settings
-    ;;
-  "user_settings_tool")
-    source /usr/bin/mod-user-settings
-    ;;
-  *)
-    # Nothing to do ...
-    ;;
-esac
+function CREATE_NEW_USER {
+    python3 ~/usr/bin/xfce4-initial-add-user-setup
 }
 
 ###############################################################################################################################################################################
 # THE FIRSTBOOT PROGRAM IS STARTED HERE:                                                                                                                                      #
 ###############################################################################################################################################################################
 
-LOAD_COLOR_SHEME
-GET_LOCALE_DATA
-CHECK_ROOT_SHELL
-# ...
+LOAD_LOCALE_SETUP
+CREATE_NEW_USER
 
 
 
-###############################################################################################################################################################################
 
+Der kommende Inhalt muss in die "xfce4-initial-add-user-setup" eingebaut werden:
 
 # Delete the desktop file for the Firstboot-Setup (/root/...)
-rm -f /root/.config/autostart/mod-firstboot.desktop
+rm -f /root/.config/autostart/xfce-initial-setup.desktop
 
 # Deactivate the Automatic-Login function:
 sed -i 's/DISPLAYMANAGER_AUTOLOGIN="root"/DISPLAYMANAGER_AUTOLOGIN=""/' /etc/sysconfig/displaymanager
-
-CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO
-COMPLETED_SETUP_INFO
 
 # Logout the system-user ...
 xfce4-session-logout --logout
