@@ -540,6 +540,16 @@ class Window_Create_User_Read_Left(Gtk.Window):
         self.password_entry.set_text("")
         self.confirm_password_entry.set_text("")
 
+    def on_back_clicked(self, widget):
+        locale_cmd="source ~/usr/bin/xfc4-locale-settings"
+        os.system(locale_cmd)
+        window1_2 = Window_Create_User_Read_Right()
+        window1_2.connect("destroy", Gtk.main_quit)
+        window1_2.show_all() 
+        Gtk.main()
+        self.hide()
+        return True
+
 ##############################################################################################################################################################################
 
 class Window_Create_User_Read_Left(Gtk.Window):
@@ -797,6 +807,10 @@ class Window_Create_User_Read_Left(Gtk.Window):
     def on_back_clicked(self, widget):
         locale_cmd="source ~/usr/bin/xfc4-locale-settings"
         os.system(locale_cmd)
+        window2_2 = Window_Create_User_Read_Left()
+        window2_2.connect("destroy", Gtk.main_quit)
+        window2_2.show_all() 
+        Gtk.main()
         self.hide()
         return True
 
@@ -836,7 +850,8 @@ class Window_Create_User_Info_Completed(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        Reload_MainWindow(self, widget)
+        self.hide()
+        return True
 
 ##############################################################################################################################################################################
 
@@ -873,12 +888,6 @@ class Window_Create_User_Error_1(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        locale_cmd="source ~/usr/bin/xfc4-locale-settings"
-        os.system(locale_cmd)
-        window1_2 = Window_Create_User_Read_Right()
-        window1_2.connect("destroy", Gtk.main_quit)
-        window1_2.show_all() 
-        Gtk.main()
         self.hide()
         return True
 
@@ -918,12 +927,6 @@ class Window_Create_User_Error_2(Gtk.Window):
         hbox.pack_start(button_okay, True, False, 0)
 
     def on_back_clicked(self, widget):
-        locale_cmd="source ~/usr/bin/xfc4-locale-settings"
-        os.system(locale_cmd)
-        window2_2 = Window_Create_User_Read_Left()
-        window2_2.connect("destroy", Gtk.main_quit)
-        window2_2.show_all() 
-        Gtk.main()
         self.hide()
         return True
 
