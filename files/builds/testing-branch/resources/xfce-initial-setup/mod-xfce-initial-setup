@@ -1,0 +1,96 @@
+#!/usr/bin/python	
+
+####################################################################################################
+# Name:         openSUSE Baldur (MicroOS with XFCE) - XFCE-Initial-Setup                           #
+# Description:  This file calls the graphical XFCE-Initial-Setup!                                  #
+# Author:       Steve Zabka                                                                        #
+# Author URI:   https://cryinkfly.com                                                              #
+# License:      MIT                                                                                #
+# Copyright (c) 2023                                                                               #
+# Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
+# Version:      1.0.0                                                                              #
+####################################################################################################
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk, Pango
+import os
+import random
+import string
+
+# Muss noch gebaut werden !!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################################################################################################################
+# THIS CHECKS WHETHER THE SCRIPT IS EXECUTED IN THE ROOT SHELL:                                                                                                               #
+###############################################################################################################################################################################
+
+# Checks if I am a root user and if I run the Xfce-Initial-Setup in the first time?
+function CHECK_ROOT_SHELL {
+    if [ $(id -u) -eq 0 ]; then
+        firstboot_autostart_file="/root/.config/autostart/mod-firstboot.desktop"
+        if [ -f $firstboot_autostart_file ]; then
+            # Firstboot-Autostart-File exists.
+            XFCE-INITIAL-SETUP-START
+        else
+            # Firstboot-Autostart-File does not exist.
+            CHECK_WHICH_TOOL_TO_USE
+        fi
+    else
+        CHECK_WHICH_TOOL_TO_USE
+    fi
+}
+
+###############################################################################################################################################################################
+# THIS CHECKS WHICH SPECIAL FUNCTION SHOULD BE CALLED:                                                                                                                        #
+###############################################################################################################################################################################
+
+function CHECK_WHICH_TOOL_TO_USE {
+case "$tool_data" in
+  "locale_settings_tool")
+    source /usr/bin/mod-locale-settings
+    ;;
+  "user_settings_tool")
+    source /usr/bin/mod-user-settings
+    ;;
+  *)
+    # Nothing to do ...
+    ;;
+esac
+}
+
+###############################################################################################################################################################################
+# THE FIRSTBOOT PROGRAM IS STARTED HERE:                                                                                                                                      #
+###############################################################################################################################################################################
+
+LOAD_COLOR_SHEME
+GET_LOCALE_DATA
+CHECK_ROOT_SHELL
+# ...
+
+
+
+###############################################################################################################################################################################
+
+
+# Delete the desktop file for the Firstboot-Setup (/root/...)
+rm -f /root/.config/autostart/mod-firstboot.desktop
+
+# Deactivate the Automatic-Login function:
+sed -i 's/DISPLAYMANAGER_AUTOLOGIN="root"/DISPLAYMANAGER_AUTOLOGIN=""/' /etc/sysconfig/displaymanager
+
+CHECK_LOCALE_FOR_COMPLETED_SETUP_INFO
+COMPLETED_SETUP_INFO
+
+# Logout the system-user ...
+xfce4-session-logout --logout
