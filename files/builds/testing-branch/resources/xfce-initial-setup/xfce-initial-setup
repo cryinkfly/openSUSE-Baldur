@@ -29,7 +29,7 @@ CREATE_NEW_USER
 
 
 
-Der kommende Inhalt muss in die "xfce4-initial-add-user-setup" eingebaut werden:
+Der kommende Inhalt muss in die "xfce-initial-add-user-setup" eingebaut werden:
 
 # Delete the desktop file for the Firstboot-Setup (/root/...)
 rm -f /root/.config/autostart/xfce-initial-setup.desktop
