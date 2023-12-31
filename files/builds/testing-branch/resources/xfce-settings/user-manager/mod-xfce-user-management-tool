@@ -453,7 +453,7 @@ class MainWindow(Gtk.Window):
                 return True
             else:
                 print("The UI is set to read left to right!")
-                window2_1 = Window_Configure_User_Read_Right()
+                window2_1 = Window_Configure_User_Read_Left()
                 window2_1.connect("destroy", Gtk.main_quit)
                 window2_1.show_all()          
                 self.hide()
