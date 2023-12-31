@@ -120,11 +120,11 @@ EOF
 
 function SP_CONFIGURE_DESKTOP_LOCALE {
     transactional-update -c run bash -c '
-        curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/icons/icons-preferences-desktop-locale.zip -O -J -L
+        curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/icons/preferences-desktop-locale.zip -O -J -L
         unzip icons-preferences-desktop-locale.zip
-        mv icons-preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
-        mv icons-preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
-        mv icons-preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
+        mv preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
+        mv preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
+        mv preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
         rm -rf icons-preferences-desktop-locale.zip
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-conf > /usr/bin/mod-locale-conf
