@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
-# Version:      1.3.x                                                                              #
+# Time/Date:    15:00/31.12.2023                                                                   #
+# Version:      1.4.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -23,24 +23,34 @@ function LOAD_COLOR_SHEME {
 }
 
 ##############################################################################################################################################################################
-# GET THE MICROOS DESKTOP FIRSTBOOT SETUP-FILE:                                                                                                                              #
+# GET THE MICROOS DESKTOP XFCE-INITIAL-SETUP-FILE:                                                                                                                           #
 ##############################################################################################################################################################################
 
-function GET_FIRSTBOOT_SETUP_FILE {
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-firstboot > /usr/bin/mod-firstboot
-    chmod +x /usr/bin/mod-firstboot
+function GET_XFCE_INITIAL_SETUP_FILE {
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-xfce-initial-setup > /usr/bin/mod-xfce-initial-setup
+    chmod +x /usr/bin/mod-xfce-initial-setup
     mkdir -p /root/.config/autostart
-    cat > /root/.config/autostart/mod-firstboot.desktop << EOF
+    cat > /root/.config/autostart/mod-xfce-initial-setup.desktop << EOF
 [Desktop Entry]
-Name=MicroOS Desktop FirstBoot Setup
-Comment=Sets up MicroOS Desktop Correctly On FirstBoot
-Exec=/usr/bin/mod-firstboot
+Name=MicroOS Desktop XFCE-INITIAL-SETUP
+Comment=Start the XFCE-INITIAL-SETUP On FirstBoot
+Exec=/usr/bin/mod-xfce-initial-setup
 Icon=org.xfce.terminal
 Type=Application
 Categories=Utility;System;
 Name[en_GB]=startup
 Name[en_US]=startup
 EOF
+}
+
+##############################################################################################################################################################################
+# GET THE MICROOS DESKTOP FLATPAK-SETUP-FILE:                                                                                                                                #
+##############################################################################################################################################################################
+
+function GET_FLATPAK_SETUP_FILE {
+    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/flatpak/mod-flatpak-first-setup > ~/usr/bin/mod-flatpak-setup
+    chmod +x /usr/bin/mod-flatpak-setup
 }
 
 ##############################################################################################################################################################################
@@ -52,20 +62,46 @@ function ACTIVATE_AUTO_LOGIN_FIRSTBOOT {
 }
 
 ##############################################################################################################################################################################
-# GET THE LANGUAGE SETUP FILE:                                                                                                                                               #
+# GET THE XFCE4-LANGUAGE-SETTINGS-FILE:                                                                                                                                      #
 ##############################################################################################################################################################################
 
-function GET_LOCALE_SETUP_FILE {
-    curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/icons/icons-preferences-desktop-locale.zip -O -J -L
-    unzip icons-preferences-desktop-locale.zip
-    mv icons-preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
-    mv icons-preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
-    mv icons-preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
-    rm -rf icons-preferences-desktop-locale.zip
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-setup.desktop > /usr/share/applications/mod-locale-settings.desktop
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/locale-setup-list.txt > /usr/etc/locale-conf/locale-setup-list.txt
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-setup > /usr/bin/mod-locale-settings
-    chmod +x /usr/bin/mod-locale-setup.desktop
+function GET_XFCE4_LOCALE_SETTINGS_FILE {
+    curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/icons/preferences-desktop-locale.zip -O -J -L
+    unzip preferences-desktop-locale.zip
+    mv preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
+    mv preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
+    mv preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
+    rm -rf preferences-desktop-locale.zip
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-settings.desktop > ~/usr/share/applications/xfc4-locale-settings.desktop
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-setup-list.txt > ~/usr/etc/locale-conf/locale-setup-list.txt
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/xfc4-locale-settings > ~/usr/bin/xfc4-locale-settings
+    chmod +x /usr/bin/xfc4-locale-settings
+}
+
+##############################################################################################################################################################################
+# GET THE XFCE4-USER-MANAGEMENT-FILE:                                                                                                                                      #
+##############################################################################################################################################################################
+
+function GET_XFCE4_USER_MANAGEMENT_FILE {
+    curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/icons/preferences-desktop-user-management.zip -O -J -L
+    unzip preferences-desktop-user-management.zip
+    mv preferences-desktop-user-management/scalable/apps/preferences-system-users.svg /usr/share/icons/hicolor/scalable/apps
+    mv preferences-desktop-user-management/128x128/apps/preferences-system-users.png /usr/share/icons/hicolor/128x128/apps
+    mv preferences-desktop-user-management/64x64/apps/preferences-system-users.png /usr/share/icons/hicolor/64x64/apps
+    rm -rf preferences-desktop-user-management.zip
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-user-management/xfce4-user-management.desktop > ~/usr/share/applications/xfce4-user-management.desktop
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-user-management/xfce4-user-management > ~/usr/bin/xfce4-user-management
+    chmod +x /usr/bin/xfce4-user-management
+}
+
+##############################################################################################################################################################################
+# GET THE XFCE4-XCONF-FILES:                                                                                                                                                 #
+##############################################################################################################################################################################
+
+function GET_XFCE4_XCONF_FILES {
+    mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 }
 
 ##############################################################################################################################################################################
@@ -439,9 +475,12 @@ function EXIT_REBOOT {
 #####################################################################################################################################################################################################################
 
 LOAD_COLOR_SHEME
-GET_FIRSTBOOT_SETUP_FILE
+GET_XFCE_INITIAL_SETUP_FILE
+GET_FLATPAK_SETUP_FILE
 ACTIVATE_AUTO_LOGIN_FIRSTBOOT
-GET_LOCALE_SETUP_FILE
+GET_XFCE4_LOCALE_SETTINGS_FILE
+GET_XFCE4_USER_MANAGEMENT_FILE
+GET_XFCE4_XCONF_FILES
 INSTALL_REQUIRED_PACKAGES
 INSTALL_GPU_DRIVER
 ACTIVATE_GUI
