@@ -49,7 +49,7 @@ EOF
 
 function GET_FLATPAK_SETUP_FILE {
     mkdir -p /home/$USERNAME/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/flatpak/mod-flatpak-first-setup > ~/usr/bin/mod-flatpak-setup
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/flatpak-setup/mod-flatpak-first-setup > ~/usr/bin/mod-flatpak-setup
     chmod +x /usr/bin/mod-flatpak-setup
 }
 
