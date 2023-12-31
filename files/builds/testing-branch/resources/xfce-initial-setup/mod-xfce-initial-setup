@@ -1,4 +1,4 @@
-#!/usr/bin/python	
+#!/usr/bin/bash	
 
 ####################################################################################################
 # Name:         openSUSE Baldur (MicroOS with XFCE) - XFCE-Initial-Setup                           #
@@ -10,13 +10,6 @@
 # Time/Date:    xx:xx/xx.xx.xxxx                                                                   #
 # Version:      1.0.0                                                                              #
 ####################################################################################################
-
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, Pango
-import os
-import random
-import string
 
 # Muss noch gebaut werden !!!!!!!!!!!!!!!!!
 
