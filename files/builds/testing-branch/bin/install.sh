@@ -27,10 +27,10 @@ function LOAD_COLOR_SHEME {
 ##############################################################################################################################################################################
 
 function GET_XFCE_INITIAL_SETUP_FILE {
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-xfce-initial-setup > /usr/bin/mod-xfce-initial-setup
-    chmod +x /usr/bin/mod-xfce-initial-setup
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/xfce-initial-setup > /usr/bin/xfce-initial-setup
+    chmod +x /usr/bin/xfce-initial-setup
     mkdir -p /root/.config/autostart
-    cat > /root/.config/autostart/mod-xfce-initial-setup.desktop << EOF
+    cat > /root/.config/autostart/xfce-initial-setup.desktop << EOF
 [Desktop Entry]
 Name=MicroOS Desktop XFCE-INITIAL-SETUP
 Comment=Start the XFCE-INITIAL-SETUP On FirstBoot
