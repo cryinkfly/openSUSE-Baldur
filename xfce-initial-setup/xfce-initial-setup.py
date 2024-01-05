@@ -1,7 +1,7 @@
 #!/usr/bin/python	
 
 ####################################################################################################
-# Name:         openSUSE Baldur (MicroOS with XFCE) - XFCE-Initial-Setup                           #
+# Name:         openSUSE Baldur - XFCE-Initial-Setup                                               #
 # Description:  This file calls the graphical XFCE-Initial-Setup!                                  #
 # Author:       Steve Zabka                                                                        #
 # Author URI:   https://cryinkfly.com                                                              #
