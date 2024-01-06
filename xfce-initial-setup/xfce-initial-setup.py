@@ -156,67 +156,67 @@ class LanguageSelectionWindow(Gtk.Window):
             new_title = "いらっしゃいませ"
             self.set_title(new_title)
         elif selected_language == "Korean":
-            new_title = ""
+            new_title = "환영"
             self.set_title(new_title)
         elif selected_language == "Lithuanian":
-            new_title = ""
+            new_title = "Sveiki"
             self.set_title(new_title)
         elif selected_language == "Malaysian":
-            new_title = ""
+            new_title = "Selamat datang"
             self.set_title(new_title)
         elif selected_language == "Maori":
-            new_title = ""
+            new_title = "Nau mai haere mai"
             self.set_title(new_title)
         elif selected_language == "Norwegian":
-            new_title = ""
+            new_title = "Velkommen"
             self.set_title(new_title)
         elif selected_language == "Nynorsk":
-            new_title = ""
+            new_title = "Velkommen"
             self.set_title(new_title)
         elif selected_language == "Polish":
-            new_title = ""
+            new_title = "Powitanie"
             self.set_title(new_title)
         elif selected_language == "Portuguese":
-            new_title = ""
+            new_title = "Bem-vindo"
             self.set_title(new_title)
         elif selected_language == "Romanian":
-            new_title = ""
+            new_title = "Bine ati venit"
             self.set_title(new_title)
         elif selected_language == "Russian":
-            new_title = ""
+            new_title = "Добро пожаловать"
             self.set_title(new_title)
         elif selected_language == "Samoan":
-            new_title = ""
+            new_title = "Afio mai"
             self.set_title(new_title)
         elif selected_language == "Slovak":
-            new_title = ""
+            new_title = "Vitajte"
             self.set_title(new_title)
         elif selected_language == "Slovenian":
-            new_title = ""
+            new_title = "dobrodošli"
             self.set_title(new_title)
         elif selected_language == "Somali":
-            new_title = ""
+            new_title = "Soo dhawoow"
             self.set_title(new_title)
         elif selected_language == "Spanish":
-            new_title = ""
+            new_title = "Bienvenido"
             self.set_title(new_title)
         elif selected_language == "Swedish":
-            new_title = ""
+            new_title = "Välkommen"
             self.set_title(new_title)
         elif selected_language == "Tagalog":
-            new_title = ""
+            new_title = "Maligayang pagdating"
             self.set_title(new_title)
         elif selected_language == "Thai":
-            new_title = ""
+            new_title = "ยินดีต้อนรับ"
             self.set_title(new_title)
         elif selected_language == "Tongan":
-            new_title = ""
+            new_title = "ʻOku talitali lelei koe"
             self.set_title(new_title)
         elif selected_language == "Turkish":
-            new_title = ""
+            new_title = "Hoş geldin"
             self.set_title(new_title)
         elif selected_language == "Ukrainian":
-            new_title = ""
+            new_title = "Ласкаво просимо"
             self.set_title(new_title)
         else:
             new_title = "Welcome"
