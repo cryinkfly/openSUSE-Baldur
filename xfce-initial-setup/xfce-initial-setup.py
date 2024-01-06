@@ -13,7 +13,17 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, Gio, Gdk, GdkPixbuf
+
+def get_background_color(widget):
+    style_context = widget.get_style_context()
+    color = style_context.get_background_color(Gtk.StateType.NORMAL)
+    return color
+
+def is_dark_color(color):
+    # Calculate luminance using the formula: 0.299*R + 0.587*G + 0.114*B
+    luminance = 0.299 * color.red + 0.587 * color.green + 0.114 * color.blue
+    return luminance < 0.5  # You can adjust the threshold as needed
 
 class LanguageSelectionWindow(Gtk.Window):
     def __init__(self):
@@ -31,8 +41,15 @@ class LanguageSelectionWindow(Gtk.Window):
         header_bar.pack_end(next_button)
         self.set_titlebar(header_bar)
 
-        # Load the SVG file
-        svg_file_path = "opensuse-logo-color.svg"
+        # Load the SVG file ...       
+        # Check the background color and update label text accordingly
+        background_color = get_background_color(self)
+        if is_dark_color(background_color):
+            print("Dark theme is in use.")
+            svg_file_path = "opensuse-logo-white.svg"
+        else:
+            print("Light theme is in use.")
+            svg_file_path = "opensuse-logo-green.svg"
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 200, 100)
 
         # Create an image widget and set the Pixbuf
@@ -61,8 +78,6 @@ class LanguageSelectionWindow(Gtk.Window):
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.set_margin_start(100)
         scrolled_window.set_margin_end(100)
-
-
         scrolled_window.add(listbox)
 
         # Create a VBox to organize widgets vertically
