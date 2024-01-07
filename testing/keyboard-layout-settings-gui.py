@@ -38,6 +38,9 @@ class KeyboardLayoutConfigurator(Gtk.Window):
 
         # Text entry for testing keyboard layout
         self.test_entry = Gtk.Entry()
+        self.test_entry.set_text("Type here to test your keyboard ...")
+        self.test_entry.connect("focus-in-event", self.on_entry_clicked)
+        self.test_entry.connect("focus-out-event", self.off_entry_clicked)
 
         # Layout
         grid = Gtk.Grid(column_spacing=10, row_spacing=10)
@@ -99,6 +102,9 @@ class KeyboardLayoutConfigurator(Gtk.Window):
 
     def on_entry_clicked(self, entry, event):
         self.test_entry.set_text("")  # Clear the text when entry is clicked
+
+    def off_entry_clicked(self, entry, event):
+        self.test_entry.set_text("Type here to test your keyboard ...")
 
     def save_keyboard_layout(self, button):
         # Additional code to save the configured keyboard layout
