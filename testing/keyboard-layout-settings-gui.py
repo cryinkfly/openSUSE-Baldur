@@ -4,84 +4,107 @@ import subprocess
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-class KeyboardLayoutSelector(Gtk.Window):
+class KeyboardLayoutConfigurator(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Keyboard Layout Selector")
+        Gtk.Window.__init__(self, title="Keyboard Layout Configurator")
+        self.set_default_size(500, 350)
         self.set_border_width(10)
 
-        # Fetch available layouts
-        self.layouts = self.get_keyboard_layouts()
-
-        # Layout ComboBox
-        self.layout_label = Gtk.Label(label="Select Keyboard Layout:")
+        # Layout dropdown
+        self.layout_label = Gtk.Label(label="Select Layout:")
         self.layout_combo = Gtk.ComboBoxText()
-        for layout in self.layouts:
-            self.layout_combo.append_text(layout)
-        self.layout_combo.connect("changed", self.on_layout_selected)
+        self.populate_layouts()
+        self.layout_combo.connect("changed", self.on_layout_changed)
 
-        # Variant ComboBox
-        self.variant_label = Gtk.Label(label="Select Keyboard Variant:")
+        # Variant dropdown
+        self.variant_label = Gtk.Label(label="Select Variant:")
         self.variant_combo = Gtk.ComboBoxText()
-        self.variant_combo.connect("changed", self.on_variant_selected)
+        self.populate_variants()
+        self.variant_combo.connect("changed", self.on_variant_changed)
 
-        # Apply Button
-        self.apply_button = Gtk.Button(label="Apply")
-        self.apply_button.connect("clicked", self.apply_layout)
+        # Options entry
+        self.options_label = Gtk.Label(label="Options:")
+        self.options_entry = Gtk.Entry()
 
-        # Grid layout
-        grid = Gtk.Grid()
+        # Test button
+        self.test_button = Gtk.Button(label="Check your keyboard settings")
+        self.test_button.connect("clicked", self.test_keyboard_layout)
+
+        # Save button
+        self.save_button = Gtk.Button(label="Save")
+        self.save_button.connect("clicked", self.save_keyboard_layout)
+        self.save_button.set_hexpand(True)
+        self.save_button.set_vexpand(True)
+
+        # Text entry for testing keyboard layout
+        self.test_entry = Gtk.Entry()
+
+        # Layout
+        grid = Gtk.Grid(column_spacing=10, row_spacing=10)
         grid.attach(self.layout_label, 0, 0, 1, 1)
         grid.attach(self.layout_combo, 1, 0, 1, 1)
         grid.attach(self.variant_label, 0, 1, 1, 1)
         grid.attach(self.variant_combo, 1, 1, 1, 1)
-        grid.attach(self.apply_button, 0, 2, 2, 1)
+        grid.attach(self.options_label, 0, 2, 1, 1)
+        grid.attach(self.options_entry, 1, 2, 1, 1)
+        grid.attach(self.test_button, 0, 3, 2, 1)
+        grid.attach(self.test_entry, 0, 4, 2, 1)
+        grid.attach(self.save_button, 0, 5, 2, 1)
+
+        # Set horizontal and vertical expansion for the grid
+        grid.set_hexpand(True)
+        grid.set_vexpand(True)
 
         self.add(grid)
 
-    def get_keyboard_layouts(self):
-        # Get list of keyboard layouts using localectl
-        try:
-            result = subprocess.run(["localectl", "list-x11-keymap-layouts"], capture_output=True, text=True)
-            layouts = result.stdout.strip().split('\n')
-            return layouts
-        except Exception as e:
-            print(f"Error fetching keyboard layouts: {e}")
-            return []
+    def populate_layouts(self):
+        # Use localectl to get available layouts
+        result = subprocess.run(['localectl', 'list-x11-keymap-layouts'], capture_output=True, text=True)
+        layouts = result.stdout.strip().split('\n')
 
-    def get_keyboard_variants(self, layout):
-        # Get list of keyboard variants for a given layout using localectl
-        try:
-            result = subprocess.run(["localectl", "list-x11-keymap-variants", layout], capture_output=True, text=True)
-            variants = result.stdout.strip().split('\n')
-            return variants
-        except Exception as e:
-            print(f"Error fetching keyboard variants: {e}")
-            return []
+        for layout in layouts:
+            self.layout_combo.append_text(layout)
 
-    def on_layout_selected(self, combo):
-        # Update variant combo based on selected layout
-        active_layout = combo.get_active_text()
-        self.variant_combo.remove_all()
-        variants = self.get_keyboard_variants(active_layout)
+        self.layout_combo.set_active(0)
+
+    def populate_variants(self):
+        # Use localectl to get available variants for the selected layout
+        current_layout = self.layout_combo.get_active_text()
+        result = subprocess.run(['localectl', 'list-x11-keymap-variants', current_layout], capture_output=True, text=True)
+        variants = result.stdout.strip().split('\n')
+
         for variant in variants:
             self.variant_combo.append_text(variant)
 
-    def on_variant_selected(self, combo):
-        pass
+        self.variant_combo.set_active(0)
 
-    def apply_layout(self, button):
-        # Apply selected layout and variant using setxkbmap
+    def on_layout_changed(self, combo):
+        self.variant_combo.remove_all()
+        self.populate_variants()
+
+    def on_variant_changed(self, combo):
+        pass  # Additional actions when variant is changed, if needed
+
+    def test_keyboard_layout(self, button):
         layout = self.layout_combo.get_active_text()
         variant = self.variant_combo.get_active_text()
+        options = self.options_entry.get_text()
 
-        try:
-            subprocess.run(["setxkbmap", layout, variant])
-            print(f"Keyboard layout set to {layout} {variant}")
-        except Exception as e:
-            print(f"Error applying keyboard layout: {e}")
+        # Set the keyboard layout for testing
+        subprocess.run(['setxkbmap', layout, variant, '-option', options])
 
-if __name__ == "__main__":
-    win = KeyboardLayoutSelector()
-    win.connect("destroy", Gtk.main_quit)
-    win.show_all()
-    Gtk.main()
+        # Use the test entry to allow the user to type and test the configured layout
+        self.test_entry.set_text("Type here to test your keyboard ...")
+        self.test_entry.connect("focus-in-event", self.on_entry_clicked)
+
+    def on_entry_clicked(self, entry, event):
+        self.test_entry.set_text("")  # Clear the text when entry is clicked
+
+    def save_keyboard_layout(self, button):
+        # Additional code to save the configured keyboard layout
+        pass
+
+win = KeyboardLayoutConfigurator()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()
