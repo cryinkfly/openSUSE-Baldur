@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023                                                                               #
-# Time/Date:    17:30/16.12.2023                                                                   #
-# Version:      1.4.0                                                                              #
+# Time/Date:    12:30/08.01.2024                                                                   #
+# Version:      1.4.1                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -210,6 +210,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         gnome-keyring \
         gnome-keyring-pam \
         gnome-software \
+        gnomekbd-tools \
         google-carlito-fonts \
         google-droid-fonts \
         google-opensans-fonts \
