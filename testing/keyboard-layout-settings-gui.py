@@ -111,7 +111,7 @@ class KeyboardLayoutConfigurator(Gtk.Window):
             self.layout_combo.append_text(layout)
 
         # This option will configured with the language selection tool in the welcome window:
-        keyboard_layout_option = self.selected_language_keyboard_layout.get_active_text()
+        keyboard_layout_option = self.keyboard_layout.get_active_text()
 
         self.layout_combo.set_active(keyboard_layout_option)
 
