@@ -106,307 +106,307 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 0
+            keyboard_layout = 0
         elif selected_language == "Albanian":
             new_title = "Mirë se vini"
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.set_title(new_title)
-            selected_language_keyboard_layout = 1
+            keyboard_layout = 1
         elif selected_language == "Arabic":
             new_title = "مرحباً"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 3
+            keyboard_layout = 3
         elif selected_language == "Basque":
             new_title = "Ongi etorri"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 29
+            keyboard_layout = 29
         elif selected_language == "Belarusian":
             new_title = "Сардэчна запрашаем"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 9
+            keyboard_layout = 9
         elif selected_language == "Bosnian":
             new_title = "Dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 7
+            keyboard_layout = 7
         elif selected_language == "Bulgarian":
             new_title = "Добре дошли"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 10
+            keyboard_layout = 10
         elif selected_language == "Catalan":
             new_title = "Benvingut"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 16
+            keyboard_layout = 16
         elif selected_language == "Croatian":
             new_title = "Dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 39
         elif selected_language == "Chinese (Simplified)":
             new_title = "欢迎"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 20
         elif selected_language == "Chinese (Traditional)":
             new_title = "歡迎"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 92
         elif selected_language == "Czech":
             new_title = "Vítejte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 22
         elif selected_language == "Danish":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 24
         elif selected_language == "Dutch":
             new_title = "Welkom"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 71
         elif selected_language == "English":
             new_title = "Welcome"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 95
         elif selected_language == "Estonian":
             new_title = "Tere tulemast"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 26
         elif selected_language == "Finnish":
             new_title = "Tervetuloa"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 31
         elif selected_language == "French":
             new_title = "Bienvenue"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 33
         elif selected_language == "Gaelic":
             new_title = "Fàilte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 42
         elif selected_language == "Gallego":
             new_title = "Benvido"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 29
         elif selected_language == "Georgian":
             new_title = "მოგესალმებით"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 35
         elif selected_language == "German":
             new_title = "Willkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 23
         elif selected_language == "Greek":
             new_title = "καλως ΗΡΘΑΤΕ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 38
         elif selected_language == "Hebrew":
             new_title = "καλως ΗΡΘΑΤΕ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 43
         elif selected_language == "Hungarian":
             new_title = "Üdvözöljük"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 40
         elif selected_language == "Icelandic":
             new_title = "Velkominn"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 
+            keyboard_layout = 47
         elif selected_language == "Indonesian":
             new_title = "Selamat datang"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 41
+            keyboard_layout = 41
         elif selected_language == "Italian":
             new_title = "Benvenuto"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 48
+            keyboard_layout = 48
         elif selected_language == "Japanese":
             new_title = "いらっしゃいませ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 49
+            keyboard_layout = 49
         elif selected_language == "Korean":
             new_title = "환영"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 53
+            keyboard_layout = 53
         elif selected_language == "Lithuanian":
             new_title = "Sveiki"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 58
+            keyboard_layout = 58
         elif selected_language == "Malaysian":
             new_title = "Selamat datang"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 69
+            keyboard_layout = 69
         elif selected_language == "Maori":
             new_title = "Nau mai haere mai"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 74
+            keyboard_layout = 74
         elif selected_language == "Norwegian":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 72
+            keyboard_layout = 72
         elif selected_language == "Nynorsk":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 72
+            keyboard_layout = 72
         elif selected_language == "Polish":
             new_title = "Powitanie"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = pl
+            keyboard_layout = 77
         elif selected_language == "Portuguese":
             new_title = "Bem-vindo"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = pt
+            keyboard_layout = 78
         elif selected_language == "Romanian":
             new_title = "Bine ati venit"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 79
+            keyboard_layout = 79
         elif selected_language == "Russian":
             new_title = "Добро пожаловать"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 81
+            keyboard_layout = 81
         elif selected_language == "Samoan":
             new_title = "Afio mai"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 74
+            keyboard_layout = 74
         elif selected_language == "Slovak":
             new_title = "Vitajte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 84
+            keyboard_layout = 84
         elif selected_language == "Slovenian":
             new_title = "dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 83
+            keyboard_layout = 83
         elif selected_language == "Somali":
             new_title = "Soo dhawoow"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 95
+            keyboard_layout = 95
         elif selected_language == "Spanish":
             new_title = "Bienvenido"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 29
+            keyboard_layout = 29
         elif selected_language == "Swedish":
             new_title = "Välkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 82
+            keyboard_layout = 82
         elif selected_language == "Tagalog":
             new_title = "Maligayang pagdating"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 74
+            keyboard_layout = 74
         elif selected_language == "Thai":
             new_title = "ยินดีต้อนรับ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 88
+            keyboard_layout = 88
         elif selected_language == "Tongan":
             new_title = "ʻOku talitali lelei koe"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 74
+            keyboard_layout = 74
         elif selected_language == "Turkish":
             new_title = "Hoş geldin"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 91
+            keyboard_layout = 91
         elif selected_language == "Ukrainian":
             new_title = "Ласкаво просимо"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 94
+            keyboard_layout = 94
         else:
             new_title = "Welcome"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            selected_language_keyboard_layout = 95
+            keyboard_layout = 95
 
     def on_next_clicked(self, button):
         # Perform actions when the Next button is clicked
