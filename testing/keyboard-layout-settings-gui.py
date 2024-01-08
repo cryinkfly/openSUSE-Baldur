@@ -48,7 +48,6 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         container_main.add(container_main_1)
         container_main.add(container_main_2)
 
-
         # Create a horizontal box (INNER CONTAINER)
         container_1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         container_main_1.add(container_1)
@@ -112,9 +111,9 @@ class KeyboardLayoutConfigurator(Gtk.Window):
             self.layout_combo.append_text(layout)
 
         # This option will configured with the language selection tool in the welcome window:
-        selected_language_option = 0
+        keyboard_layout_option = self.selected_language_keyboard_layout.get_active_text()
 
-        self.layout_combo.set_active(selected_language_option)
+        self.layout_combo.set_active(keyboard_layout_option)
 
     def populate_variants(self):
         # Use localectl to get available variants for the selected layout
