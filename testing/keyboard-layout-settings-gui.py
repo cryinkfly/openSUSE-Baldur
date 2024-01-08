@@ -1,12 +1,13 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
+import os
 import subprocess
 
 class KeyboardLayoutConfigurator(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Keyboard Layout Configurator")
-        self.set_default_size(700, 350)
+        self.set_default_size(600, 450)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
@@ -60,10 +61,6 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         self.layout_combo.connect("changed", self.on_layout_changed)
         container_1.pack_start(self.layout_combo, False, False, 0)
 
-        # Create a horizontal box (INNER CONTAINER)
-        container_2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        container_main_1.add(container_2)
-
         # Create a combo box for variants
         variant_label = Gtk.Label("Select Variant:")
         container_1.pack_start(variant_label, False, False, 0)
@@ -72,19 +69,19 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         self.variant_combo.connect("changed", self.on_variant_changed)
         container_1.pack_start(self.variant_combo, False, False, 0)
 
-        # Options entry
-        options_label = Gtk.Label(label="Options:")
-        container_1.pack_start(options_label, False, False, 0)
-        self.option_combo = Gtk.ComboBoxText()
-        self.populate_options()
-        self.option_combo.connect("changed", self.on_option_changed)
-        container_1.pack_start(self.option_combo, False, False, 0)
+        show_configured_keyboard_layout_label = Gtk.Label("Show keyboard:")
+        container_1.pack_start(show_configured_keyboard_layout_label, False, False, 0)
+        show_configured_keyboard_layout_button = Gtk.Button("⌨️")
+        show_configured_keyboard_layout_button.connect("clicked", self.show_keyboard_layout)
+        container_1.pack_start(show_configured_keyboard_layout_button, False, False, 0)
 
         # Create a horizontal box (INNER CONTAINER)
-        container_3 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        container_main_2.add(container_3)
+        container_2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main_2.add(container_2)
 
-        # Create an entry for testing
+        # Create an TextView for testing the keyboard settings:
+        textview_label = Gtk.Label("Test the layout configuration below:")
+        container_2.pack_start(textview_label, False, False, 0)
         self.textview = Gtk.TextView()
         self.textview.set_size_request(300,200) # W x H
         self.textbuffer = self.textview.get_buffer()
@@ -92,23 +89,19 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         self.textview.set_border_width(10)
         self.textview.connect("focus-in-event", self.on_textview_focus_in)
         self.textview.connect("focus-out-event", self.on_textview_focus_out)
-        container_3.pack_start(self.textview, False, False, 0)
+        container_2.pack_start(self.textview, False, False, 0)
 
         # Create a horizontal box (INNER CONTAINER)
-        container_4 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        container_4.set_margin_top(20)
-        container_4.set_halign(Gtk.Align.CENTER)
-        container_4.set_valign(Gtk.Align.CENTER)
-        vbox.add(container_4)
-
-        reset_button = Gtk.Button("Reset")
-        reset_button.connect("clicked", self.reset_keyboard_layout)
-        container_4.pack_start(reset_button, False, False, 0)
+        container_3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_3.set_margin_top(20)
+        container_3.set_halign(Gtk.Align.CENTER)
+        container_3.set_valign(Gtk.Align.CENTER)
+        vbox.add(container_3)
 
         # Create a button for saving
-        save_button = Gtk.Button("Save")
+        save_button = Gtk.Button("💾 Save")
         save_button.connect("clicked", self.save_keyboard_layout)
-        container_4.pack_start(save_button, False, False, 0)
+        container_3.pack_start(save_button, False, False, 0)
 
     def populate_layouts(self):
         # Use localectl to get available layouts
@@ -134,15 +127,6 @@ class KeyboardLayoutConfigurator(Gtk.Window):
 
         self.variant_combo.set_active(0)
 
-    def populate_options(self):
-        result = subprocess.run(['localectl', 'list-x11-keymap-options'], capture_output=True, text=True)
-        options = result.stdout.strip().split('\n')
-
-        for option in options:
-            self.option_combo.append_text(option)
-
-        self.option_combo.set_active(-1)
-
     def on_layout_changed(self, combo):
         self.variant_combo.remove_all()
         self.populate_variants()
@@ -156,9 +140,8 @@ class KeyboardLayoutConfigurator(Gtk.Window):
     def on_textview_focus_in(self, widget, event):
         layout = self.layout_combo.get_active_text()
         variant = self.variant_combo.get_active_text()
-        option = self.option_combo.get_active_text()
 
-        subprocess.run(['setxkbmap', layout, variant, '-option', option])      
+        subprocess.run(['setxkbmap', layout, variant, '-option'])      
 
         self.textbuffer.set_text("")  # Clear the text when entry is clicked      
 
@@ -168,14 +151,23 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         if not text.strip():
             self.textbuffer.set_text("Type here to test your keyboard ...")
 
-    def reset_keyboard_layout(self, button):
         layout = "us"
         variant = "intl"
-        subprocess.run(['setxkbmap', layout, variant, '-option']) 
+        subprocess.run(['setxkbmap', layout, variant, '-option'])
+
+    def show_keyboard_layout(self, button):
+        layout = self.layout_combo.get_active_text()
+        variant = self.variant_combo.get_active_text()
+
+        show_keyboard_layout_cmd=f"gkbd-keyboard-display -l {layout}$'\t'{variant}"
+        os.system(show_keyboard_layout_cmd)
 
     def save_keyboard_layout(self, button):
         # Additional code to save the configured keyboard layout
-        pass
+        layout = self.layout_combo.get_active_text()
+        variant = self.variant_combo.get_active_text()
+
+        subprocess.run(['setxkbmap', layout, variant, '-option']) 
 
 if __name__ == "__main__":
     win = KeyboardLayoutConfigurator()
