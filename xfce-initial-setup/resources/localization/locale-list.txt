@@ -1,108 +1,106 @@
 Afrikaans
 af_ZA.UTF-8
-Albanian
+Albanian - Shqipëria
 sq_AL.UTF-8
-Arabic
+Arabic - عربيعربي
 ar_SA.UTF-8
-Basque
+Basque - Euskara
 eu_ES.UTF-8
-Belarusian
+Belarusian - беларускі
 be_BY.UTF-8
-Bosnian
+Bosnian - Bosanski
 bs_BA.UTF-8
-Bulgarian
+Bulgarian - български
 bg_BG.UTF-8
-Catalan
+Catalan - Catalana
 ca_ES.UTF-8
-Croatian
+Croatian - Hrvatski
 hr_HR.UTF-8
-Chinese (Simplified)
+Chinese (Simplified) - 简体中文
 zh_CN.UTF-8
-Chinese (Traditional)
+Chinese (Traditional) - 中國人
 zh_TW.UTF-8
-Czech
+Czech - Čeština
 cs_CZ.UTF-8
-Danish
+Danish - Dansk
 da_DK.UTF-8
-Dutch
+Dutch - Nederlands
 nl_NL.UTF-8
 English
 en_US.UTF-8
-Estonian
+Estonian - Eestlane
 et_EE.UTF-8
-Finnish
+Finnish - Suomen kieli
 fi_FI.UTF-8
-French
+French - Français
 fr_FR.UTF-8
-French (Swiss) 
+French (Swiss) - Français (Suisse)
 fr_CH.UTF-8
-French (Belgium)
+French (Belgium) - Français (Belgique)
 fr_BE.UTF-8
-French (Canada)
+French (Canada) - Français (Canada)
 fr_CA.UTF-8
-Gaelic
+Gaelic - Ghàidhlig
 ga_IE.UTF-8
 Gallego
 gl_ES.UTF-8
-Georgian
+Georgian - ქართული
 ka_GE.UTF-8
-German
+German - Deutsch
 de_DE.UTF-8
-Greek
+Greek - Ελληνικά
 el_GR.UTF-8
-Hebrew
+Hebrew - עִברִית
 he_IL.utf8
-Hungarian
+Hungarian - Magyar
 hu_HU.UTF-8
-Icelandic
+Icelandic - Íslenska
 is_IS.UTF-8
-Indonesian
+Indonesian - Indonesia
 id_ID.UTF-8
-Italian
+Italian - Italiano
 it_IT.UTF-8
-Japanese
+Japanese - 日本語
 ja_JP.UTF-8
-Korean
+Korean - 한국인
 ko_KR.UTF-8
-Lithuanian
+Lithuanian - Lietuva
 lt_LT.UTF-8
-Malaysian
+Malaysian - Malaysia
 ms_MY.UTF-8
 Maori
 mi_NZ.UTF-8
-Norwegian
+Norwegian - Norsk
 no_NO.UTF-8
 Nynorsk
 nn_NO.UTF-8
-Polish
+Polish - Polski
 pl_PL.UTF-8
-Portuguese
+Portuguese (Brazil) - Português (Brasil)
 pt_PT.UTF-8
-Portuguese (Brazil)
-pt_BR.UTF-8
-Romanian
+Romanian - Română
 ro_RO.UTF-8
-Russian
+Russian - Русский
 ru_RU.UTF-8
-Samoan
+Samoan - Samoana
 mi_NZ.UTF-8
-Slovak
+Slovak - Slovenský
 sk_SK.UTF-8
-Slovenian
+Slovenian - Slovenščina
 sl_SI.UTF-8
-Somali
+Somali - Soomaali
 so_SO.UTF-8
-Spanish (International)
+Spanish (International) - Español (Internacional)
 es_ES.UTF-8
-Swedish
+Swedish - Svenska
 sv_SE.UTF-8
 Tagalog
 tl_PH.UTF-8
-Thai
+Thai - ไทย
 th_TH.UTF-8
-Tongan
+Tongan - Faka-Tonga
 mi_NZ.UTF-8
-Turkish
+Turkish - Türkçe
 tr_TR.UTF-8
-Ukrainian
+Ukrainian - Український
 uk_UA.UTF-8
