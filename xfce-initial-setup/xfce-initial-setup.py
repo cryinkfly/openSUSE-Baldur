@@ -121,312 +121,445 @@ class LanguageSelectionWindow(Gtk.Window):
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 0
-        elif selected_language == "Albanian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Albanian - Shqipëria":
             new_title = "Mirë se vini"
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.set_title(new_title)
             self.keyboard_layout = 1
-        elif selected_language == "Arabic":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Arabic - عربيعربي":
             new_title = "مرحباً"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 3
-        elif selected_language == "Basque":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Basque - Euskara":
             new_title = "Ongi etorri"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 29
-        elif selected_language == "Belarusian":
+            self.keyboard_variant = 0
+        elif selected_language == "Belarusian - беларускі":
             new_title = "Сардэчна запрашаем"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 9
-        elif selected_language == "Bosnian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Bosnian - Bosanski":
             new_title = "Dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 7
-        elif selected_language == "Bulgarian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Bulgarian - български":
             new_title = "Добре дошли"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 10
-        elif selected_language == "Catalan":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Catalan - Catalana":
             new_title = "Benvingut"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 16
-        elif selected_language == "Croatian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Croatian - Hrvatski":
             new_title = "Dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 39
-        elif selected_language == "Chinese (Simplified)":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Chinese (Simplified) - 简体中文":
             new_title = "欢迎"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 20
-        elif selected_language == "Chinese (Traditional)":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Chinese (Traditional) - 中國人":
             new_title = "歡迎"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 92
-        elif selected_language == "Czech":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Czech - Čeština":
             new_title = "Vítejte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 22
-        elif selected_language == "Danish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Danish - Dansk":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 24
-        elif selected_language == "Dutch":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Dutch - Nederlands":
             new_title = "Welkom"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 71
-        elif selected_language == "English":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "English (United Kingdom)":
+            new_title = "Welcome"
+            self.set_title(new_title)
+            new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
+            self.title_label.set_markup(new_title_label)
+            self.keyboard_layout = 34
+            self.keyboard_variant = 6
+            self.write_keyboard_preselected_config()
+        elif selected_language == "English (USA - International)":
             new_title = "Welcome"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 95
-        elif selected_language == "Estonian":
+            self.keyboard_variant = 20
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Estonian - Eestlane":
             new_title = "Tere tulemast"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 26
-        elif selected_language == "Finnish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Finnish - Suomen kieli":
             new_title = "Tervetuloa"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 31
-        elif selected_language == "French":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "French - Français":
             new_title = "Bienvenue"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 33
-        elif selected_language == "Gaelic":
+            self.keyboard_variant = 1
+            self.write_keyboard_preselected_config()
+        elif selected_language == "French (Swiss) - Français (Suisse)":
+            new_title = "Bienvenue"
+            self.set_title(new_title)
+            new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
+            self.title_label.set_markup(new_title_label)
+            self.keyboard_layout = 18
+            self.keyboard_variant = 2
+            self.write_keyboard_preselected_config()
+        elif selected_language == "French (Belgium) - Français (Belgique)":
+            new_title = "Bienvenue"
+            self.set_title(new_title)
+            new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
+            self.title_label.set_markup(new_title_label)
+            self.keyboard_layout = 9
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "French (Canada) - Français (Canada)":
+            new_title = "Bienvenue"
+            self.set_title(new_title)
+            new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
+            self.title_label.set_markup(new_title_label)
+            self.keyboard_layout = 16
+            self.keyboard_variant = 1
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Gaelic - Ghàidhlig":
             new_title = "Fàilte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 42
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
         elif selected_language == "Gallego":
             new_title = "Benvido"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 29
-        elif selected_language == "Georgian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Georgian - ქართული":
             new_title = "მოგესალმებით"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 35
-        elif selected_language == "German":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "German - Deutsch":
             new_title = "Willkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 23
-        elif selected_language == "Greek":
+            self.keyboard_variant = 13
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Greek - Ελληνικά":
             new_title = "καλως ΗΡΘΑΤΕ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 38
-        elif selected_language == "Hebrew":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Hebrew - עִברִית":
             new_title = "καλως ΗΡΘΑΤΕ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 43
-        elif selected_language == "Hungarian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Hungarian - Magyar":
             new_title = "Üdvözöljük"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 40
-        elif selected_language == "Icelandic":
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Icelandic - Íslenska":
             new_title = "Velkominn"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 47
-        elif selected_language == "Indonesian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Indonesian - Indonesia":
             new_title = "Selamat datang"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 41
-        elif selected_language == "Italian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Italian - Italiano":
             new_title = "Benvenuto"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 48
-        elif selected_language == "Japanese":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Japanese - 日本語":
             new_title = "いらっしゃいませ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 49
-        elif selected_language == "Korean":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Korean - 한국인":
             new_title = "환영"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 53
-        elif selected_language == "Lithuanian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Lithuanian - Lietuva":
             new_title = "Sveiki"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 58
-        elif selected_language == "Malaysian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Malaysian - Malaysia":
             new_title = "Selamat datang"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 69
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
         elif selected_language == "Maori":
             new_title = "Nau mai haere mai"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 74
-        elif selected_language == "Norwegian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Norwegian - Norsk":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 72
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
         elif selected_language == "Nynorsk":
             new_title = "Velkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 72
-        elif selected_language == "Polish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Polish - Polski":
             new_title = "Powitanie"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 77
-        elif selected_language == "Portuguese":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Portuguese (Brazil) - Português (Brasil)":
             new_title = "Bem-vindo"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 78
-        elif selected_language == "Romanian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Romanian - Română":
             new_title = "Bine ati venit"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 79
-        elif selected_language == "Russian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Russian - Русский":
             new_title = "Добро пожаловать"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 81
-        elif selected_language == "Samoan":
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Samoan - Samoana":
             new_title = "Afio mai"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 74
-        elif selected_language == "Slovak":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Slovak - Slovenský":
             new_title = "Vitajte"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 84
-        elif selected_language == "Slovenian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Slovenian - Slovenščina":
             new_title = "dobrodošli"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 83
-        elif selected_language == "Somali":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Somali - Soomaali":
             new_title = "Soo dhawoow"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 95
-        elif selected_language == "Spanish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Spanish (International) - Español (Internacional)":
             new_title = "Bienvenido"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 29
-        elif selected_language == "Swedish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Swedish - Svenska":
             new_title = "Välkommen"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 82
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
         elif selected_language == "Tagalog":
             new_title = "Maligayang pagdating"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 74
-        elif selected_language == "Thai":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Thai - ไทย":
             new_title = "ยินดีต้อนรับ"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 88
-        elif selected_language == "Tongan":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Tongan - Faka-Tonga":
             new_title = "ʻOku talitali lelei koe"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 74
-        elif selected_language == "Turkish":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Turkish - Türkçe":
             new_title = "Hoş geldin"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 91
-        elif selected_language == "Ukrainian":
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
+        elif selected_language == "Ukrainian - Український":
             new_title = "Ласкаво просимо"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 94
+            self.keyboard_variant = 0
+            self.write_keyboard_preselected_config()
         else:
             new_title = "Welcome"
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
             self.keyboard_layout = 95
+            self.keyboard_variant = 20
+            self.write_keyboard_preselected_config()
 
-        selected_keyboard_layout_cmd=f"""
+    def write_keyboard_preselected_config(self):      
+        selected_keyboard_cmd=f"""
             #!/bin/bash
             echo -n {self.keyboard_layout} > '/tmp/_selected_keyboard_layout.XXXXXXX'
+            echo -n {self.keyboard_variant} > '/tmp/_selected_keyboard_variant.XXXXXXX'
         """
-        os.system(selected_keyboard_layout_cmd)
+        os.system(selected_keyboard_cmd)
 
     def on_next_clicked(self, button):
         # Perform actions when the Next button is clicked
@@ -560,16 +693,12 @@ class KeyboardLayoutConfigurator(Gtk.Window):
             self.layout_combo.append_text(layout)
 
         # Read which keyboard layout number was selected in the LanguageSelectionWindow window:     
-        file_path = '/tmp/_selected_keyboard_layout.XXXXXXX'
-        with open(file_path, 'r') as file:
-            content = file.read()
+        file_path_for_keyboard_layout = '/tmp/_selected_keyboard_layout.XXXXXXX'
+        with open(file_path_for_keyboard_layout, 'r') as file:
+            read_keyboard_layout = file.read()
             # Assuming the file contains an integer, you can convert it to an integer using the int() function.
-            keyboard_layout = int(content)
-            self.layout_combo.set_active(keyboard_layout)        
-
-        # Remove all TMP-Files:
-        del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
-        os.system(del_tmp_files_cmd)
+            keyboard_layout = int(read_keyboard_layout)
+            self.layout_combo.set_active(keyboard_layout)
 
     def populate_variants(self):
         # Use localectl to get available variants for the selected layout
@@ -580,7 +709,13 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         for variant in variants:
             self.variant_combo.append_text(variant)
 
-        self.variant_combo.set_active(0)
+        # Read which keyboard variant was selected in the LanguageSelectionWindow window:     
+        file_path_for_keyboard_variant = '/tmp/_selected_keyboard_variant.XXXXXXX'
+        with open(file_path_for_keyboard_variant, 'r') as file:
+            read_keyboard_variant = file.read()
+            # Assuming the file contains an integer, you can convert it to an integer using the int() function.
+            keyboard_variant = int(read_keyboard_variant)
+            self.variant_combo.set_active(keyboard_variant)        
 
     def on_layout_changed(self, combo):
         self.variant_combo.remove_all()
@@ -627,6 +762,10 @@ class KeyboardLayoutConfigurator(Gtk.Window):
     def on_back_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
+
+        # Remove all TMP-Files:
+        del_tmp_files_cmd="rm /tmp/_*.XXXXXXX"
+        os.system(del_tmp_files_cmd)
 
         language_selection_window = LanguageSelectionWindow()
         language_selection_window.connect("destroy", Gtk.main_quit)
