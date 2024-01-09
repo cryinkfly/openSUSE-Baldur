@@ -55,13 +55,18 @@ class LanguageSelectionWindow(Gtk.Window):
         self.set_border_width(35)
 
         # Next button in the top-right corner
-        next_button = Gtk.Button(label="Next")
-        next_button.connect("clicked", self.on_next_clicked)
+        self.next_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.next_button = Gtk.Button(label=self.next_button_label)
+        self.next_button.connect("clicked", self.on_next_clicked)
+
+        # Back button definition for the next window
+        self.back_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.back_button = Gtk.Button(label=self.back_button_label)
 
         # Header-Bar Configuration
         header_bar = Gtk.HeaderBar()
         header_bar.props.title = "Welcome"
-        header_bar.pack_end(next_button)
+        header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
         svg_file_path = "opensuse-logo-green.png"
@@ -106,6 +111,20 @@ class LanguageSelectionWindow(Gtk.Window):
         # Connect the "row-activated" signal to the callback function
         listbox.connect("row-activated", self.on_language_selected)
 
+        # Default values for not selecting a language from the langauages list:
+        new_title = "Welcome"
+        self.set_title(new_title)
+        new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
+        self.title_label.set_markup(new_title_label)
+        self.next_button_label = "Next"
+        self.back_button_label = "Previous"
+        # Update the buttons label
+        self.next_button.set_label(self.next_button_label)
+        self.back_button.set_label(self.back_button_label)
+        self.keyboard_layout = 95
+        self.keyboard_variant = 20
+        self.write_keyboard_preselected_config()
+
     def read_languages_from_file(self):
         with open('languages.txt', 'r') as file:
             languages = [line.strip() for i, line in enumerate(file) if i % 2 == 0]
@@ -120,14 +139,24 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Volgende"
+            self.back_button_label = "Vorige"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 0
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
         elif selected_language == "Albanian - Shqipëria":
             new_title = "Mirë se vini"
+            self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.set_title(new_title)
+            self.next_button_label = "Tjetër"
+            self.back_button_label = "E mëparshme"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 1
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -136,6 +165,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "التالي"
+            self.back_button_label = "السابق"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 3
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -144,6 +178,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Hurrengoa"
+            self.back_button_label = "Aurrekoa"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 29
             self.keyboard_variant = 0
         elif selected_language == "Belarusian - беларускі":
@@ -151,6 +190,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Далей"
+            self.back_button_label = "Папярэдняя"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 9
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -159,6 +203,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Dalje"
+            self.back_button_label = "Prethodni"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 7
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -167,6 +216,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Напред"
+            self.back_button_label = "Предишен"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 10
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -175,6 +229,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Següent"
+            self.back_button_label = "Anterior"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 16
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -183,6 +242,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Dalje"
+            self.back_button_label = "Prethodno"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 39
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -191,6 +255,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "下一步"
+            self.back_button_label = "上一页"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 20
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -199,6 +268,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "下一步"
+            self.back_button_label = "上一頁"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 92
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -207,6 +281,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Další"
+            self.back_button_label = "Předchozí"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 22
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -215,6 +294,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Næste"
+            self.back_button_label = "Forrige"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 24
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -223,6 +307,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Volgende"
+            self.back_button_label = "Vorige"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 71
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -231,6 +320,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Next"
+            self.back_button_label = "Previous"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 34
             self.keyboard_variant = 6
             self.write_keyboard_preselected_config()
@@ -239,6 +333,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Next"
+            self.back_button_label = "Previous"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 95
             self.keyboard_variant = 20
             self.write_keyboard_preselected_config()
@@ -247,6 +346,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Järgmine"
+            self.back_button_label = "Eelmine"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 26
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -255,6 +359,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Seuraava"
+            self.back_button_label = "Edellinen"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 31
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -263,6 +372,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Suivant"
+            self.back_button_label = "Précédent"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 33
             self.keyboard_variant = 1
             self.write_keyboard_preselected_config()
@@ -271,6 +385,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Suivant"
+            self.back_button_label = "Précédent"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 18
             self.keyboard_variant = 2
             self.write_keyboard_preselected_config()
@@ -279,6 +398,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Suivant"
+            self.back_button_label = "Précédent"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 9
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -287,6 +411,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Suivant"
+            self.back_button_label = "Précédent"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 16
             self.keyboard_variant = 1
             self.write_keyboard_preselected_config()
@@ -295,6 +424,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Air adhart"
+            self.back_button_label = "Mu dheireadh"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 42
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -303,6 +437,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Seguinte"
+            self.back_button_label = "Anterior"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 29
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -311,6 +450,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "შემდეგი"
+            self.back_button_label = "წინა"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 35
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -319,6 +463,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Weiter"
+            self.back_button_label = "Vorherige"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 23
             self.keyboard_variant = 13
             self.write_keyboard_preselected_config()
@@ -327,6 +476,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Επόμενο"
+            self.back_button_label = "Προηγούμενο"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 38
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -335,6 +489,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "הבא"
+            self.back_button_label = "הקודם"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 43
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -343,6 +502,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Következő"
+            self.back_button_label = "Előző"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 40
             self.write_keyboard_preselected_config()
         elif selected_language == "Icelandic - Íslenska":
@@ -350,6 +514,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Næst"
+            self.back_button_label = "Fyrri"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 47
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -358,6 +527,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Selanjutnya"
+            self.back_button_label = "Sebelumnya"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 41
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -366,6 +540,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Avanti"
+            self.back_button_label = "Precedente"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 48
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -374,6 +553,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "次へ"
+            self.back_button_label = "前へ"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 49
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -382,6 +566,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "다음"
+            self.back_button_label = "이전"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 53
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -390,6 +579,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Kitas"
+            self.back_button_label = "Ankstesnis"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 58
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -398,6 +592,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 69
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -406,6 +605,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 74
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -414,6 +618,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 72
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -422,6 +631,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 72
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -430,6 +644,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Dalej"
+            self.back_button_label = "Poprzedni"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 77
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -438,6 +657,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Próximo"
+            self.back_button_label = "Anterior"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 78
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -446,6 +670,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Următorul"
+            self.back_button_label = "Anterior"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 79
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -454,6 +683,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Далее"
+            self.back_button_label = "Предыдущий"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 81
             self.write_keyboard_preselected_config()
         elif selected_language == "Samoan - Samoana":
@@ -461,6 +695,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "O le isi"
+            self.back_button_label = "Muamua"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 74
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -469,6 +708,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Ďalej"
+            self.back_button_label = "Predchádzajúci"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 84
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -477,6 +721,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Naprej"
+            self.back_button_label = "Prejšnji"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 83
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -485,6 +734,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "kuxiga"
+            self.back_button_label = "Ka horee"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 95
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -493,6 +747,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 29
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -501,6 +760,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 82
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -509,6 +773,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 74
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -517,6 +786,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 88
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -525,6 +799,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 74
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -533,6 +812,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 91
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -541,6 +825,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = ""
+            self.back_button_label = ""
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 94
             self.keyboard_variant = 0
             self.write_keyboard_preselected_config()
@@ -549,6 +838,11 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
+            self.next_button_label = "Next"
+            self.back_button_label = "Previous"
+            # Update the buttons label
+            self.next_button.set_label(self.next_button_label)
+            self.back_button.set_label(self.back_button_label)
             self.keyboard_layout = 95
             self.keyboard_variant = 20
             self.write_keyboard_preselected_config()
@@ -558,13 +852,14 @@ class LanguageSelectionWindow(Gtk.Window):
             #!/bin/bash
             echo -n {self.keyboard_layout} > '/tmp/_selected_keyboard_layout.XXXXXXX'
             echo -n {self.keyboard_variant} > '/tmp/_selected_keyboard_variant.XXXXXXX'
+            echo -n {self.next_button_label} > '/tmp/_next_button_label.XXXXXXX'
+            echo -n {self.back_button_label} > '/tmp/_back_button_label.XXXXXXX'
         """
         os.system(selected_keyboard_cmd)
 
     def on_next_clicked(self, button):
         # Perform actions when the Next button is clicked
         print("Next button clicked")
-
         keyboard_layout_configurator = KeyboardLayoutConfigurator()
         keyboard_layout_configurator.connect("destroy", Gtk.main_quit)
         keyboard_layout_configurator.show_all()
@@ -581,11 +876,19 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
 
         # Next button in the top-right corner
-        next_button_1 = Gtk.Button(label="Next")
+        file_path_for_next_button_label = '/tmp/_next_button_label.XXXXXXX'
+        with open(file_path_for_next_button_label, 'r') as file:
+            read_next_button_label = file.read()
+        
+        next_button_1 = Gtk.Button(label=f"{read_next_button_label}")
         next_button_1.connect("clicked", self.on_save_keyboard_layout_button)
 
-        # Next button in the top-right corner
-        back_button = Gtk.Button(label="Previous")
+        # Back button in the top-left corner
+        file_path_for_back_button_label = '/tmp/_back_button_label.XXXXXXX'
+        with open(file_path_for_back_button_label, 'r') as file:
+            read_back_button_label = file.read()
+
+        back_button = Gtk.Button(label=f"{read_back_button_label}")
         back_button.connect("clicked", self.on_back_clicked)
 
         # Header-Bar Configuration
