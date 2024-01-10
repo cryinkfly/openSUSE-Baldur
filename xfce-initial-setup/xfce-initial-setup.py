@@ -592,8 +592,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -605,8 +605,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Seterusnya"
-            self.back_button_label = "Sebelumnya"
+            self.next_button_label = "Whai muri"
+            self.back_button_label = "O mua"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -618,8 +618,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Seterusnya"
-            self.back_button_label = "Sebelumnya"
+            self.next_button_label = "Neste"
+            self.back_button_label = "Forrige"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -631,8 +631,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Seterusnya"
-            self.back_button_label = "Sebelumnya"
+            self.next_button_label = "Neste"
+            self.back_button_label = "Forrige"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -747,8 +747,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "Siguiente"
+            self.back_button_label = "Anterior"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -760,8 +760,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "Nästa"
+            self.back_button_label = "Föregående"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -773,8 +773,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "Next"
+            self.back_button_label = "Nakaraan"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -786,8 +786,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "ถัดไป"
+            self.back_button_label = "ก่อนหน้า"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -799,8 +799,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "hoko"
+            self.back_button_label = "kimuʻa"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -812,8 +812,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "İleri"
+            self.back_button_label = "Önceki"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -825,8 +825,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = ""
-            self.back_button_label = ""
+            self.next_button_label = "Далі"
+            self.back_button_label = "Попередній"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
