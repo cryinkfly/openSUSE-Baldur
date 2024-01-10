@@ -1,0 +1,10 @@
+#!/bin/sh
+# File-Path: /etc/NetworkManager/dispatcher.d/09-timezone
+# Update timezone every time NetworkManager connects to a network
+# Link of this manual: https://wiki.archlinux.org/title/System_time#Setting_based_on_geolocation
+
+case "$2" in
+    up)
+        timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+    ;;
+esac
