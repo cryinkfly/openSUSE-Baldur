@@ -1235,22 +1235,33 @@ class TimeZoneSelector(Gtk.Window):
             print("CheckButton is active")
             self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">The time zone will be determined automatically!</span>'
             self.selected_time_zone_label.set_markup(self.new_time_zone)
-            automatic_time_zone = 1
+            self.autoconfig_time_zone_status()
         else:
             print("CheckButton is not active")
             self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>'
             self.selected_time_zone_label.set_markup(self.new_time_zone)
 
+    def autoconfig_time_zone_status(self):
+        automatic_time_zone = 1
+        return automatic_time_zone
+
     def on_save_time_zone(self, button):
         # Additional code to save the configured keyboard layout
         print("Next button clicked")
-
+        automatic_time_zone = self.autoconfig_time_zone_status()
         if automatic_time_zone == 1:
             # Perform actions when the checkbox is checked
             print("Automatic time zone adjustment is enabled")
 
-            autoconfig_time_zone_cmd = 'timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"'
-            os.system(autoconfig_time_zone_cmd)
+            # Run the command to set the timezone
+            timezone_cmd = 'timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"'
+            subprocess.run(timezone_cmd, shell=True)
+
+            # Get the selected timezone
+            auto_timezone = subprocess.check_output(['timedatectl', 'status', '--no-pager']).decode('utf-8')
+
+            # Display the selected timezone
+            print(f"Automatic configured Time Zone: {auto_timezone}")
         else:
             # Perform actions when the checkbox is not checked
             print("Automatic time zone adjustment is disabled")
