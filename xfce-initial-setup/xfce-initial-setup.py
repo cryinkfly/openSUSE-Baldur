@@ -592,8 +592,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Seterusnya"
-            self.back_button_label = "Sebelumnya"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -605,8 +605,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Whai muri"
-            self.back_button_label = "O mua"
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -618,8 +618,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Neste"
-            self.back_button_label = "Forrige"
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -631,8 +631,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Neste"
-            self.back_button_label = "Forrige"
+            self.next_button_label = "Seterusnya"
+            self.back_button_label = "Sebelumnya"
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -747,8 +747,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Siguiente"
-            self.back_button_label = "Anterior"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -760,8 +760,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Nästa"
-            self.back_button_label = "Föregående"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -773,8 +773,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Next"
-            self.back_button_label = "Nakaraan"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -786,8 +786,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "ถัดไป"
-            self.back_button_label = "ก่อนหน้า"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -799,8 +799,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "hoko"
-            self.back_button_label = "kimuʻa"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -812,8 +812,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "İleri"
-            self.back_button_label = "Önceki"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -825,8 +825,8 @@ class LanguageSelectionWindow(Gtk.Window):
             self.set_title(new_title)
             new_title_label = f'<span font_size="20000"><b>{new_title}</b></span>'
             self.title_label.set_markup(new_title_label)
-            self.next_button_label = "Далі"
-            self.back_button_label = "Попередній"
+            self.next_button_label = ""
+            self.back_button_label = ""
             # Update the buttons label
             self.next_button.set_label(self.next_button_label)
             self.back_button.set_label(self.back_button_label)
@@ -1062,6 +1062,11 @@ class KeyboardLayoutConfigurator(Gtk.Window):
 
         subprocess.run(['setxkbmap', layout, variant, '-option'])
 
+        time_zone_selector = TimeZoneSelector()
+        time_zone_selector.connect("destroy", Gtk.main_quit)
+        time_zone_selector.show_all()
+        self.hide()
+
     def on_back_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
@@ -1075,6 +1080,197 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         language_selection_window.show_all()
         self.hide()
 
+
+####################################################################################################        
+
+class TimeZoneSelector(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Time Zone")
+        self.set_default_size(600, 550)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Next button in the top-right corner
+        file_path_for_next_button_label = '/tmp/_next_button_label.XXXXXXX'
+        with open(file_path_for_next_button_label, 'r') as file:
+            read_next_button_label = file.read()
+        
+        next_button_1 = Gtk.Button(label=f"{read_next_button_label}")
+        next_button_1.connect("clicked", self.on_save_time_zone)
+
+        # Back button in the top-left corner
+        file_path_for_back_button_label = '/tmp/_back_button_label.XXXXXXX'
+        with open(file_path_for_back_button_label, 'r') as file:
+            read_back_button_label = file.read()
+
+        back_button = Gtk.Button(label=f"{read_back_button_label}")
+        back_button.connect("clicked", self.on_back_clicked)
+
+        # Header-Bar Configuration
+        header_bar_1 = Gtk.HeaderBar()
+        header_bar_1.props.title = "Time Zone"
+        header_bar_1.pack_start(back_button)
+        header_bar_1.pack_end(next_button_1)
+        self.set_titlebar(header_bar_1)
+
+        # Create a vertical box (MAIN Container)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        vbox.set_margin_top(35)
+        self.add(vbox)
+
+        # Info text container (Vertical)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        vbox.pack_start(info_box, False, False, 0)        
+        svg_file_path = "bg.png"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 250, 100)
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+        info_box.pack_start(image, True, True, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            f'<span font_size="20000"><b>Time Zone</b></span>'
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label()
+        label_info.set_markup(
+            f"Please search for a nearby city or use automatic time tracking using a geolocation API."
+        )
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)
+
+        # Create a horizontal box (MAIN INNER CONTAINER)
+        container_main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main.set_halign(Gtk.Align.CENTER)
+        container_main.set_valign(Gtk.Align.CENTER)
+        vbox.add(container_main)
+        container_main_1_1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main_1_1.set_size_request(400, 350)
+        container_main.add(container_main_1_1)
+        container_main_1_2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_main.add(container_main_1_2)
+        container_main_1_3 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main.add(container_main_1_3)
+
+        # Create the scrolled window
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        container_main_1_1.pack_start(scrolled_window, True, True, 0)
+
+        # Create the list store and tree view
+        self.list_store = Gtk.ListStore(str)
+        self.tree_view = Gtk.TreeView(model=self.list_store)
+        scrolled_window.add(self.tree_view)
+
+        # Create the columns
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn("Time Zone", renderer, text=0)
+        self.tree_view.append_column(column)
+
+        # Populate the list store with time zones
+        time_zones = subprocess.check_output(["timedatectl", "list-timezones"]).decode("utf-8").splitlines()
+        for zone in time_zones:
+            self.list_store.append([zone])
+
+
+        # Create a search entry
+        search_entry = Gtk.SearchEntry()
+        search_entry.connect("search-changed", self.on_search_changed)
+        container_main_1_2.pack_start(search_entry, False, False, 0)
+
+        autoconfig_time_zone_checkbox = Gtk.CheckButton(f"Automatic time adjustment")
+        autoconfig_time_zone_checkbox.connect("toggled", self.toggle_autoconfig_time_zone)
+        container_main_1_2.pack_start(autoconfig_time_zone_checkbox, False, False, 0)
+
+        # Get the current time zone using the 'timedatectl' command
+        current_time_zone_cmd = "timedatectl | grep 'Time zone' | awk '{print $3}'"
+        current_time_zone = os.popen(current_time_zone_cmd).read().strip()
+        current_time_cmd = f"TZ={current_time_zone} date"
+        current_time = os.popen(current_time_cmd).read().strip()
+        print(f"Current Time: {current_time}")
+
+        # Create and set up the label (Current time zone)
+        self._current_time_zone_label = Gtk.Label()
+        self._current_time_zone_label.set_markup(f'<span foreground="#2B2D42" background="#19b1a2"> Current Time Zone: </span> <span foreground="#19b1a2">{current_time_zone} [{current_time}]</span>')
+        self._current_time_zone_label.set_line_wrap(True)
+        container_main_1_3.pack_start(self._current_time_zone_label, False, False, 0)
+
+        # Create and set up the label (Selected time zone)
+        self.selected_time_zone_label = Gtk.Label()
+        self.selected_time_zone_label.set_markup('<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>')
+        self.selected_time_zone_label.set_line_wrap(True)
+        container_main_1_3.pack_start(self.selected_time_zone_label, False, False, 0)
+
+        # Connect the row-activated signal
+        self.tree_view.connect("row-activated", self.on_row_activated)
+
+    def on_row_activated(self, tree_view, path, column):
+        # Get the selected time zone and update the label
+        iter = self.list_store.get_iter(path)
+        selected_time_zone = self.list_store.get_value(iter, 0)
+        print(f"Selected Time Zone: {selected_time_zone}")
+        selected_time_cmd = f"TZ={selected_time_zone} date"
+        selected_time = os.popen(selected_time_cmd).read().strip()
+        print(f"Selected Time: {selected_time_zone} | {selected_time}")
+        # Using f-string to format the string correctly
+        self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">{selected_time_zone} | {selected_time}</span>'
+        self.selected_time_zone_label.set_markup(self.new_time_zone)
+
+    def on_search_changed(self, entry):
+        # Filter the list based on the search text
+        search_text = entry.get_text().lower()
+        self.list_store.clear()
+        time_zones = subprocess.check_output(["timedatectl", "list-timezones"]).decode("utf-8").splitlines()
+        for zone in time_zones:
+            if search_text in zone.lower():
+                self.list_store.append([zone])
+
+    def toggle_autoconfig_time_zone(self, widget):
+        if widget.get_active():
+            print("CheckButton is active")
+            self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">The time zone will be determined automatically!</span>'
+            self.selected_time_zone_label.set_markup(self.new_time_zone)
+            automatic_time_zone = 1
+        else:
+            print("CheckButton is not active")
+            self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>'
+            self.selected_time_zone_label.set_markup(self.new_time_zone)
+
+    def on_save_time_zone(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+
+        if automatic_time_zone == 1:
+            # Perform actions when the checkbox is checked
+            print("Automatic time zone adjustment is enabled")
+
+            autoconfig_time_zone_cmd = 'timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"'
+            os.system(autoconfig_time_zone_cmd)
+        else:
+            # Perform actions when the checkbox is not checked
+            print("Automatic time zone adjustment is disabled")
+
+            # Get the selected time zone and apply it using timedatectl
+            selection = self.tree_view.get_selection()
+            model, iter = selection.get_selected()
+            if iter is not None:
+                selected_time_zone = model.get_value(iter, 0)
+                subprocess.run(["timedatectl", "set-timezone", selected_time_zone])
+                print(f"Time Zone Applied: {selected_time_zone}")
+
+    def on_back_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+
+        keyboard_layout_configurator = KeyboardLayoutConfigurator()
+        keyboard_layout_configurator.connect("destroy", Gtk.main_quit)
+        keyboard_layout_configurator.show_all()
+        self.hide()
 
 ####################################################################################################        
 
