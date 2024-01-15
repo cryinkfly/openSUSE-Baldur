@@ -13,9 +13,11 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, Gdk, GdkPixbuf
+from gi.repository import Gtk, Gio, Gdk, GdkPixbuf, GObject, Pango
 import os
 import subprocess
+import urllib.request
+from urllib.error import URLError
 
 class RoundedBox(Gtk.Box):
     def __init__(self, background_color, border_color, border_width, corner_radius):
@@ -1062,9 +1064,51 @@ class KeyboardLayoutConfigurator(Gtk.Window):
 
         subprocess.run(['setxkbmap', layout, variant, '-option'])
 
-        time_zone_selector = TimeZoneSelector()
-        time_zone_selector.connect("destroy", Gtk.main_quit)
-        time_zone_selector.show_all()
+        # Check internet status initially
+        self.check_internet()
+
+        # Use GObject.timeout_add to periodically check internet status
+        GObject.timeout_add_seconds(60, self.check_internet)
+
+    def check_internet(self):
+        if self.is_internet_available():
+            time_zone_configurator = TimeZoneConfigurator()
+            time_zone_configurator.connect("destroy", Gtk.main_quit)
+            time_zone_configurator.show_all()
+            self.hide()
+            GObject.timeout_add(0, self.skip_internet_window)
+        else:
+            # Check if any WiFi modules exist on the system
+            try:
+                # Run the 'lsmod' command to list loaded kernel modules
+                result = subprocess.run(['lsmod'], capture_output=True, text=True)
+        
+                # Check if any of the lines in the output contain the string 'wifi'
+                wifi_modules_exist = any('wifi' in line.lower() for line in result.stdout.splitlines())
+
+                if wifi_modules_exist:
+                    print("WiFi modules exist on this system.")
+                    wifi_internet_configurator = WiFiConnectWindow()
+                    wifi_internet_configurator.connect("destroy", Gtk.main_quit)
+                    wifi_internet_configurator.show_all()
+                    self.hide()
+                else:
+                    print("No WiFi modules found.")
+    
+            except Exception as e:
+                print(f"Error checking WiFi modules: {e}")
+
+        # Returning True means the timeout will continue to be called
+        return True
+
+    def is_internet_available(self):
+        try:
+            urllib.request.urlopen("http://www.google.com", timeout=1)
+            return True
+        except URLError as err:
+            return False
+
+    def skip_internet_window(self):
         self.hide()
 
     def on_back_clicked(self, button):
@@ -1081,9 +1125,202 @@ class KeyboardLayoutConfigurator(Gtk.Window):
         self.hide()
 
 
-####################################################################################################        
+####################################################################################################  
 
-class TimeZoneSelector(Gtk.Window):
+class WiFiConnectWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Internet")
+        self.set_default_size(600, 550)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Next button in the top-right corner
+        file_path_for_next_button_label = '/tmp/_next_button_label.XXXXXXX'
+        with open(file_path_for_next_button_label, 'r') as file:
+            read_next_button_label = file.read()
+        
+        next_button_1 = Gtk.Button(label=f"{read_next_button_label}")
+        next_button_1.connect("clicked", self.on_next_button_clicked)
+
+        # Back button in the top-left corner
+        file_path_for_back_button_label = '/tmp/_back_button_label.XXXXXXX'
+        with open(file_path_for_back_button_label, 'r') as file:
+            read_back_button_label = file.read()
+
+        back_button = Gtk.Button(label=f"{read_back_button_label}")
+        back_button.connect("clicked", self.on_back_button_clicked)
+
+        # Header-Bar Configuration
+        header_bar_1 = Gtk.HeaderBar()
+        header_bar_1.props.title = "Internet"
+        header_bar_1.pack_start(back_button)
+        header_bar_1.pack_end(next_button_1)
+        self.set_titlebar(header_bar_1)
+
+        # Create a vertical box (MAIN Container)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        vbox.set_margin_top(35)
+        self.add(vbox)
+
+        # Info text container (Vertical)
+        info_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        info_box.set_halign(Gtk.Align.CENTER)
+        info_box.set_valign(Gtk.Align.CENTER)
+        vbox.pack_start(info_box, False, False, 0)        
+        svg_file_path = "wifi.png"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 100, 50)
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+        info_box.pack_start(image, True, True, 0)
+        label_title = Gtk.Label()
+        label_title.set_markup(
+            f'<span font_size="20000"><b>Wi-Fi</b></span>'
+        )
+        label_title.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_title, True, True, 0)
+        label_info = Gtk.Label()
+        label_info.set_markup(
+            f"Connecting this computer to a wi-fi network allows you to install third-party-software, download updates, automatically detect your timezone, and install full support for your language."
+        )
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+        info_box.pack_start(label_info, True, True, 0)
+
+        # Check if nmcli is available
+        if not self.is_nmcli_available():
+            print("Error: nmcli is not installed.")
+            Gtk.main_quit()
+
+        # Get available WiFi networks
+        wifi_list = self.get_wifi_list()
+
+        # UI Elements
+        self.network_liststore = Gtk.ListStore(str)
+        for wifi in wifi_list:
+            self.network_liststore.append([wifi['SSID']])
+        self.network_listview = Gtk.TreeView(self.network_liststore)
+
+        # Scrolled Window
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.ALWAYS)
+        scrolled_window.add(self.network_listview)
+
+        # Network List View
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn("Available Networks", renderer, text=0)
+        self.network_listview.append_column(column)
+
+        scrolled_window.set_hexpand(True)
+        scrolled_window.set_size_request(600,180) # W x H
+        vbox.pack_start(scrolled_window, False, False, 0)
+
+
+        # Create a horizontal box (INNER CONTAINER)
+        container = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container.set_halign(Gtk.Align.CENTER)
+        container.set_border_width(20)
+        vbox.add(container)
+
+        passphrase_label = Gtk.Label(f"Password:")
+        container.pack_start(passphrase_label, False, False, 0)
+        self.passphrase_entry = Gtk.Entry(placeholder_text="Enter Passphrase ...")
+        self.passphrase_entry.set_halign(Gtk.Align.START)
+        self.passphrase_entry.set_width_chars(25)
+        self.passphrase_entry.set_visibility(False)  # Password is hidden by default
+        container.pack_start(self.passphrase_entry, False, False, 0)
+        show_passphrase_checkbox = Gtk.CheckButton()
+        show_passphrase_checkbox.set_direction(Pango.Direction.RTL)
+        show_passphrase_checkbox.connect("toggled", self.toggle_password_visibility)
+        container.pack_start(show_passphrase_checkbox, False, False, 0)
+        show_passphrase_label = Gtk.Label()
+        show_passphrase_label.set_text(f"Display password")
+        show_passphrase_label.set_direction(Pango.Direction.RTL)
+        container.pack_start(show_passphrase_label, False, False, 0)
+
+        refresh_button = Gtk.Button(label="Refresh")
+        refresh_button.connect("clicked", self.update_network_list)
+        vbox.pack_start(refresh_button, True, True, 0)
+
+        connect_button = Gtk.Button(label="Connect")
+        connect_button.connect("clicked", self.on_connect_button_clicked)
+        vbox.pack_start(connect_button, True, True, 0)
+
+    def is_nmcli_available(self):
+        try:
+            subprocess.run(["nmcli", "--version"], check=True)
+            return True
+        except subprocess.CalledProcessError:
+            return False
+
+    def get_wifi_list(self):
+        try:
+            result = subprocess.run(["nmcli", "-f", "SSID", "d", "wifi", "list"], check=True, capture_output=True, text=True)
+            wifi_list = []
+            for line in result.stdout.strip().split('\n')[1:]:
+                ssid = line.strip()
+                wifi_list.append({'SSID': ssid})
+            return wifi_list
+        except subprocess.CalledProcessError as e:
+            print(f"Error retrieving WiFi list: {e}")
+            return []
+
+    def update_network_list(self, widget):
+        # Clear existing network list
+        self.network_liststore.clear()
+
+        try:
+            result = subprocess.run(["nmcli", "-f", "SSID", "d", "wifi", "list"], check=True, capture_output=True, text=True)
+            wifi_list = []
+            for line in result.stdout.strip().split('\n')[1:]:
+                ssid = line.strip()
+                self.network_liststore.append([ssid])
+        except subprocess.CalledProcessError as e:
+            print(f"Error retrieving WiFi list: {e}")
+            return []
+
+        return True  # Continue updating
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.passphrase_entry.set_visibility(visibility)
+
+    def on_connect_button_clicked(self, widget):
+        # Get selected network and passphrase
+        selection = self.network_listview.get_selection()
+        model, treeiter = selection.get_selected()
+        if treeiter is not None:
+            ssid = model[treeiter][0]
+            passphrase = self.passphrase_entry.get_text()
+
+            # Connect to the selected network using "nmcli"
+            try:
+                subprocess.check_output(["nmcli", "d", "wifi", "connect", ssid, "password", passphrase],
+                                        universal_newlines=True)
+                print(f"Connected to {ssid}")
+            except subprocess.CalledProcessError as e:
+                print(f"Error: {e}")
+
+    def on_next_button_clicked(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+        time_zone_configurator = TimeZoneConfigurator()
+        time_zone_configurator.connect("destroy", Gtk.main_quit)
+        time_zone_configurator.show_all()
+        self.hide()
+
+    def on_back_button_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+        keyboard_layout_configurator = KeyboardLayoutConfigurator()
+        keyboard_layout_configurator.connect("destroy", Gtk.main_quit)
+        keyboard_layout_configurator.show_all()
+        self.hide()
+
+####################################################################################################      
+
+class TimeZoneConfigurator(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Time Zone")
         self.set_default_size(600, 550)
@@ -1274,6 +1511,12 @@ class TimeZoneSelector(Gtk.Window):
                 subprocess.run(["timedatectl", "set-timezone", selected_time_zone])
                 print(f"Time Zone Applied: {selected_time_zone}")
 
+        keyboard_layout_configurator = KeyboardLayoutConfigurator()
+        keyboard_layout_configurator.connect("destroy", Gtk.main_quit)
+        keyboard_layout_configurator.show_all()
+        self.hide()
+
+
     def on_back_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
@@ -1283,7 +1526,11 @@ class TimeZoneSelector(Gtk.Window):
         keyboard_layout_configurator.show_all()
         self.hide()
 
-####################################################################################################        
+#################################################################################################### 
+
+
+
+####################################################################################################       
 
 if __name__ == "__main__":
     language_selection_window = LanguageSelectionWindow()
