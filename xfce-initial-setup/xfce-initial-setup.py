@@ -1220,16 +1220,16 @@ class WiFiConnectWindow(Gtk.Window):
         # Create a horizontal box (INNER CONTAINER)
         container = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         container.set_halign(Gtk.Align.CENTER)
-        container.set_border_width(20)
+        container.set_border_width(5)
         vbox.add(container)
 
         passphrase_label = Gtk.Label(f"Password:")
         container.pack_start(passphrase_label, False, False, 0)
         self.passphrase_entry = Gtk.Entry(placeholder_text="Enter Passphrase ...")
-        self.passphrase_entry.set_halign(Gtk.Align.START)
+        self.passphrase_entry.set_property("hexpand", True)
         self.passphrase_entry.set_width_chars(25)
         self.passphrase_entry.set_visibility(False)  # Password is hidden by default
-        container.pack_start(self.passphrase_entry, False, False, 0)
+        container.pack_start(self.passphrase_entry, True, True, 0)
         show_passphrase_checkbox = Gtk.CheckButton()
         show_passphrase_checkbox.set_direction(Pango.Direction.RTL)
         show_passphrase_checkbox.connect("toggled", self.toggle_password_visibility)
@@ -1239,13 +1239,19 @@ class WiFiConnectWindow(Gtk.Window):
         show_passphrase_label.set_direction(Pango.Direction.RTL)
         container.pack_start(show_passphrase_label, False, False, 0)
 
+        # Create a horizontal box (INNER CONTAINER)
+        container_1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_1.set_halign(Gtk.Align.CENTER)
+        container_1.set_border_width(5)
+        vbox.add(container_1)
+
         refresh_button = Gtk.Button(label="Refresh")
         refresh_button.connect("clicked", self.update_network_list)
-        vbox.pack_start(refresh_button, True, True, 0)
+        container_1.pack_start(refresh_button, True, True, 0)
 
         connect_button = Gtk.Button(label="Connect")
         connect_button.connect("clicked", self.on_connect_button_clicked)
-        vbox.pack_start(connect_button, True, True, 0)
+        container_1.pack_start(connect_button, True, True, 0)
 
     def is_nmcli_available(self):
         try:
