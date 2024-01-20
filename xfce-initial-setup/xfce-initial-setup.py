@@ -58,42 +58,47 @@ class UI_CSS_Style:
 
 # Reading/Importing the languages:
 class Languages:
-
     @staticmethod
-    def configuring_languages_environment(selected_language):
+    def configuring_languages_environment(current_window, selected_language):
         # Do something with the selected language
-        # For example, you can store it in a variable or use it in some way
-        # For demonstration, I'll just print it here
-        print(f"Received selected language: {selected_language}")
         if selected_language == "Afrikaans":
-            with open('localization/de_DE/locale.txt', 'r', encoding='utf-8') as file:
+            with open('localization/af_ZA/locale.txt', 'r', encoding='utf-8') as file:
                 locale_variables = [line.strip() for line in file.readlines()]
 
-            language_selection_window.set_title(locale_variables[0])
-            language_selection_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[0]}</b></span>'
-            language_selection_window.title_label.set_markup(language_selection_window.new_title_label)
+            # Update buttons on the current window
+            if hasattr(current_window, 'previous_button_label'):
+                current_window.previous_button_label = locale_variables[0]
+                current_window.previous_button.set_label(current_window.previous_button_label)
+            if hasattr(current_window, 'next_button_label'):
+                current_window.next_button_label = locale_variables[1]
+                current_window.next_button.set_label(current_window.next_button_label)
 
-            # Assuming window2 is a class defined somewhere in your code
-            if hasattr(language_selection_window, 'previous_button_label'):
-
-                language_selection_window.previous_button_label = locale_variables[1]
-                language_selection_window.previous_button.set_label(language_selection_window.previous_button_label)
-
-            language_selection_window.next_button_label = locale_variables[2]
-            language_selection_window.next_button.set_label(language_selection_window.next_button_label)
+            # Update other UI elements based on the current window type
+            if isinstance(current_window, Language_Selection_Window):
+                current_window.set_title(locale_variables[2])
+                current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[2]}</b></span>'
+                current_window.title_label.set_markup(current_window.new_title_label)
+            elif isinstance(current_window, Keyboard_Layout_Configurator):
+                current_window.set_title(locale_variables[3])
+                current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[3]}</b></span>'
+                current_window.title_label.set_markup(current_window.new_title_label)
 
 
 ####################################################################################################
 ####################################################################################################
 
 class Language_Selection_Window(Gtk.Window):
+    safed_language_variable = None
+
     def __init__(self):
         Gtk.Window.__init__(self, title="Welcome")
         self.set_default_size(600, 450)
         self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
 
         # Next button in the top-right corner
-        self.next_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.next_button_label = "Next"
         self.next_button = Gtk.Button(label=self.next_button_label)
         self.next_button.connect("clicked", self.on_next_clicked)
 
@@ -145,10 +150,6 @@ class Language_Selection_Window(Gtk.Window):
         # Connect the "row-activated" signal to the callback function
         listbox.connect("row-activated", self.on_language_selected)
 
-    def on_next_clicked(self, button):
-        # Perform actions when the Next button is clicked
-        print("Next button clicked")
-
     def importing_languages_list_from_file(self):
         # Accessing lines from Languages class
         with open('localization/languages-list.txt', 'r') as file:
@@ -156,9 +157,82 @@ class Language_Selection_Window(Gtk.Window):
             languages_list = [read_languages[i - 1].strip() for i in range(13, len(read_languages) + 1, 4)]
         return languages_list
 
+    def on_next_clicked(self, button):
+        # Perform actions when the Next button is clicked
+        print("Next button clicked")
+        keyboard_layout_configurator = Keyboard_Layout_Configurator()
+        keyboard_layout_configurator.connect("destroy", Gtk.main_quit)
+        keyboard_layout_configurator.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(keyboard_layout_configurator, self.safed_language_variable)
+
     def on_language_selected(self, listbox, row):
         selected_language = self.languages[row.get_index()]
+        self.safed_language_variable = selected_language
+        Languages.configuring_languages_environment(self, selected_language)
+
+####################################################################################################
+####################################################################################################
+
+class Keyboard_Layout_Configurator(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Keyboard Layout Configurator")
+        self.set_default_size(600, 450)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Previous button in the top-left corner
+        self.previous_button_label = "Previous"
+        self.previous_button = Gtk.Button(label=self.previous_button_label)
+        self.previous_button.connect("clicked", self.on_previous_clicked)
+
+        # Next button in the top-right corner
+        self.next_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.next_button = Gtk.Button(label=self.next_button_label)
+        self.next_button.connect("clicked", self.on_next_clicked)
+
+        # Header-Bar Configuration
+        header_bar = Gtk.HeaderBar()
+        header_bar.props.title = "Typing"
+        header_bar.pack_start(self.previous_button)
+        header_bar.pack_end(self.next_button)
+        self.set_titlebar(header_bar)
+
+        svg_file_path = "graphics/opensuse-logo-green.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 200, 100)
+
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+
+        # Create a label widget
+        self.title_label = Gtk.Label()
+        self.title_label.set_markup('<span font_size="20000"><b>Typing</b></span>')
+
+
+
+
+
+    def on_previous_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+
+        language_selection_window = Language_Selection_Window()
+        language_selection_window.connect("destroy", Gtk.main_quit)
+        language_selection_window.show_all()
+        self.hide()
+
+    def on_next_clicked(self, button):
+        # Perform actions when the Next button is clicked
+        print("Next button clicked")
+        selected_language = Language_Selection_Window.selected_language
+        keyboard_layout_configurator = Keyboard_Layout_Configurator()
         Languages.configuring_languages_environment(selected_language)
+
+####################################################################################################
+####################################################################################################
+
 
 
 ####################################################################################################
