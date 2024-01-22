@@ -58,10 +58,19 @@ class UI_CSS_Style:
 
 # Reading/Importing the languages:
 class Languages:
+
+    keyboard_layout = 0
+    keyboard_variant = 0
+
     @staticmethod
     def configuring_languages_environment(current_window, selected_language):
         # Do something with the selected language
         if selected_language == "Afrikaans":
+
+            # Configuring the correct keyboard settings
+            Languages.keyboard_layout = 0
+            keyboard_variant = 0
+
             with open('localization/af_ZA/locale.txt', 'r', encoding='utf-8') as file:
                 locale_variables = [line.strip() for line in file.readlines()]
 
@@ -82,6 +91,15 @@ class Languages:
                 current_window.set_title(locale_variables[3])
                 current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[3]}</b></span>'
                 current_window.title_label.set_markup(current_window.new_title_label)
+
+            # ...
+
+        if selected_language == "Albanian - Shqipëria":
+
+            # Configuring the correct keyboard settings
+            Languages.keyboard_layout = 1
+            keyboard_variant = 0
+
 
 
 ####################################################################################################
@@ -114,7 +132,7 @@ class Language_Selection_Window(Gtk.Window):
         # Create an image widget and set the Pixbuf
         image = Gtk.Image.new_from_pixbuf(pixbuf)
 
-        # Create a label widget
+        # Create a label widget for title
         self.title_label = Gtk.Label()
         self.title_label.set_markup('<span font_size="20000"><b>Welcome</b></span>')
 
@@ -200,19 +218,158 @@ class Keyboard_Layout_Configurator(Gtk.Window):
         header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
-        svg_file_path = "graphics/opensuse-logo-green.svg"
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 200, 100)
+        svg_file_path = "graphics/keyboard.png"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 100, 50)
 
         # Create an image widget and set the Pixbuf
         image = Gtk.Image.new_from_pixbuf(pixbuf)
 
-        # Create a label widget
+        # Create a label widget for title
         self.title_label = Gtk.Label()
         self.title_label.set_markup('<span font_size="20000"><b>Typing</b></span>')
 
+        # Create a label widget for information
+        label_info = Gtk.Label()
+        label_info.set_markup(
+            f"Select your keyboard layout or an input method."
+        )
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+
+        # Create a horizontal box (MAIN INNER CONTAINER)
+        container_main = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_main.set_halign(Gtk.Align.CENTER)
+        container_main.set_valign(Gtk.Align.CENTER)
+        container_main.set_margin_top(35)
+
+        # Add a style class to the container
+        UI_CSS_Style.importing__css_styles()
+        container_main.get_style_context().add_class("rounded-box")
+
+        container_main_1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_main_2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_main.add(container_main_1)
+        container_main.add(container_main_2)
+
+        # Create a horizontal box (INNER CONTAINER)
+        container_1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_1.set_border_width(20)
+        container_main_1.add(container_1)
+
+        # Create a combo box for layouts
+        layout_label = Gtk.Label("Select Layout:")
+        container_1.pack_start(layout_label, False, False, 0)
+        self.layout_combo = Gtk.ComboBoxText()
+        self.populate_layouts()
+        self.layout_combo.connect("changed", self.on_layout_changed)
+        container_1.pack_start(self.layout_combo, False, False, 0)
+
+        # Create a combo box for variants
+        variant_label = Gtk.Label("Select Variant:")
+        container_1.pack_start(variant_label, False, False, 0)
+        self.variant_combo = Gtk.ComboBoxText()
+        self.populate_variants()
+        self.variant_combo.connect("changed", self.on_variant_changed)
+        container_1.pack_start(self.variant_combo, False, False, 0)
+
+        show_configured_keyboard_layout_label = Gtk.Label("Show layout:")
+        container_1.pack_start(show_configured_keyboard_layout_label, False, False, 0)
+        show_configured_keyboard_layout_button = Gtk.Button("⌨️")
+        show_configured_keyboard_layout_button.connect("clicked", self.show_keyboard_layout)
+        container_1.pack_start(show_configured_keyboard_layout_button, False, False, 0)
+
+        # Create a horizontal box (INNER CONTAINER)
+        container_2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_2.set_border_width(20)
+        container_main_2.add(container_2)
+
+        # Create an TextView for testing the keyboard settings:
+        textview_label = Gtk.Label("Test your layout configuration below:")
+        container_2.pack_start(textview_label, False, False, 0)
+        self.textview = Gtk.TextView()
+        self.textview.set_size_request(340,180) # W x H
+        self.textbuffer = self.textview.get_buffer()
+        self.textview.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.textview.set_border_width(10)
+        self.textview.connect("focus-in-event", self.on_textview_focus_in)
+        self.textview.connect("focus-out-event", self.on_textview_focus_out)
+        container_2.pack_start(self.textview, False, False, 0)
+
+        # Create a VBox to organize widgets vertically
+        vbox = Gtk.VBox(spacing=10)
+        vbox.set_margin_top(35)
+        vbox.pack_start(image, False, False, 0)
+        vbox.pack_start(self.title_label, False, False, 0)
+        vbox.pack_start(label_info, False, False, 0)
+        vbox.pack_start(container_main, False, False, 0)
+
+        # Add the VBox to the window
+        self.add(vbox)
+
+    def populate_layouts(self):
+        # Use localectl to get available layouts
+        result = subprocess.run(['localectl', 'list-x11-keymap-layouts'], capture_output=True, text=True)
+        layouts = result.stdout.strip().split('\n')
+
+        for layout in layouts:
+            self.layout_combo.append_text(layout)
+
+        keyboard_layout = Languages.keyboard_layout
+        self.layout_combo.set_active(keyboard_layout)
 
 
+    def populate_variants(self):
+        # Use localectl to get available variants for the selected layout
+        current_layout = self.layout_combo.get_active_text()
+        result = subprocess.run(['localectl', 'list-x11-keymap-variants', current_layout], capture_output=True, text=True)
+        variants = result.stdout.strip().split('\n')
 
+        for variant in variants:
+            self.variant_combo.append_text(variant)
+
+        # Read which keyboard variant was selected in the LanguageSelectionWindow window:
+        file_path_for_keyboard_variant = '/tmp/_selected_keyboard_variant.XXXXXXX'
+        with open(file_path_for_keyboard_variant, 'r') as file:
+            read_keyboard_variant = file.read()
+            # Assuming the file contains an integer, you can convert it to an integer using the int() function.
+            keyboard_variant = int(read_keyboard_variant)
+            self.variant_combo.set_active(keyboard_variant)
+
+    def on_layout_changed(self, combo):
+        self.variant_combo.remove_all()
+        self.populate_variants()
+
+    def on_variant_changed(self, combo):
+        pass  # Additional actions when variant is changed, if needed
+
+    def on_option_changed(self, combo):
+        pass  # Additional actions when variant is changed, if needed
+
+    def on_textview_focus_in(self, widget, event):
+        layout = self.layout_combo.get_active_text()
+        variant = self.variant_combo.get_active_text()
+
+        subprocess.run(['setxkbmap', layout, variant, '-option'])
+
+        self.textbuffer.set_text("")  # Clear the text when entry is clicked
+
+    def on_textview_focus_out(self, widget, event):
+        # Callback for focus-out-event
+        text = self.textbuffer.get_text(self.textbuffer.get_start_iter(), self.textbuffer.get_end_iter(), True)
+        if not text.strip():
+            self.textbuffer.set_text("Type here to test your keyboard ...")
+
+        layout = "us"
+        variant = "intl"
+        subprocess.run(['setxkbmap', layout, variant, '-option'])
+
+    def show_keyboard_layout(self, button):
+        layout = self.layout_combo.get_active_text()
+        variant = self.variant_combo.get_active_text()
+
+        show_keyboard_layout_cmd=f"gkbd-keyboard-display -l {layout}$'\t'{variant}"
+        os.system(show_keyboard_layout_cmd)
 
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
@@ -224,11 +381,58 @@ class Keyboard_Layout_Configurator(Gtk.Window):
         self.hide()
 
     def on_next_clicked(self, button):
-        # Perform actions when the Next button is clicked
-        print("Next button clicked")
-        selected_language = Language_Selection_Window.selected_language
-        keyboard_layout_configurator = Keyboard_Layout_Configurator()
-        Languages.configuring_languages_environment(selected_language)
+        # Additional code to save the configured keyboard layout
+        layout = self.layout_combo.get_active_text()
+        variant = self.variant_combo.get_active_text()
+
+        subprocess.run(['setxkbmap', layout, variant, '-option'])
+
+        # Check internet status initially
+        self.check_internet()
+
+        # Use GObject.timeout_add to periodically check internet status
+        GObject.timeout_add_seconds(60, self.check_internet)
+
+    def check_internet(self):
+        if self.is_internet_available():
+            time_zone_configurator = TimeZoneConfigurator()
+            time_zone_configurator.connect("destroy", Gtk.main_quit)
+            time_zone_configurator.show_all()
+            self.hide()
+            GObject.timeout_add(0, self.skip_internet_window)
+        else:
+            # Check if any WiFi modules exist on the system
+            try:
+                # Run the 'lsmod' command to list loaded kernel modules
+                result = subprocess.run(['lsmod'], capture_output=True, text=True)
+
+                # Check if any of the lines in the output contain the string 'wifi'
+                wifi_modules_exist = any('wifi' in line.lower() for line in result.stdout.splitlines())
+
+                if wifi_modules_exist:
+                    print("WiFi modules exist on this system.")
+                    wifi_internet_configurator = WiFiConnectWindow()
+                    wifi_internet_configurator.connect("destroy", Gtk.main_quit)
+                    wifi_internet_configurator.show_all()
+                    self.hide()
+                else:
+                    print("No WiFi modules found.")
+
+            except Exception as e:
+                print(f"Error checking WiFi modules: {e}")
+
+        # Returning True means the timeout will continue to be called
+        return True
+
+    def is_internet_available(self):
+        try:
+            urllib.request.urlopen("http://www.google.com", timeout=1)
+            return True
+        except URLError as err:
+            return False
+
+    def skip_internet_window(self):
+        self.hide()
 
 ####################################################################################################
 ####################################################################################################
