@@ -328,13 +328,8 @@ class Keyboard_Layout_Configurator(Gtk.Window):
         for variant in variants:
             self.variant_combo.append_text(variant)
 
-        # Read which keyboard variant was selected in the LanguageSelectionWindow window:
-        file_path_for_keyboard_variant = '/tmp/_selected_keyboard_variant.XXXXXXX'
-        with open(file_path_for_keyboard_variant, 'r') as file:
-            read_keyboard_variant = file.read()
-            # Assuming the file contains an integer, you can convert it to an integer using the int() function.
-            keyboard_variant = int(read_keyboard_variant)
-            self.variant_combo.set_active(keyboard_variant)
+        keyboard_variant = Languages.keyboard_variant
+        self.variant_combo.set_active(keyboard_variant)
 
     def on_layout_changed(self, combo):
         self.variant_combo.remove_all()
