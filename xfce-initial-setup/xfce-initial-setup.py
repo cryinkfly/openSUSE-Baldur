@@ -71,30 +71,36 @@ class Languages:
             Languages.keyboard_layout = 0
             Languages.keyboard_variant = 0
 
-            with open('localization/af_ZA/locale.txt', 'r', encoding='utf-8') as file:
-                locale_variables = [line.strip() for line in file.readlines()]
+            try:
+                with open('localization/af_ZA/locale.txt', 'r', encoding='utf-8') as file:
+                    locale_variables = [line.strip() for line in file.readlines()]
 
-            # Update buttons on the current window
-            if hasattr(current_window, 'previous_button_label'):
-                current_window.previous_button_label = locale_variables[0]
-                current_window.previous_button.set_label(current_window.previous_button_label)
-            if hasattr(current_window, 'next_button_label'):
-                current_window.next_button_label = locale_variables[1]
-                current_window.next_button.set_label(current_window.next_button_label)
+                # Update buttons on the current window
+                if hasattr(current_window, 'previous_button_label'):
+                    current_window.previous_button_label = locale_variables[0]
+                    current_window.previous_button.set_label(current_window.previous_button_label)
+                if hasattr(current_window, 'next_button_label'):
+                    current_window.next_button_label = locale_variables[1]
+                    current_window.next_button.set_label(current_window.next_button_label)
 
-            # Update other UI elements based on the current window type
-            if isinstance(current_window, Language_Selection_Window):
-                current_window.set_title(locale_variables[2])
-                current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[2]}</b></span>'
-                current_window.title_label.set_markup(current_window.new_title_label)
-            elif isinstance(current_window, Keyboard_Configurator_Window):
-                current_window.set_title(locale_variables[3])
-                current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[3]}</b></span>'
-                current_window.title_label.set_markup(current_window.new_title_label)
+                # Update other UI elements based on the current window type
+                if isinstance(current_window, Language_Selection_Window):
+                    current_window.set_title(locale_variables[2])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[2]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, Keyboard_Configurator_Window):
+                    current_window.set_title(locale_variables[3])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[3]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
 
-            # ...
+                # ...
 
-        if selected_language == "Albanian - Shqipëria":
+            except FileNotFoundError:
+                print(f"Error: File 'localization/af_ZA/locale.txt' not found.")
+            except Exception as e:
+                print(f"Error: {e}")
+
+        elif selected_language == "Albanian - Shqipëria":
 
             # Configuring the correct keyboard settings
             Languages.keyboard_layout = 1
@@ -127,7 +133,7 @@ class Languages:
 ####################################################################################################
 
 class Language_Selection_Window(Gtk.Window):
-    safed_language_variable = None
+    #safed_language_variable = None
 
     def __init__(self):
         Gtk.Window.__init__(self, title="Welcome")
@@ -196,6 +202,12 @@ class Language_Selection_Window(Gtk.Window):
             languages_list = [read_languages[i - 1].strip() for i in range(13, len(read_languages) + 1, 4)]
         return languages_list
 
+    def on_language_selected(self, listbox, row):
+        selected_language = self.languages[row.get_index()]
+        self.safed_language_variable = selected_language
+        var = self.safed_language_variable
+        Languages.configuring_languages_environment(self, selected_language)
+
     def on_next_clicked(self, button):
         # Perform actions when the Next button is clicked
         print("Next button clicked")
@@ -205,11 +217,6 @@ class Language_Selection_Window(Gtk.Window):
         self.hide()
 
         Languages.configuring_languages_environment(keyboard_configurator_window, self.safed_language_variable)
-
-    def on_language_selected(self, listbox, row):
-        selected_language = self.languages[row.get_index()]
-        self.safed_language_variable = selected_language
-        Languages.configuring_languages_environment(self, selected_language)
 
 ####################################################################################################
 ####################################################################################################
@@ -239,8 +246,8 @@ class Keyboard_Configurator_Window(Gtk.Window):
         header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
-        svg_file_path = "graphics/keyboard.png"
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 100, 50)
+        svg_file_path = "graphics/keyboard.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 125, 75)
 
         # Create an image widget and set the Pixbuf
         image = Gtk.Image.new_from_pixbuf(pixbuf)
@@ -387,6 +394,52 @@ class Keyboard_Configurator_Window(Gtk.Window):
         show_keyboard_layout_cmd=f"gkbd-keyboard-display -l {layout}$'\t'{variant}"
         os.system(show_keyboard_layout_cmd)
 
+    def check_internet(self):
+        if self.is_internet_available():
+            time_zone_configurator_window = Time_Zone_Configurator_Window()
+            time_zone_configurator_window.connect("destroy", Gtk.main_quit)
+            time_zone_configurator_window.show_all()
+            self.hide()
+
+            Languages.configuring_languages_environment(time_zone_configurator_window, language_selection_window.safed_language_variable)
+
+            GObject.timeout_add(0, self.skip_internet_window)
+        else:
+            # Check if any WiFi modules exist on the system
+            try:
+                # Run the 'lsmod' command to list loaded kernel modules
+                result = subprocess.run(['lsmod'], capture_output=True, text=True)
+
+                # Check if any of the lines in the output contain the string 'wifi'
+                wifi_modules_exist = any('wifi' in line.lower() for line in result.stdout.splitlines())
+
+                if wifi_modules_exist:
+                    print("WiFi modules exist on this system.")
+                    wifi_internet_configurator_window = WiFi_Internet_Configurator_Window()
+                    wifi_internet_configurator_window.connect("destroy", Gtk.main_quit)
+                    wifi_internet_configurator_window.show_all()
+                    self.hide()
+
+                    Languages.configuring_languages_environment(wifi_internet_configurator_window, language_selection_window.safed_language_variable)
+                else:
+                    print("No WiFi modules found.")
+
+            except Exception as e:
+                print(f"Error checking WiFi modules: {e}")
+
+        # Returning True means the timeout will continue to be called
+        return True
+
+    def is_internet_available(self):
+        try:
+            urllib.request.urlopen("http://www.google.com", timeout=1)
+            return True
+        except URLError as err:
+            return False
+
+    def skip_internet_window(self):
+        self.hide()
+
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
@@ -412,47 +465,6 @@ class Keyboard_Configurator_Window(Gtk.Window):
 
         # Use GObject.timeout_add to periodically check internet status
         # GObject.timeout_add_seconds(60, self.check_internet)
-
-    def check_internet(self):
-        if self.is_internet_available():
-            time_zone_configurator_window = Time_Zone_Configurator_Window()
-            time_zone_configurator_window.connect("destroy", Gtk.main_quit)
-            time_zone_configurator_window.show_all()
-            self.hide()
-            GObject.timeout_add(0, self.skip_internet_window)
-        else:
-            # Check if any WiFi modules exist on the system
-            try:
-                # Run the 'lsmod' command to list loaded kernel modules
-                result = subprocess.run(['lsmod'], capture_output=True, text=True)
-
-                # Check if any of the lines in the output contain the string 'wifi'
-                wifi_modules_exist = any('wifi' in line.lower() for line in result.stdout.splitlines())
-
-                if wifi_modules_exist:
-                    print("WiFi modules exist on this system.")
-                    wifi_internet_configurator_window = WiFi_Internet_Configurator_Window()
-                    wifi_internet_configurator_window.connect("destroy", Gtk.main_quit)
-                    wifi_internet_configurator_window.show_all()
-                    self.hide()
-                else:
-                    print("No WiFi modules found.")
-
-            except Exception as e:
-                print(f"Error checking WiFi modules: {e}")
-
-        # Returning True means the timeout will continue to be called
-        return True
-
-    def is_internet_available(self):
-        try:
-            urllib.request.urlopen("http://www.google.com", timeout=1)
-            return True
-        except URLError as err:
-            return False
-
-    def skip_internet_window(self):
-        self.hide()
 
 ####################################################################################################
 ####################################################################################################
@@ -482,8 +494,8 @@ class WiFi_Internet_Configurator_Window(Gtk.Window):
         header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
-        svg_file_path = "graphics/wifi.png"
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 100, 50)
+        svg_file_path = "graphics/wifi.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 125, 75)
 
         # Create an image widget and set the Pixbuf
         image = Gtk.Image.new_from_pixbuf(pixbuf)
@@ -631,14 +643,6 @@ class WiFi_Internet_Configurator_Window(Gtk.Window):
             except subprocess.CalledProcessError as e:
                 print(f"Error: {e}")
 
-    def on_next_clicked(self, button):
-        # Additional code to save the configured keyboard layout
-        print("Next button clicked")
-        #time_zone_configurator_window = Time_Zone_Configurator_Window()
-        #time_zone_configurator_window.connect("destroy", Gtk.main_quit)
-        #time_zone_configurator_window.show_all()
-        #self.hide()
-
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
@@ -647,10 +651,22 @@ class WiFi_Internet_Configurator_Window(Gtk.Window):
         keyboard_configurator_window.show_all()
         self.hide()
 
+        Languages.configuring_languages_environment(keyboard_configurator_window, language_selection_window.safed_language_variable)
+
+    def on_next_clicked(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+        time_zone_configurator_window = Time_Zone_Configurator_Window()
+        time_zone_configurator_window.connect("destroy", Gtk.main_quit)
+        time_zone_configurator_window.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(time_zone_configurator_window, language_selection_window.safed_language_variable)
+
 ####################################################################################################
 ####################################################################################################
 
-class Time_Zone_Configurator_Window():
+class Time_Zone_Configurator_Window(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Time Zone")
         self.set_default_size(600, 450)
@@ -661,12 +677,12 @@ class Time_Zone_Configurator_Window():
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
         self.previous_button = Gtk.Button(label=self.previous_button_label)
-        #self.previous_button.connect("clicked", self.on_previous_clicked)
+        self.previous_button.connect("clicked", self.on_previous_clicked)
 
         # Next button in the top-right corner
         self.next_button_label = "Next"  # Placeholder, replace it with the actual label
         self.next_button = Gtk.Button(label=self.next_button_label)
-        #self.next_button.connect("clicked", self.on_next_clicked)
+        self.next_button.connect("clicked", self.on_next_clicked)
 
         # Header-Bar Configuration
         header_bar = Gtk.HeaderBar()
@@ -675,8 +691,8 @@ class Time_Zone_Configurator_Window():
         header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
-        svg_file_path = "graphics/wifi.png"
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 100, 50)
+        svg_file_path = "graphics/clock-calendar.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 125, 75)
 
         # Create an image widget and set the Pixbuf
         image = Gtk.Image.new_from_pixbuf(pixbuf)
@@ -694,7 +710,69 @@ class Time_Zone_Configurator_Window():
         label_info.set_max_width_chars(55)
         label_info.set_justify(Gtk.Justification.CENTER)
 
-        # ...
+        # Create a horizontal box (MAIN INNER CONTAINER)
+        container_main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main.set_halign(Gtk.Align.CENTER)
+        container_main.set_valign(Gtk.Align.CENTER)
+        container_main_1_1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main_1_1.set_size_request(400, 150)
+        container_main.add(container_main_1_1)
+        container_main_1_2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        container_main_1_2.set_halign(Gtk.Align.CENTER)
+        container_main.add(container_main_1_2)
+        container_main_1_3 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        container_main.add(container_main_1_3)
+
+        # Create the scrolled window
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        container_main_1_1.pack_start(scrolled_window, True, True, 0)
+
+        # Create the list store and tree view
+        self.list_store = Gtk.ListStore(str)
+        self.tree_view = Gtk.TreeView(model=self.list_store)
+        scrolled_window.add(self.tree_view)
+
+        # Create the columns
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn("Time Zone", renderer, text=0)
+        self.tree_view.append_column(column)
+
+        # Populate the list store with time zones
+        time_zones = subprocess.check_output(["timedatectl", "list-timezones"]).decode("utf-8").splitlines()
+        for zone in time_zones:
+            self.list_store.append([zone])
+
+        # Create a search entry
+        search_entry = Gtk.SearchEntry()
+        search_entry.connect("search-changed", self.on_search_changed)
+        container_main_1_2.pack_start(search_entry, False, False, 0)
+
+        autoconfig_time_zone_checkbox = Gtk.CheckButton(f"Automatic time adjustment")
+        autoconfig_time_zone_checkbox.connect("toggled", self.toggle_autoconfig_time_zone)
+        container_main_1_2.pack_start(autoconfig_time_zone_checkbox, False, False, 0)
+
+        # Get the current time zone using the 'timedatectl' command
+        current_time_zone_cmd = "timedatectl | grep 'Time zone' | awk '{print $3}'"
+        current_time_zone = os.popen(current_time_zone_cmd).read().strip()
+        current_time_cmd = f"TZ={current_time_zone} date"
+        current_time = os.popen(current_time_cmd).read().strip()
+        print(f"Current Time: {current_time}")
+
+        # Create and set up the label (Current time zone)
+        self._current_time_zone_label = Gtk.Label()
+        self._current_time_zone_label.set_markup(f'<span foreground="#2B2D42" background="#19b1a2"> Current Time Zone: </span> <span foreground="#19b1a2">{current_time_zone} [{current_time}]</span>')
+        self._current_time_zone_label.set_line_wrap(True)
+        container_main_1_3.pack_start(self._current_time_zone_label, False, False, 0)
+
+        # Create and set up the label (Selected time zone)
+        self.selected_time_zone_label = Gtk.Label()
+        self.selected_time_zone_label.set_markup('<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>')
+        self.selected_time_zone_label.set_line_wrap(True)
+        container_main_1_3.pack_start(self.selected_time_zone_label, False, False, 0)
+
+        # Connect the row-activated signal
+        self.tree_view.connect("row-activated", self.on_row_activated)
 
         # Create a VBox to organize widgets vertically
         vbox = Gtk.VBox(spacing=10)
@@ -702,9 +780,85 @@ class Time_Zone_Configurator_Window():
         vbox.pack_start(image, False, False, 0)
         vbox.pack_start(self.title_label, False, False, 0)
         vbox.pack_start(label_info, False, False, 0)
+        vbox.pack_start(container_main, False, False, 0)
 
         # Add the VBox to the window
         self.add(vbox)
+
+    def on_row_activated(self, tree_view, path, column):
+        # Get the selected time zone and update the label
+        iter = self.list_store.get_iter(path)
+        selected_time_zone = self.list_store.get_value(iter, 0)
+        print(f"Selected Time Zone: {selected_time_zone}")
+        selected_time_cmd = f"TZ={selected_time_zone} date"
+        selected_time = os.popen(selected_time_cmd).read().strip()
+        print(f"Selected Time: {selected_time_zone} | {selected_time}")
+        # Using f-string to format the string correctly
+        self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">{selected_time_zone} | {selected_time}</span>'
+        self.selected_time_zone_label.set_markup(self.new_time_zone)
+
+    def on_search_changed(self, entry):
+        # Filter the list based on the search text
+        search_text = entry.get_text().lower()
+        self.list_store.clear()
+        time_zones = subprocess.check_output(["timedatectl", "list-timezones"]).decode("utf-8").splitlines()
+        for zone in time_zones:
+            if search_text in zone.lower():
+                self.list_store.append([zone])
+
+    def toggle_autoconfig_time_zone(self, widget):
+        if widget.get_active():
+            print("CheckButton is active")
+            self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">The time zone will be determined automatically!</span>'
+            self.selected_time_zone_label.set_markup(self.new_time_zone)
+            self.autoconfig_time_zone_status()
+        else:
+            print("CheckButton is not active")
+            self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>'
+            self.selected_time_zone_label.set_markup(self.new_time_zone)
+
+    def autoconfig_time_zone_status(self):
+        automatic_time_zone = 1
+        return automatic_time_zone
+
+    def on_previous_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+        keyboard_configurator_window = Keyboard_Configurator_Window()
+        keyboard_configurator_window.connect("destroy", Gtk.main_quit)
+        keyboard_configurator_window.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(keyboard_configurator_window, language_selection_window.safed_language_variable)
+
+    def on_next_clicked(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+        automatic_time_zone = self.autoconfig_time_zone_status()
+        if automatic_time_zone == 1:
+            # Perform actions when the checkbox is checked
+            print("Automatic time zone adjustment is enabled")
+
+            # Run the command to set the timezone
+            timezone_cmd = 'timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"'
+            subprocess.run(timezone_cmd, shell=True)
+
+            # Get the selected timezone
+            auto_timezone = subprocess.check_output(['timedatectl', 'status', '--no-pager']).decode('utf-8')
+
+            # Display the selected timezone
+            print(f"Automatic configured Time Zone: {auto_timezone}")
+        else:
+            # Perform actions when the checkbox is not checked
+            print("Automatic time zone adjustment is disabled")
+
+            # Get the selected time zone and apply it using timedatectl
+            selection = self.tree_view.get_selection()
+            model, iter = selection.get_selected()
+            if iter is not None:
+                selected_time_zone = model.get_value(iter, 0)
+                subprocess.run(["timedatectl", "set-timezone", selected_time_zone])
+                print(f"Time Zone Applied: {selected_time_zone}")
 
 ####################################################################################################
 # THE PROGRAM IS STARTED HERE:                                                                     #
