@@ -752,6 +752,9 @@ class Time_Zone_Configurator_Window(Gtk.Window):
         autoconfig_time_zone_checkbox.connect("toggled", self.toggle_autoconfig_time_zone)
         container_main_1_2.pack_start(autoconfig_time_zone_checkbox, False, False, 0)
 
+        # Define automatic_time_zone as a class attribute
+        self.automatic_time_zone = 0
+
         # Get the current time zone using the 'timedatectl' command
         current_time_zone_cmd = "timedatectl | grep 'Time zone' | awk '{print $3}'"
         current_time_zone = os.popen(current_time_zone_cmd).read().strip()
@@ -811,15 +814,12 @@ class Time_Zone_Configurator_Window(Gtk.Window):
             print("CheckButton is active")
             self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">The time zone will be determined automatically!</span>'
             self.selected_time_zone_label.set_markup(self.new_time_zone)
-            self.autoconfig_time_zone_status()
+            self.automatic_time_zone = 1
         else:
             print("CheckButton is not active")
             self.new_time_zone = f'<span foreground="#2B2D42" background="#F7E733"> Selected Time Zone: </span> <span foreground="#F7E733">Please select a timezone first!</span>'
             self.selected_time_zone_label.set_markup(self.new_time_zone)
-
-    def autoconfig_time_zone_status(self):
-        automatic_time_zone = 1
-        return automatic_time_zone
+            self.automatic_time_zone = 0
 
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
@@ -834,8 +834,7 @@ class Time_Zone_Configurator_Window(Gtk.Window):
     def on_next_clicked(self, button):
         # Additional code to save the configured keyboard layout
         print("Next button clicked")
-        automatic_time_zone = self.autoconfig_time_zone_status()
-        if automatic_time_zone == 1:
+        if self.automatic_time_zone == 1:
             # Perform actions when the checkbox is checked
             print("Automatic time zone adjustment is enabled")
 
