@@ -17,20 +17,29 @@ class CategorySelectionWindow(Gtk.Window):
         scrolled_window.add(vbox)
 
         categories = [
-            "Productivity",
-            "Graphics & Photography",
-            "Audio & Video",
-            "Education",
-            "Games",
-            "Networking",
-            "Developer Tools",
-            "Science",
-            "System-Tools"
+            {
+                "name": "Productivity",
+                "icons": ["productivity_logo1.png", "productivity_logo2.png", "productivity_logo3.png"],
+                "titles": ["Fire", "Water", "Dust"],
+                "descriptions": ["Hello World", "Lalelu", "Ohaha"]
+            },
+            {
+                "name": "Graphics & Photography",
+                "icons": ["graphics_photography_logo1.png", "graphics_photography_logo2.png", "graphics_photography_logo3.png"],
+                "titles": ["Title1", "Title2", "Title3"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            },
+            # ... Add entries for other categories
         ]
 
-        for category in categories:
+        for category_info in categories:
+            category_name = category_info["name"]
+            icons = category_info["icons"]
+            titles = category_info["titles"]
+            descriptions = category_info["descriptions"]
+
             # Add category label
-            label = Gtk.Label(label=category)
+            label = Gtk.Label(label=category_name)
             vbox.pack_start(label, False, False, 0)
 
             # Create a TreeView for each category
@@ -44,22 +53,20 @@ class CategorySelectionWindow(Gtk.Window):
             # Function to load and insert icons
             def load_and_insert_icon(filename):
                 try:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, 32, 32)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, 24, 24)
                     return pixbuf
                 except Exception as e:
                     print(f"Error loading icon: {e}")
                     return None
 
             # Insert data into the TreeStore (Icon, Title, Description)
-            for i in range(1, 4):  # Corrected the loop range
-
-                # For example: productivity_logo1.svg, graphics & photography1.svg, ...
-                icon_path = f"{category.lower()}_logo{i}.svg"
+            for i in range(len(icons)):
+                icon_path = icons[i]
                 pixbuf = load_and_insert_icon(icon_path)
 
                 if pixbuf:
                     iter = treestore.append(None)
-                    treestore.set(iter, 0, pixbuf, 1, f"Option {i}", 2, f"Description {i}")
+                    treestore.set(iter, 0, pixbuf, 1, titles[i], 2, descriptions[i])
 
             # Create a TreeViewColumn for the Icon
             renderer_pixbuf = Gtk.CellRendererPixbuf()
@@ -84,3 +91,4 @@ if __name__ == "__main__":
     win.connect("destroy", Gtk.main_quit)
     win.show_all()
     Gtk.main()
+
