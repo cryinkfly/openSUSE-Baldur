@@ -61,7 +61,7 @@ class CategorySelectionWindow(Gtk.Window):
 
         renderer_toggle = Gtk.CellRendererToggle()
         renderer_toggle.connect("toggled", self.on_checkbox_toggled, store, category["name"])
-        column_toggle = Gtk.TreeViewColumn("", renderer_toggle, active=0)
+        column_toggle = Gtk.TreeViewColumn("Select", renderer_toggle, active=0)
         treeview.append_column(column_toggle)
 
         renderer_icon = Gtk.CellRendererPixbuf()
@@ -95,3 +95,4 @@ win = CategorySelectionWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
 Gtk.main()
+
