@@ -1,4 +1,5 @@
 import gi
+import subprocess
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GdkPixbuf
 
@@ -89,22 +90,59 @@ class CategorySelectionWindow(Gtk.Window):
 
     def on_next_clicked(self, button):
 
-        # Bash Commands:
-        # USERNAME = The created user by the XFCE Initial Setup!
-
-        # runuser -l  USERNAME -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'
-
+        # username = The created user by the XFCE Initial Setup!
+        username = "USERNAME" # <-- CHANGE
+        command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'"
+            try:
+                subprocess.run(command, shell=True, check=True)
+                print("Blender installation completed successfully.")
+            except subprocess.CalledProcessError as e:
+                print(f"Error: {e}")
 
         for category_name, selected_options in self.selected_options_dict.items():
             print(f"Selected options for {category_name}: {selected_options}")
 
+            if "Blender" in selected_options:
+                # Perform action when "Title1" is selected for the current category
+                print(f"Blender is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.blender.Blender --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Blender installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "GIMP" in selected_options:
+                # Perform action when "Title1" is selected for the current category
+                print(f"GIMP is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.gimp.GIMP --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("GIMP installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Inkscape" in selected_options:
+                # Perform action when "Title1" is selected for the current category
+                print(f"Inkscape is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.inkscape.Inkscape --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Inkscape installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
             if "VLC media player" in selected_options:
                 # Perform action when "Title1" is selected for the current category
                 print(f"VLC media player is selected for {category_name}. Performing action...")
-                # Add your action here
-                # runuser -l  USERNAME -c 'flatpak install flathub org.videolan.VLC --user'
+                command = f"runuser -l {username} -c 'flatpak install flathub org.videolan.VLC --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("VLC media player installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
 
-            # if ...
+            # ...
 
 
 
@@ -112,3 +150,4 @@ win = CategorySelectionWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
 Gtk.main()
+
