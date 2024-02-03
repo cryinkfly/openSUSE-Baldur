@@ -19,8 +19,8 @@ class CategorySelectionWindow(Gtk.Window):
             {
                 "name": "Productivity",
                 "icons": ["productivity_logo1.png", "productivity_logo2.png", "productivity_logo3.png"],
-                "titles": ["Fire", "Water", "Dust"],
-                "descriptions": ["Hello World", "Lalelu", "Ohaha"]
+                "titles": ["Title1", "Title2", "Title3"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
             },
             {
                 "name": "Graphics & Photography",
