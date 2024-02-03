@@ -103,7 +103,6 @@ class CategorySelectionWindow(Gtk.Window):
             print(f"Selected options for {category_name}: {selected_options}")
 
             if "Blender" in selected_options:
-                # Perform action when "Title1" is selected for the current category
                 print(f"Blender is selected for {category_name}. Performing action...")
                 command = f"runuser -l {username} -c 'flatpak install flathub org.blender.Blender --user'"
                 try:
@@ -113,7 +112,6 @@ class CategorySelectionWindow(Gtk.Window):
                     print(f"Error: {e}")
 
             if "GIMP" in selected_options:
-                # Perform action when "Title1" is selected for the current category
                 print(f"GIMP is selected for {category_name}. Performing action...")
                 command = f"runuser -l {username} -c 'flatpak install flathub org.gimp.GIMP --user'"
                 try:
@@ -123,7 +121,6 @@ class CategorySelectionWindow(Gtk.Window):
                     print(f"Error: {e}")
 
             if "Inkscape" in selected_options:
-                # Perform action when "Title1" is selected for the current category
                 print(f"Inkscape is selected for {category_name}. Performing action...")
                 command = f"runuser -l {username} -c 'flatpak install flathub org.inkscape.Inkscape --user'"
                 try:
@@ -133,7 +130,6 @@ class CategorySelectionWindow(Gtk.Window):
                     print(f"Error: {e}")
 
             if "VLC media player" in selected_options:
-                # Perform action when "Title1" is selected for the current category
                 print(f"VLC media player is selected for {category_name}. Performing action...")
                 command = f"runuser -l {username} -c 'flatpak install flathub org.videolan.VLC --user'"
                 try:
