@@ -88,11 +88,27 @@ class CategorySelectionWindow(Gtk.Window):
         self.selected_options_dict[category_name] = selected_options
 
     def on_next_clicked(self, button):
+
+        # Bash Commands:
+        # USERNAME = The created user by the XFCE Initial Setup!
+
+        # runuser -l  USERNAME -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'
+
+
         for category_name, selected_options in self.selected_options_dict.items():
             print(f"Selected options for {category_name}: {selected_options}")
+
+            if "VLC media player" in selected_options:
+                # Perform action when "Title1" is selected for the current category
+                print(f"VLC media player is selected for {category_name}. Performing action...")
+                # Add your action here
+                # runuser -l  USERNAME -c 'flatpak install flathub org.videolan.VLC --user'
+
+            # if ...
+
+
 
 win = CategorySelectionWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
 Gtk.main()
-
