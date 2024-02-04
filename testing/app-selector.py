@@ -92,7 +92,7 @@ class CategorySelectionWindow(Gtk.Window):
 
         # username = The created user by the XFCE Initial Setup!
         username = "USERNAME" # <-- CHANGE
-        command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'"
+        command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user && flatpak install flathub com.github.tchx84.Flatseal org.gnome.Calculator --user'"
             try:
                 subprocess.run(command, shell=True, check=True)
                 print("Blender installation completed successfully.")
@@ -101,6 +101,75 @@ class CategorySelectionWindow(Gtk.Window):
 
         for category_name, selected_options in self.selected_options_dict.items():
             print(f"Selected options for {category_name}: {selected_options}")
+
+            # Internet & E-Mail:
+
+            if "Chromium Web Browser" in selected_options:
+                print(f"Chromium Web Browser is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.chromium.Chromium --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Chromium Web Browser installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Firefox" in selected_options:
+                print(f"Firefox is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.mozilla.firefox --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Firefox installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Microsoft Edge" in selected_options:
+                print(f"Microsoft Edge is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.microsoft.Edge --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Microsoft Edge installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Thunderbird" in selected_options:
+                print(f"Thunderbird is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.mozilla.Thunderbird --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Thunderbird installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Productivity:
+
+            if "LibreOffice" in selected_options:
+                print(f"LibreOffice is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.libreoffice.LibreOffice --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("LibreOffice installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "ONLYOFFICE" in selected_options:
+                print(f"ONLYOFFICE is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.onlyoffice.desktopeditors --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("ONLYOFFICE installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "WPS Office" in selected_options:
+                print(f"WPS Office is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.wps.Office --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("WPS Office installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Graphics & Photography:
 
             if "Blender" in selected_options:
                 print(f"Blender is selected for {category_name}. Performing action...")
@@ -129,6 +198,35 @@ class CategorySelectionWindow(Gtk.Window):
                 except subprocess.CalledProcessError as e:
                     print(f"Error: {e}")
 
+            # Audio & Video:
+
+            if "Audacity" in selected_options:
+                print(f"Audacity is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.audacityteam.Audacity --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Audacity installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Kdenlive" in selected_options:
+                print(f"Kdenlive is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.kde.kdenlive --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Kdenlive installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "OBS Studio" in selected_options:
+                print(f"OBS Studio is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.obsproject.Studio com.obsproject.Studio.Plugin.WebSocket --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("OBS Studio installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
             if "VLC media player" in selected_options:
                 print(f"VLC media player is selected for {category_name}. Performing action...")
                 command = f"runuser -l {username} -c 'flatpak install flathub org.videolan.VLC --user'"
@@ -138,7 +236,179 @@ class CategorySelectionWindow(Gtk.Window):
                 except subprocess.CalledProcessError as e:
                     print(f"Error: {e}")
 
-            # ...
+            # Education:
+
+            if "GCompris" in selected_options:
+                print(f"GCompris is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.kde.gcompris --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("GCompris installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Minuet" in selected_options:
+                print(f"Minuet is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.kde.minuet --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Minuet installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Scratch" in selected_options:
+                print(f"Scratch is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub edu.mit.Scratch --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Scratch installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Games:
+
+            if "Discord" in selected_options:
+                print(f"Discord is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.discordapp.Discord --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Discord installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Steam" in selected_options:
+                print(f"Steam is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.valvesoftware.Steam --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Steam installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "SuperTuxKart" in selected_options:
+                print(f"SuperTuxKart is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub net.supertuxkart.SuperTuxKart --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("SuperTuxKart installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Developer Tools:
+
+            if "Geany" in selected_options:
+                print(f"Geany is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.geany.Geany --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Geany installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Obsidian" in selected_options:
+                print(f"Obsidian is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub md.obsidian.Obsidian --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Obsidian installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Visual Studio Code" in selected_options:
+                print(f"Visual Studio Code is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.visualstudio.code --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Visual Studio Code installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Printing & CAD Tools:
+
+            if "UltiMaker Cura" in selected_options:
+                print(f"UltiMaker Cura is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.ultimaker.cura --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("UltiMaker Cura installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "FreeCAD" in selected_options:
+                print(f"FreeCAD is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.freecadweb.FreeCAD --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("FreeCAD installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "PrusaSlicer" in selected_options:
+                print(f"PrusaSlicer is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.prusa3d.PrusaSlicer --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("PrusaSlicer installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # System Tools:
+
+            if "AnyDesk" in selected_options:
+                print(f"AnyDesk is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.anydesk.Anydesk --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("AnyDesk installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Boxes" in selected_options:
+                print(f"Boxes is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.gnome.Boxes --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Boxes installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Raspberry Pi Imager" in selected_options:
+                print(f"Raspberry Pi Imager is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.raspberrypi.rpi-imager --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Raspberry Pi Imager installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            # Security Tools:
+
+            if "Authenticator" in selected_options:
+                print(f"Authenticator is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.belmoussaoui.Authenticator --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Authenticator installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "KeePassXC" in selected_options:
+                print(f"KeePassXC is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.keepassxc.KeePassXC --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("KeePassXC installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Yubico Authenticator" in selected_options:
+                print(f"Yubico Authenticator is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.yubico.yubioath --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Yubico Authenticator installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
 
 
 
@@ -146,4 +416,3 @@ win = CategorySelectionWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
 Gtk.main()
-
