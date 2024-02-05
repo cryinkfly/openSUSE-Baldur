@@ -65,7 +65,7 @@ class CategorySelectionWindow(Gtk.Window):
             title = category["titles"][i]
             description = category["descriptions"][i]
 
-            # Set active=True for Firefox and Thunderbird entries
+            # Set active=True for Firefox, LibreOffice, ... entries:
             active = title in [
                 "Firefox",
                 "LibreOffice",
