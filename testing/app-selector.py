@@ -71,8 +71,7 @@ class CategorySelectionWindow(Gtk.Window):
                 "LibreOffice",
                 "GIMP",
                 "VLC media player",
-                "Mousepad",
-                "Firefox",
+                "Mousepad"
                 ]
 
             store.append([active, icon, title, description])
