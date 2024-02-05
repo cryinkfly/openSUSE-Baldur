@@ -6,7 +6,8 @@ from gi.repository import Gtk, GdkPixbuf
 class CategorySelectionWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Category Selection")
-        self.set_default_size(400, 300)
+        self.set_default_size(600, 300)
+        self.set_border_width(35)
 
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.set_border_width(10)
@@ -18,10 +19,16 @@ class CategorySelectionWindow(Gtk.Window):
 
         self.categories = [
             {
+                "name": "Internet & E-Mail",
+                "icons": ["graphics/chromium.png", "graphics/firefox.png", "graphics/microsoft-edge.png", "graphics/thunderbird.png"],
+                "titles": ["Chromium", "Firefox", "Microsoft Edge", "Thunderbird"],
+                "descriptions": ["Open-source Web Browser from Google", "Fast, Private & Safe Web Browser from Mozilla", "Smarter & Faster Web Browser with AI Support", "E-Mail, Newsfeed, Chat & Calendaring Client"]
+            },
+            {
                 "name": "Productivity",
                 "icons": ["productivity_logo1.png", "productivity_logo2.png", "productivity_logo3.png"],
-                "titles": ["Title1", "Title2", "Title3"],
-                "descriptions": ["Desc1", "Desc2", "Desc3"]
+                "titles": ["LibreOffice", "ONLYOFFICE", "WPS Office"],
+                "descriptions": ["Powerful Free & Open Source Office Suite", "Secure compatible MS Online Office Suite", "Office Suite for PDF, Docs, Sheets & Slides"]
             },
             {
                 "name": "Graphics & Photography",
@@ -40,6 +47,7 @@ class CategorySelectionWindow(Gtk.Window):
             category_box.pack_start(label, False, False, 0)
 
             treeview = self.create_treeview(category)
+            treeview.set_headers_visible(False)
             category_box.pack_start(treeview, True, True, 0)
 
         button = Gtk.Button(label="Next")
@@ -56,7 +64,18 @@ class CategorySelectionWindow(Gtk.Window):
             icon = GdkPixbuf.Pixbuf.new_from_file_at_size(category["icons"][i], 24, 24)
             title = category["titles"][i]
             description = category["descriptions"][i]
-            store.append([False, icon, title, description])
+
+            # Set active=True for Firefox and Thunderbird entries
+            active = title in [
+                "Firefox",
+                "LibreOffice",
+                "GIMP",
+                "VLC media player",
+                "Mousepad",
+                "Firefox",
+                ]
+
+            store.append([active, icon, title, description])
 
         treeview = Gtk.TreeView(model=store)
 
@@ -91,13 +110,13 @@ class CategorySelectionWindow(Gtk.Window):
     def on_next_clicked(self, button):
 
         # username = The created user by the XFCE Initial Setup!
-        username = "USERNAME" # <-- CHANGE
+        username = "steve" # <-- CHANGE
         command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user && flatpak install flathub com.github.tchx84.Flatseal org.gnome.Calculator --user'"
-            try:
-                subprocess.run(command, shell=True, check=True)
-                print("Blender installation completed successfully.")
-            except subprocess.CalledProcessError as e:
-                print(f"Error: {e}")
+        try:
+            subprocess.run(command, shell=True, check=True)
+            print("Blender installation completed successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Error: {e}")
 
         for category_name, selected_options in self.selected_options_dict.items():
             print(f"Selected options for {category_name}: {selected_options}")
@@ -206,6 +225,15 @@ class CategorySelectionWindow(Gtk.Window):
                 try:
                     subprocess.run(command, shell=True, check=True)
                     print("Audacity installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Boatswain" in selected_options:
+                print(f"Boatswain is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub com.feaneron.Boatswain --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Boatswain installation completed successfully.")
                 except subprocess.CalledProcessError as e:
                     print(f"Error: {e}")
 
@@ -372,12 +400,39 @@ class CategorySelectionWindow(Gtk.Window):
                 except subprocess.CalledProcessError as e:
                     print(f"Error: {e}")
 
-            if "Raspberry Pi Imager" in selected_options:
-                print(f"Raspberry Pi Imager is selected for {category_name}. Performing action...")
-                command = f"runuser -l {username} -c 'flatpak install flathub org.raspberrypi.rpi-imager --user'"
+            if "Déjà Dup Backups" in selected_options:
+                print(f"Déjà Dup Backups is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.gnome.DejaDup --user'"
                 try:
                     subprocess.run(command, shell=True, check=True)
-                    print("Raspberry Pi Imager installation completed successfully.")
+                    print("Déjà Dup Backups installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "gedit" in selected_options:
+                print(f"gedit is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.gnome.gedit --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("gedit installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "KWrite" in selected_options:
+                print(f"KWrite is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.kde.kwrite --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("KWrite installation completed successfully.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error: {e}")
+
+            if "Mousepad" in selected_options:
+                print(f"Mousepad is selected for {category_name}. Performing action...")
+                command = f"runuser -l {username} -c 'flatpak install flathub org.xfce.mousepad --user'"
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Mousepad installation completed successfully.")
                 except subprocess.CalledProcessError as e:
                     print(f"Error: {e}")
 
