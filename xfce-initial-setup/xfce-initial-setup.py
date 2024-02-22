@@ -1102,17 +1102,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         except subprocess.CalledProcessError as e:
             print(f"Error: {e}")
 
-        # Assuming selected_options is defined somewhere else in the class
-        if not self.selected_titles:
-            print("The user has selected the standard apps.")
-            flatpak1_command = f"runuser -l {username} -c 'flatpak install -y flathub com.github.tchx84.Flatseal org.gnome.Calculator org.mozilla.firefox org.libreoffice.LibreOffice org.gimp.GIMP org.videolan.VLC org.xfce.mousepad --user'"
-            try:
-                subprocess.run(flatpak1_command, shell=True, check=True)
-                print("The application installation completed successfully.")
-                return
-            except subprocess.CalledProcessError as e:
-                print(f"Error: {e}")
-
         for selected_options in self.selected_titles:
 
             # Initialize a list to store Flatpak app names
