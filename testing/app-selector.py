@@ -1,7 +1,7 @@
 import gi
 import subprocess
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, Pango
 
 class CategorySelectionWindow(Gtk.Window):
     def __init__(self):
@@ -20,22 +20,64 @@ class CategorySelectionWindow(Gtk.Window):
         self.categories = [
             {
                 "name": "Internet & E-Mail",
-                "icons": ["graphics/chromium.png", "graphics/firefox.png", "graphics/microsoft-edge.png", "graphics/thunderbird.png"],
+                "icons": ["graphics/apps/chromium.svg", "graphics/apps/firefox.svg", "graphics/apps/microsoft-edge.svg", "graphics/apps/thunderbird.svg"],
                 "titles": ["Chromium", "Firefox", "Microsoft Edge", "Thunderbird"],
                 "descriptions": ["Open-source Web Browser from Google", "Fast, Private & Safe Web Browser from Mozilla", "Smarter & Faster Web Browser with AI Support", "E-Mail, Newsfeed, Chat & Calendaring Client"]
             },
             {
                 "name": "Productivity",
-                "icons": ["productivity_logo1.png", "productivity_logo2.png", "productivity_logo3.png"],
+                "icons": ["graphics/apps/libreoffice.svg", "graphics/apps/onlyoffice.svg", "graphics/apps/wps-office.svg"],
                 "titles": ["LibreOffice", "ONLYOFFICE", "WPS Office"],
                 "descriptions": ["Powerful Free & Open Source Office Suite", "Secure compatible MS Online Office Suite", "Office Suite for PDF, Docs, Sheets & Slides"]
             },
             {
                 "name": "Graphics & Photography",
-                "icons": ["graphics_photography_logo1.png", "graphics_photography_logo2.png", "graphics_photography_logo3.png"],
+                "icons": ["graphics/apps/blender.svg", "graphics/apps/gimp.svg", "graphics/apps/inkscape.svg"],
                 "titles": ["Blender", "GIMP", "Inkscape"],
                 "descriptions": ["Desc1", "Desc2", "Desc3"]
             },
+            {
+                "name": "Audio & Video",
+                "icons": ["graphics/apps/audacity.svg", "graphics/apps/boatswain.svg", "graphics/apps/kdenlive.svg", "graphics/apps/obs-studio.svg", "graphics/apps/vlc.svg"],
+                "titles": ["Audacity", "Boatswain", "Kdenlive", "OBS Studio", "VLC media player"],
+                "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4", "Desc5"]
+            },
+            {
+                "name": "Education",
+                "icons": ["graphics/apps/gcompris.svg", "graphics/apps/minute.svg", "graphics/apps/scratch.svg"],
+                "titles": ["GCompris", "Minuet", "Scratch"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            },
+            {
+                "name": "Games",
+                "icons": ["graphics/apps/discord.svg", "graphics/apps/steam.svg", "graphics/apps/0ad.svg"],
+                "titles": ["Discord", "Steam", "0 A.D."],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            },
+            {
+                "name": "Developer Tools",
+                "icons": ["graphics/apps/geany.svg", "graphics/apps/obsidian.svg", "graphics/apps/visualstudiocode.svg"],
+                "titles": ["Geany", "Obsidian", "Visual Studio Code"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            },
+            {
+                "name": "Printing & CAD Tools",
+                "icons": ["graphics/apps/cura.svg", "graphics/apps/freecad.svg", "graphics/apps/prusa-slicer.svg"],
+                "titles": ["UltiMaker Cura", "FreeCAD", "PrusaSlicer"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            },
+            {
+                "name": "System Tools",
+                "icons": ["graphics/apps/anydesk.svg", "graphics/apps/gnome-boxes.svg", "graphics/apps/deja-dup.svg", "graphics/apps/gedit.svg", "graphics/apps/kwrite.svg", "graphics/apps/mousepad.svg"],
+                "titles": ["AnyDesk", "GNOME Boxes", "Déjà Dup Backups", "gedit", "KWrite", "Mousepad"],
+                "descriptions": ["Desc1", "Desc2", "Desc3", "Desc4", "Desc5", "Desc6"]
+            },
+            {
+                "name": "Security Tools",
+                "icons": ["graphics/apps/authenticator.svg", "graphics/apps/keepassxc.svg", "graphics/apps/yubico-auth.svg"],
+                "titles": ["Authenticator", "KeePassXC", "Yubico Authenticator"],
+                "descriptions": ["Desc1", "Desc2", "Desc3"]
+            }
             # ... Add entries for other categories
         ]
 
@@ -46,6 +88,7 @@ class CategorySelectionWindow(Gtk.Window):
             vbox.pack_start(category_box, True, True, 0)
 
             label = Gtk.Label(label=category["name"])
+            label.override_font(Pango.FontDescription("Bold 11"))  # Adjust font size and type here
             category_box.pack_start(label, False, False, 0)
 
             treeview = self.create_treeview(category)
@@ -63,7 +106,8 @@ class CategorySelectionWindow(Gtk.Window):
         store = Gtk.ListStore(bool, GdkPixbuf.Pixbuf, str, str)
 
         for i in range(len(category["icons"])):
-            icon = GdkPixbuf.Pixbuf.new_from_file_at_size(category["icons"][i], 24, 24)
+            icon = GdkPixbuf.Pixbuf.new_from_file(category["icons"][i])
+            icon = icon.scale_simple(28, 28, GdkPixbuf.InterpType.BILINEAR)
             title = category["titles"][i]
             description = category["descriptions"][i]
 
@@ -238,9 +282,9 @@ class CategorySelectionWindow(Gtk.Window):
                 print("Steam has been selected. Performing action...")
                 flatpak_apps[19] = "com.valvesoftware.Steam"
 
-            if "SuperTuxKart" in selected_options:
-                print("SuperTuxKart has been selected. Performing action...")
-                flatpak_apps[20] = "net.supertuxkart.SuperTuxKart"
+            if "0 A.D." in selected_options:
+                print("0 A.D. has been selected. Performing action...")
+                flatpak_apps[20] = "com.play0ad.zeroad"
 
             # Developer Tools:
 
