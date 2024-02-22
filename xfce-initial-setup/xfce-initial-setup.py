@@ -29,6 +29,8 @@ from gi.repository import Gdk, GdkPixbuf, Gio, GObject, Gtk, Pango
 import urllib.request
 from urllib.error import URLError
 import subprocess, os
+import random
+import string
 
 ####################################################################################################
 ####################################################################################################
@@ -864,10 +866,394 @@ class Time_Zone_Configurator_Window(Gtk.Window):
                 subprocess.run(["timedatectl", "set-timezone", selected_time_zone])
                 print(f"Time Zone Applied: {selected_time_zone}")
 
+                user_configurator_window = User_Configurator_Window()
+                user_configurator_window.connect("destroy", Gtk.main_quit)
+                user_configurator_window.show_all()
+                self.hide()
+
+
+####################################################################################################
+####################################################################################################
+
+class User_Configurator_Window(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="User Configurator")
+        self.set_default_size(600, 450)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Previous button in the top-left corner
+        self.previous_button_label = "Previous"
+        self.previous_button = Gtk.Button(label=self.previous_button_label)
+        self.previous_button.connect("clicked", self.on_previous_clicked)
+
+        # Next button in the top-right corner
+        self.next_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.next_button = Gtk.Button(label=self.next_button_label)
+        self.next_button.connect("clicked", self.on_next_clicked)
+
+        # Header-Bar Configuration
+        header_bar = Gtk.HeaderBar()
+        header_bar.props.title = "User Configurator"
+        header_bar.pack_start(self.previous_button)
+        header_bar.pack_end(self.next_button)
+        self.set_titlebar(header_bar)
+
+        svg_file_path = "graphics/add-user.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 125, 75)
+
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+
+        # Create a label widget for title
+        self.title_label = Gtk.Label()
+        self.title_label.set_markup('<span font_size="20000"><b>User Configurator</b></span>')
+
+        # Create a label widget for information
+        label_info = Gtk.Label()
+        label_info.set_markup(
+            f"In this area you can set the user account settings and add a new user for your system that does not have root privileges! However, the user rights and groups can still be changed later via the XFCE settings."
+        )
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+
+        # Fullname container (HORIZONTAL)
+        fullname_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        fullname_box.set_halign(Gtk.Align.CENTER)
+        fullname_box.set_valign(Gtk.Align.CENTER)
+        fullname_box.set_margin_top(20)
+        fullname_label = Gtk.Label("Vollständiger Name: ")
+        self.fullname_entry = Gtk.Entry()
+        self.fullname_entry.set_hexpand(True)
+        self.fullname_entry.set_halign(Gtk.Align.CENTER)
+        self.fullname_entry.set_width_chars(25)
+
+        # Username container (HORIZONTAL)
+        username_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        username_box.set_halign(Gtk.Align.CENTER)
+        username_box.set_valign(Gtk.Align.CENTER)
+        username_label = Gtk.Label("Benutzername:         ")
+        self.username_entry = Gtk.Entry()
+        self.username_entry.set_hexpand(True)
+        self.username_entry.set_halign(Gtk.Align.CENTER)
+        self.username_entry.set_width_chars(25)
+
+        # Password container (HORIZONTAL)
+        password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_box.set_halign(Gtk.Align.CENTER)
+        password_box.set_valign(Gtk.Align.CENTER)
+        password_label = Gtk.Label("Passwort:                   ")
+        self.password_entry = Gtk.Entry()
+        self.password_entry.set_hexpand(True)
+        self.password_entry.set_halign(Gtk.Align.CENTER)
+        self.password_entry.set_width_chars(25)
+        self.password_entry.set_visibility(False)  # Password is hidden by default
+
+        # Password-Confirm container (HORIZONTAL)
+        password_confirm_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_confirm_box.set_halign(Gtk.Align.CENTER)
+        password_confirm_box.set_valign(Gtk.Align.CENTER)
+        confirm_password_label = Gtk.Label("Passwort bestätigen:")
+        self.confirm_password_entry = Gtk.Entry()
+        self.confirm_password_entry.set_hexpand(True)
+        self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
+        self.confirm_password_entry.set_width_chars(25)
+        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+
+        # Show password checkbox container (HORIZONTAL)
+        show_password_autologin_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        show_password_autologin_box.set_margin_top(10)
+        show_password_autologin_box.set_halign(Gtk.Align.CENTER)
+        show_password_autologin_box.set_valign(Gtk.Align.CENTER)
+        show_password_checkbox = Gtk.CheckButton(" Passwort anzeigen")
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.set_halign(Gtk.Align.CENTER)
+        show_password_checkbox.set_valign(Gtk.Align.CENTER)
+        box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        box_autologin.set_halign(Gtk.Align.CENTER)
+        box_autologin.set_valign(Gtk.Align.CENTER)
+        label = Gtk.Label(label="|   Automatische Anmeldung:")
+        autologin_switch = Gtk.Switch()
+        autologin_switch.connect("notify::active", self.autologin_check_status)
+
+        # Buttons - Container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        button_box.set_margin_top(20)
+        random_password_button = Gtk.Button("🎲 Passwort")
+        random_password_button.connect("clicked", self.generate_random_password)
+        reset_button = Gtk.Button("🔄 Zurücksetzen")
+        reset_button.connect("clicked", self.reset_entries)
+
+        # Create a VBox to organize widgets vertically
+        vbox = Gtk.VBox(spacing=10)
+        vbox.set_margin_top(35)
+        vbox.pack_start(image, False, False, 0)
+        vbox.pack_start(self.title_label, False, False, 0)
+        vbox.pack_start(label_info, False, False, 0)
+
+        vbox.pack_start(fullname_box, False, False, 0)
+        fullname_box.pack_start(fullname_label, False, False, 0)
+        fullname_box.pack_start(self.fullname_entry, False, False, 0)
+
+        vbox.pack_start(username_box, False, False, 0)
+        username_box.pack_start(username_label, False, False, 0)
+        username_box.pack_start(self.username_entry, False, False, 0)
+
+        vbox.pack_start(password_box, False, False, 0)
+        password_box.pack_start(password_label, False, False, 0)
+        password_box.pack_start(self.password_entry, False, False, 0)
+
+        vbox.pack_start(password_confirm_box, False, False, 0)
+        password_confirm_box.pack_start(confirm_password_label, False, False, 0)
+        password_confirm_box.pack_start(self.confirm_password_entry, False, False, 0)
+
+        vbox.pack_start(show_password_autologin_box, False, False, 0)
+        show_password_autologin_box.pack_start(show_password_checkbox, False, False, 0)
+        show_password_autologin_box.pack_start(box_autologin, False, False, 0)
+        box_autologin.pack_start(label, True, True, 0)
+        show_password_autologin_box.pack_start(autologin_switch, True, True, 0)
+
+        vbox.pack_start(button_box, False, False, 0)
+        button_box.pack_start(random_password_button, True, True, 0)
+        button_box.pack_start(reset_button, True, True, 0)
+
+        # Add the VBox to the window
+        self.add(vbox)
+
+    def autologin_check_status(self, autologin_switch, gparam):
+        if autologin_switch.get_active():
+            print("Automatic login: Yes")
+            autologin_status_cmd="echo -n 'Yes' > /tmp/_autologin_status_.XXXXXXX"
+            #os.system(autologin_status_cmd)
+        else:
+            print("Automatic login: No")
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&-"
+
+        # Ensure at least 2 occurrences of special characters
+        special_chars_count = 0
+        while special_chars_count < 2:
+            random_password = "".join(random.choice(chars) for _ in range(12))
+            special_chars_count = sum(1 for char in random_password if char in "#$%&-")
+
+        self.password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.password_entry.set_visibility(visibility)
+        self.confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.fullname_entry.set_text("")
+        self.username_entry.set_text("")
+        self.password_entry.set_text("")
+        self.confirm_password_entry.set_text("")
+
+    def on_previous_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+        time_zone_configurator_window = Time_Zone_Configurator_Window()
+        time_zone_configurator_window.connect("destroy", Gtk.main_quit)
+        time_zone_configurator_window.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(time_zone_configurator_window, language_selection_window.safed_language_variable)
+
+    def on_next_clicked(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+
+        # Create User ...
+        fullname = self.fullname_entry.get_text()
+        username = self.username_entry.get_text()
+        password = self.password_entry.get_text()
+        confirm_password = self.confirm_password_entry.get_text()
+
+        if password == confirm_password:
+            if len(password) < 8:
+                print("Password must be at least 8 characters.")
+                error_1_window = Create_User_Error_1_Window()
+                error_1_window.connect("destroy", Gtk.main_quit)
+                error_1_window.show_all()
+            else:
+                add_user_cmd=f"""
+                    #!/bin/bash
+                    # Converting the password:
+                    pass=$(perl -e 'print crypt($ARGV[0], "password")' {password})
+
+                    # Set the desired username for autologin:
+                    autologin_user="{username}"
+
+                    # Specify the path to the display manager configuration file:
+                    display_manager_config="/etc/sysconfig/displaymanager"
+
+                    # Check the Autologin-Status:
+                    if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
+                        # Check if the file exists
+                        if [ -f "$display_manager_config" ]; then
+                            # Create a temporary script file
+                            script_1=$(mktemp)
+
+                            # Add user and modify group membership in the temporary script
+                            echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_1"
+                            echo "usermod -a -G users {username}" >> "$script_1"
+
+                            echo "$script_1"
+
+                            # Execute the temporary script with elevated privileges using pkexec
+                            pkexec su -c "bash $script_1"
+
+                            # Remove the temporary script
+                            rm "$script_1"
+
+                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+
+                            # Display a message indicating success
+                            echo "Autologin user set to: $autologin_user"
+                        else
+                            # Display an error message if the file does not exist
+                            echo "Error: Display manager configuration file not found at $display_manager_config"
+                        fi
+                    else
+                        # Create a temporary script file
+                        script_2=$(mktemp)
+
+                        # Add user and modify group membership in the temporary script
+                        echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_2"
+                        echo "usermod -a -G users {username}" >> "$script_2"
+                        echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_2"
+
+                        # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
+                        echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_2"
+                        echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+                        echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+
+                        # FIRSTBOOT SETUP OF FLATPAK:
+                        echo "mkdir -p /home/{username}/.config/autostart" >> "$script_2"
+                        echo "cat > /home/{username}/.config/autostart/mod-firstboot.desktop << EOF" >> "$script_2"
+                        echo "[Desktop Entry]" >> "$script_2"
+                        echo "Name=MicroOS Desktop FirstBoot Setup" >> "$script_2"
+                        echo "Comment=Sets up MicroOS Desktop Correctly On FirstBoot" >> "$script_2"
+                        echo "Exec=/usr/bin/mod-firstboot" >> "$script_2"
+                        echo "Icon=org.xfce.terminal" >> "$script_2"
+                        echo "Type=Application" >> "$script_2"
+                        echo "Categories=Utility;System;" >> "$script_2"
+                        echo "Name[en_US]=startup" >> "$script_2"
+                        echo "EOF" >> "$script_2"
+                        echo "chown {username}:{username} /home/{username}/.config/autostart/" >> "$script_2"
+
+                        # Execute the temporary script with elevated privileges using pkexec
+                        pkexec su -c "bash $script_2"
+
+                        # Remove the temporary script
+                        rm "$script_2"
+                    fi
+                """
+                #os.system(add_user_cmd)
+
+                print("User created successfully.")
                 flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window()
                 flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
                 flatpak_runtime_configurator_window.show_all()
                 self.hide()
+
+                Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
+
+        else:
+            print("Passwords do not match. Please try again.")
+            error_2_window = Create_User_Error_2_Window()
+            error_2_window.connect("destroy", Gtk.main_quit)
+            error_2_window.show_all()
+
+##############################################################################################################################################################################
+
+class Create_User_Error_1_Window(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r')
+        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
+        #open_create_user_info_text_file.close()
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.set_border_width(10)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The new password must be at least 8 characters long!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Previous")
+        button_okay.connect("clicked", self.on_back_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_back_clicked(self, widget):
+        self.hide()
+
+##############################################################################################################################################################################
+
+# ... Password not match ...
+class Create_User_Error_2_Window(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="")
+        #self.set_default_size(100, 0)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+        self.set_border_width(10)
+
+        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r')
+        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
+        #open_create_user_info_text_file.close()
+
+        # Create a vertical box to hold the contents
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Add labels with the desired text
+        label = Gtk.Label()
+        label.set_text("⚠️")
+        font_desc = Pango.FontDescription()
+        font_desc.set_size(20 * Pango.SCALE)
+        label.override_font(font_desc)
+        vbox.pack_start(label, True, True, 0)
+
+        label_1 = Gtk.Label(label="The new user account passwords do not match. Please try again!")
+        label_1.set_justify(Gtk.Justification.CENTER)
+        vbox.pack_start(label_1, True, True, 0)
+
+        # Create a horizontal box to hold the buttons
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        vbox.pack_start(hbox, True, True, 0)
+
+        # Add a "Okay" button
+        button_okay = Gtk.Button.new_with_label("◀️ Previous")
+        button_okay.connect("clicked", self.on_back_clicked)
+        hbox.pack_start(button_okay, True, False, 0)
+
+    def on_back_clicked(self, widget):
+        self.hide()
 
 ####################################################################################################
 ####################################################################################################
@@ -1084,12 +1470,12 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
-        time_zone_configurator_window = Time_Zone_Configurator_Window()
-        time_zone_configurator_window.connect("destroy", Gtk.main_quit)
-        time_zone_configurator_window.show_all()
+        user_configurator_window = User_Configurator_Window()
+        user_configurator_window.connect("destroy", Gtk.main_quit)
+        user_configurator_window.show_all()
         self.hide()
 
-        Languages.configuring_languages_environment(time_zone_configurator_window, language_selection_window.safed_language_variable)
+        Languages.configuring_languages_environment(user_configurator_window, language_selection_window.safed_language_variable)
 
     def on_next_clicked(self, button):
 
