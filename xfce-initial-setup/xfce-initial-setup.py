@@ -850,9 +850,9 @@ class Time_Zone_Configurator_Window(Gtk.Window):
             # Display the selected timezone
             print(f"Automatic configured Time Zone: {auto_timezone}")
 
-            flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window()
-            flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
-            flatpak_runtime_configurator_window.show_all()
+            user_configurator_window = User_Configurator_Window()
+            user_configurator_window.connect("destroy", Gtk.main_quit)
+            user_configurator_window.show_all()
             self.hide()
         else:
             # Perform actions when the checkbox is not checked
@@ -882,6 +882,8 @@ class User_Configurator_Window(Gtk.Window):
         self.set_border_width(35)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
+
+        self.username = None  # Initialize the username attribute
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1154,15 +1156,15 @@ class User_Configurator_Window(Gtk.Window):
                         rm "$script_2"
                     fi
                 """
-                #os.system(add_user_cmd)
+                os.system(add_user_cmd)
 
                 print("User created successfully.")
-                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window()
+                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(username)
                 flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
                 flatpak_runtime_configurator_window.show_all()
                 self.hide()
 
-                Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
+                #Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
 
         else:
             print("Passwords do not match. Please try again.")
@@ -1259,12 +1261,14 @@ class Create_User_Error_2_Window(Gtk.Window):
 ####################################################################################################
 
 class Flatpak_Runtime_Configurator_Window(Gtk.Window):
-    def __init__(self):
+    def __init__(self, username):
         Gtk.Window.__init__(self, title="Software Selection")
         self.set_default_size(600, 450)
         self.set_border_width(35)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
+
+        self.username = username
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1479,8 +1483,15 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
 
     def on_next_clicked(self, button):
 
+        # Progress bar must be displayed and application selection must be hidden!
+        # ...
+        # ...
+        # ...
+
         # username = The created user by the XFCE Initial Setup!
-        username = "steve" # <-- CHANGE
+        print("Username:", self.username)
+        username = self.username
+        print(f"{username}")
         command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'"
         try:
             subprocess.run(command, shell=True, check=True)
