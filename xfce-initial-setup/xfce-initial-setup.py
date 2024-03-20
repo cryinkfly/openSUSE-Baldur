@@ -31,6 +31,7 @@ from urllib.error import URLError
 import subprocess, os
 import random
 import string
+import threading
 
 ####################################################################################################
 ####################################################################################################
@@ -1269,6 +1270,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
 
         self.username = username
+        self.completed_window_opened = False
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1471,33 +1473,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
             else:
                 self.selected_titles.append(title)  # Add title to the list if checkbox is checked
 
-    def on_previous_clicked(self, button):
-        # Perform actions when the Back button is clicked
-        print("Back button clicked")
-        user_configurator_window = User_Configurator_Window()
-        user_configurator_window.connect("destroy", Gtk.main_quit)
-        user_configurator_window.show_all()
-        self.hide()
-
-        Languages.configuring_languages_environment(user_configurator_window, language_selection_window.safed_language_variable)
-
-    def on_next_clicked(self, button):
-
-        # Progress bar must be displayed and application selection must be hidden!
-        # ...
-        # ...
-        # ...
-
-        # username = The created user by the XFCE Initial Setup!
-        print("Username:", self.username)
-        username = self.username
-        print(f"{username}")
-        command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user'"
-        try:
-            subprocess.run(command, shell=True, check=True)
-            print("The Flatpak Runtime has been configured!")
-        except subprocess.CalledProcessError as e:
-            print(f"Error: {e}")
+    def install_flatpak_apps(self):
 
         for selected_options in self.selected_titles:
 
@@ -1506,7 +1482,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
 
             # Internet & E-Mail:
 
-            if "Chromium Web Browser" in selected_options:
+            if "Chromium" in selected_options:
                 print("Chromium Web Browser has been selected. Performing action...")
                 flatpak_apps[0] = "org.chromium.Chromium"
 
@@ -1668,16 +1644,147 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 print("Yubico Authenticator has been selected. Performing action...")
                 flatpak_apps[35] = "com.yubico.yubioath"
 
-            # Join non-empty app names
-            flatpak_apps_str = " ".join(app for app in flatpak_apps if app)
+        # username = The created user by the XFCE Initial Setup!
+        print("Username:", self.username)
+        username = self.username
+        print(f"{username}")
 
-            flatpak_command = f"runuser -l {username} -c 'flatpak install -y flathub com.github.tchx84.Flatseal org.gnome.Calculator {flatpak_apps_str} --user'"
-            try:
-                subprocess.run(flatpak_command, shell=True, check=True)
-                print(f"{flatpak_command}")
-                print("The application installation completed successfully.")
-            except subprocess.CalledProcessError as e:
-                print(f"Error: {e}")
+        # Remove empty entries from flatpak_apps
+        flatpak_apps = [app_id for app_id in flatpak_apps if app_id]
+
+        # Join app IDs with space to create the command string
+        flatpak_apps_str = " ".join(flatpak_apps)
+
+        try:
+            # Install Flatpak apps
+            flatpak_command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user && flatpak install -y flathub {flatpak_apps_str} --user'"
+            proc = subprocess.Popen(
+                flatpak_command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True
+            )
+
+            # Monitor process output
+            while proc.poll() is None:
+                line = proc.stdout.readline()
+                if line.strip():  # Ignore empty lines
+                    print(line.strip())  # Output progress information if needed
+
+            # Installation completed
+            if proc.returncode == 0:
+                print("Flatpak apps installed successfully.")
+                GObject.idle_add(self.hide_loading_and_show_completed)
+            else:
+                print("Error installing Flatpak apps.")
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error: {e}")
+
+    def hide_loading_and_show_completed(self):
+        self.loading_circle_window.hide()
+        completed_window = Completed_Window()
+        completed_window.connect("destroy", Gtk.main_quit)
+        completed_window.show_all()
+
+    def on_previous_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+        user_configurator_window = User_Configurator_Window()
+        user_configurator_window.connect("destroy", Gtk.main_quit)
+        user_configurator_window.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(user_configurator_window, language_selection_window.safed_language_variable)
+
+    def on_next_clicked(self, button):
+        self.loading_circle_window = Loading_Circle_Window()
+        self.loading_circle_window.connect("destroy", Gtk.main_quit)
+        self.loading_circle_window.show_all()
+        self.hide()
+
+        threading.Thread(target=self.install_flatpak_apps).start()
+
+####################################################################################################
+####################################################################################################
+
+class Loading_Circle_Window(Gtk.Window):
+
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Loading Circle Example")
+        self.set_default_size(600, 450)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Create a box to contain the spinner
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(box)
+
+        # Create the spinner
+        spinner = Gtk.Spinner()
+        spinner.get_style_context().add_class("custom-spinner")
+        spinner.start()  # Start the spinner animation
+        box.pack_start(spinner, True, True, 0)
+
+####################################################################################################
+####################################################################################################
+
+class Completed_Window(Gtk.Window):
+    #safed_language_variable = None
+
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Ready to Go")
+        self.set_default_size(600, 450)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        # Next button in the top-right corner
+        #self.next_button_label = "Next"
+        #self.next_button = Gtk.Button(label=self.next_button_label)
+        #self.next_button.connect("clicked", self.on_next_clicked)
+
+        # Header-Bar Configuration
+        header_bar = Gtk.HeaderBar()
+        header_bar.props.title = "Ready to Go"
+        #header_bar.pack_end(self.next_button)
+        self.set_titlebar(header_bar)
+
+        svg_file_path = "graphics/finished-setup.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 200, 100)
+
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+
+        # Create a label widget for title
+        self.title_label = Gtk.Label()
+        self.title_label.set_markup('<span font_size="20000"><b>Ready to Go!</b></span>')
+
+        # Create a button ...
+        exit_button = Gtk.Button("Reboot your system")
+        exit_button.connect("clicked", self.on_exit_clicked)
+
+        # Create a VBox to organize widgets vertically
+        vbox = Gtk.VBox(spacing=10)
+        vbox.set_margin_top(35)
+        vbox.pack_start(image, False, False, 0)
+        vbox.pack_start(self.title_label, False, False, 0)
+        vbox.pack_start(exit_button, False, False, 0)
+
+        # Add the VBox to the window
+        self.add(vbox)
+
+    def on_exit_clicked(self, button):
+        # Perform actions when the Next button is clicked
+        print("Exit button clicked")
+        # Reboot function ...
+        # ...
+
+        Gtk.main_quit()
+
+
 
 ####################################################################################################
 # THE PROGRAM IS STARTED HERE:                                                                     #
