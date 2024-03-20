@@ -1,0 +1,11 @@
+.rounded-box {
+    color: #2d2e30; /* Replace with your desired font color */
+    background-color: #CCCCCC; /* Replace with your desired background color */
+    border-radius: 3px; /* Set the border-radius for rounded corners */
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.custom-spinner {
+    color: #73ba25; /* Custom foreground color (in this case, orange) */
+    background-color: transparent; /* Transparent background */
+}
