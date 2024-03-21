@@ -1082,85 +1082,10 @@ class User_Configurator_Window(Gtk.Window):
                 error_1_window.connect("destroy", Gtk.main_quit)
                 error_1_window.show_all()
             else:
-                add_user_cmd=f"""
-                    #!/bin/bash
-                    # Converting the password:
-                    pass=$(perl -e 'print crypt($ARGV[0], "password")' {password})
-
-                    # Set the desired username for autologin:
-                    autologin_user="{username}"
-
-                    # Specify the path to the display manager configuration file:
-                    display_manager_config="/etc/sysconfig/displaymanager"
-
-                    # Check the Autologin-Status:
-                    if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
-                        # Check if the file exists
-                        if [ -f "$display_manager_config" ]; then
-                            # Create a temporary script file
-                            script_1=$(mktemp)
-
-                            # Add user and modify group membership in the temporary script
-                            echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_1"
-                            echo "usermod -a -G users {username}" >> "$script_1"
-
-                            echo "$script_1"
-
-                            # Execute the temporary script with elevated privileges using pkexec
-                            pkexec su -c "bash $script_1"
-
-                            # Remove the temporary script
-                            rm "$script_1"
-
-                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
-
-                            # Display a message indicating success
-                            echo "Autologin user set to: $autologin_user"
-                        else
-                            # Display an error message if the file does not exist
-                            echo "Error: Display manager configuration file not found at $display_manager_config"
-                        fi
-                    else
-                        # Create a temporary script file
-                        script_2=$(mktemp)
-
-                        # Add user and modify group membership in the temporary script
-                        echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_2"
-                        echo "usermod -a -G users {username}" >> "$script_2"
-                        echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_2"
-
-                        # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
-                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
-                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
-                        echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_2"
-                        echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_2"
-                        echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_2"
-
-                        # FIRSTBOOT SETUP OF FLATPAK:
-                        echo "mkdir -p /home/{username}/.config/autostart" >> "$script_2"
-                        echo "cat > /home/{username}/.config/autostart/mod-firstboot.desktop << EOF" >> "$script_2"
-                        echo "[Desktop Entry]" >> "$script_2"
-                        echo "Name=MicroOS Desktop FirstBoot Setup" >> "$script_2"
-                        echo "Comment=Sets up MicroOS Desktop Correctly On FirstBoot" >> "$script_2"
-                        echo "Exec=/usr/bin/mod-firstboot" >> "$script_2"
-                        echo "Icon=org.xfce.terminal" >> "$script_2"
-                        echo "Type=Application" >> "$script_2"
-                        echo "Categories=Utility;System;" >> "$script_2"
-                        echo "Name[en_US]=startup" >> "$script_2"
-                        echo "EOF" >> "$script_2"
-                        echo "chown {username}:{username} /home/{username}/.config/autostart/" >> "$script_2"
-
-                        # Execute the temporary script with elevated privileges using pkexec
-                        pkexec su -c "bash $script_2"
-
-                        # Remove the temporary script
-                        rm "$script_2"
-                    fi
-                """
-                os.system(add_user_cmd)
+               # Creating the user after selecting Flatpak-Apps and before installing Flatpak-Apps!
 
                 print("User created successfully.")
-                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(username)
+                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password)
                 flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
                 flatpak_runtime_configurator_window.show_all()
                 self.hide()
@@ -1262,15 +1187,16 @@ class Create_User_Error_2_Window(Gtk.Window):
 ####################################################################################################
 
 class Flatpak_Runtime_Configurator_Window(Gtk.Window):
-    def __init__(self, username):
+    def __init__(self, fullname, username, password):
         Gtk.Window.__init__(self, title="Software Selection")
         self.set_default_size(600, 450)
         self.set_border_width(35)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
+        self.fullname = fullname
         self.username = username
-        self.completed_window_opened = False
+        self.password = password
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1475,6 +1401,104 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
 
     def install_flatpak_apps(self):
 
+        #The created user by the XFCE Initial Setup!
+        print("Fullname:", self.fullname)
+        fullname = self.fullname
+        print("Username:", self.username)
+        username = self.username
+        print(f"{username}")
+        password = self.password
+
+        add_user_cmd=f"""
+                    #!/bin/bash
+                    # Converting the password:
+                    pass=$(perl -e 'print crypt($ARGV[0], "password")' {password})
+
+                    # Set the desired username for autologin:
+                    autologin_user="{username}"
+
+                    # Specify the path to the display manager configuration file:
+                    display_manager_config="/etc/sysconfig/displaymanager"
+
+                    # Check the Autologin-Status:
+                    if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
+                        # Check if the file exists
+                        if [ -f "$display_manager_config" ]; then
+                            # Create a temporary script file
+                            script_1=$(mktemp)
+
+                            # Add user and modify group membership in the temporary script
+                            echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_1"
+                            echo "usermod -a -G users {username}" >> "$script_1"
+                            echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_1"
+
+                            # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
+                            echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_1"
+                            echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_1"
+                            echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_1"
+                            echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_1"
+                            echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_1"
+
+                            # Execute the temporary script with elevated privileges using pkexec
+                            pkexec su -c "bash $script_1"
+
+                            # Remove the temporary script
+                            rm "$script_1"
+
+                            pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
+
+                            # Display a message indicating success
+                            echo "Autologin user set to: $autologin_user"
+                        else
+                            # Display an error message if the file does not exist
+                            echo "Error: Display manager configuration file not found at $display_manager_config"
+
+                            # Create a temporary script file
+                            script_2=$(mktemp)
+
+                            # Add user and modify group membership in the temporary script
+                            echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_2"
+                            echo "usermod -a -G users {username}" >> "$script_2"
+                            echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_2"
+
+                            # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
+                            echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_2"
+                            echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_2"
+                            echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_2"
+                            echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+                            echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_2"
+
+                            # Execute the temporary script with elevated privileges using pkexec
+                            pkexec su -c "bash $script_2"
+
+                            # Remove the temporary script
+                            rm "$script_2"
+                            fi
+                    else
+                        # Create a temporary script file
+                        script_3=$(mktemp)
+
+                        # Add user and modify group membership in the temporary script
+                        echo "useradd -m -p $pass -c '{fullname}' {username}" > "$script_3"
+                        echo "usermod -a -G users {username}" >> "$script_3"
+                        echo "mkdir -p /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml" >> "$script_3"
+
+                        # KEYBOARD SHORTCUTS & XFCE4-POWER-MANAGER:
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml" >> "$script_3"
+                        echo "cp ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml /home/{username}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml" >> "$script_3"
+                        echo "chown -R {username}:{username} /home/{username}/.config/xfce4/" >> "$script_3"
+                        echo "chmod -R g-rwx /home/{username}/.config/xfce4/" >> "$script_3"
+                        echo "chmod -R o-rwx /home/{username}/.config/xfce4/" >> "$script_3"
+
+                        # Execute the temporary script with elevated privileges using pkexec
+                        pkexec su -c "bash $script_3"
+
+                        # Remove the temporary script
+                        rm "$script_3"
+                    fi
+                """
+        os.system(add_user_cmd)
+
         for selected_options in self.selected_titles:
 
             # Initialize a list to store Flatpak app names
@@ -1644,43 +1668,20 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 print("Yubico Authenticator has been selected. Performing action...")
                 flatpak_apps[35] = "com.yubico.yubioath"
 
-        # username = The created user by the XFCE Initial Setup!
-        print("Username:", self.username)
-        username = self.username
-        print(f"{username}")
+            # Remove empty entries from flatpak_apps
+            flatpak_apps = [app_id for app_id in flatpak_apps if app_id]
 
-        # Remove empty entries from flatpak_apps
-        flatpak_apps = [app_id for app_id in flatpak_apps if app_id]
+            # Join app IDs with space to create the command string
+            flatpak_apps_str = " ".join(flatpak_apps)
 
-        # Join app IDs with space to create the command string
-        flatpak_apps_str = " ".join(flatpak_apps)
+            # Print all selected Flatpak apps in one line
+            print("Selected Flatpak apps:", flatpak_apps_str)
 
-        try:
-            # Install Flatpak apps
+            # Fügen Sie den Befehl zusammen
             flatpak_command = f"runuser -l {username} -c 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user && flatpak install -y flathub {flatpak_apps_str} --user'"
-            proc = subprocess.Popen(
-                flatpak_command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                universal_newlines=True
-            )
+            subprocess.run(flatpak_command, shell=True)
 
-            # Monitor process output
-            while proc.poll() is None:
-                line = proc.stdout.readline()
-                if line.strip():  # Ignore empty lines
-                    print(line.strip())  # Output progress information if needed
-
-            # Installation completed
-            if proc.returncode == 0:
-                print("Flatpak apps installed successfully.")
-                GObject.idle_add(self.hide_loading_and_show_completed)
-            else:
-                print("Error installing Flatpak apps.")
-
-        except subprocess.CalledProcessError as e:
-            print(f"Error: {e}")
+        GObject.idle_add(self.hide_loading_and_show_completed)
 
     def hide_loading_and_show_completed(self):
         self.loading_circle_window.hide()
