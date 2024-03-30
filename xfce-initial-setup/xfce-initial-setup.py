@@ -1028,10 +1028,11 @@ class User_Configurator_Window(Gtk.Window):
     def autologin_check_status(self, autologin_switch, gparam):
         if autologin_switch.get_active():
             print("Automatic login: Yes")
-            autologin_status_cmd="echo -n 'Yes' > /tmp/_autologin_status_.XXXXXXX"
+	    autologin = 1
             #os.system(autologin_status_cmd)
         else:
             print("Automatic login: No")
+	    autologin = 0
 
     def generate_random_password(self, widget):
         chars = string.ascii_letters + string.digits + "#$%&-"
@@ -1085,7 +1086,7 @@ class User_Configurator_Window(Gtk.Window):
                # Creating the user after selecting Flatpak-Apps and before installing Flatpak-Apps!
 
                 print("User created successfully.")
-                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password)
+                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password, autologin)
                 flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
                 flatpak_runtime_configurator_window.show_all()
                 self.hide()
@@ -1187,7 +1188,7 @@ class Create_User_Error_2_Window(Gtk.Window):
 ####################################################################################################
 
 class Flatpak_Runtime_Configurator_Window(Gtk.Window):
-    def __init__(self, fullname, username, password):
+    def __init__(self, fullname, username, password, autologin):
         Gtk.Window.__init__(self, title="Software Selection")
         self.set_default_size(600, 450)
         self.set_border_width(35)
@@ -1197,6 +1198,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         self.fullname = fullname
         self.username = username
         self.password = password
+	self.autologin = autologin
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1408,6 +1410,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         username = self.username
         print(f"{username}")
         password = self.password
+	autologin = self.autologin
 
         add_user_cmd=f"""
                     #!/bin/bash
@@ -1421,7 +1424,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                     display_manager_config="/etc/sysconfig/displaymanager"
 
                     # Check the Autologin-Status:
-                    if grep -q "Yes" "/tmp/_autologin_status_.XXXXXXX"; then
+                    if [ "{autologin}" -eq 1 ]; then
                         # Check if the file exists
                         if [ -f "$display_manager_config" ]; then
                             # Create a temporary script file
@@ -1446,7 +1449,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                             rm "$script_1"
 
                             pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"$autologin_user\"/" "$display_manager_config"
-
                             # Display a message indicating success
                             echo "Autologin user set to: $autologin_user"
                         else
@@ -1495,6 +1497,10 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
 
                         # Remove the temporary script
                         rm "$script_3"
+
+			pkexec sed -i "s/DISPLAYMANAGER_AUTOLOGIN=.*/DISPLAYMANAGER_AUTOLOGIN=\"\"/" "$display_manager_config"
+			# Display a message indicating success
+                        echo "No Autologin user is configured."
                     fi
                 """
         os.system(add_user_cmd)
@@ -1781,11 +1787,15 @@ class Completed_Window(Gtk.Window):
         # Perform actions when the Next button is clicked
         print("Exit button clicked")
         # Reboot function ...
-        # ...
-
+        completed_cmd=f"""
+                    #!/bin/bash
+		    # Removing desktop.file for XFCE Initial Setup ...
+		    rm -f /root/.config/autostart/xfce-initial-setup.desktop
+		    sudo reboot
+                    fi
+                """
+	os.system(completed_cmd)
         Gtk.main_quit()
-
-
 
 ####################################################################################################
 # THE PROGRAM IS STARTED HERE:                                                                     #
