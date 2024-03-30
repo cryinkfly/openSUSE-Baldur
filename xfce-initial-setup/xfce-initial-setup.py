@@ -1792,7 +1792,6 @@ class Completed_Window(Gtk.Window):
 		    # Removing desktop.file for XFCE Initial Setup ...
 		    rm -f /root/.config/autostart/xfce-initial-setup.desktop
 		    sudo reboot
-                    fi
                 """
 	os.system(completed_cmd)
         Gtk.main_quit()
