@@ -6,9 +6,9 @@
 # Author:       Steve Zabka                                                                        #
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
-# Copyright (c) 2023                                                                               #
-# Time/Date:    12:30/08.01.2024                                                                   #
-# Version:      1.4.1                                                                              #
+# Copyright (c) 2023-2024                                                                          #
+# Time/Date:    13:50/30.03.2024                                                                   #
+# Version:      1.4.2                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -121,15 +121,15 @@ EOF
 function SP_CONFIGURE_DESKTOP_LOCALE {
     transactional-update -c run bash -c '
         curl https://github.com/cryinkfly/openSUSE-MicroOS/raw/main/files/builds/stable-branch/resources/icons/preferences-desktop-locale.zip -O -J -L
-        unzip icons-preferences-desktop-locale.zip
+        unzip preferences-desktop-locale.zip
         mv preferences-desktop-locale/scalable/apps/preferences-desktop-locale.svg /usr/share/icons/hicolor/scalable/apps
         mv preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
         mv preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
-        rm -rf icons-preferences-desktop-locale.zip
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/mod-locale-conf.desktop > /usr/share/applications/mod-locale-conf.desktop
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/mod-locale-conf > /usr/bin/mod-locale-conf
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce-initial-setup/locale/locale-list.txt > /usr/etc/locale-list.txt
-        chmod +x /usr/bin/mod-locale-conf
+        rm -rf preferences-desktop-locale.zip
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-settings.desktop > ~/usr/share/applications/xfc4-locale-settings.desktop
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-setup-list.txt > ~/usr/etc/locale-conf/locale-setup-list.txt
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/xfc4-locale-settings > ~/usr/bin/xfc4-locale-settings
+        chmod +x /usr/bin/xfc4-locale-settings
     '
 
     SP_INSTALL_REQUIRED_PACKAGES
@@ -164,6 +164,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         blueman \
         bluez-cups \
         bluez-firmware \
+        bluez-auto-enable-devices \
         bolt \
         branding-openSUSE \
         btrfsmaintenance \
@@ -205,12 +206,10 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         glibc \
         glibc-locale \
         glibc-locale-base \
-        gnome-system-monitor \
         gnome-disk-utility \
         gnome-keyring \
         gnome-keyring-pam \
         gnome-software \
-        gnomekbd-tools \
         google-carlito-fonts \
         google-droid-fonts \
         google-opensans-fonts \
@@ -285,7 +284,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         podman \
         policycoreutils \
         policycoreutils-python-utils \
-        polkit-gnome \
         procps4 \
         rebootmgr \
         rpm \
