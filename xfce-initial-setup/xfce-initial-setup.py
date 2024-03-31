@@ -24,14 +24,12 @@
 ####################################################################################################
 
 import gi
-gi.require_versions({'Gtk': '3.0', 'Gdk': '3.0'})
-from gi.repository import Gdk, GdkPixbuf, Gio, GObject, Gtk, Pango
+gi.require_version('Gtk', '3.0') 
+gi.require_version('Gdk', '3.0')
+from gi.repository import Gtk, Gdk, GdkPixbuf, Gio, GObject, Pango
 import urllib.request
 from urllib.error import URLError
-import subprocess, os
-import random
-import string
-import threading
+import subprocess, os, random, string, threading
 
 ####################################################################################################
 ####################################################################################################
@@ -74,8 +72,11 @@ class Languages:
             Languages.keyboard_layout = 0
             Languages.keyboard_variant = 0
 
+            # Configuring the correct locale reading direction
+            Languages.reading_direction = "ltr"
+
             try:
-                with open('localization/af_ZA/locale.txt', 'r', encoding='utf-8') as file:
+                with open('localization/af_ZA/xfce-initial-setup-af.txt', 'r', encoding='utf-8') as file:
                     locale_variables = [line.strip() for line in file.readlines()]
 
                 # Update buttons on the current window
@@ -86,7 +87,7 @@ class Languages:
                     current_window.next_button_label = locale_variables[1]
                     current_window.next_button.set_label(current_window.next_button_label)
 
-                # Update other UI elements based on the current window type
+                # Update other UI elements based on the current window type for the selected language:
                 if isinstance(current_window, Language_Selection_Window):
                     current_window.set_title(locale_variables[2])
                     current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[2]}</b></span>'
@@ -95,21 +96,42 @@ class Languages:
                     current_window.set_title(locale_variables[3])
                     current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[3]}</b></span>'
                     current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, WiFi_Internet_Configurator_Window):
+                    current_window.set_title(locale_variables[4])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[4]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, Time_Zone_Configurator_Window):
+                    current_window.set_title(locale_variables[5])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[5]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, User_Configurator_Window_Left_Reading) or isinstance(current_window, User_Configurator_Window_Right_Reading):
+                    current_window.set_title(locale_variables[6])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[6]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, Flatpak_Runtime_Configurator_Window):
+                    current_window.set_title(locale_variables[8])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[7]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, Loading_Circle_Window):
+                    current_window.set_title(locale_variables[9])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[8]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)
+                elif isinstance(current_window, Completed_Window):
+                    current_window.set_title(locale_variables[10])
+                    current_window.new_title_label = f'<span font_size="20000"><b>{locale_variables[9]}</b></span>'
+                    current_window.title_label.set_markup(current_window.new_title_label)    
+                
 
                 # ...
 
             except FileNotFoundError:
-                print(f"Error: File 'localization/af_ZA/locale.txt' not found.")
+                print(f"Error: File 'localization/af_ZA/xfce-initial-setup-af.txt' not found.")
             except Exception as e:
                 print(f"Error: {e}")
 
         elif selected_language == "Albanian - Shqipëria":
 
-            # Configuring the correct keyboard settings
-            Languages.keyboard_layout = 1
-            Languages.keyboard_variant = 0
-
-            # ...
+            print("Albanian - Shqipëria")
 
         else:
 
@@ -136,8 +158,6 @@ class Languages:
 ####################################################################################################
 
 class Language_Selection_Window(Gtk.Window):
-    #safed_language_variable = None
-
     def __init__(self):
         Gtk.Window.__init__(self, title="Welcome")
         self.set_default_size(600, 450)
@@ -851,10 +871,12 @@ class Time_Zone_Configurator_Window(Gtk.Window):
             # Display the selected timezone
             print(f"Automatic configured Time Zone: {auto_timezone}")
 
-            user_configurator_window = User_Configurator_Window()
+            user_configurator_window = User_Configurator_Window_Left_Reading()
             user_configurator_window.connect("destroy", Gtk.main_quit)
             user_configurator_window.show_all()
             self.hide()
+
+            Languages.configuring_languages_environment(user_configurator_window, language_selection_window.safed_language_variable)
         else:
             # Perform actions when the checkbox is not checked
             print("Automatic time zone adjustment is disabled")
@@ -867,16 +889,18 @@ class Time_Zone_Configurator_Window(Gtk.Window):
                 subprocess.run(["timedatectl", "set-timezone", selected_time_zone])
                 print(f"Time Zone Applied: {selected_time_zone}")
 
-                user_configurator_window = User_Configurator_Window()
+                user_configurator_window = User_Configurator_Window_Left_Reading()
                 user_configurator_window.connect("destroy", Gtk.main_quit)
                 user_configurator_window.show_all()
                 self.hide()
 
+                Languages.configuring_languages_environment(user_configurator_window, language_selection_window.safed_language_variable)
+
 
 ####################################################################################################
 ####################################################################################################
 
-class User_Configurator_Window(Gtk.Window):
+class User_Configurator_Window_Left_Reading(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="User Configurator")
         self.set_default_size(600, 450)
@@ -885,6 +909,7 @@ class User_Configurator_Window(Gtk.Window):
         self.set_resizable(False)  # Make the window non-resizable
 
         self.username = None  # Initialize the username attribute
+        self.autologin = None  # Define the autologin variable
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1028,11 +1053,12 @@ class User_Configurator_Window(Gtk.Window):
     def autologin_check_status(self, autologin_switch, gparam):
         if autologin_switch.get_active():
             print("Automatic login: Yes")
-	    autologin = 1
-            #os.system(autologin_status_cmd)
+            # Configure autologin parameter:
+            self.autologin = 1
         else:
             print("Automatic login: No")
-	    autologin = 0
+            # Configure autologin parameter:
+            self.autologin = 0
 
     def generate_random_password(self, widget):
         chars = string.ascii_letters + string.digits + "#$%&-"
@@ -1075,6 +1101,7 @@ class User_Configurator_Window(Gtk.Window):
         username = self.username_entry.get_text()
         password = self.password_entry.get_text()
         confirm_password = self.confirm_password_entry.get_text()
+        autologin = self.autologin
 
         if password == confirm_password:
             if len(password) < 8:
@@ -1083,21 +1110,251 @@ class User_Configurator_Window(Gtk.Window):
                 error_1_window.connect("destroy", Gtk.main_quit)
                 error_1_window.show_all()
             else:
-               # Creating the user after selecting Flatpak-Apps and before installing Flatpak-Apps!
+                # Creating the user after selecting Flatpak-Apps and before installing Flatpak-Apps!
+                 
 
-                print("User created successfully.")
-                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password, autologin)
-                flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
-                flatpak_runtime_configurator_window.show_all()
-                self.hide()
+                 print("User created successfully.")
+                 # Use parameters to create the user (fullname, username, password, autologin)
+                 flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password, autologin)
+                 flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
+                 flatpak_runtime_configurator_window.show_all()
+                 self.hide()
 
-                #Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
+                 Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
 
         else:
             print("Passwords do not match. Please try again.")
             error_2_window = Create_User_Error_2_Window()
             error_2_window.connect("destroy", Gtk.main_quit)
             error_2_window.show_all()
+
+##############################################################################################################################################################################
+            
+class User_Configurator_Window_Right_Reading(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="User Configurator")
+        self.set_default_size(600, 450)
+        self.set_border_width(35)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_resizable(False)  # Make the window non-resizable
+
+        self.username = None  # Initialize the username attribute
+        self.autologin = None  # Define the autologin variable
+
+        # Previous button in the top-left corner
+        self.previous_button_label = "Previous"
+        self.previous_button = Gtk.Button(label=self.previous_button_label)
+        self.previous_button.connect("clicked", self.on_previous_clicked)
+
+        # Next button in the top-right corner
+        self.next_button_label = "Next"  # Placeholder, replace it with the actual label
+        self.next_button = Gtk.Button(label=self.next_button_label)
+        self.next_button.connect("clicked", self.on_next_clicked)
+
+        # Header-Bar Configuration
+        header_bar = Gtk.HeaderBar()
+        header_bar.props.title = "User Configurator"
+        header_bar.pack_start(self.previous_button)
+        header_bar.pack_end(self.next_button)
+        self.set_titlebar(header_bar)
+
+        svg_file_path = "graphics/add-user.svg"
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file_path, 125, 75)
+
+        # Create an image widget and set the Pixbuf
+        image = Gtk.Image.new_from_pixbuf(pixbuf)
+
+        # Create a label widget for title
+        self.title_label = Gtk.Label()
+        self.title_label.set_markup('<span font_size="20000"><b>User Configurator</b></span>')
+
+        # Create a label widget for information
+        label_info = Gtk.Label()
+        label_info.set_markup(
+            f"In this area you can set the user account settings and add a new user for your system that does not have root privileges! However, the user rights and groups can still be changed later via the XFCE settings."
+        )
+        label_info.set_line_wrap(True)
+        label_info.set_max_width_chars(55)
+        label_info.set_justify(Gtk.Justification.CENTER)
+
+        # Fullname container (HORIZONTAL)
+        fullname_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        fullname_box.set_halign(Gtk.Align.CENTER)
+        fullname_box.set_valign(Gtk.Align.CENTER)
+        fullname_box.set_margin_top(20)
+        fullname_label = Gtk.Label("Vollständiger Name: ")
+        self.fullname_entry = Gtk.Entry()
+        self.fullname_entry.set_hexpand(True)
+        self.fullname_entry.set_halign(Gtk.Align.CENTER)
+        self.fullname_entry.set_width_chars(25)
+
+        # Username container (HORIZONTAL)
+        username_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        username_box.set_halign(Gtk.Align.CENTER)
+        username_box.set_valign(Gtk.Align.CENTER)
+        username_label = Gtk.Label("Benutzername:         ")
+        self.username_entry = Gtk.Entry()
+        self.username_entry.set_hexpand(True)
+        self.username_entry.set_halign(Gtk.Align.CENTER)
+        self.username_entry.set_width_chars(25)
+
+        # Password container (HORIZONTAL)
+        password_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_box.set_halign(Gtk.Align.CENTER)
+        password_box.set_valign(Gtk.Align.CENTER)
+        password_label = Gtk.Label("Passwort:                   ")
+        self.password_entry = Gtk.Entry()
+        self.password_entry.set_hexpand(True)
+        self.password_entry.set_halign(Gtk.Align.CENTER)
+        self.password_entry.set_width_chars(25)
+        self.password_entry.set_visibility(False)  # Password is hidden by default
+
+        # Password-Confirm container (HORIZONTAL)
+        password_confirm_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        password_confirm_box.set_halign(Gtk.Align.CENTER)
+        password_confirm_box.set_valign(Gtk.Align.CENTER)
+        confirm_password_label = Gtk.Label("Passwort bestätigen:")
+        self.confirm_password_entry = Gtk.Entry()
+        self.confirm_password_entry.set_hexpand(True)
+        self.confirm_password_entry.set_halign(Gtk.Align.CENTER)
+        self.confirm_password_entry.set_width_chars(25)
+        self.confirm_password_entry.set_visibility(False)  # Confirm password is hidden by default
+
+        # Show password checkbox container (HORIZONTAL)
+        show_password_autologin_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        show_password_autologin_box.set_margin_top(10)
+        show_password_autologin_box.set_halign(Gtk.Align.CENTER)
+        show_password_autologin_box.set_valign(Gtk.Align.CENTER)
+        show_password_checkbox = Gtk.CheckButton(" Passwort anzeigen")
+        show_password_checkbox.connect("toggled", self.toggle_password_visibility)
+        show_password_checkbox.set_halign(Gtk.Align.CENTER)
+        show_password_checkbox.set_valign(Gtk.Align.CENTER)
+        box_autologin = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        box_autologin.set_halign(Gtk.Align.CENTER)
+        box_autologin.set_valign(Gtk.Align.CENTER)
+        label = Gtk.Label(label="|   Automatische Anmeldung:")
+        autologin_switch = Gtk.Switch()
+        autologin_switch.connect("notify::active", self.autologin_check_status)
+
+        # Buttons - Container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        button_box.set_margin_top(20)
+        random_password_button = Gtk.Button("🎲 Passwort")
+        random_password_button.connect("clicked", self.generate_random_password)
+        reset_button = Gtk.Button("🔄 Zurücksetzen")
+        reset_button.connect("clicked", self.reset_entries)
+
+        # Create a VBox to organize widgets vertically
+        vbox = Gtk.VBox(spacing=10)
+        vbox.set_margin_top(35)
+        vbox.pack_start(image, False, False, 0)
+        vbox.pack_start(self.title_label, False, False, 0)
+        vbox.pack_start(label_info, False, False, 0)
+
+        vbox.pack_start(fullname_box, False, False, 0)
+        fullname_box.pack_start(fullname_label, False, False, 0)
+        fullname_box.pack_start(self.fullname_entry, False, False, 0)
+
+        vbox.pack_start(username_box, False, False, 0)
+        username_box.pack_start(username_label, False, False, 0)
+        username_box.pack_start(self.username_entry, False, False, 0)
+
+        vbox.pack_start(password_box, False, False, 0)
+        password_box.pack_start(password_label, False, False, 0)
+        password_box.pack_start(self.password_entry, False, False, 0)
+
+        vbox.pack_start(password_confirm_box, False, False, 0)
+        password_confirm_box.pack_start(confirm_password_label, False, False, 0)
+        password_confirm_box.pack_start(self.confirm_password_entry, False, False, 0)
+
+        vbox.pack_start(show_password_autologin_box, False, False, 0)
+        show_password_autologin_box.pack_start(show_password_checkbox, False, False, 0)
+        show_password_autologin_box.pack_start(box_autologin, False, False, 0)
+        box_autologin.pack_start(label, True, True, 0)
+        show_password_autologin_box.pack_start(autologin_switch, True, True, 0)
+
+        vbox.pack_start(button_box, False, False, 0)
+        button_box.pack_start(random_password_button, True, True, 0)
+        button_box.pack_start(reset_button, True, True, 0)
+
+        # Add the VBox to the window
+        self.add(vbox)
+
+    def autologin_check_status(self, autologin_switch, gparam):
+        if autologin_switch.get_active():
+            print("Automatic login: Yes")
+            # Configure autologin parameter:
+            self.autologin = 1
+        else:
+            print("Automatic login: No")
+            # Configure autologin parameter:
+            self.autologin = 0
+
+    def generate_random_password(self, widget):
+        chars = string.ascii_letters + string.digits + "#$%&-"
+
+        # Ensure at least 2 occurrences of special characters
+        special_chars_count = 0
+        while special_chars_count < 2:
+            random_password = "".join(random.choice(chars) for _ in range(12))
+            special_chars_count = sum(1 for char in random_password if char in "#$%&-")
+
+        self.password_entry.set_text(random_password)
+
+    def toggle_password_visibility(self, widget):
+        visibility = widget.get_active()
+        self.password_entry.set_visibility(visibility)
+        self.confirm_password_entry.set_visibility(visibility)
+
+    def reset_entries(self, widget):
+        self.fullname_entry.set_text("")
+        self.username_entry.set_text("")
+        self.password_entry.set_text("")
+        self.confirm_password_entry.set_text("")
+
+    def on_previous_clicked(self, button):
+        # Perform actions when the Back button is clicked
+        print("Back button clicked")
+        time_zone_configurator_window = Time_Zone_Configurator_Window()
+        time_zone_configurator_window.connect("destroy", Gtk.main_quit)
+        time_zone_configurator_window.show_all()
+        self.hide()
+
+        Languages.configuring_languages_environment(time_zone_configurator_window, language_selection_window.safed_language_variable)
+
+    def on_next_clicked(self, button):
+        # Additional code to save the configured keyboard layout
+        print("Next button clicked")
+
+        # Create User ...
+        fullname = self.fullname_entry.get_text()
+        username = self.username_entry.get_text()
+        password = self.password_entry.get_text()
+        confirm_password = self.confirm_password_entry.get_text()
+        autologin = self.autologin
+
+        if password == confirm_password:
+            if len(password) < 8:
+                print("Password must be at least 8 characters.")
+                error_1_window = Create_User_Error_1_Window()
+                error_1_window.connect("destroy", Gtk.main_quit)
+                error_1_window.show_all()
+            else:
+                # Creating the user after selecting Flatpak-Apps and before installing Flatpak-Apps!
+                print("User created successfully.")
+                flatpak_runtime_configurator_window = Flatpak_Runtime_Configurator_Window(fullname, username, password, autologin)
+                flatpak_runtime_configurator_window.connect("destroy", Gtk.main_quit)
+                flatpak_runtime_configurator_window.show_all()
+                self.hide()
+
+                Languages.configuring_languages_environment(flatpak_runtime_configurator_window, language_selection_window.safed_language_variable)
+
+        else:
+            print("Passwords do not match. Please try again.")
+            error_2_window = Create_User_Error_2_Window()
+            error_2_window.connect("destroy", Gtk.main_quit)
+            error_2_window.show_all()
+
 
 ##############################################################################################################################################################################
 
@@ -1107,10 +1364,6 @@ class Create_User_Error_1_Window(Gtk.Window):
         #self.set_default_size(100, 0)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
-
-        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r')
-        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
-        #open_create_user_info_text_file.close()
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1151,10 +1404,6 @@ class Create_User_Error_2_Window(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
         self.set_border_width(10)
-
-        #open_create_user_info_text_file = open(r"/tmp/_create_user_error1_text.XXXXXXX",'r')
-        #read_create_user_info_text_file_file = open_create_user_info_text_file.read()
-        #open_create_user_info_text_file.close()
 
         # Create a vertical box to hold the contents
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -1198,7 +1447,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         self.fullname = fullname
         self.username = username
         self.password = password
-	self.autologin = autologin
+        self.autologin = autologin
 
         # Previous button in the top-left corner
         self.previous_button_label = "Previous"
@@ -1327,8 +1576,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         # Dictionary to store selected options for each category
         self.selected_options_dict = {}
 
-
-
         # Create a VBox to organize widgets vertically
         vbox = Gtk.VBox(spacing=10)
         vbox.set_margin_top(35)
@@ -1410,7 +1657,7 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         username = self.username
         print(f"{username}")
         password = self.password
-	autologin = self.autologin
+        autologin = self.autologin
 
         add_user_cmd=f"""
                     #!/bin/bash
@@ -1511,7 +1758,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
             flatpak_apps = [""] * 36
 
             # Internet & E-Mail:
-
             if "Chromium" in selected_options:
                 print("Chromium Web Browser has been selected. Performing action...")
                 flatpak_apps[0] = "org.chromium.Chromium"
@@ -1529,7 +1775,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[3] = "org.mozilla.Thunderbird"
 
             # Productivity:
-
             if "LibreOffice" in selected_options:
                 print("LibreOffice has been selected. Performing action...")
                 flatpak_apps[4] = "org.libreoffice.LibreOffice"
@@ -1543,7 +1788,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[6] = "com.wps.Office"
 
             # Graphics & Photography:
-
             if "Blender" in selected_options:
                 print("Blender has been selected. Performing action...")
                 flatpak_apps[7] = "org.blender.Blender"
@@ -1557,7 +1801,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[9] = "org.inkscape.Inkscape"
 
             # Audio & Video:
-
             if "Audacity" in selected_options:
                 print("Audacity has been selected. Performing action...")
                 flatpak_apps[10] = "org.audacityteam.Audacity"
@@ -1579,7 +1822,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[14] = "org.videolan.VLC"
 
             # Education:
-
             if "GCompris" in selected_options:
                 print("GCompris has been selected. Performing action...")
                 flatpak_apps[15] = "org.kde.gcompris"
@@ -1593,7 +1835,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[17] = "edu.mit.Scratch"
 
             # Games:
-
             if "Discord" in selected_options:
                 print("Discord has been selected. Performing action...")
                 flatpak_apps[18] = "com.discordapp.Discord"
@@ -1607,7 +1848,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[20] = "com.play0ad.zeroad"
 
             # Developer Tools:
-
             if "Geany" in selected_options:
                 print("Geany has been selected. Performing action...")
                 flatpak_apps[21] = "org.geany.Geany"
@@ -1621,7 +1861,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[23] = "com.visualstudio.code"
 
             # Printing & CAD Tools:
-
             if "UltiMaker Cura" in selected_options:
                 print("UltiMaker Cura has been selected. Performing action...")
                 flatpak_apps[24] = "com.ultimaker.cura"
@@ -1635,7 +1874,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[26] = "com.prusa3d.PrusaSlicer"
 
             # System Tools:
-
             if "AnyDesk" in selected_options:
                 print("AnyDesk has been selected. Performing action...")
                 flatpak_apps[27] = "com.anydesk.Anydesk"
@@ -1661,7 +1899,6 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
                 flatpak_apps[32] = "org.xfce.mousepad"
 
             # Security Tools:
-
             if "Authenticator" in selected_options:
                 print("Authenticator has been selected. Performing action...")
                 flatpak_apps[33] = "com.belmoussaoui.Authenticator"
@@ -1695,10 +1932,12 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         completed_window.connect("destroy", Gtk.main_quit)
         completed_window.show_all()
 
+        Languages.configuring_languages_environment(completed_window, language_selection_window.safed_language_variable)
+
     def on_previous_clicked(self, button):
         # Perform actions when the Back button is clicked
         print("Back button clicked")
-        user_configurator_window = User_Configurator_Window()
+        user_configurator_window = User_Configurator_Window_Left_Reading()
         user_configurator_window.connect("destroy", Gtk.main_quit)
         user_configurator_window.show_all()
         self.hide()
@@ -1710,6 +1949,8 @@ class Flatpak_Runtime_Configurator_Window(Gtk.Window):
         self.loading_circle_window.connect("destroy", Gtk.main_quit)
         self.loading_circle_window.show_all()
         self.hide()
+
+        Languages.configuring_languages_environment(self.loading_circle_window, language_selection_window.safed_language_variable)
 
         threading.Thread(target=self.install_flatpak_apps).start()
 
@@ -1748,15 +1989,9 @@ class Completed_Window(Gtk.Window):
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_resizable(False)  # Make the window non-resizable
 
-        # Next button in the top-right corner
-        #self.next_button_label = "Next"
-        #self.next_button = Gtk.Button(label=self.next_button_label)
-        #self.next_button.connect("clicked", self.on_next_clicked)
-
         # Header-Bar Configuration
         header_bar = Gtk.HeaderBar()
         header_bar.props.title = "Ready to Go"
-        #header_bar.pack_end(self.next_button)
         self.set_titlebar(header_bar)
 
         svg_file_path = "graphics/finished-setup.svg"
@@ -1789,11 +2024,11 @@ class Completed_Window(Gtk.Window):
         # Reboot function ...
         completed_cmd=f"""
                     #!/bin/bash
-		    # Removing desktop.file for XFCE Initial Setup ...
-		    rm -f /root/.config/autostart/xfce-initial-setup.desktop
-		    sudo reboot
+                    # Removing desktop.file for XFCE Initial Setup ...
+                    rm -f /root/.config/autostart/xfce-initial-setup.desktop
+                    sudo reboot
                 """
-	os.system(completed_cmd)
+        os.system(completed_cmd)
         Gtk.main_quit()
 
 ####################################################################################################
