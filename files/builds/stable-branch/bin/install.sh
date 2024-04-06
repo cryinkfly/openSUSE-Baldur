@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    13:50/30.03.2024                                                                   #
-# Version:      1.4.2                                                                              #
+# Time/Date:    18:25/06.04.2024                                                                   #
+# Version:      1.4.3                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -183,7 +183,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         cups-filters \
         cups-pk-helper \
         curl \
+        davfs2 \
         dejavu-fonts \
+        desktop-data \
         desktop-file-utils \
         distrobox \
         dosfstools \
@@ -214,6 +216,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         google-droid-fonts \
         google-opensans-fonts \
         google-roboto-fonts \
+        gtk2-branding-openSUSE \
+        gtk3-branding-openSUSE \
+        gtk4-branding-openSUSE \
         gpg2 \
         grep \
         grub2 \
@@ -265,18 +270,15 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         noto-coloremoji-fonts \
         noto-emoji-fonts \
         noto-sans-fonts \
-        noto-sans-fonts \
         ntfs-3g \
         ntfsprogs \
         OpenPrintingPPDs \
         openssh \
         openssh-askpass-gnome \
         openSUSE-build-key \
-        openSUSE-build-key \
         pam \
         pam-config \
         pavucontrol \
-        pciutils \
         pcsc-ccid \
         pcsc-tools \
         pipewire-alsa \
@@ -284,7 +286,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         podman \
         policycoreutils \
         policycoreutils-python-utils \
-        procps4 \
+        procps \
         rebootmgr \
         rpm \
         samba \
@@ -296,15 +298,18 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         snapper \
         sof-firmware \
         sudo \
+        steam-devices \
         system-config-printer \
         system-config-printer-applet \
         system-config-printer-common \
         system-config-printer-dbus-service \
         system-user-nobody \
+        system-group-wheel \
         systemd \
         systemd-coredump \
         systemd-icon-branding-openSUSE \
         systemd-presets-branding-MicroOS \
+        systemd-zram-service \
         terminfo-base \
         thunar \
         thunar-plugin-archive \
@@ -312,6 +317,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         thunar-sendto-blueman \
         thunar-volman \
         thunar-volman-branding-openSUSE \
+        tigervnc \
         timezone \
         transactional-update \
         transactional-update-notifier \
@@ -323,7 +329,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         udisks2 \
         unzip \
         upower \
-        usbutils \
         util-linux \
         v4l-utils \
         v4l2loopback-kmp-default \
@@ -364,6 +369,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xfsprogs \
         xfwm4 \
         xfwm4-branding-openSUSE \
+        xorg-x11-Xvnc \
         xorg-x11-driver-video \
         xorg-x11-essentials \
         xorg-x11-fonts \
@@ -372,6 +378,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xorg-x11-server-extra \
         xterm \
         xtermset \
+        yast2-control-center \
         yast2-logs \
         zenity \
         zypper \
