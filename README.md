@@ -1,6 +1,6 @@
 <div id="openSUSE-MicroOS-header" align="center">
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
-<h1>[GUIDE] Tips, Tricks & Tutorials for getting fully up and running openSUSE MicroOS Desktop</h1>
+<h1>[GUIDE] Tips, Tricks & Tutorials for getting fully up and running openSUSE MicroOS Desktop (Baldur Edition)</h1>
 <a href="https://en.opensuse.org/Portal:Aeon"><img src="https://img.shields.io/badge/Aeon-089f8f?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:Baldur"><img src="https://img.shields.io/badge/Baldur*-37a779?style=for-the-badge"></a>
 <a href="https://en.opensuse.org/Portal:Kalpa"><img src="https://img.shields.io/badge/Kalpa-088fd7?style=for-the-badge"></a>
