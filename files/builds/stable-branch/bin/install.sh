@@ -374,7 +374,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xorg-x11-server-extra \
         xterm \
         xtermset \
-        yast2-control-center \
         yast2-logs \
         zenity \
         zypper \
