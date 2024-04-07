@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    08:25/07.04.2024                                                                   #
-# Version:      1.4.4                                                                              #
+# Time/Date:    11:30/07.04.2024                                                                   #
+# Version:      1.4.5                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -126,9 +126,9 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
         mv preferences-desktop-locale/128x128/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/128x128/apps
         mv preferences-desktop-locale/64x64/apps/preferences-desktop-locale.png /usr/share/icons/hicolor/64x64/apps
         rm -rf preferences-desktop-locale.zip
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-settings.desktop > ~/usr/share/applications/xfc4-locale-settings.desktop
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/locale-setup-list.txt > ~/usr/etc/locale-conf/locale-setup-list.txt
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/xfce4-locale-settings/xfc4-locale-settings > ~/usr/bin/xfc4-locale-settings
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/xfce4-locale-settings/xfce4-locale-settings.desktop > ~/usr/share/applications/xfc4-locale-settings.desktop
+        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/xfce-initial-setup/resources/localization/locale-list.txt > ~/usr/etc/locale-conf/locale-setup-list.txt
+        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/xfce4-locale-settings/xfce4-locale-settings > ~/usr/bin/xfc4-locale-settings
         chmod +x /usr/bin/xfc4-locale-settings
     '
 
