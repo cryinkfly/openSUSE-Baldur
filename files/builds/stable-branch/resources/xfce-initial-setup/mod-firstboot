@@ -80,5 +80,5 @@ fi
 rm -f /home/steve/.config/autostart/mod-firstboot.desktop
 }
 
-source /usr/bin/mod-locale-conf
+source /usr/bin/xfc4-locale-settings
 flatpak_setup
