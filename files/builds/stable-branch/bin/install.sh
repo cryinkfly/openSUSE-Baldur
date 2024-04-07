@@ -460,8 +460,30 @@ function SP_ACTIVATE_VC {
     '
     echo -e "${YELLOW}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
     echo -e "${GREEN}The installation of openSUSE MicoOS with the XFCE desktop enviroment is finished!${NOCOLOR}"
-    echo -e "${YELLOW}Please restart the system for all changes to take effect!${NOCOLOR}"
-    sleep 3
+    echo -e "${YELLOW}The system will now automatically restart in ...${NOCOLOR}"
+    sleep 1
+    echo -e "${YELLOW}10${NOCOLOR}"
+    sleep 1
+    echo -e "${YELLOW}9${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}8${NOCOLOR}"
+    sleep 1
+    echo -e "${YELLOW}7${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}6${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}5${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}4${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}3${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}2${NOCOLOR}" 
+    sleep 1
+    echo -e "${YELLOW}1${NOCOLOR}"
+    sleep 1
+    echo -e "${YELLOW}0${NOCOLOR}"
+    reboot   
 }
 
 #####################################################################################################################################################################################################################
