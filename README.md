@@ -203,7 +203,11 @@ Because some Linux knowledge is required in terms of using the command line in o
 
 For this reason, please watch the above two videos!
 
-And this would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
+And this would be the command after the basic installation of openSUSE MicroOS to get only the XFCE desktop without configured Flatpak and a new non root user:
+
+    curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/minimal-install.sh > minimal-install.sh && chmod +x minimal-install.sh && ./minimal-install.sh
+
+This would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop with the XFCE Initial Setup for configuring all things (Still in progress!): 
 
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/bin/install.sh > install.sh && chmod +x install.sh && ./install.sh
 
