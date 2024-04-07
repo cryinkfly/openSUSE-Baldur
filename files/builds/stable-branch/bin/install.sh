@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    18:25/06.04.2024                                                                   #
-# Version:      1.4.3                                                                              #
+# Time/Date:    08:25/07.04.2024                                                                   #
+# Version:      1.4.4                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -185,7 +185,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         curl \
         davfs2 \
         dejavu-fonts \
-        desktop-data \
         desktop-file-utils \
         distrobox \
         dosfstools \
@@ -286,7 +285,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         podman \
         policycoreutils \
         policycoreutils-python-utils \
-        procps \
+        procps4 \
         rebootmgr \
         rpm \
         samba \
@@ -304,12 +303,10 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         system-config-printer-common \
         system-config-printer-dbus-service \
         system-user-nobody \
-        system-group-wheel \
         systemd \
         systemd-coredump \
         systemd-icon-branding-openSUSE \
         systemd-presets-branding-MicroOS \
-        systemd-zram-service \
         terminfo-base \
         thunar \
         thunar-plugin-archive \
