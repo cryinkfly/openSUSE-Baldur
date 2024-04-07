@@ -343,7 +343,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xfce4-clipman-plugin \
         xfce4-notes-plugin \
         xfce4-notifyd \
-        xfce4-notifyd \
         xfce4-notifyd-branding-openSUSE \
         xfce4-panel \
         xfce4-panel-branding-openSUSE \
