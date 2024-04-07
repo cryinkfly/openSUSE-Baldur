@@ -36,7 +36,7 @@ function SP_SETUP_USER {
                     passwd $USERNAME
                     echo -e "${GREEN}The password has now been set for the new user if the entry was correct!${NOCOLOR}"
                     echo -e "${YELLOW}The user $USERNAME will be added to the correct user groups!${NOCOLOR}"
-                    usermod -a -G users $USERNAME
+                    # usermod -a -G users $USERNAME
                     echo -e "${GREEN}The user $USERNAME has been successfully added to the correct user groups!${NOCOLOR}"
                     sleep 3
                     SP_SETUP_XFCE4_KEYBOARD_SHORTCUTS_USER
@@ -303,10 +303,12 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         system-config-printer-common \
         system-config-printer-dbus-service \
         system-user-nobody \
+        system-group-wheel \
         systemd \
         systemd-coredump \
         systemd-icon-branding-openSUSE \
         systemd-presets-branding-MicroOS \
+        systemd-zram-service \
         terminfo-base \
         thunar \
         thunar-plugin-archive \
@@ -381,6 +383,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
 
     echo -e "${GREEN}After a restart, openSUSE MicoOS is installed with the XFCE desktop enviroment!${NOCOLOR}"
     sleep 3
+    usermod -a -G users, wheel $USERNAME
 }
 
 ##############################################################################################################################################################################
