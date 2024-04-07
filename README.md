@@ -44,48 +44,48 @@
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#12-what-features-does-opensuse-microos-offer">1.2 What features does openSUSE MicroOS offer?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#13-which-download-variants-are-available">1.3 Which download variants are available?</a></li>
       <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#14-which-desktops-can-i-choose-with-opensuse-microos">1.4 Which desktops can I choose with OpenSUSE MicroOS?</a></li> 
-    </ul><br> 
-  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#2-tips--tricks-for-opensuse-microos">2. Tips & tricks for openSUSE MicroOS</a></li>
+    </ul><br>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#3-opensuse-baldur">2. openSUSE Baldur</a></li>
     <ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#21-qemukvm-with-gpu-pci-usb--passthrough">2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#31-what-is-opensuse-baldur">2.1 What is openSUSE Baldur?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#32-who-is-opensuse-baldur-for">2.2 Who is openSUSE Baldur for?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#33-what-are-the-design-goals-of-this-version-of-opensuse-microos-desktop">2.3 What are the design goals of this version of openSUSE MicroOS Desktop?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">2.4 How can I download and Install this?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">2.5 What special features are there?</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#36-how-can-i-change-the-language-for-the-system-or-user-to-another-language">2.6 How can I change the language for the system or user to another language?</a></li>
+    </ul><br>
+  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#2-tips--tricks-for-opensuse-microos">3. Tips & tricks for openSUSE MicroOS</a></li>
+    <ul>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#21-qemukvm-with-gpu-pci-usb--passthrough">3.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</a></li>
 	<ul>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#211-which-packages-need-to-be-installed">2.1.1 Which packages need to be installed?</a></li>
-          <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#212-how-can-i-turn-off-the-password-prompt-when-starting-the-virt-manager-application">2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#213-which-parameters-need-to-be-set-in-the-grub-file">2.1.3 Which parameters need to be set in the grub file?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#214-can-i-change-the-default-directorydrive-for-the-virtual-machines-guests">2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#215-what-settings-need-to-be-made-in-virt-manager-for-example-to-be-able-to-pass-on-the-graphics-card">2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS/blob/main/README.md#216-the-latest-update-in-microos-version-20231101-means-that-kvm-cannot-start-the-default-network">2.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#211-which-packages-need-to-be-installed">3.1.1 Which packages need to be installed?</a></li>
+          <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#212-how-can-i-turn-off-the-password-prompt-when-starting-the-virt-manager-application">3.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#213-which-parameters-need-to-be-set-in-the-grub-file">3.1.3 Which parameters need to be set in the grub file?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#214-can-i-change-the-default-directorydrive-for-the-virtual-machines-guests">3.1.4 Can I change the default directory/drive for the virtual machines (guests)?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#215-what-settings-need-to-be-made-in-virt-manager-for-example-to-be-able-to-pass-on-the-graphics-card">3.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS/blob/main/README.md#216-the-latest-update-in-microos-version-20231101-means-that-kvm-cannot-start-the-default-network">3.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</a></li>
         </ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#22-flatpak-runtime---apps">2.2 Flatpak-Runtime & -Apps</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#22-flatpak-runtime---apps">3.2 Flatpak-Runtime & -Apps</a></li>
         <ul>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#221-how-do-i-install-update-or-remove-flatpak-apps">2.2.1 How do I install, update or remove Flatpak apps?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#222-can-i-change-the-appearance-of-flatpak-apps">2.2.2 Can I change the appearance of Flatpak apps?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#221-how-do-i-install-update-or-remove-flatpak-apps">3.2.1 How do I install, update or remove Flatpak apps?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#222-can-i-change-the-appearance-of-flatpak-apps">3.2.2 Can I change the appearance of Flatpak apps?</a></li>
         </ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-obs-studio--elgato-stream-decks">2.3 OBS-Studio & Elgato Stream Deck's</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#23-obs-studio--elgato-stream-decks">3.3 OBS-Studio & Elgato Stream Deck's</a></li>
         <ul>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#231-how-can-i-activate-the-virtual-camera-function-for-obs-studio-under-opensuse-microos">2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#232-can-i-use-the-elgato-stream-deck-on-opensuse-microos">2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#231-how-can-i-activate-the-virtual-camera-function-for-obs-studio-under-opensuse-microos">3.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#232-can-i-use-the-elgato-stream-deck-on-opensuse-microos">3.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</a></li>
         </ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#24-connect-to-your-mobile-phone-with-kde-connect-or-the-gsconnects-gnome-extension">2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#24-connect-to-your-mobile-phone-with-kde-connect-or-the-gsconnects-gnome-extension">3.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</a></li>
         <ul>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#241-which-packages-need-to-be-installed">2.4.1 Which packages or Apps need to be installed?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#242-which-firewall-settings-need-to-be-set">2.4.2 Which firewall settings need to be set?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#241-which-packages-need-to-be-installed">3.4.1 Which packages or Apps need to be installed?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#242-which-firewall-settings-need-to-be-set">3.4.2 Which firewall settings need to be set?</a></li>
         </ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#25-linux-security-with-yubikey--keepassxc">2.5 Linux Security with YubiKey</a></li>
+      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#25-linux-security-with-yubikey--keepassxc">3.5 Linux Security with YubiKey</a></li>
 	<ul>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#251-which-packages-need-to-be-installed">2.5.1 Which packages need to be installed?</a></li>
-	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#252-installing-the-yubico-authenticator--keepassxc">2.5.2 Installing the Yubico Authenticator</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#251-which-packages-need-to-be-installed">3.5.1 Which packages need to be installed?</a></li>
+	  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#252-installing-the-yubico-authenticator--keepassxc">3.5.2 Installing the Yubico Authenticator</a></li>
         </ul> 
     </ul><br> 
-  <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#3-opensuse-baldur">3. openSUSE Baldur</a></li>
-    <ul>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#31-what-is-opensuse-baldur">3.1 What is openSUSE Baldur?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#32-who-is-opensuse-baldur-for">3.2 Who is openSUSE Baldur for?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#33-what-are-the-design-goals-of-this-version-of-opensuse-microos-desktop">3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#34-how-can-i-download-and-install-this">3.4 How can I download and Install this?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#35-what-special-features-are-there">3.5 What special features are there?</a></li>
-      <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#36-how-can-i-change-the-language-for-the-system-or-user-to-another-language">3.6 How can I change the language for the system or user to another language?</a></li>
-    </ul><br>
   <li><a href="https://github.com/cryinkfly/openSUSE-MicroOS#4-additional-information--links">4. Additional information & links</a></li>
 </ul>
 </div>
@@ -167,9 +167,81 @@
 
 ---
 
-<h3>2. Tips & tricks for openSUSE MicroOS</h3>
-<h4>2.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</h4>
-<h5>2.1.1 Which packages need to be installed?</h5>
+<h3>2. openSUSE Baldur</h3>
+<h4>2.1 What is openSUSE Baldur?</h4>
+
+openSUSE Baldur provides only a minimal base system with a XFCE Desktop Environment and Basic Configuration Tools ONLY. All Applications, Browsers, Codecs, etc are provided by FlatPaks from FlatHub.
+
+<h4>2.2 Who is openSUSE Baldur for?</h4>
+
+It is NOT for everyone. Your highly customisable Tumbleweed & Leap Desktops are safe and will remain the best choice for those who want to tinker with their Desktop.
+
+It should be perfect for lazy developers, who no longer want to mess around with their desktop and just ”get stuff done”, especially if they develop around containers.
+
+It should also appeal to the same audience now more used to an iOS, Chromebook or Android-like experience where the OS is static, automated & reliable and the Apps are the main thing the user cares about.
+
+To deep dive on the origins and the case why some users should use openSUSE Baldur check out the following workshop:
+
+- https://youtu.be/V-0yngWXbU4?feature=shared
+- https://www.youtube.com/live/PPYOM3z_DIc?feature=shared 
+
+<h4>2.3 What are the design goals of this version of openSUSE MicroOS Desktop?</h4>
+
+Baldur should be reliable, predictable & immutable, just like openSUSE MicroOS.
+
+Baldur should be less customisable than regular openSUSE Tumbleweed/Leap.
+
+Baldur should be small, but not at the expense of functionality. Printing, Gaming, Media Production and much more should all work.
+
+Baldur should just work “out of the box” without the need for additional configuration to get key functionality like software installation and web browsing working. All features offered by default should work - features that don't work shouldn't be offered/visible/available to users. 
+
+<h4>2.4 How can I download and Install this?</h4>
+
+Since openSUSE Baldur is still in development and is not in the official installation medium of openSUSE MicroOS, the installation is still a bit complicated!
+
+Because some Linux knowledge is required in terms of using the command line in order to be able to run the installation script after the basic installation of openSUSE MicroOS.
+
+For this reason, please watch the above two videos!
+
+And this would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
+
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/bin/install.sh > install.sh && chmod +x install.sh && ./install.sh
+
+<h4>2.5 What special features are there?</h4>
+<p>Since openSUSE Baldur is basically structured in the same way as openSUSE Aeon and Kalpa, it also offers the same functions!<br><br>However, openSUSE Baldur has a few special features:</p>
+<ul><li><b>Graphics card driver:</b> The installation script install the graphics card drivers (e.g.: NVIDIA CUDA, ...) automaticly!</li>
+<li><b>Keyboard shortcuts:</b> The keyboard shortcuts have been adapted directly for the XFCE and Flatpak environment!</li>
+<li><b>2FA authentication:</b> The 2FA authentication using external devices such as a Yubikey works out-of-the-box after installing openSUSE Baldur!</li>
+<li>...</li></ul>
+<p>In other words, openSUSE Baldur is a new flavor of openSUSE MicroOS Desktop that gives users a light, fast and stable working environment.</p>
+
+<h4>2.6 How can I change the language for the system or user to another language?</h4>
+
+Now the language can be adjusted under openSUSE Baldur via the XFCE settings!
+
+![Bildschirmfoto_2023-11-30_18-17-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b0b82467-3d3b-4387-becc-b654893889f1)
+
+Or you can change the language manually via the terminal.
+
+Here is an example of the conversion to German:
+
+    echo "export LANGUAGE=de_DE.utf8
+    export LANG=de_DE.utf8
+    export LC_ALL=de_DE.utf8" > $HOME/.i18n
+
+The language settings take effect automatically when the user logs out and logs in again.
+
+And if you are looking for the right name for your language, you can run the following command:
+
+    locale -a
+
+This will give you a list of enabled locales!
+
+---
+
+<h3>3. Tips & tricks for openSUSE MicroOS</h3>
+<h4>3.1 QEMU/KVM with GPU, PCI-USB, ... Passthrough</h4>
+<h5>3.1.1 Which packages need to be installed?</h5>
 <p>Related software packages from openSUSE Leap and Tumbleweed software repositories are organized into installation patterns. openSUSE MicroOS uses openSUSE Tumbleweed repositories as a basis and therefore you can use these patterns to install specific virtualization components on an already running openSUSE MicroOS.<br><br>Use transactional-update to install them:</p>
 
     sudo transactional-update pkg install -t pattern PATTERN_NAME
@@ -197,12 +269,12 @@ And after successful installation of all packages and reboot, the libvirt servic
 
     sudo systemctl enable --now libvirtd
 
-<h5>2.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</h5>
+<h5>3.1.2 How can I turn off the password prompt when starting the “Virt Manager” application?</h5>
 <p>With the addition of the "libvirt" user group, for example, the "normal" user is no longer asked for the "root" password when starting the "Virt Manager" application!<br><br>And for that you have to execute the following command:</p>
 
     sudo usermod -aG libvirt $USER
 
-<h5>2.1.3 Which parameters need to be set in the grub file?</h5>
+<h5>3.1.3 Which parameters need to be set in the grub file?</h5>
 
 Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 6). 
 
@@ -260,7 +332,7 @@ Enable the IOMMU feature and the [vfio-pci] kernel module on the KVM host (line 
     
        sudo reboot
 
-<h5>2.1.4 Can I change the default directory/drive for the virtual machines (guests)?</h5>
+<h5>3.1.4 Can I change the default directory/drive for the virtual machines (guests)?</h5>
 <p>In order to be able to change the default storage location of KVM Libvirt, you should also change this file (/etc/libvirt/qemu.conf):</p>
 
 ![Bildschirmfoto vom 2023-03-05 13-33-40](https://user-images.githubusercontent.com/79079633/222960741-8770a034-e1e1-40b9-bd70-6e052f67b053.png)
@@ -278,16 +350,16 @@ Further information can be found here:
 - https://ostechnix.com/how-to-change-kvm-libvirt-default-storage-pool-location/
 - https://ostechnix.com/solved-cannot-access-storage-file-permission-denied-error-in-kvm-libvirt/
 
-<h5>2.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</h5>
+<h5>3.1.5 What settings need to be made in Virt Manager, for example to be able to pass on the graphics card?</h5>
 <p>I have already published a <a href="https://www.youtube.com/live/6u-ZKKVg9-A?feature=shared&t=10884">video</a> on my YouTube channel where I showed how, for example, you can pass a graphics card and a PCI USB card to the guest.</p>
 
-<h5>2.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</h5>
+<h5>3.1.6 The latest update in MicroOS (version: 20231101) means that KVM cannot start the "default" network!</h5>
 <p>I have already written a workaround for this problem and you can read it here: https://github.com/cryinkfly/openSUSE-MicroOS/issues/2</p>
 
 ---
 
-<h4>2.2 Flatpak-Runtime & -Apps</h4>
-<h5>2.2.1 How do I install, update or remove Flatpak apps?</h5>
+<h4>3.2 Flatpak-Runtime & -Apps</h4>
+<h5>3.2.1 How do I install, update or remove Flatpak apps?</h5>
 <p>Flatpak applications are installed either via the Gnome Software Center/Discover or via the terminal. The user can search for and install any application in the Software Center himself or install[^3] them all at once via the terminal.</p>
 
 Please look this videos here: 
@@ -299,7 +371,7 @@ And install the Flatpak-App "Flatseal" on your system with this command:
 
     flatpak install --user com.github.tchx84.Flatseal
 
-<h5>2.2.2 Can I change the appearance of Flatpak apps?</h5>
+<h5>3.2.2 Can I change the appearance of Flatpak apps?</h5>
 
 - https://www.gnome-look.org/p/1359276 <- Tela circle icon theme
 - https://www.gnome-look.org/p/1831077 <- Colloid cursors theme
@@ -314,8 +386,8 @@ Please look this video here: https://youtu.be/V-0yngWXbU4?feature=shared&t=1625
 
 ---
 
-<h4>2.3 OBS-Studio & Elgato Stream Deck's</h4>
-<h5>2.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</h5>
+<h4>3.3 OBS-Studio & Elgato Stream Deck's</h4>
+<h5>3.3.1 How can I activate the "Virtual Camera" function for OBS-Studio under openSUSE MicroOS?</h5>
 
 First, the package ... must be installed with the following command:
 
@@ -329,7 +401,7 @@ So that the “Virtual Camera” function can actually be used in OBS Studio und
 
 After a restart, the “Virtual Camera” function can now be used in OBS Studio!
 
-<h5>2.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</h5>
+<h5>3.3.2 Can I use the Elgato Stream Deck on openSUSE MicroOS?</h5>
 <p>Yes, the Elgato Stream Deck can be used on Linux by implementing or installing a few things.</p>
 
 The best way to do this is with the [Flatpak app Boatswain](https://flathub.org/apps/com.feaneron.Boatswain), for example!
@@ -395,15 +467,15 @@ Further information can be found here:
 
 ---
 
-<h4>2.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</h4>
-<h5>2.4.1 Which packages need to be installed?</h5>
+<h4>3.4 Connect to your mobile phone with KDE-Connect or the GSConnect's Gnome extension</h4>
+<h5>3.4.1 Which packages need to be installed?</h5>
 <p>So if you don't use a Gnome desktop environment, then you need to install the KDE-Connect app.<br><br>And you can do this with the following command:</p>
 
     sudo transactional-update -c pkg install kdeconnect-kde
 
 Otherwise, simply install the <a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect's Gnome extension</a> via your web browser of your choice and activate it.
 
-<h5>2.4.2 Which firewall settings need to be set?</h5>
+<h5>3.4.2 Which firewall settings need to be set?</h5>
 <p>You need to make the following changes to your firewall settings:</p>
 
     sudo firewall-cmd --zone=public --add-port=1714-1764/tcp --permanent
@@ -422,88 +494,16 @@ Further information can be found here:
 ---
 
 
-<h4>2.5 Linux Security with YubiKey & KeePassXC</h4>
-<h5>2.5.1 Which packages need to be installed?</h5>
+<h4>3.5 Linux Security with YubiKey & KeePassXC</h4>
+<h5>3.5.1 Which packages need to be installed?</h5>
 <p>For example, so that the USB sticks from Yubico can be used under openSUSE MicroOS, a few packages must be installed on your system.<br><br>And that can be done with the following command:</p>
 
     sudo transactional-update -c pkg install pcsc-ccid pcsc-tools
 
-<h5>2.5.2 Installing the Yubico Authenticator & KeePassXC</h5>
+<h5>3.5.2 Installing the Yubico Authenticator & KeePassXC</h5>
 <p>The Yubico Authenticator and KeePassXC can then be installed via the app store (Gnome Software Center/Discover) or via the terminal with the following command:</p>
 
     flatpak install --user com.yubico.yubioath org.keepassxc.KeePassXC
-
----
-
-<h3>3. openSUSE Baldur</h3>
-<h4>3.1 What is openSUSE Baldur?</h4>
-
-openSUSE Baldur provides only a minimal base system with a XFCE Desktop Environment and Basic Configuration Tools ONLY. All Applications, Browsers, Codecs, etc are provided by FlatPaks from FlatHub.
-
-<h4>3.2 Who is openSUSE Baldur for?</h4>
-
-It is NOT for everyone. Your highly customisable Tumbleweed & Leap Desktops are safe and will remain the best choice for those who want to tinker with their Desktop.
-
-It should be perfect for lazy developers, who no longer want to mess around with their desktop and just ”get stuff done”, especially if they develop around containers.
-
-It should also appeal to the same audience now more used to an iOS, Chromebook or Android-like experience where the OS is static, automated & reliable and the Apps are the main thing the user cares about.
-
-To deep dive on the origins and the case why some users should use openSUSE Baldur check out the following workshop:
-
-- https://youtu.be/V-0yngWXbU4?feature=shared
-- https://www.youtube.com/live/PPYOM3z_DIc?feature=shared 
-
-<h4>3.3 What are the design goals of this version of openSUSE MicroOS Desktop?</h4>
-
-Baldur should be reliable, predictable & immutable, just like openSUSE MicroOS.
-
-Baldur should be less customisable than regular openSUSE Tumbleweed/Leap.
-
-Baldur should be small, but not at the expense of functionality. Printing, Gaming, Media Production and much more should all work.
-
-Baldur should just work “out of the box” without the need for additional configuration to get key functionality like software installation and web browsing working. All features offered by default should work - features that don't work shouldn't be offered/visible/available to users. 
-
-<h4>3.4 How can I download and Install this?</h4>
-
-Since openSUSE Baldur is still in development and is not in the official installation medium of openSUSE MicroOS, the installation is still a bit complicated!
-
-Because some Linux knowledge is required in terms of using the command line in order to be able to run the installation script after the basic installation of openSUSE MicroOS.
-
-For this reason, please watch the above two videos!
-
-And this would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop: 
-
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/bin/install.sh > install.sh && chmod +x install.sh && ./install.sh
-
-<h4>3.5 What special features are there?</h4>
-<p>Since openSUSE Baldur is basically structured in the same way as openSUSE Aeon and Kalpa, it also offers the same functions!<br><br>However, openSUSE Baldur has a few special features:</p>
-<ul><li><b>Graphics card driver:</b> The installation script install the graphics card drivers (e.g.: NVIDIA CUDA, ...) automaticly!</li>
-<li><b>Keyboard shortcuts:</b> The keyboard shortcuts have been adapted directly for the XFCE and Flatpak environment!</li>
-<li><b>2FA authentication:</b> The 2FA authentication using external devices such as a Yubikey works out-of-the-box after installing openSUSE Baldur!</li>
-<li>...</li></ul>
-<p>In other words, openSUSE Baldur is a new flavor of openSUSE MicroOS Desktop that gives users a light, fast and stable working environment.</p>
-
-<h4>3.6 How can I change the language for the system or user to another language?</h4>
-
-Now the language can be adjusted under openSUSE Baldur via the XFCE settings!
-
-![Bildschirmfoto_2023-11-30_18-17-33](https://github.com/cryinkfly/openSUSE-MicroOS/assets/79079633/b0b82467-3d3b-4387-becc-b654893889f1)
-
-Or you can change the language manually via the terminal.
-
-Here is an example of the conversion to German:
-
-    echo "export LANGUAGE=de_DE.utf8
-    export LANG=de_DE.utf8
-    export LC_ALL=de_DE.utf8" > $HOME/.i18n
-
-The language settings take effect automatically when the user logs out and logs in again.
-
-And if you are looking for the right name for your language, you can run the following command:
-
-    locale -a
-
-This will give you a list of enabled locales!
 
 ---
 
