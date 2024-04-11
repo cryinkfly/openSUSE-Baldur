@@ -262,6 +262,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         libxfce4ui-tools \
         lightdm \
         lightdm-slick-greeter \
+        lightdm-gtk-greeter-branding-openSUSE \
         lightdm-gtk-greeter-settings \
         microos-tools \
         mlocate \
