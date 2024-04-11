@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    12:11/11.04.2024                                                                   #
-# Version:      1.0.2                                                                              #
+# Time/Date:    20:15/11.04.2024                                                                   #
+# Version:      1.0.4                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -152,8 +152,11 @@ transactional-update -c pkg in -y \
     libnss_usrfiles2 \
     libxfce4ui-tools \
     lightdm \
-    lightdm-slick-greeter \
+    lightdm-gtk-greeter \
+    lightdm-gtk-greeter-branding-openSUSE \
     lightdm-gtk-greeter-settings \
+    lightdm-slick-greeter \
+    lightdm-slick-greeter-branding-openSUSE \
     microos-tools \
     mlocate \
     mokutil \
@@ -343,6 +346,18 @@ transactional-update -c run bash -c '
     systemctl set-default graphical.target
 '
 echo -e "${GREEN}The boot target has been successfully switched to the graphical user interface!${NOCOLOR}"
+
+# SWITCH LIGHTDM-GTK-GREETER TARGET TO LIGHTDM-SLICK-GREETER: 
+echo -e "${YELLOW}Switched the default greeter LightDM to lightdm-slick-greeter!${NOCOLOR}"
+sleep 3
+transactional-update -c run bash -c '
+    rm /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/50-suse-defaults.conf > /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
+    rm /etc/lightdm/slick-greeter.conf
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/slick-greeter.conf > /etc/lightdm/slick-greeter.conf
+'
+echo -e "${GREEN}The lightdm-slick-greeter interface will be show after reboot!${NOCOLOR}"
+sleep 3
 
 # ENABLE THE "VIRTUAL CAMERA" FOR OBS STUDIO: 
 echo -e "${YELLOW}The virtual camera for OBS Studio is being enabled!${NOCOLOR}"
