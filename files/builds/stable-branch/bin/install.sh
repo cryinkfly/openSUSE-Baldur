@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    11:30/07.04.2024                                                                   #
-# Version:      1.4.5                                                                              #
+# Time/Date:    17:30/11.04.2024                                                                   #
+# Version:      1.4.6                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -150,11 +150,15 @@ function SP_INSTALL_REQUIRED_PACKAGES {
     transactional-update -c pkg in -y \
         7zip \
         aaa_base \
+        accountsservice \
         adobe-sourcecodepro-fonts \
         adobe-sourcesanspro-fonts \
         adobe-sourceserifpro-fonts \
         adwaita-icon-theme \
         adwaita-xfce-icon-theme \
+        alsa-firmware \
+        alsa-plugins \
+        alsa-utils \
         at-spi2-core \
         audit \
         avahi \
@@ -162,9 +166,11 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         bash-completion \
         biosdevname \
         blueman \
+        bluez \
+        bluez-auto-enable-devices \
         bluez-cups \
         bluez-firmware \
-        bluez-auto-enable-devices \
+        bluez-test \
         bolt \
         branding-openSUSE \
         btrfsmaintenance \
@@ -181,6 +187,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         coreutils-systemd \
         cups \
         cups-filters \
+        cups-pdf \
         cups-pk-helper \
         curl \
         davfs2 \
@@ -189,6 +196,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         distrobox \
         dosfstools \
         e2fsprogs \
+        efitools \
         elfutils \
         ethtool \
         exfat-utils \
@@ -213,11 +221,10 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         gnome-software \
         google-carlito-fonts \
         google-droid-fonts \
+        google-noto-coloremoji-fonts \
+        google-noto-sans-fonts \
         google-opensans-fonts \
         google-roboto-fonts \
-        gtk2-branding-openSUSE \
-        gtk3-branding-openSUSE \
-        gtk4-branding-openSUSE \
         gpg2 \
         grep \
         grub2 \
@@ -227,6 +234,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         gstreamer-plugin-pipewire \
         gstreamer-plugins-bad \
         gstreamer-plugins-good \
+        gvfs \
         gvfs-backend-afc \
         gvfs-backend-goa \
         gvfs-backend-samba \
@@ -235,7 +243,9 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         health-checker \
         health-checker-plugins-MicroOS \
         hicolor-icon-theme-branding-openSUSE \
+        hplip \
         hplip-hpijs \
+        hplip-sane \
         hwdata \
         hwinfo \
         iproute2 \
@@ -246,12 +256,15 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         kernel-firmware-all \
         lastlog2 \
         less \
+        libopenraw9 \
+        libgsf-1-114 \
         libnss_usrfiles2 \
         libxfce4ui-tools \
         lightdm \
-        lightdm-gtk-greeter \
+        lightdm-slick-greeter \
         lightdm-gtk-greeter-settings \
         microos-tools \
+        mlocate \
         mokutil \
         mugshot \
         nano \
@@ -260,15 +273,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         NetworkManager-bluetooth \
         NetworkManager-connection-editor \
         NetworkManager-openconnect \
-        NetworkManager-openconnect-gnome \
         NetworkManager-openvpn \
-        NetworkManager-openvpn-gnome \
         NetworkManager-pptp \
-        NetworkManager-pptp-gnome \
-        NetworkManager-wifi \
-        noto-coloremoji-fonts \
-        noto-emoji-fonts \
-        noto-sans-fonts \
         ntfs-3g \
         ntfsprogs \
         OpenPrintingPPDs \
@@ -281,10 +287,12 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         pcsc-ccid \
         pcsc-tools \
         pipewire-alsa \
+        pipewire-jack \
         pipewire-pulseaudio \
         podman \
         policycoreutils \
         policycoreutils-python-utils \
+        power-profiles-daemon \
         procps4 \
         rebootmgr \
         rpm \
@@ -297,6 +305,8 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         snapper \
         sof-firmware \
         sudo \
+        sg3_utils \
+        sof-firmware \
         steam-devices \
         system-config-printer \
         system-config-printer-applet \
@@ -306,13 +316,14 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         system-group-wheel \
         systemd \
         systemd-coredump \
-        systemd-icon-branding-openSUSE \
         systemd-presets-branding-MicroOS \
-        systemd-zram-service \
         terminfo-base \
         thunar \
+        thunar-font-manager \
+        thunar-plugin-dropbox \
         thunar-plugin-archive \
         thunar-plugin-media-tags \
+        thunar-plugin-shares \
         thunar-sendto-blueman \
         thunar-volman \
         thunar-volman-branding-openSUSE \
@@ -326,14 +337,17 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         tumbler-webp-thumbnailer \
         udev-configure-printer \
         udisks2 \
+        unrar \
         unzip \
         upower \
+        usb_modeswitch \
         util-linux \
         v4l-utils \
         v4l2loopback-kmp-default \
         vim-small \
         wallpaper-branding-openSUSE \
         wget \
+        wpa_supplicant \
         wtmpdb \
         x11-tools \
         xdg-desktop-portal-gtk \
@@ -346,6 +360,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xfce4-notes-plugin \
         xfce4-notifyd \
         xfce4-notifyd-branding-openSUSE \
+        xfce4-mount-plugin \
         xfce4-panel \
         xfce4-panel-branding-openSUSE \
         xfce4-panel-profiles \
@@ -376,6 +391,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         xorg-x11-server-extra \
         xterm \
         xtermset \
+        xz \
         yast2-logs \
         zenity \
         zypper \
