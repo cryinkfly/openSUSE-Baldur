@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    09:00/11.04.2024                                                                   #
-# Version:      1.0.1                                                                              #
+# Time/Date:    12:11/11.04.2024                                                                   #
+# Version:      1.0.2                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -112,6 +112,8 @@ transactional-update -c pkg in -y \
     gnome-software \
     google-carlito-fonts \
     google-droid-fonts \
+    google-noto-coloremoji-fonts \
+    google-noto-sans-fonts \
     google-opensans-fonts \
     google-roboto-fonts \
     gpg2 \
@@ -162,15 +164,8 @@ transactional-update -c pkg in -y \
     NetworkManager-bluetooth \
     NetworkManager-connection-editor \
     NetworkManager-openconnect \
-    NetworkManager-openconnect-gnome \
     NetworkManager-openvpn \
-    NetworkManager-openvpn-gnome \
     NetworkManager-pptp \
-    NetworkManager-pptp-gnome \
-    NetworkManager-wifi \
-    noto-coloremoji-fonts \
-    noto-emoji-fonts \
-    noto-sans-fonts \
     ntfs-3g \
     ntfsprogs \
     OpenPrintingPPDs \
@@ -212,7 +207,6 @@ transactional-update -c pkg in -y \
     system-group-wheel \
     systemd \
     systemd-coredump \
-    systemd-icon-branding-openSUSE \
     systemd-presets-branding-MicroOS \
     terminfo-base \
     thunar \
@@ -248,7 +242,6 @@ transactional-update -c pkg in -y \
     wtmpdb \
     x11-tools \
     xdg-desktop-portal-gtk \
-    xdg-utils \
     xdg-user-dirs-gtk \
     xf86-input-libinput \
     xf86-input-vmmouse \
