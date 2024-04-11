@@ -266,7 +266,7 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         lightdm-gtk-greeter-branding-openSUSE \
         lightdm-gtk-greeter-settings \
         lightdm-slick-greeter \
-        lightdm-slick-greeter-branding-openSUSE
+        lightdm-slick-greeter-branding-openSUSE \
         microos-tools \
         mlocate \
         mokutil \
