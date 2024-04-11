@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:00/07.04.2024                                                                   #
-# Version:      1.0.0                                                                              #
+# Time/Date:    09:00/11.04.2024                                                                   #
+# Version:      1.0.1                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -41,11 +41,15 @@ transactional-update apply
 transactional-update -c pkg in -y \
     7zip \
     aaa_base \
+    accountsservice \
     adobe-sourcecodepro-fonts \
     adobe-sourcesanspro-fonts \
     adobe-sourceserifpro-fonts \
     adwaita-icon-theme \
     adwaita-xfce-icon-theme \
+    alsa-firmware \
+    alsa-plugins \
+    alsa-utils \
     at-spi2-core \
     audit \
     avahi \
@@ -53,9 +57,11 @@ transactional-update -c pkg in -y \
     bash-completion \
     biosdevname \
     blueman \
+    bluez \
+    bluez-auto-enable-devices \
     bluez-cups \
     bluez-firmware \
-    bluez-auto-enable-devices \
+    bluez-test \
     bolt \
     branding-openSUSE \
     btrfsmaintenance \
@@ -72,6 +78,7 @@ transactional-update -c pkg in -y \
     coreutils-systemd \
     cups \
     cups-filters \
+    cups-pdf \
     cups-pk-helper \
     curl \
     davfs2 \
@@ -80,6 +87,7 @@ transactional-update -c pkg in -y \
     distrobox \
     dosfstools \
     e2fsprogs \
+    efitools \
     elfutils \
     ethtool \
     exfat-utils \
@@ -106,9 +114,6 @@ transactional-update -c pkg in -y \
     google-droid-fonts \
     google-opensans-fonts \
     google-roboto-fonts \
-    gtk2-branding-openSUSE \
-    gtk3-branding-openSUSE \
-    gtk4-branding-openSUSE \
     gpg2 \
     grep \
     grub2 \
@@ -118,6 +123,7 @@ transactional-update -c pkg in -y \
     gstreamer-plugin-pipewire \
     gstreamer-plugins-bad \
     gstreamer-plugins-good \
+    gvfs \
     gvfs-backend-afc \
     gvfs-backend-goa \
     gvfs-backend-samba \
@@ -126,7 +132,9 @@ transactional-update -c pkg in -y \
     health-checker \
     health-checker-plugins-MicroOS \
     hicolor-icon-theme-branding-openSUSE \
+    hplip \
     hplip-hpijs \
+    hplip-sane \
     hwdata \
     hwinfo \
     iproute2 \
@@ -137,12 +145,15 @@ transactional-update -c pkg in -y \
     kernel-firmware-all \
     lastlog2 \
     less \
+    libopenraw9 \
+    libgsf-1-114 \
     libnss_usrfiles2 \
     libxfce4ui-tools \
     lightdm \
-    lightdm-gtk-greeter \
+    lightdm-slick-greeter \
     lightdm-gtk-greeter-settings \
     microos-tools \
+    mlocate \
     mokutil \
     mugshot \
     nano \
@@ -172,10 +183,12 @@ transactional-update -c pkg in -y \
     pcsc-ccid \
     pcsc-tools \
     pipewire-alsa \
+    pipewire-jack \
     pipewire-pulseaudio \
     podman \
     policycoreutils \
     policycoreutils-python-utils \
+    power-profiles-daemon \
     procps4 \
     rebootmgr \
     rpm \
@@ -188,6 +201,8 @@ transactional-update -c pkg in -y \
     snapper \
     sof-firmware \
     sudo \
+    sg3_utils \
+    sof-firmware \
     steam-devices \
     system-config-printer \
     system-config-printer-applet \
@@ -199,11 +214,13 @@ transactional-update -c pkg in -y \
     systemd-coredump \
     systemd-icon-branding-openSUSE \
     systemd-presets-branding-MicroOS \
-    systemd-zram-service \
     terminfo-base \
     thunar \
+    thunar-font-manager \
+    thunar-plugin-dropbox \
     thunar-plugin-archive \
     thunar-plugin-media-tags \
+    thunar-plugin-shares \
     thunar-sendto-blueman \
     thunar-volman \
     thunar-volman-branding-openSUSE \
@@ -217,17 +234,21 @@ transactional-update -c pkg in -y \
     tumbler-webp-thumbnailer \
     udev-configure-printer \
     udisks2 \
+    unrar \
     unzip \
     upower \
+    usb_modeswitch \
     util-linux \
     v4l-utils \
     v4l2loopback-kmp-default \
     vim-small \
     wallpaper-branding-openSUSE \
     wget \
+    wpa_supplicant \
     wtmpdb \
     x11-tools \
     xdg-desktop-portal-gtk \
+    xdg-utils \
     xdg-user-dirs-gtk \
     xf86-input-libinput \
     xf86-input-vmmouse \
@@ -237,6 +258,7 @@ transactional-update -c pkg in -y \
     xfce4-notes-plugin \
     xfce4-notifyd \
     xfce4-notifyd-branding-openSUSE \
+    xfce4-mount-plugin \
     xfce4-panel \
     xfce4-panel-branding-openSUSE \
     xfce4-panel-profiles \
@@ -267,11 +289,12 @@ transactional-update -c pkg in -y \
     xorg-x11-server-extra \
     xterm \
     xtermset \
+    xz \
     yast2-logs \
     zenity \
     zypper \
-    zypper-needs-restarting \
-    packagename
+    zypper-needs-restarting
+
 echo -e "${GREEN}The required packages have been successfully installed!${NOCOLOR}"
 
 # INSTALLATION OF THE GRAPHICS CARD DRIVER:
