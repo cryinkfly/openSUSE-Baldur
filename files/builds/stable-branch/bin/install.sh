@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    17:30/11.04.2024                                                                   #
-# Version:      1.4.6                                                                              #
+# Time/Date:    20:15/11.04.2024                                                                   #
+# Version:      1.4.7                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -135,6 +135,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
     SP_INSTALL_REQUIRED_PACKAGES
     SP_CHECK_GPU_DRIVER
     SP_ACTIVATE_GUI
+    SP_ACTIVATE_LIGHTDM_GTK_GREETER
     SP_ACTIVATE_VC
 }
 
@@ -145,7 +146,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update -c pkg in -y pciutils usbutils
+    transactional-update -c pkg in -y pciutils usbutils       
     transactional-update apply
     transactional-update -c pkg in -y \
         7zip \
@@ -261,9 +262,11 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         libnss_usrfiles2 \
         libxfce4ui-tools \
         lightdm \
-        lightdm-slick-greeter \
+        lightdm-gtk-greeter \
         lightdm-gtk-greeter-branding-openSUSE \
         lightdm-gtk-greeter-settings \
+        lightdm-slick-greeter \
+        lightdm-slick-greeter-branding-openSUSE
         microos-tools \
         mlocate \
         mokutil \
@@ -464,6 +467,23 @@ function SP_ACTIVATE_GUI {
         systemctl set-default graphical.target
     '
     echo -e "${GREEN}The graphical user interface will be show after reboot!${NOCOLOR}"
+    sleep 3
+}
+
+##############################################################################################################################################################################
+# SWITCH LIGHTDM-GTK-GREETER TARGET TO LIGHTDM-SLICK-GREETER:                                                                                                                #
+##############################################################################################################################################################################
+
+function SP_ACTIVATE_LIGHTDM_GTK_GREETER {
+    echo -e "${YELLOW}Switched the default greeter LightDM to lightdm-slick-greeter!${NOCOLOR}"
+    sleep 3
+    transactional-update -c run bash -c '
+        rm /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/50-suse-defaults.conf > /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
+        rm /etc/lightdm/slick-greeter.conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/slick-greeter.conf > /etc/lightdm/slick-greeter.conf
+    '
+    echo -e "${GREEN}The lightdm-slick-greeter interface will be show after reboot!${NOCOLOR}"
     sleep 3
 }
 
