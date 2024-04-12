@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    20:15/11.04.2024                                                                   #
-# Version:      1.0.4                                                                              #
+# Time/Date:    12:15/12.04.2024                                                                   #
+# Version:      1.0.5                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -33,6 +33,15 @@ echo -e "${GREEN}The keyboard shortcuts have been successfully configured!${NOCO
 echo -e "${YELLOW}The configuration of the XFCE4 power manager for openSUSE Baldur is being set up!${NOCOLOR}"
 curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
 echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCOLOR}"
+
+# DOWNLOAD THE WALLPAPERS FOR OPENSUSE BALDUR:
+transactional-update -c pkg in -y unrar unzip
+transactional-update apply
+
+mkdir -p /usr/share/wallpapers/openSUSE-Baldur
+curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
+unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+rm -rf preferences-desktop-locale.zip
 
 # INSTALLATION OF THE REQUIRED PACKAGES FOR OPENSUSE BALDUR:
 echo -e "${YELLOW}The required packages for openSUSE Baldur are being installed!${NOCOLOR}"
@@ -231,8 +240,6 @@ transactional-update -c pkg in -y \
     tumbler-webp-thumbnailer \
     udev-configure-printer \
     udisks2 \
-    unrar \
-    unzip \
     upower \
     usb_modeswitch \
     util-linux \
