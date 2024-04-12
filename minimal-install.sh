@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    12:15/12.04.2024                                                                   #
+# Time/Date:    12:45/12.04.2024                                                                   #
 # Version:      1.0.5                                                                              #
 ####################################################################################################
 
@@ -40,7 +40,9 @@ transactional-update apply
 
 mkdir -p /usr/share/wallpapers/openSUSE-Baldur
 curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
-unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+unzip openSUSE-Baldur_wallpapers.zip
+mv openSUSE /usr/share/wallpapers/openSUSE-Baldur/openSUSE
+mv XFCE /usr/share/wallpapers/openSUSE-Baldur/XFCE
 rm -rf openSUSE-Baldur_wallpapers.zip
 
 # INSTALLATION OF THE REQUIRED PACKAGES FOR OPENSUSE BALDUR:
