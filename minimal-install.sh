@@ -41,7 +41,7 @@ transactional-update apply
 mkdir -p /usr/share/wallpapers/openSUSE-Baldur
 curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
 unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
-rm -rf preferences-desktop-locale.zip
+rm -rf openSUSE-Baldur_wallpapers.zip
 
 # INSTALLATION OF THE REQUIRED PACKAGES FOR OPENSUSE BALDUR:
 echo -e "${YELLOW}The required packages for openSUSE Baldur are being installed!${NOCOLOR}"
