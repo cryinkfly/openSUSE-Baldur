@@ -8,7 +8,7 @@
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
 # Time/Date:    12:45/12.04.2024                                                                   #
-# Version:      1.0.5                                                                              #
+# Version:      1.0.6                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -35,15 +35,16 @@ curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/buil
 echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCOLOR}"
 
 # DOWNLOAD THE WALLPAPERS FOR OPENSUSE BALDUR:
+echo -e "${YELLOW}The wallpapers for openSUSE Baldur are being installed!${NOCOLOR}"
 transactional-update -c pkg in -y unrar unzip
 transactional-update apply
-
-mkdir -p /usr/share/wallpapers/openSUSE-Baldur
-curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
-unzip openSUSE-Baldur_wallpapers.zip
-mv openSUSE /usr/share/wallpapers/openSUSE-Baldur/openSUSE
-mv XFCE /usr/share/wallpapers/openSUSE-Baldur/XFCE
-rm -rf openSUSE-Baldur_wallpapers.zip
+transactional-update -c run bash -c '
+    mkdir -p /usr/share/wallpapers/openSUSE-Baldur
+    curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
+    unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+    rm -rf openSUSE-Baldur_wallpapers.zip
+'
+echo -e "${GREEN}The wallpapers has been successfully installed!${NOCOLOR}"
 
 # INSTALLATION OF THE REQUIRED PACKAGES FOR OPENSUSE BALDUR:
 echo -e "${YELLOW}The required packages for openSUSE Baldur are being installed!${NOCOLOR}"
