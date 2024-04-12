@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    20:15/11.04.2024                                                                   #
-# Version:      1.4.7                                                                              #
+# Time/Date:    13:15/12.04.2024                                                                   #
+# Version:      1.4.8                                                                              #
 ####################################################################################################
 
 ##############################################################################################################################################################################
@@ -137,6 +137,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
     SP_ACTIVATE_GUI
     SP_ACTIVATE_LIGHTDM_GTK_GREETER
     SP_ACTIVATE_VC
+    SP_DOWNLOAD_WALLPAPERS
 }
 
 ##############################################################################################################################################################################
@@ -146,7 +147,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update -c pkg in -y pciutils usbutils       
+    transactional-update -c pkg in -y pciutils usbutils unrar unzip     
     transactional-update apply
     transactional-update -c pkg in -y \
         7zip \
@@ -498,6 +499,22 @@ function SP_ACTIVATE_VC {
         echo "v4l2loopback" > /etc/modules-load.d/v4l2loopback.conf
     '
     echo -e "${YELLOW}The Virtual Camera function for OBS Studio will be work after reboot!${NOCOLOR}"
+}
+
+##############################################################################################################################################################################
+# DOWNLOAD THE "WALLPAPERS" FOR OPENSUSE BALDUR:                                                                                                                             #
+##############################################################################################################################################################################
+
+function SP_DOWNLOAD_WALLPAPERS {
+    echo -e "${YELLOW}The wallpapers for openSUSE Baldur are being installed!${NOCOLOR}"
+    transactional-update -c run bash -c '
+        mkdir -p /usr/share/wallpapers/openSUSE-Baldur
+        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
+        unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+        rm -rf openSUSE-Baldur_wallpapers.zip
+    '
+    echo -e "${GREEN}The wallpapers has been successfully installed!${NOCOLOR}"
+
     echo -e "${GREEN}The installation of openSUSE MicoOS with the XFCE desktop enviroment is finished!${NOCOLOR}"
     echo -e "${YELLOW}The system will now automatically restart in ...${NOCOLOR}"
     sleep 1
