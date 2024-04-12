@@ -342,8 +342,6 @@ function SP_INSTALL_REQUIRED_PACKAGES {
         tumbler-webp-thumbnailer \
         udev-configure-printer \
         udisks2 \
-        unrar \
-        unzip \
         upower \
         usb_modeswitch \
         util-linux \
