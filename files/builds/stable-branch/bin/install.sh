@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2023-2024                                                                          #
-# Time/Date:    13:00/13.04.2024                                                                   #
+# Time/Date:    13:15/13.04.2024                                                                   #
 # Version:      1.4.9                                                                              #
 ####################################################################################################
 
@@ -147,7 +147,7 @@ function SP_CONFIGURE_DESKTOP_LOCALE {
 function SP_INSTALL_REQUIRED_PACKAGES {
     echo -e "${YELLOW}All required packages for openSUSE Baldur will be installed!${NOCOLOR}"
     sleep 3
-    transactional-update -c pkg in -y pciutils usbutils unrar unzip     
+    transactional-update -c pkg in -y pciutils usbutils unrar unzip tar  
     transactional-update apply
     transactional-update -c pkg in -y \
         7zip \
