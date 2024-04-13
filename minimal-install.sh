@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    12:45/12.04.2024                                                                   #
-# Version:      1.0.6                                                                              #
+# Time/Date:    11:45/13.04.2024                                                                   #
+# Version:      1.0.7                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -357,16 +357,14 @@ transactional-update -c run bash -c '
 '
 echo -e "${GREEN}The boot target has been successfully switched to the graphical user interface!${NOCOLOR}"
 
-# SWITCH LIGHTDM-GTK-GREETER TARGET TO LIGHTDM-SLICK-GREETER: 
-echo -e "${YELLOW}Switched the default greeter LightDM to lightdm-slick-greeter!${NOCOLOR}"
+# CONFIGURE LIGHTDM-GTK-GREETER: 
+echo -e "${YELLOW}Configuring the default greeter LightDM!${NOCOLOR}"
 sleep 3
 transactional-update -c run bash -c '
-    rm /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/50-suse-defaults.conf > /usr/share/lightdm/lightdm.conf.d/50-suse-defaults.conf
-    rm /etc/lightdm/slick-greeter.conf
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/slick-greeter.conf > /etc/lightdm/slick-greeter.conf
+    rm /etc/lightdm/lightdm-gtk-greeter.conf
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
 '
-echo -e "${GREEN}The lightdm-slick-greeter interface will be show after reboot!${NOCOLOR}"
+echo -e "${GREEN}The new lightdm configuration will be work after reboot!${NOCOLOR}"
 sleep 3
 
 # ENABLE THE "VIRTUAL CAMERA" FOR OBS STUDIO: 
