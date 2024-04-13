@@ -36,7 +36,7 @@ echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCO
 
 # DOWNLOAD THE WALLPAPERS FOR OPENSUSE BALDUR:
 echo -e "${YELLOW}The wallpapers for openSUSE Baldur are being installed!${NOCOLOR}"
-transactional-update -c pkg in -y unrar unzip
+transactional-update -c pkg in -y unrar unzip tar
 transactional-update apply
 transactional-update -c run bash -c '
     mkdir -p /usr/share/wallpapers/openSUSE-Baldur
