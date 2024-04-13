@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    11:45/13.04.2024                                                                   #
-# Version:      1.0.7                                                                              #
+# Time/Date:    12:15/13.04.2024                                                                   #
+# Version:      1.0.8                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -354,6 +354,18 @@ transactional-update -c run bash -c '
     systemctl set-default graphical.target
 '
 echo -e "${GREEN}The boot target has been successfully switched to the graphical user interface!${NOCOLOR}"
+
+# DOWNLOAD THE THEME & ICONS:
+echo -e "${YELLOW}Configuring the default theme and icons for openSUSE Baldur!${NOCOLOR}"
+sleep 3
+transactional-update -c run bash -c '
+    mkdir -p /usr/share/themes/openSUSE-Baldur-Nortic
+    curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
+    tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes/openSUSE-Baldur-Nortic/
+    rm -rf Nordic-xhdpi.tar.gz
+    # In progress ...
+echo -e "${GREEN}The new theme and icons configuration will be show after reboot!${NOCOLOR}"
+sleep 3
 
 # CONFIGURE LIGHTDM-GTK-GREETER: 
 echo -e "${YELLOW}Configuring the default greeter LightDM!${NOCOLOR}"
