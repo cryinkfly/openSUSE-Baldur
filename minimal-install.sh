@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    08:45/14.04.2024                                                                   #
-# Version:      1.0.9                                                                              #
+# Time/Date:    19:15/14.04.2024                                                                   #
+# Version:      1.1.0                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -362,16 +362,17 @@ transactional-update -c run bash -c '
     curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
     tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes
     rm -rf Nordic-xhdpi.tar.gz
-    xfconf-query -c xsettings -p /usr/share/themes -s "Nordic-v40"
+    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
     tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
-    xfconf-query -c xfce4-desktop -p /desktop-icons/icon-theme -s Tela-circle-manjaro-dark --create -t string
-    xfconf-query -c xfce4-desktop -p /usr/share/icons -s "Tela-circle-manjaro-dark"
+    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
     rm -rf Tela-circle-manjaro.tar.xz
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
     tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
-    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Bibata-Modern-Classic"
-    rm -rf Bibata-Modern-Classic.tar.xz    
+    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    rm -rf Bibata-Modern-Classic.tar.xz
+    xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual-1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
 '
 echo -e "${GREEN}The new theme and icons configuration will be show after reboot!${NOCOLOR}"
 sleep 3
