@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:30/14.04.2024                                                                   #
+# Time/Date:    19:50/14.04.2024                                                                   #
 # Version:      1.1.1                                                                              #
 ####################################################################################################
 
@@ -371,7 +371,8 @@ xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
 xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
 xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual-1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
 rm -rf Nordic-xhdpi.tar.gz
 rm -rf Tela-circle-manjaro.tar.xz
 rm -rf Bibata-Modern-Classic.tar.xz
