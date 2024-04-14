@@ -374,7 +374,7 @@ transactional-update -c run bash -c '
     tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s "Bibata-Modern-Classic"
     rm -rf Bibata-Modern-Classic.tar.xz    
-
+'
 echo -e "${GREEN}The new theme and icons configuration will be show after reboot!${NOCOLOR}"
 sleep 3
 
