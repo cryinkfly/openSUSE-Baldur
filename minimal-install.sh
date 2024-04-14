@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:15/14.04.2024                                                                   #
-# Version:      1.1.0                                                                              #
+# Time/Date:    19:30/14.04.2024                                                                   #
+# Version:      1.1.1                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -41,7 +41,7 @@ transactional-update apply
 transactional-update -c run bash -c '
     mkdir -p /usr/share/wallpapers/openSUSE-Baldur
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
-    unzip openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+    unzip -o openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
     rm -rf openSUSE-Baldur_wallpapers.zip
 '
 echo -e "${GREEN}The wallpapers has been successfully installed!${NOCOLOR}"
@@ -360,20 +360,21 @@ echo -e "${YELLOW}Configuring the default theme and icons for openSUSE Baldur!${
 sleep 3
 transactional-update -c run bash -c '
     curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
-    tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes
-    rm -rf Nordic-xhdpi.tar.gz
-    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+    tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes    
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
     tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
-    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-    rm -rf Tela-circle-manjaro.tar.xz
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
-    tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
-    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-    rm -rf Bibata-Modern-Classic.tar.xz
-    xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual-1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+    tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons 
 '
+transactional-update apply
+xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual-1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+rm -rf Nordic-xhdpi.tar.gz
+rm -rf Tela-circle-manjaro.tar.xz
+rm -rf Bibata-Modern-Classic.tar.xz
 echo -e "${GREEN}The new theme and icons configuration will be show after reboot!${NOCOLOR}"
 sleep 3
 
