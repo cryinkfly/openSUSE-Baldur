@@ -359,12 +359,10 @@ echo -e "${GREEN}The boot target has been successfully switched to the graphical
 echo -e "${YELLOW}Configuring the default theme and icons for openSUSE Baldur!${NOCOLOR}"
 sleep 3
 transactional-update -c run bash -c '
-    mkdir -p /usr/share/themes/openSUSE-Baldur-Nortic
     curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
-    tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes/openSUSE-Baldur-Nortic/
+    tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes
     rm -rf Nordic-xhdpi.tar.gz
-    xfconf-query -c xsettings -p /Net/ThemeName -s "Nordic-v40"
-    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+    xfconf-query -c xsettings -p /usr/share/themes -s "Nordic-v40"
     curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
     tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
     xfconf-query -c xfce4-desktop -p /desktop-icons/icon-theme -s Tela-circle-manjaro-dark --create -t string
