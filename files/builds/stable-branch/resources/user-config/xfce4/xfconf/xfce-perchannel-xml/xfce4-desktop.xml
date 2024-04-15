@@ -24,6 +24,12 @@
         <property name="image-style" type="int" value="5"/>
         <property name="image-show" type="bool" value="true"/>
       </property>
+      <property name="monitorVirtual1" type="empty"> <!-- für virtuelle Maschinen -->
+        <property name="image-path" type="string" value="/usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg"/> <!-- Hier den Pfad zum gewünschten Hintergrundbild einfügen -->
+        <property name="image-style" type="int" value="5"/>
+        <property name="image-show" type="bool" value="true"/>
+      </property>
     </property>
   </property>
 </channel>
+
