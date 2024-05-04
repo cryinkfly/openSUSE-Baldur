@@ -168,7 +168,8 @@ else
         power-profiles-daemon \
         procps4 \
         rebootmgr \
-        rpm \
+        rpm
+    transactional-update -c pkg in -y \
         samba \
         selinux-policy-targeted \
         selinux-tools \
