@@ -269,7 +269,7 @@ else
         zenity \
         zypper \
         zypper-needs-restarting
-    #transactional-update apply
+    transactional-update apply
     echo -e "${GREEN}The required packages without the graphics card driver have been successfully installed!${NOCOLOR}"
     echo -e "${YELLOW}The graphics card driver is being analyzed on your system!${NOCOLOR}"
     echo -e "${YELLOW}5${NOCOLOR}"
