@@ -22,7 +22,7 @@ if [ "$EUID" -ne 0 ]
     then echo -e "${RED}Please run this script with sudo!${NOCOLOR}"
     exit
 else
-    transactional-update -c pkg in -y \
+    transactional-update pkg in -y \
         7zip \
         aaa_base \
         accountsservice \
