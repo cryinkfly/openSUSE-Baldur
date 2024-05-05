@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    13:15/05.05.2024                                                                   #
-# Version:      1.1.6                                                                              #
+# Time/Date:    14:00/05.05.2024                                                                   #
+# Version:      1.1.7                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -317,6 +317,7 @@ else
     echo -e "${YELLOW}The configuration of the XFCE4 desktop for openSUSE Baldur is being set up!${NOCOLOR}"
     sleep 5
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     echo -e "${GREEN}The XFCE4 desktop has been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The theme, icons, wallpapers, ... for openSUSE Baldur are being installed!${NOCOLOR}"
     sleep 5
