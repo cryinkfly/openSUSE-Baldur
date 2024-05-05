@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    12:45/05.05.2024                                                                   #
-# Version:      1.1.5                                                                              #
+# Time/Date:    13:15/05.05.2024                                                                   #
+# Version:      1.1.6                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -327,12 +327,16 @@ else
         rm -rf openSUSE-Baldur_wallpapers.zip
         curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
         tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes
+        mkdir -p $HOME/.themes && mkdir -p $HOME/.icons
+        tar -xzf Nordic-xhdpi.tar.gz -C $HOME/.themes
         rm -rf Nordic-xhdpi.tar.gz    
         curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
         tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
+        tar -xJf Tela-circle-manjaro.tar.xz -C $HOME/.icons/
         rm -rf Tela-circle-manjaro.tar.xz
         curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
         tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
+        tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
         rm -rf Bibata-Modern-Classic.tar.xz
         xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
@@ -347,8 +351,8 @@ else
         xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
         xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
         xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
-        flatpak override --filesystem=/usr/share/themes
-        flatpak override --filesystem=/usr/share/icons
+        flatpak override --filesystem=$HOME/.themes
+        flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
         flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
         flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
@@ -357,8 +361,8 @@ else
         xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
         xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
         xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-        flatpak override --filesystem=/usr/share/themes
-        flatpak override --filesystem=/usr/share/icons
+        flatpak override --filesystem=$HOME/.themes
+        flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40 
         flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
         flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
