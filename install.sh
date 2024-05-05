@@ -26,7 +26,8 @@ else
     echo -e "${YELLOW}Do you want to create a new user account without root permissions? (y/n)${NOCOLOR}" && read answer
     if [[ $answer == [yY] ]]; then
         echo -e "${YELLOW}Please enter the username of the new user account!${NOCOLOR}" && read username
-        useradd users $username
+        useradd $username
+        usermod -a -G users $username
         echo -e "${YELLOW}Please enter the password of the new user account!${NOCOLOR}" && passwd $username
         echo -e "${GREEN}The new user account has been successfully created!${NOCOLOR}"
         sleep 3
