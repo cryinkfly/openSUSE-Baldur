@@ -1,14 +1,14 @@
 #!/bin/env bash
 
 ####################################################################################################
-# Name:         openSUSE Baldur (MicroOS with XFCE) - Setup Wizard                                 #
+# Name:         openSUSE Baldur (MicroOS with XFCE) - Simple Setup Wizard                          #
 # Description:  With this file you get openSUSE MicroOS with the XFCE desktop enviroment.          #
 # Author:       Steve Zabka                                                                        #
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:45/05.05.2024                                                                   #
-# Version:      1.0.0                                                                              #
+# Time/Date:    20:00/05.05.2024                                                                   #
+# Version:      1.0.1                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -317,8 +317,74 @@ else
     else
         echo -e "${YELLOW}The graphics card analysis has no AMD, Intel or NVIDIA graphics card detected and for this reason this step is skipped!${NOCOLOR}"
     fi
+    echo -e "${YELLOW}The configuration of the keyboard shortcuts for openSUSE Baldur is being set up!${NOCOLOR}"
+    sleep 5
+    mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    echo -e "${GREEN}The keyboard shortcuts have been successfully configured!${NOCOLOR}"
+    echo -e "${YELLOW}The configuration of the XFCE4 power manager for openSUSE Baldur is being set up!${NOCOLOR}"
+    sleep 5
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCOLOR}"
+    echo -e "${YELLOW}The configuration of the XFCE4 desktop for openSUSE Baldur is being set up!${NOCOLOR}"
+    sleep 5
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+    echo -e "${GREEN}The XFCE4 desktop has been successfully configured!${NOCOLOR}"
+    echo -e "${YELLOW}The theme, icons, wallpapers, ... for openSUSE Baldur are being installed!${NOCOLOR}"
+    sleep 5
+    transactional-update -c run bash -c '
+        mkdir -p /usr/share/wallpapers/openSUSE-Baldur
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
+        unzip -o openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
+        rm -rf openSUSE-Baldur_wallpapers.zip
+        curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
+        tar -xzf Nordic-xhdpi.tar.gz -C /usr/share/themes
+        mkdir -p $HOME/.themes && mkdir -p $HOME/.icons
+        tar -xzf Nordic-xhdpi.tar.gz -C $HOME/.themes
+        rm -rf Nordic-xhdpi.tar.gz    
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
+        tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
+        tar -xJf Tela-circle-manjaro.tar.xz -C $HOME/.icons/
+        rm -rf Tela-circle-manjaro.tar.xz
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
+        tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
+        tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
+        rm -rf Bibata-Modern-Classic.tar.xz
+        xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+        rm /etc/lightdm/lightdm-gtk-greeter.conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/lightdm/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
+    '
+    transactional-update apply
+    X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+    Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+    display_resolution="$X"x"$Y"
+    if [ "$display_resolution" = "3840x2160" ]; then
+        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
+        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
+        xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+        flatpak override --filesystem=$HOME/.themes
+        flatpak override --filesystem=$HOME/.icons
+        flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
+        flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+        flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+    else
+        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+        xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+        xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+        flatpak override --filesystem=$HOME/.themes
+        flatpak override --filesystem=$HOME/.icons
+        flatpak override --env=GTK_THEME=Nordic-v40 
+        flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+        flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+    fi
+    echo -e "${GREEN}Ttheme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
+
+    # Configuring for root user
     if [ -n "$username" ]; then
-        echo -e "${YELLOW}Configuring settings for user $username...${NOCOLOR}"
+        echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
         su - $username -c '
             mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -326,38 +392,46 @@ else
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-            mkdir -p $HOME/.themes && mkdir -p $HOME/.icons
+            mkdir -p ~/.themes && mkdir -p ~/.icons
+            curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
+            tar -xzf Nordic-xhdpi.tar.gz -C ~/.themes
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
-            tar -xJf Tela-circle-manjaro.tar.xz -C $HOME/.icons/
-            rm -rf Tela-circle-manjaro.tar.xz
+            tar -xJf Tela-circle-manjaro.tar.xz -C ~/.icons/
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
-            tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
-            rm -rf Bibata-Modern-Classic.tar.xz
+            tar -xJf Bibata-Modern-Classic.tar.xz -C ~/.icons
             xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
             xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+            X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+            Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+            display_resolution="$X"x"$Y"
+            if [ "$display_resolution" = "3840x2160" ]; then
+                xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
+                xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
+                xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+                flatpak override --filesystem=$HOME/.themes
+                flatpak override --filesystem=$HOME/.icons
+                flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
+                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+            else
+                xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+                xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+                xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+                xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+                flatpak override --filesystem=$HOME/.themes
+                flatpak override --filesystem=$HOME/.icons
+                flatpak override --env=GTK_THEME=Nordic-v40 
+                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+            fi
+            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
         '
-        echo -e "${GREEN}Settings have been successfully configured for user $username!${NOCOLOR}"
+        echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
     fi
-
-    echo -e "${YELLOW}Configuring settings for root user...${NOCOLOR}"
-    sleep 5
-    su -c '
-        mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /root/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-        mkdir -p /root/.themes && mkdir -p /root/.icons
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
-        tar -xJf Tela-circle-manjaro.tar.xz -C /root/.icons/
-        rm -rf Tela-circle-manjaro.tar.xz
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
-        tar -xJf Bibata-Modern-Classic.tar.xz -C /root/.icons
-        rm -rf Bibata-Modern-Classic.tar.xz
-        xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
-        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
+    echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
+    transactional-update -c run bash -c '
+        systemctl set-default graphical.target
     '
-    echo -e "${GREEN}Settings have been successfully configured for root user!${NOCOLOR}"
     echo -e "${GREEN}The boot target has been successfully switched to the graphical user interface!${NOCOLOR}"
     sleep 3
     echo -e "${YELLOW}The virtual camera for OBS Studio is being enabled!${NOCOLOR}"
