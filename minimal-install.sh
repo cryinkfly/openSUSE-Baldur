@@ -342,7 +342,7 @@ else
         xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         rm /etc/lightdm/lightdm-gtk-greeter.conf
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/lightdm/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
     '
     transactional-update apply
     X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
