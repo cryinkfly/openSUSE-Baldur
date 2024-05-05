@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    21:00/04.05.2024                                                                   #
-# Version:      1.1.3                                                                              #
+# Time/Date:    09:00/05.05.2024                                                                   #
+# Version:      1.1.4                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -272,17 +272,7 @@ else
     transactional-update apply
     echo -e "${GREEN}The required packages without the graphics card driver have been successfully installed!${NOCOLOR}"
     echo -e "${YELLOW}The graphics card driver is being analyzed on your system!${NOCOLOR}"
-    echo -e "${YELLOW}5${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}4${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}3${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}2${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}1${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}0${NOCOLOR}"
+    sleep 5
     if [[ $(lspci | grep VGA) == *"AMD"* ]]; then
         echo -e "${YELLOW}An AMD graphics card has been analyzed on your system and the required packages will now be installed if available.${NOCOLOR}"
         transactional-update -c pkg in -y kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bit
@@ -315,60 +305,20 @@ else
         echo -e "${YELLOW}The graphics card analysis has no AMD, Intel or NVIDIA graphics card detected and for this reason this step is skipped!${NOCOLOR}"
     fi
     echo -e "${YELLOW}The configuration of the keyboard shortcuts for openSUSE Baldur is being set up!${NOCOLOR}"
-    echo -e "${YELLOW}5${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}4${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}3${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}2${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}1${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}0${NOCOLOR}"
+    sleep 5
     mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
     echo -e "${GREEN}The keyboard shortcuts have been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The configuration of the XFCE4 power manager for openSUSE Baldur is being set up!${NOCOLOR}"
-    echo -e "${YELLOW}5${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}4${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}3${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}2${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}1${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}0${NOCOLOR}"
+    sleep 5
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The configuration of the XFCE4 desktop for openSUSE Baldur is being set up!${NOCOLOR}"
-    echo -e "${YELLOW}5${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}4${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}3${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}2${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}1${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}0${NOCOLOR}"
+    sleep 5
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
     echo -e "${GREEN}The XFCE4 desktop has been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The theme, icons, wallpapers, ... for openSUSE Baldur are being installed!${NOCOLOR}"
-    echo -e "${YELLOW}5${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}4${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}3${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}2${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}1${NOCOLOR}"
-    sleep 1
-    echo -e "${YELLOW}0${NOCOLOR}"
+    sleep 5
     transactional-update -c run bash -c '
         mkdir -p /usr/share/wallpapers/openSUSE-Baldur
         curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
