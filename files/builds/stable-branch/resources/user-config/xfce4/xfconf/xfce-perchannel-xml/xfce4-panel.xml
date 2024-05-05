@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="empty"/>
+  <property name="panels" type="empty">
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=6;x=960;y=13"/>
+      <property name="length" type="empty"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="24"/>
+      <property name="length-adjust" type="empty"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="1"/>
+        <value type="int" value="2"/>
+        <value type="int" value="4"/>
+        <value type="int" value="5"/>
+        <value type="int" value="8"/>
+        <value type="int" value="20"/>
+        <value type="int" value="6"/>
+        <value type="int" value="7"/>
+        <value type="int" value="12"/>
+        <value type="int" value="14"/>
+        <value type="int" value="9"/>
+        <value type="int" value="16"/>
+        <value type="int" value="13"/>
+        <value type="int" value="10"/>
+        <value type="int" value="11"/>
+        <value type="int" value="15"/>
+        <value type="int" value="17"/>
+      </property>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-1" type="empty">
+      <property name="favorites" type="array">
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+      </property>
+      <property name="recent" type="array">
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="firefox.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+      </property>
+      <property name="button-title" type="string" value=" openSUSE 💯 "/>
+    </property>
+    <property name="plugin-2" type="empty">
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-3" type="empty"/>
+    <property name="plugin-4" type="empty">
+      <property name="flat-buttons" type="empty"/>
+      <property name="show-handle" type="bool" value="false"/>
+      <property name="grouping" type="empty"/>
+    </property>
+    <property name="plugin-5" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-6" type="empty">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+    </property>
+    <property name="plugin-14" type="empty"/>
+    <property name="plugin-13" type="string" value="weather">
+      <property name="location" type="empty">
+        <property name="name" type="string" value=""/>
+        <property name="latitude" type="string" value="0.000000"/>
+        <property name="longitude" type="string" value="0.000000"/>
+      </property>
+      <property name="msl" type="int" value="0"/>
+      <property name="timezone" type="string" value=""/>
+      <property name="offset" type="string" value="+02:00"/>
+      <property name="cache-max-age" type="int" value="172800"/>
+      <property name="power-saving" type="bool" value="true"/>
+      <property name="units" type="empty">
+        <property name="temperature" type="int" value="0"/>
+        <property name="pressure" type="int" value="0"/>
+        <property name="windspeed" type="int" value="0"/>
+        <property name="precipitation" type="int" value="0"/>
+        <property name="altitude" type="int" value="0"/>
+        <property name="apparent-temperature" type="int" value="0"/>
+      </property>
+      <property name="round" type="bool" value="true"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="tooltip-style" type="int" value="1"/>
+      <property name="forecast" type="empty">
+        <property name="layout" type="int" value="1"/>
+        <property name="days" type="int" value="5"/>
+      </property>
+      <property name="theme-dir" type="string" value="/usr/share/xfce4/weather/icons/liquid"/>
+      <property name="scrollbox" type="empty">
+        <property name="show" type="bool" value="true"/>
+        <property name="animate" type="bool" value="true"/>
+        <property name="lines" type="int" value="1"/>
+        <property name="color" type="string" value="rgba(0,0,0,0)"/>
+        <property name="use-color" type="bool" value="false"/>
+      </property>
+    </property>
+    <property name="plugin-7" type="empty">
+      <property name="show-frame" type="empty"/>
+      <property name="square-icons" type="empty"/>
+      <property name="icon-size" type="empty"/>
+      <property name="symbolic-icons" type="empty"/>
+      <property name="known-items" type="array">
+        <value type="string" value="blueman"/>
+        <value type="string" value="nm-applet"/>
+      </property>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="xfce4-power-manager"/>
+      </property>
+    </property>
+    <property name="plugin-15" type="string" value="separator">
+      <property name="menu-is-primary" type="empty"/>
+      <property name="square-icons" type="empty"/>
+      <property name="icon-size" type="empty"/>
+      <property name="symbolic-icons" type="empty"/>
+      <property name="style" type="uint" value="3"/>
+    </property>
+    <property name="plugin-8" type="empty"/>
+    <property name="plugin-9" type="empty">
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-10" type="empty">
+      <property name="show-frame" type="empty"/>
+      <property name="digital-format" type="empty"/>
+      <property name="digital-time-format" type="string" value=" &lt;b&gt;&lt;span color=&quot;#2fb375&quot;&gt;%A, %d. %b %Y&lt;/span&gt; ➜ &lt;span color=&quot;#e46e3e&quot;&gt;%R&lt;/span&gt;&lt;/b&gt;"/>
+      <property name="digital-layout" type="uint" value="3"/>
+    </property>
+    <property name="plugin-11" type="empty">
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-12" type="string" value="xfce4-clipman-plugin"/>
+    <property name="plugin-16" type="string" value="separator">
+      <property name="style" type="uint" value="3"/>
+    </property>
+    <property name="plugin-17" type="string" value="showdesktop"/>
+    <property name="plugin-20" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+  </property>
+</channel>
