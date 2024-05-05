@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    20:00/05.05.2024                                                                   #
-# Version:      1.0.1                                                                              #
+# Time/Date:    20:25/05.05.2024                                                                   #
+# Version:      1.0.2                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -387,24 +387,21 @@ else
     if [ -n "$username" ]; then
         echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
-        su - $username -c '
-            mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-            mkdir -p ~/.themes && mkdir -p ~/.icons
+        runuser -l  $username -c '
+            mkdir -p $HOME/.config/xfce4/xfconf/xfce-perchannel-xml
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+            mkdir -p $HOME/.themes && mkdir -p $HOME/.icons
             curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
-            tar -xzf Nordic-xhdpi.tar.gz -C ~/.themes
+            tar -xzf Nordic-xhdpi.tar.gz -C $HOME/.themes
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
-            tar -xJf Tela-circle-manjaro.tar.xz -C ~/.icons/
+            tar -xJf Tela-circle-manjaro.tar.xz -C $HOME/.icons/
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
-            tar -xJf Bibata-Modern-Classic.tar.xz -C ~/.icons
+            tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
             xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
             xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
-            X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
-            Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
-            display_resolution="$X"x"$Y"
             if [ "$display_resolution" = "3840x2160" ]; then
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
                 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
