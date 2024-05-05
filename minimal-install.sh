@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    09:45/05.05.2024                                                                   #
-# Version:      1.1.4                                                                              #
+# Time/Date:    12:45/05.05.2024                                                                   #
+# Version:      1.1.5                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -263,6 +263,7 @@ else
     xorg-x11-fonts-core \
     xorg-x11-server \
     xorg-x11-server-extra \
+    xrandr \
     xterm \
     xtermset \
     yast2-logs \
@@ -339,10 +340,29 @@ else
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
     '
     transactional-update apply
-    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+    Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+    display_resolution="$X"x"$Y"
+    if [ "$display_resolution" = "3840x2160" ]; then
+        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
+        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
+        xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+        flatpak override --filesystem=/usr/share/themes
+        flatpak override --filesystem=/usr/share/icons
+        flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
+        flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+        flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+    else
+        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+        xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+        xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+        flatpak override --filesystem=/usr/share/themes
+        flatpak override --filesystem=/usr/share/icons
+        flatpak override --env=GTK_THEME=Nordic-v40 
+        flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+        flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+    fi
     echo -e "${GREEN}Ttheme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
     transactional-update -c run bash -c '
