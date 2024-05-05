@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    09:00/05.05.2024                                                                   #
+# Time/Date:    09:45/05.05.2024                                                                   #
 # Version:      1.1.4                                                                              #
 ####################################################################################################
 
@@ -333,15 +333,16 @@ else
         curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
         tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
         rm -rf Bibata-Modern-Classic.tar.xz
-        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-        xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-        xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
         xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         rm /etc/lightdm/lightdm-gtk-greeter.conf
         curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
     '
+    transactional-update apply
+    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
     echo -e "${GREEN}Ttheme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
     transactional-update -c run bash -c '
