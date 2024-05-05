@@ -308,22 +308,22 @@ else
     echo -e "${YELLOW}The configuration of the keyboard shortcuts for openSUSE Baldur is being set up!${NOCOLOR}"
     sleep 5
     mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
     echo -e "${GREEN}The keyboard shortcuts have been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The configuration of the XFCE4 power manager for openSUSE Baldur is being set up!${NOCOLOR}"
     sleep 5
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     echo -e "${GREEN}The XFCE4 power manager has been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The configuration of the XFCE4 desktop for openSUSE Baldur is being set up!${NOCOLOR}"
     sleep 5
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/user-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     echo -e "${GREEN}The XFCE4 desktop has been successfully configured!${NOCOLOR}"
     echo -e "${YELLOW}The theme, icons, wallpapers, ... for openSUSE Baldur are being installed!${NOCOLOR}"
     sleep 5
     transactional-update -c run bash -c '
         mkdir -p /usr/share/wallpapers/openSUSE-Baldur
-        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/wallpapers/openSUSE-Baldur_wallpapers.zip -O -J -L
         unzip -o openSUSE-Baldur_wallpapers.zip -d /usr/share/wallpapers/openSUSE-Baldur/
         rm -rf openSUSE-Baldur_wallpapers.zip
         curl https://github.com/cryinkfly/Xfce-Xfwm4-Themes/raw/main/themes/Nordic/Nordic-xhdpi.tar.gz -O -J -L
@@ -331,18 +331,18 @@ else
         mkdir -p $HOME/.themes && mkdir -p $HOME/.icons
         tar -xzf Nordic-xhdpi.tar.gz -C $HOME/.themes
         rm -rf Nordic-xhdpi.tar.gz    
-        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Tela-circle-manjaro.tar.xz -O -J -L
         tar -xJf Tela-circle-manjaro.tar.xz -C /usr/share/icons/
         tar -xJf Tela-circle-manjaro.tar.xz -C $HOME/.icons/
         rm -rf Tela-circle-manjaro.tar.xz
-        curl https://github.com/cryinkfly/openSUSE-Baldur/raw/main/files/builds/stable-branch/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/icons/Bibata-Modern-Classic.tar.xz -O -J -L
         tar -xJf Bibata-Modern-Classic.tar.xz -C /usr/share/icons
         tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
         rm -rf Bibata-Modern-Classic.tar.xz
         xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
         rm /etc/lightdm/lightdm-gtk-greeter.conf
-        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/lightdm-configs/lightdm-gtk-greeter.conf > /etc/lightdm/lightdm-gtk-greeter.conf
     '
     transactional-update apply
     X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
