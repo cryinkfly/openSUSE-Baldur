@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    14:00/05.05.2024                                                                   #
-# Version:      1.1.7                                                                              #
+# Time/Date:    16:30/05.05.2024                                                                   #
+# Version:      1.1.8                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -22,6 +22,93 @@ if [ "$EUID" -ne 0 ]
     then echo -e "${RED}Please run this script with sudo!${NOCOLOR}"
     exit
 else
+    # Define an array with language options
+    languages=(
+        "Afrikaans" "af_ZA.UTF-8"
+        "Albanian - Shqipëria" "sq_AL.UTF-8"
+        "Arabic - عربيعربي" "ar_SA.UTF-8"
+        "Basque - Euskara" "eu_ES.UTF-8"
+        "Belarusian - беларускі" "be_BY.UTF-8"
+        "Bosnian - Bosanski" "bs_BA.UTF-8"
+        "Bulgarian - български" "bg_BG.UTF-8"
+        "Catalan - Catalana" "ca_ES.UTF-8"
+        "Croatian - Hrvatski" "hr_HR.UTF-8"
+        "Chinese (Simplified) - 简体中文" "zh_CN.UTF-8"
+        "Chinese (Traditional) - 中國人" "zh_TW.UTF-8"
+        "Czech - Čeština" "cs_CZ.UTF-8"
+        "Danish - Dansk" "da_DK.UTF-8"
+        "Dutch - Nederlands" "nl_NL.UTF-8"
+        "English" "en_US.UTF-8"
+        "Estonian - Eestlane" "et_EE.UTF-8"
+        "Finnish - Suomen kieli" "fi_FI.UTF-8"
+        "French - Français" "fr_FR.UTF-8"
+        "French (Swiss) - Français (Suisse)" "fr_CH.UTF-8"
+        "French (Belgium) - Français (Belgique)" "fr_BE.UTF-8"
+        "French (Canada) - Français (Canada)" "fr_CA.UTF-8"
+        "Gaelic - Ghàidhlig" "ga_IE.UTF-8"
+        "Gallego" "gl_ES.UTF-8"
+        "Georgian - ქართული" "ka_GE.UTF-8"
+        "German - Deutsch" "de_DE.UTF-8"
+        "Greek - Ελληνικά" "el_GR.UTF-8"
+        "Hebrew - עִברִית" "he_IL.utf8"
+        "Hungarian - Magyar" "hu_HU.UTF-8"
+        "Icelandic - Íslenska" "is_IS.UTF-8"
+        "Indonesian - Indonesia" "id_ID.UTF-8"
+        "Italian - Italiano" "it_IT.UTF-8"
+        "Japanese - 日本語" "ja_JP.UTF-8"
+        "Korean - 한국인" "ko_KR.UTF-8"
+        "Lithuanian - Lietuva" "lt_LT.UTF-8"
+        "Malaysian - Malaysia" "ms_MY.UTF-8"
+        "Maori" "mi_NZ.UTF-8"
+        "Norwegian - Norsk" "no_NO.UTF-8"
+        "Nynorsk" "nn_NO.UTF-8"
+        "Polish - Polski" "pl_PL.UTF-8"
+        "Portuguese (Brazil) - Português (Brasil)" "pt_PT.UTF-8"
+        "Romanian - Română" "ro_RO.UTF-8"
+        "Russian - Русский" "ru_RU.UTF-8"
+        "Samoan - Samoana" "mi_NZ.UTF-8"
+        "Slovak - Slovenský" "sk_SK.UTF-8"
+        "Slovenian - Slovenščina" "sl_SI.UTF-8"
+        "Somali - Soomaali" "so_SO.UTF-8"
+        "Spanish (International) - Español (Internacional)" "es_ES.UTF-8"
+        "Swedish - Svenska" "sv_SE.UTF-8"
+        "Tagalog" "tl_PH.UTF-8"
+        "Thai - ไทย" "th_TH.UTF-8"
+        "Tongan - Faka-Tonga" "mi_NZ.UTF-8"
+        "Turkish - Türkçe" "tr_TR.UTF-8"
+        "Ukrainian - Український" "uk_UA.UTF-8"
+    )
+
+    # Display language options to the user
+    for ((i=0; i<${#languages[@]}; i+=2)); do
+        echo "$(($i/2 + 1)). ${languages[$i]}"
+    done
+
+    # Prompt the user for input
+    read -p "Enter the number corresponding to your preferred language: " choice
+
+    # Validate user input
+    if [[ ! $choice =~ ^[0-9]+$ ]]; then
+        echo "Error: Invalid input. Please enter a number."
+        exit 1
+    fi
+
+    # Ensure the choice is within the range
+    if (( choice < 1 || choice > ${#languages[@]}/2 )); then
+        echo "Error: Invalid choice. Please select a number within the given range."
+        exit 1
+    fi
+
+    # Calculate the index in the array based on the user's choice
+    index=$((2 * (choice - 1)))
+
+    # Set the language environment variables
+    echo "export LANGUAGE=${languages[$index + 1]}" > $HOME/.i18n
+    echo "export LANG=${languages[$index + 1]}" >> $HOME/.i18n
+    echo "export LC_ALL=${languages[$index + 1]}" >> $HOME/.i18n
+
+    echo "Language set to ${languages[$index]}."
+
     transactional-update -c run bash -c 'zypper install -y \
     7zip \
     aaa_base \
