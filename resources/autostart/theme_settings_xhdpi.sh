@@ -3,6 +3,8 @@
 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
 xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
 flatpak override --filesystem=$HOME/.themes
 flatpak override --filesystem=$HOME/.icons
 flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
