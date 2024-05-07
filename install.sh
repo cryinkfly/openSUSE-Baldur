@@ -411,8 +411,9 @@ else
         '
         if [ "$display_resolution" = "3840x2160" ]; then
             su -l $username -c '
-                dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
-                export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
+                #dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
+                #export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
+                export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
                 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
                 xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
@@ -424,8 +425,9 @@ else
             '
         else
             su -l $username -c '
-                dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
-                export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
+                #dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
+                #export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
+                export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
                 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
                 xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
