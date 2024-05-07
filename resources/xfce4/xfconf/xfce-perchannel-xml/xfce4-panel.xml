@@ -42,6 +42,9 @@
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
       </property>
       <property name="button-title" type="string" value=" openSUSE 💯 "/>
+      <property name="position-profile-alternate" type="bool" value="true"/>
+      <property name="menu-height" type="int" value="450"/>
+      <property name="menu-width" type="int" value="400"/>
     </property>
     <property name="plugin-2" type="empty">
       <property name="style" type="empty"/>
