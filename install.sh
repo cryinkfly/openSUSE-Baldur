@@ -437,7 +437,7 @@ else
                 echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Name[en_GB]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Name[en_US]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_xhdpi.sh > $HOME/.config/autostart/theme_settings_hdpi.sh
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_hdpi.sh > $HOME/.config/autostart/theme_settings_hdpi.sh
                 chmod +x $HOME/.config/autostart/theme_settings_hdpi.sh
             '
         fi
