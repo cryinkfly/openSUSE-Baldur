@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    17:00/07.05.2024                                                                   #
-# Version:      1.0.3                                                                              #
+# Time/Date:    19:15/07.05.2024                                                                   #
+# Version:      1.0.4                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -409,34 +409,36 @@ else
             rm -rf Bibata-Modern-Classic.tar.xz
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
         '
+        
         if [ "$display_resolution" = "3840x2160" ]; then
             su -l $username -c '
-                #dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
-                #export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
-                export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-                xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
-                xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-                xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
-                flatpak override --filesystem=$HOME/.themes
-                flatpak override --filesystem=$HOME/.icons
-                flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
-                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
-                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+                mkdir -p $HOME/.config/autostart
+                echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Exec=/usr/bin/mod-firstboot" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Type=Application" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Name[en_GB]=startup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Name[en_US]=startup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_xhdpi.sh > $HOME/.config/autostart/theme_settings_xhdpi.sh
+                chmod +x $HOME/.config/autostart/theme_settings_xhdpi.sh
             '
         else
             su -l $username -c '
-                #dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
-                #export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
-                export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-                xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-                xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-                xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-                xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-                flatpak override --filesystem=$HOME/.themes
-                flatpak override --filesystem=$HOME/.icons
-                flatpak override --env=GTK_THEME=Nordic-v40 
-                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
-                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+                mkdir -p $HOME/.config/autostart
+                echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Exec=/usr/bin/mod-firstboot" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Type=Application" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Name[en_GB]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Name[en_US]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_xhdpi.sh > $HOME/.config/autostart/theme_settings_hdpi.sh
+                chmod +x $HOME/.config/autostart/theme_settings_hdpi.sh
             '
         fi
         echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
