@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:15/07.05.2024                                                                   #
-# Version:      1.0.4                                                                              #
+# Time/Date:    20:05/07.05.2024                                                                   #
+# Version:      1.0.5                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -408,6 +408,7 @@ else
             rm -rf Tela-circle-manjaro.tar.xz
             rm -rf Bibata-Modern-Classic.tar.xz
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
+            flatpak install --user --noninteractive flathub org.mozilla.firefox org.gnome.Calculator org.xfce.mousepad com.github.tchx84.Flatseal
         '
         
         if [ "$display_resolution" = "3840x2160" ]; then
