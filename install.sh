@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    16:30/07.05.2024                                                                   #
+# Time/Date:    17:00/07.05.2024                                                                   #
 # Version:      1.0.3                                                                              #
 ####################################################################################################
 
@@ -387,7 +387,7 @@ else
     if [ -n "$username" ]; then
         echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
-        runuser -l  $username -c '
+        su -l  $username -c '
             dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
             export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
             mkdir -p $HOME/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -404,7 +404,15 @@ else
             tar -xJf Bibata-Modern-Classic.tar.xz -C $HOME/.icons
             xfconf-query -c xfce4-desktop -p  /backdrop/screen0/monitorVirtual1/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
             xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /usr/share/wallpapers/openSUSE-Baldur/openSUSE/origami-green-chameleon-with-dark-bg-1-4864x3328.jpg
-            if [ "$display_resolution" = "3840x2160" ]; then
+            rm -rf Nordic-xhdpi.tar.gz
+            rm -rf Tela-circle-manjaro.tar.xz
+            rm -rf Bibata-Modern-Classic.tar.xz
+            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
+        '
+        if [ "$display_resolution" = "3840x2160" ]; then
+            su -l  $username -c '
+                dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
+                export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
                 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
                 xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
@@ -413,7 +421,11 @@ else
                 flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
                 flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
                 flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
-            else
+            '
+        else
+            su -l  $username -c '
+                dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
+                export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
                 xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
                 xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
@@ -423,9 +435,8 @@ else
                 flatpak override --env=GTK_THEME=Nordic-v40 
                 flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
                 flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
-            fi
-            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
-        '
+            '
+        fi
         echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
     fi
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
