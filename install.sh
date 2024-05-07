@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    20:25/05.05.2024                                                                   #
-# Version:      1.0.2                                                                              #
+# Time/Date:    16:30/07.05.2024                                                                   #
+# Version:      1.0.3                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -388,6 +388,8 @@ else
         echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
         runuser -l  $username -c '
+            dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
+            export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
             mkdir -p $HOME/.config/xfce4/xfconf/xfce-perchannel-xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
