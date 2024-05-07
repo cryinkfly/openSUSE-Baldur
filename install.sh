@@ -416,7 +416,7 @@ else
                 echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_xhdpi.desktop
                 echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
                 echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Exec=/usr/bin/mod-firstboot" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
+                echo "Exec=$HOME/.config/autostart/theme_settings_xhdpi.sh" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
                 echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
                 echo "Type=Application" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
                 echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
@@ -431,7 +431,7 @@ else
                 echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Exec=/usr/bin/mod-firstboot" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
+                echo "Exec=$HOME/.config/autostart/theme_settings_hdpi.sh" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Type=Application" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
                 echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
