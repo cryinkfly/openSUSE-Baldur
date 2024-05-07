@@ -207,9 +207,11 @@ And this would be the command after the basic installation of openSUSE MicroOS t
 
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/minimal-install.sh && chmod +x minimal-install.sh && ./minimal-install.sh | tee minimal-install.log
 
-This would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop with the XFCE Initial Setup for configuring all things (Still in progress!): 
+This would be the command after the basic installation of openSUSE MicroOS to get the XFCE desktop with configured Flatpak (Apps preinstalled: Firefox, Calculator, Texteditor & Flatseal) and a new non root user: 
 
-    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/files/builds/stable-branch/bin/install.sh > install.sh && chmod +x install.sh && ./install.sh | tee install.log
+    curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/install.sh > install.sh && chmod +x install.sh && ./install.sh | tee install.log
+
+The basic installation of openSUSE MicroOS to get the XFCE desktop with the XFCE Initial Setup for configuring all things is still in progress at the moment!
 
 With both installation variants, a log file is created about the installation so that you can find any errors when installing the packages more quickly!
 
