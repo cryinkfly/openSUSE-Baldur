@@ -387,7 +387,7 @@ else
     if [ -n "$username" ]; then
         echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
-        su -l  $username -c '
+        su -l $username -c '
             dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
             export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
             mkdir -p $HOME/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -410,7 +410,7 @@ else
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
         '
         if [ "$display_resolution" = "3840x2160" ]; then
-            su -l  $username -c '
+            su -l $username -c '
                 dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
                 export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
@@ -423,7 +423,7 @@ else
                 flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
             '
         else
-            su -l  $username -c '
+            su -l $username -c '
                 dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
                 export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
                 xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
