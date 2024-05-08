@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    20:05/07.05.2024                                                                   #
-# Version:      1.0.5                                                                              #
+# Time/Date:    17:50/08.05.2024                                                                   #
+# Version:      1.0.6                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -409,39 +409,19 @@ else
             rm -rf Bibata-Modern-Classic.tar.xz
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
             flatpak install --user --noninteractive flathub org.mozilla.firefox org.gnome.Calculator org.xfce.mousepad com.github.tchx84.Flatseal
+            mkdir -p $HOME/.config/autostart
+            echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Exec=$HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Categories=Utility;System;" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name[en_GB]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name[en_US]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme_config.sh > $HOME/.config/autostart/mod-theme_config.sh
+            chmod +x $HOME/.config/autostart/mod-theme_config.sh
         '
-        
-        if [ "$display_resolution" = "3840x2160" ]; then
-            su -l $username -c '
-                mkdir -p $HOME/.config/autostart
-                echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Exec=$HOME/.config/autostart/theme_settings_xhdpi.sh" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Type=Application" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Name[en_GB]=startup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                echo "Name[en_US]=startup" >> $HOME/.config/autostart/theme_settings_xhdpi.desktop
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_xhdpi.sh > $HOME/.config/autostart/theme_settings_xhdpi.sh
-                chmod +x $HOME/.config/autostart/theme_settings_xhdpi.sh
-            '
-        else
-            su -l $username -c '
-                mkdir -p $HOME/.config/autostart
-                echo "[Desktop Entry]" > $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Exec=$HOME/.config/autostart/theme_settings_hdpi.sh" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Type=Application" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Categories=Utility;System;" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Name[en_GB]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                echo "Name[en_US]=startup" >> $HOME/.config/autostart/theme_settings_hdpi.desktop
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/theme_settings_hdpi.sh > $HOME/.config/autostart/theme_settings_hdpi.sh
-                chmod +x $HOME/.config/autostart/theme_settings_hdpi.sh
-            '
-        fi
         echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
     fi
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
