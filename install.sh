@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    16:20/10.05.2024                                                                   #
-# Version:      1.0.7                                                                              #
+# Time/Date:    19:30/10.05.2024                                                                   #
+# Version:      1.0.8                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -373,19 +373,16 @@ else
 
     # If 4K monitor is detected
     if $is_4k; then
-        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
-        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-        xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         flatpak override --filesystem=$HOME/.themes
         flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
         flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
         flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
     else
-        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-        xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-        xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         flatpak override --filesystem=$HOME/.themes
         flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40 
@@ -398,9 +395,8 @@ else
     if [ -n "$username" ]; then
         echo -e "${YELLOW}Configuring for user $username...${NOCOLOR}"
         sleep 5
+ 
         su -l $username -c '
-            dbus_daemon_without_gpu=$(echo $DBUS_SESSION_BUS_ADDRESS)
-            export DBUS_SESSION_BUS_ADDRESS=$dbus_daemon_without_gpu
             mkdir -p $HOME/.config/xfce4/xfconf/xfce-perchannel-xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
@@ -420,19 +416,30 @@ else
             rm -rf Bibata-Modern-Classic.tar.xz
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
             flatpak install --user --noninteractive flathub org.mozilla.firefox org.gnome.Calculator org.xfce.mousepad com.github.tchx84.Flatseal
-            mkdir -p $HOME/.config/autostart
-            echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Exec=$HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Categories=Utility;System;" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Name[en_GB]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Name[en_US]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme_config.sh > $HOME/.config/autostart/mod-theme_config.sh
-            chmod +x $HOME/.config/autostart/mod-theme_config.sh
         '
+
+        # If 4K monitor is detected
+        if $is_4k; then
+            su -l $username -c '
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+                flatpak override --filesystem=$HOME/.themes
+                flatpak override --filesystem=$HOME/.icons
+                flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
+                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+            '
+        else
+            su -l $username -c '
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+                flatpak override --filesystem=$HOME/.themes
+                flatpak override --filesystem=$HOME/.icons
+                flatpak override --env=GTK_THEME=Nordic-v40 
+                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
+                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
+            '
+        fi
         echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
     fi
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
