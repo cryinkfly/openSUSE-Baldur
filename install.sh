@@ -365,7 +365,7 @@ else
 
     # Check if any monitor is 4K
     while read -r line; do
-        if [[ $line == *4K* ]]; then
+        if [[ $line == *3840x2160* ]]; then
             is_4k=true
             break
         fi
