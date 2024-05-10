@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    16:20/10.05.2024                                                                   #
-# Version:      1.1.9                                                                              #
+# Time/Date:    19:30/10.05.2024                                                                   #
+# Version:      1.2.0                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -359,19 +359,16 @@ else
 
     # If 4K monitor is detected
     if $is_4k; then
-        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
-        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-        xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         flatpak override --filesystem=$HOME/.themes
         flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
         flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
         flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
     else
-        xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-        xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-        xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-        xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+        curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
         flatpak override --filesystem=$HOME/.themes
         flatpak override --filesystem=$HOME/.icons
         flatpak override --env=GTK_THEME=Nordic-v40 
