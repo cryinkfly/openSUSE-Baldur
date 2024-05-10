@@ -1,10 +1,19 @@
 #!/bin/env bash
 
-X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
-Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
-display_resolution="$X"x"$Y"
+# Detect connected monitors and resolutions
+connected_monitors=$(xrandr | grep -w connected)
+is_4k=false
 
-if [ "$display_resolution" = "3840x2160" ]; then
+# Check if any monitor is 4K
+while read -r line; do
+    if [[ $line == *4K* ]]; then
+        is_4k=true
+        break
+    fi
+done <<< "$connected_monitors"
+
+# If 4K monitor is detected
+if $is_4k; then
     xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
     xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
