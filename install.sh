@@ -421,8 +421,8 @@ else
         # If 4K monitor is detected
         if $is_4k; then
             su -l $username -c '
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
                 flatpak override --filesystem=$HOME/.themes
                 flatpak override --filesystem=$HOME/.icons
                 flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
@@ -431,8 +431,8 @@ else
             '
         else
             su -l $username -c '
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
                 flatpak override --filesystem=$HOME/.themes
                 flatpak override --filesystem=$HOME/.icons
                 flatpak override --env=GTK_THEME=Nordic-v40 
