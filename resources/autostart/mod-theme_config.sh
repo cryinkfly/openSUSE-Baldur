@@ -16,9 +16,16 @@ done <<< "$connected_monitors"
 if $is_4k; then
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-    #xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
-    #xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-    #xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
+    sleep 3
+    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
+    sleep 3
+    xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+    sleep 3
+    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+    sleep 3
+    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    sleep 3
     xfwm4 --replace
     xfsettingsd --replace
     flatpak override --user --filesystem=$HOME/.themes
@@ -29,10 +36,14 @@ if $is_4k; then
 else
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-    #xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-    #xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-    #xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-    #xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
+    sleep 3
+    xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
+    sleep 3
+    xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
+    sleep 3
+    xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    sleep 3
     xfwm4 --replace
     xfsettingsd --replace
     flatpak override --user --filesystem=$HOME/.themes
