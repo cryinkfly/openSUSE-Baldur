@@ -414,32 +414,21 @@ else
             rm -rf Nordic-xhdpi.tar.gz
             rm -rf Tela-circle-manjaro.tar.xz
             rm -rf Bibata-Modern-Classic.tar.xz
+            mkdir -p $HOME/.config/autostart
+            echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Exec=$HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Categories=Utility;System;" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name[en_GB]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Name[en_US]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme_config.sh > $HOME/.config/autostart/mod-theme_config.sh
+            chmod +x $HOME/.config/autostart/mod-theme_config.sh
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
             flatpak install --user --noninteractive flathub org.mozilla.firefox org.gnome.Calculator org.xfce.mousepad com.github.tchx84.Flatseal
         '
-
-        # If 4K monitor is detected
-        if $is_4k; then
-            su -l $username -c '
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-                flatpak override --filesystem=$HOME/.themes
-                flatpak override --filesystem=$HOME/.icons
-                flatpak override --env=GTK_THEME=Nordic-v40-xhdpi 
-                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
-                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
-            '
-        else
-            su -l $username -c '
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-                curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-                flatpak override --filesystem=$HOME/.themes
-                flatpak override --filesystem=$HOME/.icons
-                flatpak override --env=GTK_THEME=Nordic-v40 
-                flatpak override --env=ICON_THEME=Tela-circle-manjaro-dark 
-                flatpak override --env=CURSOR_THEME=Bibata-Modern-Classic
-            '
-        fi
         echo -e "${GREEN}Configuration for user $username has been successfully completed!${NOCOLOR}"
     fi
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
