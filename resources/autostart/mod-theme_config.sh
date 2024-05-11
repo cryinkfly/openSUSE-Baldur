@@ -26,8 +26,6 @@ if $is_4k; then
     sleep 3
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
     sleep 3
-    xfwm4 --replace
-    xfsettingsd --replace
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40-xhdpi 
@@ -44,8 +42,6 @@ else
     sleep 3
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
     sleep 3
-    xfwm4 --replace
-    xfsettingsd --replace
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40 
