@@ -43,7 +43,8 @@ class ProcessWindow(Gtk.Window):
         if $is_4k; then
             xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
             xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-            xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+            sed -i 's/Gdk\/WindowScalingFactor\>/Gdk\/WindowScalingFactor>2/g' ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+            xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -n -t int -s 2
             xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
             xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
             xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 38
