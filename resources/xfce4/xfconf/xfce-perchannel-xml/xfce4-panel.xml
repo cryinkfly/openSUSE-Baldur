@@ -17,9 +17,9 @@
         <value type="int" value="8"/>
         <value type="int" value="20"/>
         <value type="int" value="6"/>
-        <value type="int" value="7"/>
         <value type="int" value="12"/>
         <value type="int" value="14"/>
+        <value type="int" value="7"/>
         <value type="int" value="9"/>
         <value type="int" value="16"/>
         <value type="int" value="13"/>
@@ -37,8 +37,8 @@
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
       </property>
       <property name="recent" type="array">
+        <value type="string" value="org.mozilla.firefox.desktop"/>
         <value type="string" value="thunar.desktop"/>
-        <value type="string" value="firefox.desktop"/>
         <value type="string" value="xfce4-terminal-emulator.desktop"/>
       </property>
       <property name="button-title" type="string" value=" openSUSE 💯 "/>
@@ -106,9 +106,13 @@
       <property name="known-items" type="array">
         <value type="string" value="blueman"/>
         <value type="string" value="nm-applet"/>
+        <value type="string" value="hp-systray"/>
       </property>
       <property name="known-legacy-items" type="array">
         <value type="string" value="xfce4-power-manager"/>
+      </property>
+      <property name="hidden-items" type="array">
+        <value type="string" value="hp-systray"/>
       </property>
     </property>
     <property name="plugin-15" type="string" value="separator">
