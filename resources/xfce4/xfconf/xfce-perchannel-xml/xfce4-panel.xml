@@ -114,6 +114,9 @@
       <property name="hidden-items" type="array">
         <value type="string" value="hp-systray"/>
       </property>
+      <property name="hidden-legacy-items" type="array">
+        <value type="string" value="hp-systray"/>
+      </property>
     </property>
     <property name="plugin-15" type="string" value="separator">
       <property name="menu-is-primary" type="empty"/>
