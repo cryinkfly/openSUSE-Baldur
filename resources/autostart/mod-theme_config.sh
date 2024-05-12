@@ -24,6 +24,7 @@ if $is_4k; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
     xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 38
+    xfce4-panel -r
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40-xhdpi 
@@ -36,6 +37,7 @@ else
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
+    xfce4-panel -r
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40 
