@@ -15,4 +15,5 @@ echo "Hidden=false" >> $HOME/.config/autostart/mod-theme_config.desktop
 curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme_config.sh > $HOME/.config/autostart/mod-theme_config.sh
 chmod +x $HOME/.config/autostart/mod-theme_config.sh
 
+rm -f $HOME/.config/autostart/mod-setup-first.desktop
 xfce4-session-logout --reboot --fast
