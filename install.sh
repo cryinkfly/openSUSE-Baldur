@@ -421,7 +421,7 @@ else
             echo "Type=Application" >> $HOME/.config/autostart/mod-theme-setup.desktop
             echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme-setup.desktop
             echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme-setup.desktop
-            echo "Exec=$HOME/.config/autostart/mod-theme-setup.py" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Exec=python3 $HOME/.config/autostart/mod-theme-setup.py" >> $HOME/.config/autostart/mod-theme-setup.desktop
             echo "OnlyShowIn=XFCE;" >> $HOME/.config/autostart/mod-theme-setup.desktop
             echo "RunHook=0" >> $HOME/.config/autostart/mod-theme-setup.desktop
             echo "StartupNotify=false" >> $HOME/.config/autostart/mod-theme-setup.desktop
