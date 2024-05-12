@@ -24,7 +24,7 @@ if $is_4k; then
     sleep 3
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
     sleep 3
-    xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
+    xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2 >> ~/xfconf.log 2>&1
     sleep 3
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
     sleep 3
