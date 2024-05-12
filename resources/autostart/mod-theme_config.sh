@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
+
 # Detect connected monitors and resolutions
 connected_monitors=$(xrandr | grep -w connected)
 is_4k=false
