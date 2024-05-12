@@ -374,8 +374,7 @@ else
         xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
         xfce4-panel -r
     fi
-    echo -e "${GREEN}Ttheme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
-    echo -e "${GREEN}Ttheme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
+    echo -e "${GREEN}Theme, icons, wallpapers, ... has been successfully installed!${NOCOLOR}"
     echo -e "${YELLOW}The boot target is being switched to the graphical user interface!${NOCOLOR}"
     transactional-update -c run bash -c '
         systemctl set-default graphical.target
