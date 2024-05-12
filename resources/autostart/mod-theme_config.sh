@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+sleep 5
+
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
 
 # Detect connected monitors and resolutions
