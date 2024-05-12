@@ -2,8 +2,6 @@
 
 sleep 5
 
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
-
 # Detect connected monitors and resolutions
 connected_monitors=$(xrandr | grep -w connected)
 is_4k=false
@@ -21,15 +19,11 @@ if $is_4k; then
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
     xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
-    sleep 3
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-    sleep 3
-    xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2 >> ~/xfconf.log 2>&1
-    sleep 3
+    xfconf-query -c xsettings --property /Gdk/WindowScalingFactor -s 2
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-    sleep 3
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-    sleep 3
+    xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 38
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40-xhdpi 
@@ -39,13 +33,9 @@ else
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
     xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40
-    sleep 3
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40
-    sleep 3
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
-    sleep 3
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
-    sleep 3
     flatpak override --user --filesystem=$HOME/.themes
     flatpak override --user --filesystem=$HOME/.icons
     flatpak override --user --env=GTK_THEME=Nordic-v40 
@@ -53,7 +43,7 @@ else
     flatpak override --user --env=CURSOR_THEME=Bibata-Modern-Classic
 fi
 
-sleep 10
+sleep 5
 
 rm -f $HOME/.config/autostart/mod-theme_config.desktop
 # After finishing execution, delete the script itself
