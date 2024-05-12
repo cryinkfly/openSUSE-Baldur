@@ -421,7 +421,7 @@ else
             echo "Type=Application" >> $HOME/.config/autostart/mod-setup-first.desktop
             echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-setup-first.desktop
             echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Exec=sleep5 && $HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-setup-first.desktop
+            echo "Exec=sleep5 && $HOME/.config/autostart/mod-setup-first.sh" >> $HOME/.config/autostart/mod-setup-first.desktop
             echo "OnlyShowIn=XFCE;" >> $HOME/.config/autostart/mod-setup-first.desktop
             echo "RunHook=0" >> $HOME/.config/autostart/mod-setup-first.desktop
             echo "StartupNotify=false" >> $HOME/.config/autostart/mod-setup-first.desktop
