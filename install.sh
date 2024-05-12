@@ -7,7 +7,7 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    19:30/10.05.2024                                                                   #
+# Time/Date:    07:45/12.05.2024                                                                   #
 # Version:      1.0.8                                                                              #
 ####################################################################################################
 
@@ -419,6 +419,7 @@ else
             echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Exec=$HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Terminal=true" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Categories=Utility;System;" >> $HOME/.config/autostart/mod-theme_config.desktop
