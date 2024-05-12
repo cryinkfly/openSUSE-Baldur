@@ -416,7 +416,7 @@ else
             rm -rf Bibata-Modern-Classic.tar.xz
             mkdir -p $HOME/.config/autostart
             echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Encoding=UTF-8" > $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Encoding=UTF-8" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Version=1.0.0" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
