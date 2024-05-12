@@ -1,7 +1,5 @@
 #!/bin/env bash
 
-sleep 5
-
 # Detect connected monitors and resolutions
 connected_monitors=$(xrandr | grep -w connected)
 is_4k=false
@@ -20,7 +18,7 @@ if $is_4k; then
     #curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings-xhdpi.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
     xfconf-query -c xsettings -p /Net/ThemeName -s Nordic-v40-xhdpi
     xfconf-query -c xfwm4 -p /general/theme -s Nordic-v40-xhdpi
-    sleep 5 && xfconf-query -c xsettings --property /Gdk/WindowScalingFactor -s 2
+    xfconf-query -c xsettings -p /Gdk/WindowScalingFactor -s 2
     xfconf-query -c xsettings -p /Net/IconThemeName -s Tela-circle-manjaro-dark
     xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Bibata-Modern-Classic
     xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 38
@@ -30,6 +28,8 @@ if $is_4k; then
     flatpak override --user --env=GTK_THEME=Nordic-v40-xhdpi 
     flatpak override --user --env=ICON_THEME=Tela-circle-manjaro-dark 
     flatpak override --user --env=CURSOR_THEME=Bibata-Modern-Classic
+    flatpak override --user --env=GDK_SCALE=2
+    flatpak override --user --env=QT_SCALE_FACTOR=2
 else
     #curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     #curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
