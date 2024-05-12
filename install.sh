@@ -416,15 +416,17 @@ else
             rm -rf Bibata-Modern-Classic.tar.xz
             mkdir -p $HOME/.config/autostart
             echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Encoding=UTF-8" > $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Version=1.0.0" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme_config.desktop
             echo "Exec=$HOME/.config/autostart/mod-theme_config.sh" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Terminal=true" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Icon=org.gnome.Terminal" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Type=Application" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Categories=Utility;System;" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Name[en_GB]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
-            echo "Name[en_US]=startup" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "OnlyShowIn=XFCE;" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "RunHook=0" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "StartupNotify=false" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Terminal=false" >> $HOME/.config/autostart/mod-theme_config.desktop
+            echo "Hidden=false" >> $HOME/.config/autostart/mod-theme_config.desktop
             curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme_config.sh > $HOME/.config/autostart/mod-theme_config.sh
             chmod +x $HOME/.config/autostart/mod-theme_config.sh
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
