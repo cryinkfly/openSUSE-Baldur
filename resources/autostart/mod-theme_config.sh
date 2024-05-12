@@ -47,6 +47,7 @@ fi
 
 sleep 5
 
+rm -f $HOME/.config/autostart/mod-setup-first.sh
 rm -f $HOME/.config/autostart/mod-theme_config.desktop
 # After finishing execution, delete the script itself
 rm "$0"
