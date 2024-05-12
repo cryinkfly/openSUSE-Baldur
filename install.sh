@@ -415,20 +415,20 @@ else
             rm -rf Tela-circle-manjaro.tar.xz
             rm -rf Bibata-Modern-Classic.tar.xz
             mkdir -p $HOME/.config/autostart
-            echo "[Desktop Entry]" > $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Encoding=UTF-8" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Version=1.0.0" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Type=Application" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Exec=sleep5 && $HOME/.config/autostart/mod-setup-first.sh" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "OnlyShowIn=XFCE;" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "RunHook=0" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "StartupNotify=false" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Terminal=false" >> $HOME/.config/autostart/mod-setup-first.desktop
-            echo "Hidden=false" >> $HOME/.config/autostart/mod-setup-first.desktop
-            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-setup-first.sh > $HOME/.config/autostart/mod-setup-first.sh
-            chmod +x $HOME/.config/autostart/mod-setup-first.sh
+            echo "[Desktop Entry]" > $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Encoding=UTF-8" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Version=1.0.0" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Type=Application" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Name=MicroOS Desktop Theme Setup" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Comment=Sets up MicroOS Desktop Theme" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Exec=$HOME/.config/autostart/mod-theme-setup.py" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "OnlyShowIn=XFCE;" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "RunHook=0" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "StartupNotify=false" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Terminal=false" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            echo "Hidden=false" >> $HOME/.config/autostart/mod-theme-setup.desktop
+            curl https://raw.githubusercontent.com/cryinkfly/openSUSE-Baldur/main/resources/autostart/mod-theme-setup.py > $HOME/.config/autostart/mod-theme-setup.py
+            chmod +x $HOME/.config/autostart/mod-theme-setup.py
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo --user
             flatpak install --user --noninteractive flathub org.mozilla.firefox org.gnome.Calculator org.xfce.mousepad com.github.tchx84.Flatseal
         '
