@@ -7,8 +7,8 @@
 # Author URI:   https://cryinkfly.com                                                              #
 # License:      MIT                                                                                #
 # Copyright (c) 2024                                                                               #
-# Time/Date:    07:45/12.05.2024                                                                   #
-# Version:      1.0.8                                                                              #
+# Time/Date:    15:45/24.09.2024                                                                   #
+# Version:      1.0.9                                                                              #
 ####################################################################################################
 
 # CONFIGURATION OF THE COLOR SCHEME:
@@ -44,6 +44,7 @@ else
     adobe-sourceserifpro-fonts \
     adwaita-icon-theme \
     adwaita-xfce-icon-theme \
+    alsa-ucm-conf \
     at-spi2-core \
     audit \
     avahi \
@@ -55,6 +56,7 @@ else
     bluez-auto-enable-devices \
     bluez-cups \
     bluez-firmware \
+    bluez-obexd \
     bluez-test \
     bolt \
     branding-openSUSE \
@@ -67,6 +69,7 @@ else
     ca-certificates-mozilla \
     canberra-gtk-play \
     chrony \
+    cifs-utils \
     container-selinux \
     coreutils \
     coreutils-systemd \
@@ -80,10 +83,14 @@ else
     desktop-file-utils \
     distrobox \
     dosfstools \
+    dracut-pcr-signature \
+    efibootmgr \
     e2fsprogs \
     efitools \
     elfutils \
+    epson-inkjet-printer-escpr \
     ethtool \
+    exfatprogs \
     exfat-utils \
     fcoe-utils \
     ffmpegthumbnailer \
@@ -91,6 +98,8 @@ else
     filesystem \
     firewalld \
     flatpak \
+    fprintd \
+    fprintd-pam \
     gcr-ssh-askpass \
     gcr3-ssh-askpass \
     gdb \
@@ -142,10 +151,13 @@ else
     kernel-firmware-all \
     lastlog2 \
     less \
+    libinput-udev \
     libopenraw9 \
     libgsf-1-114 \
     libnss_usrfiles2 \
     libxfce4ui-tools \
+    libvulkan_radeon \
+    libvulkan_intel \
     lightdm \
     lightdm-gtk-greeter \
     lightdm-gtk-greeter-settings \
@@ -183,6 +195,9 @@ else
     rebootmgr \
     rpm \
     samba \
+    sane-backends \
+    sdbootutil-rpm-scriptlets \
+    sdbootutil-snapper \
     selinux-policy-targeted \
     selinux-tools \
     shadow \
@@ -215,6 +230,9 @@ else
     thunar-volman-branding-openSUSE \
     tigervnc \
     timezone \
+    tpm2.0-abrmd \
+    tpm2-0-tss \
+    tpm2.0-tools \
     transactional-update \
     transactional-update-notifier \
     transactional-update-zypp-config \
@@ -223,6 +241,7 @@ else
     tumbler-webp-thumbnailer \
     udev-configure-printer \
     udisks2 \
+    uefi_mbr \
     unrar \
     unzip \
     upower \
