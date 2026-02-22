@@ -1,3 +1,9 @@
+>[!WARNING]
+>The transfer of all repositories to my [Codeberg account](https://codeberg.org/cryinkfly) is currently ongoing. In the future, this project will be continued on https://codeberg.org/cryinkfly/openSUSE-Baldur!
+
+---
+
+
 <div id="openSUSE-MicroOS-header" align="center">
 <img align="center" src="https://microos.opensuse.org/assets/images/microos-logo.svg" width="300px" height="150px">
 <h1>[GUIDE] Tips, Tricks & Tutorials for getting fully up and running openSUSE MicroOS Desktop (Baldur Edition)</h1>
